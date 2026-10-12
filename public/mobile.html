@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0;background:#EAE3D6;color:#1B2A2D;font-family:var(--font-sans);-webkit-font-smoothing:antialiased}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}a{color:var(--fg-accent);text-decoration:none}a:hover{color:var(--action-primary-hover)}button{font-family:inherit}input::placeholder{color:#6D7674}[data-snap]::-webkit-scrollbar,[data-scroller]::-webkit-scrollbar{display:none}@media (prefers-reduced-motion: reduce){*{transition-duration:1ms!important}}</style>
+<script src="_ds_bundle.js"></script>
+<script src="waitlist.js"></script>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:{{ outerPad }};">
+<div data-screen-label="{{ screenLabel }}" style="position:relative;width:{{ frameW }};height:{{ frameH }};border-radius:{{ frameRadius }};border:{{ frameBorder }};box-shadow:{{ frameShadow }};overflow:hidden;background:var(--bg-page);isolation:isolate;">
+
+<div ref="{{ scrollerRef }}" data-scroller="" onScroll="{{ onScroll }}" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;">
+
+<header style="position:sticky;top:0;z-index:20;height:60px;padding:0 8px 0 20px;display:flex;align-items:center;justify-content:space-between;background:{{ headerBg }};border-bottom:1px solid {{ headerBorder }};backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background 240ms ease, border-color 240ms ease;">
+  <button type="button" onClick="{{ goHome }}" aria-label="the right molecule, home" style="background:none;border:0;padding:6px 0;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;font-family:var(--font-logo);font-weight:300;font-size:12px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;color:var(--fg-1);">
+    <span>the right</span><span>molecule</span>
+  </button>
+  <button type="button" onClick="{{ openMenu }}" aria-label="Open menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:0;color:var(--fg-1);cursor:pointer;" style-active="opacity:.6">
+    <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="menu" size="{{ 22 }}" stroke="{{ 1.1 }}" hint-size="22px,22px"></x-import>
+  </button>
+</header>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main>
+  <section style="position:relative;background:var(--bg-page);overflow:hidden;margin-top:-60px;padding:92px 24px 120px;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 40% at 50% 66%, var(--trm-ivory-50) 0%, rgba(250,247,241,0) 70%);"></div>
+    <div style="position:relative;">
+      <h1 style="margin:0 0 16px;font-family:var(--font-serif);font-weight:500;font-size:42px;line-height:1.06;letter-spacing:-.005em;color:var(--fg-1);text-wrap:balance;">Designed around the science of <em style="font-weight:400;">PCOS.</em></h1>
+      <p style="margin:0;font-size:16px;font-weight:300;line-height:1.6;color:var(--fg-2);max-width:340px;text-wrap:pretty;">A simple daily ritual with you in mind, made to complete the care you already have.</p>
+    </div>
+    <div style="position:relative;height:330px;margin:28px 0 8px;display:flex;justify-content:center;">
+      <img src="assets/brand/lineart-drop-petrol.png" alt="" aria-hidden="true" style="position:absolute;left:18%;bottom:40px;width:22px;opacity:.8;">
+      <div style="position:relative;height:100%;aspect-ratio:754/1368;">
+        <img src="assets/product/sachet-back.png" alt="" style="position:absolute;height:92%;left:46%;top:6%;transform:rotate(5deg);transform-origin:bottom center;">
+        <img src="assets/product/sachet-front.png" alt="PCOS Harmony sachet" style="position:absolute;height:100%;left:4%;top:0;transform:rotate(-3deg);transform-origin:bottom center;filter:drop-shadow(0 24px 30px rgba(6,48,63,.25));">
+      </div>
+    </div>
+    <div style="position:relative;display:flex;flex-direction:column;gap:6px;">
+      <button type="button" onClick="{{ openWaitlist }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out, background 200ms ease;" style-active="transform:scale(.97);background:var(--action-primary-press)">
+        <span>Be Part of Our Beginning</span>
+        <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="arrow-right" size="{{ 16 }}" stroke="{{ 1.2 }}" hint-size="16px,16px"></x-import>
+      </button>
+      <button type="button" onClick="{{ goScience }}" style="height:48px;background:none;border:0;font-size:14px;letter-spacing:.04em;color:var(--fg-1);cursor:pointer;text-decoration:underline;text-underline-offset:6px;text-decoration-color:rgba(27,42,45,.32);">Explore Science</button>
+    </div>
+    <svg viewBox="0 0 390 70" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:-1px;width:100%;height:70px;display:block;"><path d="M0 30 C 90 80, 210 80, 290 46 S 380 10, 390 14 L390 70 L0 70 Z" fill="#0B4458"></path></svg>
+  </section>
+
+  <section style="background:var(--bg-inverse);padding:12px 24px 44px;">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px;">
+      <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.IconBadge" name="{{ t.icon }}" size="{{ 40 }}" inverse="{{ true }}" hint-size="40px,40px"></x-import>
+          <div>
+            <div style="font-size:14px;line-height:1.35;color:var(--fg-on-inverse);">{{ t.title }}</div>
+            <div style="margin-top:4px;font-size:12px;font-weight:300;line-height:1.45;color:var(--fg-on-inverse-2);">{{ t.sub }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;margin:36px 0 18px;color:var(--fg-on-inverse-2);">
+      <span style="flex:1;height:1px;background:var(--border-on-inverse);"></span>
+      <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="moon-star" size="{{ 16 }}" stroke="{{ 1 }}" hint-size="16px,16px"></x-import>
+      <span style="flex:1;height:1px;background:var(--border-on-inverse);"></span>
+    </div>
+    <p style="margin:0;text-align:center;font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--fg-on-inverse);">Nutrition. Rooted in science.</p>
+  </section>
+
+  <section style="background:var(--bg-page);padding:64px 24px 56px;">
+    <h2 style="margin:0 0 16px;font-family:var(--font-serif);font-weight:500;font-size:38px;line-height:1.06;color:var(--fg-1);">Built around how PCOS<br><em style="font-weight:400;">actually works.</em></h2>
+    <p style="margin:0 0 24px;font-size:15px;font-weight:300;line-height:1.65;color:var(--fg-2);text-wrap:pretty;">PCOS isn’t one thing. It’s how your ovaries, insulin and stress signals talk to each other. Harmony is designed with that conversation in mind, in one simple daily ritual.</p>
+    <div style="position:relative;height:300px;display:flex;justify-content:center;margin:8px 0 32px;">
+      <div style="position:absolute;left:50%;top:50%;width:260px;height:260px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle, var(--trm-ivory-50) 0%, rgba(250,247,241,0) 70%);"></div>
+      <img src="assets/product/sachet-front.png" alt="PCOS Harmony sachet" style="position:relative;height:100%;filter:drop-shadow(0 22px 26px rgba(6,48,63,.22));">
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid var(--border-hairline);">
+      <sc-for list="{{ ingredients }}" as="g" hint-placeholder-count="4">
+        <button type="button" onClick="{{ g.open }}" aria-label="About {{ g.name }}" style="display:flex;align-items:center;gap:16px;min-height:76px;padding:12px 0;background:none;border:0;border-bottom:1px solid var(--border-hairline);text-align:left;cursor:pointer;color:var(--fg-1);transition:opacity 140ms ease;" style-active="opacity:.6">
+          <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.IconBadge" name="{{ g.icon }}" size="{{ 44 }}" hint-size="44px,44px"></x-import>
+          <span style="flex:1;min-width:0;">
+            <span style="display:block;font-size:15px;line-height:1.35;">{{ g.name }}</span>
+            <span style="display:block;margin-top:2px;font-size:13px;font-weight:300;color:var(--fg-2);">{{ g.benefit }}</span>
+          </span>
+          <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="plus" size="{{ 16 }}" stroke="{{ 1.1 }}" hint-size="16px,16px"></x-import>
+        </button>
+      </sc-for>
+    </div>
+    <p style="margin:32px 0 28px;font-family:var(--font-serif);font-style:italic;font-size:24px;line-height:1.3;color:var(--fg-1);">More than a supplement.<br>A more balanced you.</p>
+    <button type="button" onClick="{{ openWaitlist }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97);background:var(--action-primary-press)">
+      <span>Be Part of Our Beginning</span>
+      <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="arrow-right" size="{{ 16 }}" stroke="{{ 1.2 }}" hint-size="16px,16px"></x-import>
+    </button>
+  </section>
+
+  <section ref="{{ scienceRef }}" style="background:var(--bg-page);">
+    <div style="position:relative;height:340px;overflow:hidden;background:radial-gradient(ellipse 60% 60% at 50% 50%, var(--trm-ivory-50) 0%, var(--bg-sunken) 85%);display:flex;align-items:center;justify-content:center;gap:4%;padding:32px 0;">
+      <div style="position:absolute;left:50%;top:50%;width:270px;height:270px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(11,68,88,.2);"></div>
+      <img src="assets/product/sachet-front.png" alt="PCOS Harmony front" style="position:relative;height:100%;transform:rotate(-2deg);">
+      <img src="assets/product/sachet-back.png" alt="PCOS Harmony back" style="position:relative;height:92%;transform:rotate(3deg);">
+    </div>
+    <div style="padding:44px 24px 64px;">
+      <h2 style="margin:0 0 16px;font-family:var(--font-serif);font-weight:500;font-size:34px;line-height:1.08;color:var(--fg-1);">Nutrition<br><em style="font-weight:400;">with intention.</em></h2>
+      <p style="margin:0 0 22px;font-size:15px;font-weight:300;line-height:1.65;color:var(--fg-2);text-wrap:pretty;">We bring scientific thinking and purposeful formulation together to rethink nutritional solutions. PCOS Harmony is where our story begins.</p>
+      <button type="button" onClick="{{ goProduct }}" style="min-height:44px;display:inline-flex;align-items:center;gap:10px;padding:0;background:none;border:0;font-size:14px;letter-spacing:.04em;color:var(--fg-1);cursor:pointer;">
+        <span style="border-bottom:1px solid var(--border-strong);padding-bottom:4px;">Our Science</span>
+        <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="arrow-right" size="{{ 15 }}" stroke="{{ 1.2 }}" hint-size="15px,15px"></x-import>
+      </button>
+    </div>
+  </section>
+
+  <section style="position:relative;background:var(--gradient-sachet-diag);overflow:hidden;padding:56px 24px 0;">
+    <h2 style="margin:0 0 18px;font-family:var(--font-serif);font-weight:500;font-size:34px;line-height:1.1;color:var(--fg-on-inverse);">More than a supplement. A more balanced you.</h2>
+    <p style="margin:0 0 26px;font-size:15px;font-weight:300;line-height:1.65;color:var(--fg-on-inverse);text-wrap:pretty;">At The Right Molecule, we believe in science that supports the real you — through every phase, every cycle, every goal.</p>
+    <button type="button" onClick="{{ openWaitlist }}" style="height:48px;padding:0 22px;display:inline-flex;align-items:center;gap:12px;background:var(--trm-ivory-50);color:var(--trm-petrol);border:0;border-radius:3px;font-size:13px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">
+      <span>Be Part of Our Beginning</span>
+      <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="arrow-right" size="{{ 15 }}" stroke="{{ 1.2 }}" hint-size="15px,15px"></x-import>
+    </button>
+    <div style="height:240px;margin:40px -24px 0;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 45%);mask-image:linear-gradient(180deg,transparent 0%,#000 45%);">
+      <img src="assets/product/detail-art.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:60% 45%;display:block;">
+    </div>
+  </section>
+
+  <section style="position:relative;background:var(--bg-page);padding:56px 0 48px;border-bottom:1px solid var(--border-hairline);">
+    <div style="padding:0 24px;">
+      <h2 style="margin:0 0 8px;font-family:var(--font-serif);font-weight:500;font-size:30px;line-height:1.1;color:var(--fg-1);">Women Like You</h2>
+      <p style="margin:0 0 24px;font-size:14px;font-weight:300;color:var(--fg-2);">Real journeys. Real results.</p>
+    </div>
+    <div ref="{{ quoteRef }}" data-snap="" onScroll="{{ onQuoteScroll }}" style="display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;">
+      <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="3">
+        <figure style="flex:0 0 100%;scroll-snap-align:start;margin:0;padding:0 24px;">
+          <blockquote style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:23px;line-height:1.35;color:var(--fg-1);text-wrap:pretty;">“{{ q.quote }}”</blockquote>
+          <figcaption style="margin-top:16px;font-size:13px;color:var(--fg-2);">— {{ q.author }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:4px;padding:16px 14px 0;">
+      <sc-for list="{{ quoteDots }}" as="d" hint-placeholder-count="3">
+        <button type="button" onClick="{{ d.go }}" aria-label="Testimonial {{ d.n }}" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:0;cursor:pointer;padding:0;">
+          <span style="display:block;height:2px;width:24px;background:{{ d.color }};transition:background 240ms ease;"></span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-page);padding:56px 24px;text-align:center;">
+    <h2 style="margin:0 0 10px;font-family:var(--font-serif);font-weight:500;font-size:28px;line-height:1.15;color:var(--fg-1);text-wrap:balance;">Wellness Insights. Straight to You.</h2>
+    <p style="margin:0 0 24px;font-size:14px;font-weight:300;line-height:1.6;color:var(--fg-2);text-wrap:pretty;">Be the first to know about new products, expert advice and exclusive offers.</p>
+    <sc-if value="{{ newsDone }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:21px;color:var(--fg-1);">Thank you. You're subscribed.</p>
+    </sc-if>
+    <sc-if value="{{ newsOpen }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ submitNews }}" style="display:flex;flex-direction:column;gap:10px;text-align:left;">
+        <label for="news-email" style="font-size:12px;color:var(--fg-2);">Email address</label>
+        <input id="news-email" type="email" inputMode="email" autoComplete="email" value="{{ newsEmail }}" onChange="{{ setNewsEmail }}" placeholder="you@example.com" style="height:52px;padding:0 16px;font-family:var(--font-sans);font-size:16px;color:var(--fg-1);background:var(--bg-page-raised);border:1px solid {{ newsBorder }};border-radius:3px;outline:none;">
+        <sc-if value="{{ newsError }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:12px;color:var(--status-error);">Enter a valid email address.</span></sc-if>
+        <button type="submit" style="height:52px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">Subscribe</button>
+      </form>
+    </sc-if>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isProduct }}" hint-placeholder-val="{{ false }}">
+<main style="background:var(--bg-page);padding-bottom:96px;">
+  <div style="padding:4px 12px 0;">
+    <button type="button" onClick="{{ goHome }}" style="min-height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 8px;background:none;border:0;font-size:13px;color:var(--fg-2);cursor:pointer;">
+      <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="chevron-left" size="{{ 16 }}" stroke="{{ 1.2 }}" hint-size="16px,16px"></x-import>
+      <span>Home</span>
+    </button>
+  </div>
+  <div style="position:relative;margin:4px 0 0;">
+    <div ref="{{ galleryRef }}" data-snap="" onScroll="{{ onGalleryScroll }}" aria-label="Product gallery" style="display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:var(--bg-sunken);">
+      <sc-for list="{{ shots }}" as="s" hint-placeholder-count="1">
+        <div style="flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;background:radial-gradient(ellipse 60% 55% at 50% 48%, var(--trm-ivory-50) 0%, var(--bg-sunken) 75%);">
+          <img src="{{ s.src }}" alt="PCOS Harmony, image {{ s.n }}" draggable="false" style="width:100%;height:100%;object-fit:{{ s.fit }};padding:{{ s.pad }};display:block;user-select:none;">
+        </div>
+      </sc-for>
+    </div>
+    <div style="position:absolute;left:20px;bottom:16px;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.18em;color:var(--fg-2);pointer-events:none;">
+      <span style="color:var(--fg-1);font-variant-numeric:tabular-nums;">{{ shotNum }}</span>
+      <span style="position:relative;width:48px;height:1px;background:var(--border-strong);overflow:hidden;"><span style="position:absolute;inset:0;background:var(--fg-1);transform-origin:left;transform:scaleX({{ shotProgress }});transition:transform 400ms cubic-bezier(.23,1,.32,1);"></span></span>
+      <span>{{ shotTotal }}</span>
+    </div>
+  </div>
+
+  <section style="padding:28px 24px 8px;">
+    <h1 style="margin:0 0 6px;font-family:var(--font-serif);font-weight:500;font-size:40px;line-height:1.05;color:var(--fg-1);">PCOS <em style="font-weight:400;">Harmony</em></h1>
+    <p style="margin:0 0 18px;font-size:13px;color:var(--fg-2);">Daily support for PCOS, built from the biology up</p>
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px;">
+      <span style="font-family:var(--font-serif);font-size:28px;font-weight:500;">₹1,480</span>
+      <span style="font-size:12px;color:var(--fg-2);">31 sachets · approx. 7 g each</span>
+    </div>
+    <p style="margin:0 0 26px;font-size:15px;font-weight:300;line-height:1.65;color:var(--fg-2);text-wrap:pretty;">A thoughtfully formulated blend of clinically studied nutrients to promote hormone balance, regulate cycle rhythm, enhance metabolic health and overall women's wellness.</p>
+    <div style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);margin-bottom:10px;">Flavour</div>
+    <div role="radiogroup" aria-label="Flavour" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px;">
+      <sc-for list="{{ flavours }}" as="f" hint-placeholder-count="2">
+        <button type="button" role="radio" aria-checked="{{ f.on }}" onClick="{{ f.pick }}" style="height:48px;font-size:14px;border-radius:3px;cursor:pointer;background:{{ f.bg }};color:{{ f.color }};border:1px solid var(--border-strong);transition:background 220ms ease, color 220ms ease;">{{ f.name }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--fg-2);">
+      <span style="display:flex;align-items:center;gap:10px;">
+        <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="moon-star" size="{{ 16 }}" stroke="{{ 1.1 }}" hint-size="16px,16px"></x-import>
+        <span>31 days · one sachet a day</span>
+      </span>
+    </div>
+    <div style="margin-top:28px;border-top:1px solid var(--border-hairline);">
+      <sc-for list="{{ acc }}" as="a" hint-placeholder-count="2">
+        <div style="border-bottom:1px solid var(--border-hairline);">
+          <button type="button" onClick="{{ a.toggle }}" aria-expanded="{{ a.on }}" style="width:100%;min-height:56px;display:flex;justify-content:space-between;align-items:center;background:none;border:0;cursor:pointer;font-size:14px;color:var(--fg-1);padding:0;">
+            <span>{{ a.title }}</span>
+            <span style="display:flex;transform:rotate({{ a.rot }});transition:transform 220ms cubic-bezier(.23,1,.32,1);">
+              <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="plus" size="{{ 15 }}" stroke="{{ 1.1 }}" hint-size="15px,15px"></x-import>
+            </span>
+          </button>
+          <div style="max-height:{{ a.h }};overflow:hidden;transition:max-height 260ms cubic-bezier(.23,1,.32,1);">
+            <p style="margin:0 0 18px;font-size:14px;font-weight:300;line-height:1.65;color:var(--fg-2);">{{ a.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:48px 24px 56px;">
+    <h2 style="margin:0 0 28px;font-family:var(--font-serif);font-weight:500;font-size:30px;line-height:1.1;color:var(--fg-1);">Simple by design.<br><em style="font-weight:400;">Once a day.</em></h2>
+    <div style="position:relative;display:flex;flex-direction:column;gap:28px;">
+      <div style="position:absolute;left:22px;top:22px;bottom:22px;width:1px;background:var(--border-strong);"></div>
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+        <div style="position:relative;display:flex;gap:18px;align-items:flex-start;">
+          <span style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--bg-page);border:1px solid var(--border-strong);font-family:var(--font-serif);font-style:italic;font-size:18px;color:var(--fg-1);">{{ st.n }}</span>
+          <div style="padding-top:10px;">
+            <div style="font-size:15px;color:var(--fg-1);">{{ st.t }}</div>
+            <p style="margin:4px 0 0;font-size:14px;font-weight:300;line-height:1.6;color:var(--fg-2);">{{ st.b }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:var(--gradient-sachet-diag);padding:56px 24px 60px;">
+    <h2 style="margin:0 0 32px;font-family:var(--font-serif);font-weight:500;font-size:32px;line-height:1.1;color:var(--fg-on-inverse);">Four molecules.<br><em style="font-weight:400;">One daily ritual.</em></h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid var(--border-on-inverse);">
+      <sc-for list="{{ ingredients }}" as="g" hint-placeholder-count="4">
+        <button type="button" onClick="{{ g.open }}" aria-label="About {{ g.name }}" style="display:flex;align-items:center;gap:16px;min-height:76px;padding:12px 0;background:none;border:0;border-bottom:1px solid var(--border-on-inverse);text-align:left;cursor:pointer;color:var(--fg-on-inverse);transition:opacity 140ms ease;" style-active="opacity:.6">
+          <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.IconBadge" name="{{ g.icon }}" size="{{ 44 }}" inverse="{{ true }}" hint-size="44px,44px"></x-import>
+          <span style="flex:1;min-width:0;">
+            <span style="display:block;font-size:15px;line-height:1.35;">{{ g.name }}</span>
+            <span style="display:block;margin-top:2px;font-size:13px;font-weight:300;color:var(--fg-on-inverse-2);">{{ g.benefit }}</span>
+          </span>
+          <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="plus" size="{{ 16 }}" stroke="{{ 1.1 }}" hint-size="16px,16px"></x-import>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<footer style="background:var(--bg-inverse-deep);color:var(--fg-on-inverse);padding:44px 24px {{ footerPad }};">
+  <div style="font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><div>the right</div><div>molecule</div></div>
+  <nav style="display:grid;grid-template-columns:1fr 1fr;margin:28px 0 24px;">
+    <sc-for list="{{ footerLinks }}" as="l" hint-placeholder-count="4">
+      <button type="button" onClick="{{ l.go }}" style="min-height:44px;text-align:left;padding:0;background:none;border:0;font-size:14px;color:var(--fg-on-inverse);cursor:pointer;">{{ l.label }}</button>
+    </sc-for>
+  </nav>
+  <p style="margin:0;padding-top:20px;border-top:1px solid var(--border-on-inverse);font-size:12px;color:var(--fg-on-inverse-2);">© 2026 The Right Molecule</p>
+</footer>
+</div>
+
+<div aria-hidden="{{ barHidden }}" style="position:absolute;left:12px;right:12px;bottom:{{ barBottom }};z-index:25;display:flex;align-items:center;gap:12px;padding:8px 8px 8px 10px;background:rgba(250,247,241,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--border-hairline);border-radius:6px;box-shadow:var(--shadow-float);transform:translateY({{ barY }});opacity:{{ barOp }};pointer-events:{{ barPE }};transition:transform 360ms cubic-bezier(.23,1,.32,1), opacity 240ms ease;">
+  <img src="assets/product/sachet-front.png" alt="" style="height:44px;width:auto;">
+  <div style="flex:1;min-width:0;">
+    <div style="font-family:var(--font-serif);font-size:18px;font-weight:500;line-height:1.1;">PCOS <em style="font-weight:400;">Harmony</em></div>
+    <div style="font-size:12px;color:var(--fg-2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ barSub }}</div>
+  </div>
+  <button type="button" onClick="{{ openWaitlist }}" tabIndex="{{ barTab }}" style="height:44px;padding:0 16px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:13px;letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">Be Part of Our Beginning</button>
+</div>
+
+<div aria-hidden="{{ menuHidden }}" style="position:absolute;inset:0;z-index:40;background:var(--bg-page);display:flex;flex-direction:column;opacity:{{ menuOp }};transform:translateY({{ menuY }});pointer-events:{{ menuPE }};transition:opacity 220ms ease, transform 300ms cubic-bezier(.23,1,.32,1);">
+  <div style="height:60px;padding:0 8px 0 20px;display:flex;align-items:center;justify-content:space-between;margin-top:{{ statusPad }};">
+    <div style="font-family:var(--font-logo);font-weight:300;font-size:12px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><div>the right</div><div>molecule</div></div>
+    <button type="button" onClick="{{ closeMenu }}" aria-label="Close menu" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:0;color:var(--fg-1);cursor:pointer;">
+      <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="x" size="{{ 22 }}" stroke="{{ 1.1 }}" hint-size="22px,22px"></x-import>
+    </button>
+  </div>
+  <nav style="flex:1;display:flex;flex-direction:column;padding:24px 24px 0;">
+    <sc-for list="{{ menuLinks }}" as="m" hint-placeholder-count="5">
+      <button type="button" onClick="{{ m.go }}" style="min-height:64px;display:flex;align-items:center;justify-content:space-between;padding:0;background:none;border:0;border-bottom:1px solid var(--border-hairline);font-family:var(--font-serif);font-weight:500;font-size:30px;color:var(--fg-1);cursor:pointer;text-align:left;">
+        <span>{{ m.label }}</span>
+        <span style="width:6px;height:6px;border-radius:50%;background:{{ m.dot }};"></span>
+      </button>
+    </sc-for>
+  </nav>
+  <div style="padding:24px 24px 32px;">
+    <button type="button" onClick="{{ openWaitlistFromMenu }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">
+      <span>Be Part of Our Beginning</span>
+      <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="arrow-right" size="{{ 16 }}" stroke="{{ 1.2 }}" hint-size="16px,16px"></x-import>
+    </button>
+  </div>
+</div>
+
+<div aria-hidden="{{ sheetHidden }}" style="position:absolute;inset:0;z-index:50;pointer-events:{{ sheetPE }};">
+  <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:rgba(11,40,50,.4);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:{{ sheetOp }};transition:opacity 260ms ease;"></div>
+  <div role="dialog" aria-modal="true" aria-label="{{ sheetLabel }}" style="position:absolute;left:0;right:0;bottom:0;max-height:88%;overflow-y:auto;background:var(--bg-page-raised);border-radius:16px 16px 0 0;box-shadow:var(--shadow-float);padding:10px 24px 36px;transform:translateY({{ sheetY }});transition:transform 380ms cubic-bezier(.32,.72,0,1);">
+    <div style="display:flex;justify-content:center;padding:2px 0 6px;"><span style="width:36px;height:4px;border-radius:2px;background:var(--border-strong);"></span></div>
+    <div style="display:flex;justify-content:flex-end;margin:0 -12px 0 0;">
+      <button type="button" onClick="{{ closeSheet }}" aria-label="Close" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:0;color:var(--fg-1);cursor:pointer;">
+        <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="x" size="{{ 20 }}" stroke="{{ 1.1 }}" hint-size="20px,20px"></x-import>
+      </button>
+    </div>
+
+    <sc-if value="{{ isWaitlist }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ waitDone }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:8px 0 4px;">
+          <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.IconBadge" name="check" size="{{ 56 }}" hint-size="56px,56px"></x-import>
+          <p style="margin:20px 0 0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-accent);">Founding Member No. {{ memberNo }}</p>
+          <h2 style="margin:12px 0 8px;font-family:var(--font-serif);font-weight:500;font-size:32px;line-height:1.1;color:var(--fg-1);">You're on the <em style="font-weight:400;">list.</em></h2>
+          <p style="margin:0 0 26px;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">We'll write to you the moment PCOS Harmony is ready.</p>
+          <button type="button" onClick="{{ closeSheet }}" style="height:52px;width:100%;background:none;color:var(--fg-1);border:1px solid var(--border-strong);border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">Done</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ waitForm }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitWait }}" style="display:flex;flex-direction:column;">
+          <div style="display:flex;gap:16px;align-items:center;margin-bottom:20px;">
+            <img src="assets/product/sachet-front.png" alt="" style="height:76px;width:auto;">
+            <div>
+              <h2 style="margin:0 0 4px;font-family:var(--font-serif);font-weight:500;font-size:30px;line-height:1.05;color:var(--fg-1);">Be Part of Our Beginning</h2>
+              <p style="margin:0;font-size:13px;color:var(--fg-2);">PCOS <em>Harmony</em> · {{ flavourName }}</p>
+            </div>
+          </div>
+          <p style="margin:0 0 22px;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);text-wrap:pretty;">Be the first to know when PCOS Harmony is available.</p>
+          <label for="wait-name" style="font-size:12px;color:var(--fg-2);margin-bottom:8px;">Your name</label>
+          <input id="wait-name" type="text" autoComplete="name" value="{{ waitName }}" onChange="{{ setWaitName }}" placeholder="First and last name" style="height:52px;padding:0 16px;font-family:var(--font-sans);font-size:16px;color:var(--fg-1);background:var(--bg-page);border:1px solid {{ nameBorder }};border-radius:3px;outline:none;">
+          <sc-if value="{{ nameError }}" hint-placeholder-val="{{ false }}"><span role="alert" style="margin-top:8px;font-size:12px;font-style:italic;color:var(--fg-2);">Please enter your name.</span></sc-if>
+          <label for="wait-email" style="font-size:12px;color:var(--fg-2);margin:16px 0 8px;">Email address</label>
+          <input id="wait-email" type="email" inputMode="email" autoComplete="email" value="{{ waitEmail }}" onChange="{{ setWaitEmail }}" placeholder="you@example.com" style="height:52px;padding:0 16px;font-family:var(--font-sans);font-size:16px;color:var(--fg-1);background:var(--bg-page);border:1px solid {{ waitBorder }};border-radius:3px;outline:none;">
+          <sc-if value="{{ waitError }}" hint-placeholder-val="{{ false }}"><span role="alert" style="margin-top:8px;font-size:12px;font-style:italic;color:var(--fg-2);">Enter a valid email address.</span></sc-if>
+          <button type="submit" disabled="{{ waitSending }}" style="margin-top:16px;height:52px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97);background:var(--action-primary-press)">
+            <span>{{ waitBtn }}</span>
+            <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="arrow-right" size="{{ 16 }}" stroke="{{ 1.2 }}" hint-size="16px,16px"></x-import>
+          </button>
+          <p style="margin:14px 0 0;font-size:12px;line-height:1.5;color:var(--fg-3);">Launch updates only. Unsubscribe anytime.</p>
+        </form>
+      </sc-if>
+    </sc-if>
+
+    <sc-if value="{{ isIngredient }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.IconBadge" name="{{ ing.icon }}" size="{{ 60 }}" hint-size="60px,60px"></x-import>
+        <div style="margin-top:20px;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Ingredient {{ ingIndex }} / 04</div>
+        <h2 style="margin:10px 0 4px;font-family:var(--font-serif);font-weight:500;font-size:34px;line-height:1.08;color:var(--fg-1);">{{ ing.name }}</h2>
+        <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--fg-2);">{{ ing.benefit }}</p>
+        <div style="width:40px;height:1px;background:var(--border-strong);margin:20px 0;"></div>
+        <p style="margin:0;font-size:15px;font-weight:300;line-height:1.7;color:var(--fg-1);">{{ ing.blurb }}</p>
+        <p style="margin:16px 0 24px;font-size:12px;color:var(--fg-3);">Consult your healthcare professional before starting any supplement.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <button type="button" onClick="{{ prevIng }}" style="height:48px;display:flex;align-items:center;justify-content:center;gap:8px;background:none;border:1px solid var(--border-strong);border-radius:3px;font-size:13px;color:var(--fg-1);cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">
+            <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="chevron-left" size="{{ 15 }}" stroke="{{ 1.2 }}" hint-size="15px,15px"></x-import><span>Previous</span>
+          </button>
+          <button type="button" onClick="{{ nextIng }}" style="height:48px;display:flex;align-items:center;justify-content:center;gap:8px;background:none;border:1px solid var(--border-strong);border-radius:3px;font-size:13px;color:var(--fg-1);cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">
+            <span>Next</span><x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="chevron-right" size="{{ 15 }}" stroke="{{ 1.2 }}" hint-size="15px,15px"></x-import>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INGREDIENTS = [
+  { icon: 'network', name: 'Myo-Inositol', benefit: 'Promotes hormone balance', blurb: "A naturally occurring compound found in fruit, beans and whole grains. Inositols act as messengers in insulin signalling, and myo-inositol is one of the most studied nutrients in women's hormonal health." },
+  { icon: 'refresh-ccw', name: 'D-Chiro-Inositol', benefit: 'Supports a steadier rhythm', blurb: 'The partner form of myo-inositol. The body converts between the two, and research usually looks at them together, in a set ratio, for their role in ovarian function and cycle regularity.' },
+  { icon: 'leaf', name: 'Berberine', benefit: 'Helps your cells use energy and insulin more efficiently', blurb: 'A plant compound traditionally extracted from barberry and goldenseal. It has been studied for its role in glucose metabolism and how the body manages energy.' },
+  { icon: 'sun', name: 'Vitamin D3 + K2', benefit: 'Supports bone & immune health', blurb: 'Vitamin D3 contributes to normal bones and immune function; vitamin K2 helps direct calcium to where the body needs it. Many women do not get enough vitamin D from sunlight alone.' },
+];
+const SHOTS = [['sachets-pair.png', 'contain'], ['sachet-front.png', 'contain'], ['sachet-back.png', 'contain'], ['detail-label.jpg', 'cover'], ['detail-art.jpg', 'cover'], ['detail-ingredients.jpg', 'cover']];
+const QUOTES = [
+  { quote: 'I feel more in control of my cycle and have more energy throughout the day. Finally, something that understands what women need.', author: 'A, 28' },
+  { quote: 'It fits into my morning without thinking about it. Three months in, my cycle feels more predictable.', author: 'M, 31' },
+  { quote: 'Clear about what is in it and why. That matters to me.', author: 'S, 34' },
+];
+const FLAVOURS = ['Passion Fruit'];
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+class Component extends DCLogic {
+  scrollerRef = React.createRef();
+  galleryRef = React.createRef();
+  quoteRef = React.createRef();
+  scienceRef = React.createRef();
+  state = {
+    screen: (this.props.startScreen ?? localStorage.getItem('trm-m-screen') ?? 'Home') === 'Product' ? 'product' : 'home',
+    scrollY: 0, menu: false, sheet: null, ing: 0, flavour: 0, shot: 0, quote: 0, open: 'use',
+    waitName: '', waitNameError: false, waitSending: false, memberNo: 128, waitEmail: '', waitError: false, waitDone: false, newsEmail: '', newsError: false, newsDone: false,
+  };
+  componentDidMount() { try { if (new URLSearchParams(location.search).has('waitlist')) this.setState({ sheet: 'waitlist' }); } catch (e) {} this._key = (e) => { if (e.key === 'Escape') this.setState({ sheet: null, menu: false }); }; document.addEventListener('keydown', this._key); }
+  componentWillUnmount() { document.removeEventListener('keydown', this._key); }
+  componentDidUpdate(pp) { if (pp.startScreen !== this.props.startScreen && this.props.startScreen) this.go(this.props.startScreen === 'Product' ? 'product' : 'home'); }
+  go(screen, after) {
+    localStorage.setItem('trm-m-screen', screen === 'product' ? 'Product' : 'Home');
+    this.setState({ screen, menu: false, scrollY: 0 }, () => {
+      const s = this.scrollerRef.current; if (!s) return;
+      s.scrollTop = 0;
+      if (after) requestAnimationFrame(() => after(s));
+    });
+  }
+  goScience = () => this.go('home', (s) => { const el = this.scienceRef.current; el && s.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' }); });
+  openWaitlist = () => this.setState({ sheet: 'waitlist', menu: false, waitError: false });
+  validate(v) { return EMAIL.test(v.trim()); }
+  renderVals() {
+    const s = this.state;
+    const framed = this.props.showFrame ?? (typeof window === 'undefined' || window.innerWidth > 600);
+    const homeBar = this.props.homeStickyCTA ?? true;
+    const isHome = s.screen === 'home';
+    const barOn = !s.menu && !s.sheet && (isHome ? homeBar && s.scrollY > 560 : true);
+    const solid = !isHome || s.scrollY > 8 || s.menu;
+    const sheetOn = !!s.sheet;
+    const ing = INGREDIENTS[s.ing];
+    const nav = (label) => () => {
+      if (label === 'Home') this.go('home');
+      else if (label === 'Products' || label === 'Be Part of Our Beginning') label === 'Be Part of Our Beginning' ? this.openWaitlist() : this.go('product');
+      else if (label === 'Our Science') this.goScience();
+      else this.setState({ menu: false });
+    };
+    return {
+      outerPad: framed ? '32px 16px' : '0',
+      frameW: framed ? '390px' : '100%',
+      frameH: framed ? '844px' : '100dvh',
+      frameRadius: framed ? '44px' : '0',
+      frameBorder: framed ? '10px solid #10191C' : '0',
+      frameShadow: framed ? '0 40px 80px rgba(6,48,63,.22)' : 'none',
+      statusPad: '0px',
+      screenLabel: isHome ? 'Mobile Home' : 'Mobile Product',
+      scrollerRef: this.scrollerRef, galleryRef: this.galleryRef, quoteRef: this.quoteRef, scienceRef: this.scienceRef,
+      onScroll: (e) => { const y = e.currentTarget.scrollTop; if ((y > 8) !== (s.scrollY > 8) || (y > 560) !== (s.scrollY > 560)) this.setState({ scrollY: y }); },
+      headerBg: solid ? 'rgba(243,238,228,.9)' : 'rgba(243,238,228,0)',
+      headerBorder: solid && !s.menu ? 'var(--border-hairline)' : 'transparent',
+      isHome, isProduct: !isHome,
+      goHome: () => this.go('home'),
+      goProduct: () => this.go('product'),
+      goScience: this.goScience,
+      openMenu: () => this.setState({ menu: true }),
+      closeMenu: () => this.setState({ menu: false }),
+      openWaitlist: this.openWaitlist,
+      openWaitlistFromMenu: this.openWaitlist,
+      trust: [
+        { icon: 'leaf', title: 'Clean Ingredients', sub: 'Pure. Safe. Effective.' },
+        { icon: 'flask-conical', title: 'Backed by Science', sub: 'Research-driven formulas' },
+        { icon: 'atom', title: 'Molecular Precision', sub: 'Targeted. Absorbed. Utilised.' },
+        { icon: 'shield-check', title: 'Quality Assured', sub: 'Tested. Trusted. Certified.' },
+      ],
+      ingredients: INGREDIENTS.map((g, k) => ({ ...g, open: () => this.setState({ sheet: 'ingredient', ing: k }) })),
+      quotes: QUOTES,
+      onQuoteScroll: (e) => { const el = e.currentTarget; const i = Math.round(el.scrollLeft / el.clientWidth); if (i !== s.quote) this.setState({ quote: i }); },
+      quoteDots: QUOTES.map((_, k) => ({ n: k + 1, color: k === s.quote ? 'var(--fg-1)' : 'var(--border-strong)', go: () => { const el = this.quoteRef.current; el && el.scrollTo({ left: k * el.clientWidth, behavior: 'smooth' }); } })),
+      newsEmail: s.newsEmail, newsDone: s.newsDone, newsOpen: !s.newsDone, newsError: s.newsError,
+      newsBorder: s.newsError ? 'var(--status-error)' : 'var(--border-strong)',
+      setNewsEmail: (e) => this.setState({ newsEmail: e.target.value, newsError: false }),
+      submitNews: (e) => { e.preventDefault(); this.validate(s.newsEmail) ? this.setState({ newsDone: true }) : this.setState({ newsError: true }); },
+      shots: SHOTS.map(([f, fit], k) => ({ src: 'assets/product/' + f, fit, pad: fit === 'contain' ? '8% 12%' : '0', n: k + 1 })),
+      onGalleryScroll: (e) => { const el = e.currentTarget; const i = Math.round(el.scrollLeft / el.clientWidth); if (i !== s.shot) this.setState({ shot: i }); },
+      shotNum: String(s.shot + 1).padStart(2, '0'),
+      shotTotal: String(SHOTS.length).padStart(2, '0'),
+      shotProgress: (s.shot + 1) / SHOTS.length,
+      flavours: FLAVOURS.map((name, k) => ({ name, on: k === s.flavour, bg: k === s.flavour ? 'var(--fg-1)' : 'transparent', color: k === s.flavour ? 'var(--trm-ivory-50)' : 'var(--fg-1)', pick: () => this.setState({ flavour: k }) })),
+      flavourName: FLAVOURS[s.flavour],
+      acc: [
+        ['use', 'Suggested use', 'Mix 1 sachet in water or your favourite beverage. Take once daily, or as directed by your healthcare professional.'],
+        ['store', 'Storage', 'Keep in a cool, dry place. Do not use if seal is broken.'],
+      ].map(([id, title, body]) => ({ title, body, on: s.open === id, h: s.open === id ? '140px' : '0px', rot: s.open === id ? '45deg' : '0deg', toggle: () => this.setState({ open: s.open === id ? null : id }) })),
+      steps: [
+        { n: '01', t: 'Mix one sachet', b: 'Into water or your favourite beverage.' },
+        { n: '02', t: 'Take once daily', b: 'Or as directed by your healthcare professional.' },
+        { n: '03', t: 'Keep it fresh', b: 'Store in a cool, dry place. Do not use if the seal is broken.' },
+      ],
+      footerPad: barOn || !isHome ? '104px' : '40px',
+      footerLinks: ['Be Part of Our Beginning', 'Our Science', 'About', 'Contact'].map((label) => ({ label, go: nav(label) })),
+      barHidden: !barOn, barTab: barOn ? 0 : -1,
+      barBottom: framed ? '16px' : 'calc(12px + env(safe-area-inset-bottom))',
+      barY: barOn ? '0' : '140%', barOp: barOn ? 1 : 0, barPE: barOn ? 'auto' : 'none',
+      barSub: isHome ? '₹1,480 · 31 sachets' : FLAVOURS[s.flavour] + ' · ₹1,480',
+      menuHidden: !s.menu, menuOp: s.menu ? 1 : 0, menuY: s.menu ? '0' : '-12px', menuPE: s.menu ? 'auto' : 'none',
+      menuLinks: ['Home', 'Products', 'Our Science', 'About', 'Contact'].map((label) => ({ label, go: nav(label), dot: (label === 'Home' && isHome) || (label === 'Products' && !isHome) ? 'var(--fg-1)' : 'transparent' })),
+      sheetHidden: !sheetOn, sheetPE: sheetOn ? 'auto' : 'none', sheetOp: sheetOn ? 1 : 0, sheetY: sheetOn ? '0' : '105%',
+      sheetLabel: s.sheet === 'ingredient' ? ing.name : 'Be Part of Our Beginning',
+      closeSheet: () => this.setState({ sheet: null }),
+      isWaitlist: s.sheet === 'waitlist', isIngredient: s.sheet === 'ingredient',
+      waitDone: s.waitDone, waitForm: !s.waitDone, waitEmail: s.waitEmail, waitError: s.waitError,
+      waitBorder: s.waitError ? 'var(--fg-line-art)' : 'var(--border-strong)',
+      setWaitEmail: (e) => this.setState({ waitEmail: e.target.value, waitError: false }),
+      waitName: s.waitName, nameError: s.waitNameError, nameBorder: s.waitNameError ? 'var(--fg-line-art)' : 'var(--border-strong)',
+      setWaitName: (e) => this.setState({ waitName: e.target.value, waitNameError: false }),
+      waitSending: s.waitSending, waitBtn: s.waitSending ? 'Reserving…' : 'Be Part of Our Beginning', memberNo: String(s.memberNo).padStart(4, '0'),
+      submitWait: async (e) => {
+        e.preventDefault();
+        const nameBad = s.waitName.trim().length < 2, emailBad = !this.validate(s.waitEmail);
+        if (nameBad || emailBad) { this.setState({ waitNameError: nameBad, waitError: emailBad }); return; }
+        this.setState({ waitSending: true });
+        try {
+          const api = window.TRMWaitlist ? window.TRMWaitlist.submit : async () => ({ memberNumber: 128 });
+          const res = await api({ name: s.waitName.trim(), email: s.waitEmail.trim(), source: 'mobile' });
+          this.setState({ waitDone: true, waitSending: false, memberNo: (res && res.memberNumber) || 128 });
+        } catch (er) { this.setState({ waitSending: false }); }
+      },
+      ing, ingIndex: String(s.ing + 1).padStart(2, '0'),
+      prevIng: () => this.setState({ ing: (s.ing + 3) % 4 }),
+      nextIng: () => this.setState({ ing: (s.ing + 1) % 4 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

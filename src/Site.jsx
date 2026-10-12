@@ -538,11 +538,10 @@ function PrebookField({ id, label, type, value, onChange, onBlur, error, placeho
 // ── WAITLIST BACKEND PLACEHOLDER ─────────────────────────────────────────
 // Replace the body of submitWaitlist with your real request. It must resolve to
 // { memberNumber } — that number is shown on the Founding Member card.
-async function submitWaitlist({ name, email, source, answers }) {
-  // e.g. const r = await fetch('/api/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, source, answers }) }); return r.json();
+async function submitWaitlist(payload) {
+  if (window.TRMWaitlist) return window.TRMWaitlist.submit(payload);
   await new Promise((r) => setTimeout(r, 900));
-  let n = 127; try { n = (parseInt(localStorage.getItem('trm-member-no'), 10) || 127) + 1; localStorage.setItem('trm-member-no', String(n)); localStorage.setItem(PREBOOK_DONE, '1'); } catch (e) {}
-  return { memberNumber: n };
+  return { memberNumber: 128 };
 }
 const fmtMember = (n) => String(n).padStart(4, '0');
 
@@ -816,7 +815,7 @@ function TRMSite({ page }) {
   const [bagOpen, setBagOpen] = React.useState(false);
   const [ingredient, setIngredient] = React.useState(null);
   const [prebook, setPrebook] = React.useState(false);
-  const [wl, setWl] = React.useState(null);
+  const [wl, setWl] = React.useState(() => qs.has('waitlist') ? { rect: null } : null);
   const openWL = (e) => { const el = (e && e.currentTarget && e.currentTarget.getBoundingClientRect) ? e.currentTarget : document.activeElement; const rect = el && el !== document.body && el.getBoundingClientRect ? el.getBoundingClientRect() : null; if (el && el.animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.95)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' }); setWl({ rect }); };
   const go = (r) => { if (r === 'Be Part of Our Beginning') { openWL(); return; } const M = window.TRMMotion; if (embedded) { const n2 = r === 'Our Science' ? 'Our Science' : r === 'Products' || r === 'Shop' || r === 'Be Part of Our Beginning' ? 'Products' : 'Home'; window.parent.postMessage({ trmNav: n2 }, '*'); return; } if (r === 'Our Science') { M && M.navigateTo ? M.navigateTo('Our Science.dc.html') : (window.location.href = 'Our Science.dc.html'); return; } const n = r === 'About' ? 'About' : r === 'Products' || r === 'Shop' || r === 'Be Part of Our Beginning' ? 'Products' : 'Home'; const swap = () => { setRoute(n); localStorage.setItem('trm-route', n); window.scrollTo(0, 0); }; if (n === route) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; } M && M.transition ? M.transition(swap) : swap(); };
   const add = ({ flavour, qty }) => {

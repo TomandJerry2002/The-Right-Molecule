@@ -18,6 +18,7 @@ const loadScript = (src) => new Promise((resolve, reject) => {
 });
 
 (async () => {
+  await loadScript(import.meta.env.BASE_URL + 'waitlist.js');
   await loadScript(import.meta.env.BASE_URL + '_ds_bundle.js');
   const { TRMSite } = await import('./Site.jsx');
   createRoot(document.getElementById('root')).render(<TRMSite />);
