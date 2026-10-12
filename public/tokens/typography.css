@@ -1,0 +1,26 @@
+:root{
+--font-serif:"Cormorant Garamond","Cormorant",Garamond,"Times New Roman",serif;
+--font-sans:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+--font-logo:"Jost","Futura",sans-serif;
+--weight-light:300;--weight-regular:400;--weight-medium:500;--weight-semibold:600;
+/* Display scale (serif) */
+--type-display-xl:clamp(44px,5.2vw,76px);
+--type-display-l:clamp(38px,4.2vw,60px);
+--type-display-m:clamp(32px,3.2vw,46px);
+--type-display-s:clamp(26px,2.4vw,34px);
+--type-quote:22px;
+/* Sans scale */
+--type-body-l:17px;
+--type-body:15px;
+--type-body-s:13px;
+--type-caption:12px;
+--type-eyebrow:11px;
+--type-nav:13px;
+--leading-tight:1.08;
+--leading-snug:1.25;
+--leading-body:1.65;
+--tracking-logo:.32em;
+--tracking-eyebrow:.24em;
+--tracking-serif-caps:.28em;
+--tracking-button:.04em;
+}

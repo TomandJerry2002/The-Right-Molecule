@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<style>@keyframes trmDrift{0%{transform:translate(0,0)}100%{transform:translate(3px,-6px)}}@keyframes trmPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.9);opacity:.08}}@keyframes trmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}</style>
+<script src="science/ingredients.js"></script>
+</helmet>
+<div onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" style="position:relative;width:100%;aspect-ratio:4/3;container-type:inline-size;user-select:none;-webkit-user-select:none;">
+
+<div aria-hidden="true" style="position:absolute;inset:0;transform:scale({{ bodyS }});transform-origin:50% 60%;opacity:{{ bodyO }};visibility:{{ bodyV }};">
+  <svg viewBox="0 0 800 600" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
+    <ellipse cx="400" cy="330" rx="210" ry="260" style="fill:#CDB894;opacity:.05;"></ellipse>
+    <path d="M 400 46 C 360 46, 350 82, 355 112 C 360 142, 350 166, 334 184" style="fill:none;stroke:#CDB894;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:1;"></path>
+    <path d="M 400 46 C 440 46, 450 82, 445 112 C 440 142, 450 166, 466 184" style="fill:none;stroke:#CDB894;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:1;"></path>
+    <path d="M 364 122 C 362 142, 354 158, 344 170" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.55;"></path>
+    <path d="M 436 122 C 438 142, 446 158, 456 170" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.55;"></path>
+    <path d="M 372 112 C 372 136, 366 150, 358 162" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.4;"></path>
+    <path d="M 428 112 C 428 136, 434 150, 442 162" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.4;"></path>
+    <path d="M 389 140 C 390 152, 388 160, 384 166" style="fill:none;stroke:#CDB894;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:0.9;"></path>
+    <path d="M 411 140 C 410 152, 412 160, 416 166" style="fill:none;stroke:#CDB894;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:0.9;"></path>
+    <path d="M 384 166 C 360 170, 326 172, 312 190 C 300 206, 298 240, 296 270 C 294 300, 292 330, 300 360 C 304 378, 312 392, 318 404" style="fill:none;stroke:#CDB894;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:1;"></path>
+    <path d="M 416 166 C 440 170, 474 172, 488 190 C 500 206, 502 240, 504 270 C 506 300, 508 330, 500 360 C 496 378, 488 392, 482 404" style="fill:none;stroke:#CDB894;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:1;"></path>
+    <path d="M 326 214 C 324 250, 322 290, 326 330 C 328 352, 330 370, 334 388" style="fill:none;stroke:#CDB894;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:0.75;"></path>
+    <path d="M 474 214 C 476 250, 478 290, 474 330 C 472 352, 470 370, 466 388" style="fill:none;stroke:#CDB894;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:0.75;"></path>
+    <path d="M 318 404 C 320 414, 330 418, 337 410 C 341 402, 339 394, 334 388" style="fill:none;stroke:#CDB894;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:0.9;"></path>
+    <path d="M 482 404 C 480 414, 470 418, 463 410 C 459 402, 461 394, 466 388" style="fill:none;stroke:#CDB894;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:0.9;"></path>
+    <path d="M 330 222 C 336 260, 344 290, 344 320 C 344 350, 330 380, 328 420 C 326 470, 340 540, 348 600" style="fill:none;stroke:#CDB894;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:1;"></path>
+    <path d="M 470 222 C 464 260, 456 290, 456 320 C 456 350, 470 380, 472 420 C 474 470, 460 540, 452 600" style="fill:none;stroke:#CDB894;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:1;"></path>
+    <path d="M 388 174 C 372 178, 356 178, 342 184" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.5;"></path>
+    <path d="M 412 174 C 428 178, 444 178, 458 184" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.5;"></path>
+    <path d="M 381 99 Q 387 103 393 99" style="fill:none;stroke:#CDB894;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:0.9;"></path>
+    <path d="M 419 99 Q 413 103 407 99" style="fill:none;stroke:#CDB894;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:0.9;"></path>
+    <path d="M 379 90 Q 386 86 393 89" style="fill:none;stroke:#CDB894;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:round;opacity:0.5;"></path>
+    <path d="M 421 90 Q 414 86 407 89" style="fill:none;stroke:#CDB894;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:round;opacity:0.5;"></path>
+    <path d="M 370 90 C 370 128, 386 140, 400 142 C 414 140, 430 128, 430 90" style="fill:none;stroke:#CDB894;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;opacity:1;"></path>
+    <path d="M 370 92 C 372 66, 388 58, 402 60 C 418 62, 430 72, 430 92" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.7;"></path>
+    <path d="M 400 48 C 394 58, 386 64, 372 74" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.6;"></path>
+    <path d="M 400 102 L 397 116 Q 400 119 403 116" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.8;"></path>
+    <path d="M 392 127 Q 400 132 408 127" style="fill:none;stroke:#CDB894;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:0.9;"></path>
+    <path d="M 386 600 C 390 560, 396 520, 400 470" style="fill:none;stroke:#CDB894;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0.35;"></path>
+    <circle cx="400" cy="318" r="2" style="fill:#CDB894;opacity:.6;"></circle>
+    <circle cx="372" cy="62" r="10" style="fill:#CDB894;transform-box:fill-box;transform-origin:center;animation:trmPulse 3.4s ease-in-out infinite;"></circle>
+    <circle cx="372" cy="62" r="4" style="fill:#FAF7F1;"></circle>
+    <circle cx="420" cy="118" r="10" style="fill:#CDB894;transform-box:fill-box;transform-origin:center;animation:trmPulse 3.4s ease-in-out .9s infinite;"></circle>
+    <circle cx="420" cy="118" r="4" style="fill:#FAF7F1;"></circle>
+    <circle cx="400" cy="370" r="12" style="fill:#CDB894;transform-box:fill-box;transform-origin:center;animation:trmPulse 3.4s ease-in-out 1.8s infinite;"></circle>
+    <circle cx="400" cy="370" r="4.5" style="fill:#FAF7F1;"></circle>
+  </svg>
+  <span style="position:absolute;left:44.5%;top:10.3%;transform:translate(-100%,-50%);font-family:var(--font-sans);font-size:clamp(10px,1.6cqw,13px);letter-spacing:.2em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">Hair</span>
+  <span style="position:absolute;left:55.5%;top:19.7%;transform:translateY(-50%);font-family:var(--font-sans);font-size:clamp(10px,1.6cqw,13px);letter-spacing:.2em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">Skin</span>
+  <span style="position:absolute;left:54.5%;top:61.7%;transform:translateY(-50%);font-family:var(--font-sans);font-size:clamp(10px,1.6cqw,13px);letter-spacing:.2em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">Cycle</span>
+</div>
+
+<div style="position:absolute;inset:0;transform:scale({{ orgS }});transform-origin:{{ orgOrigin }};opacity:{{ orgO }};visibility:{{ orgV }};">
+  <svg viewBox="0 0 800 600" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
+    <g transform="translate(430 188) scale(1.4) translate(-430 -188)"><circle cx="440" cy="185" r="16" style="fill:#CDB894;transform-box:fill-box;transform-origin:center;animation:trmPulse 3.4s ease-in-out infinite;"></circle>
+    <path d="M 300 190 C 300 160, 360 150, 420 160 C 480 170, 520 150, 560 165 C 582 173, 576 194, 554 196 C 510 200, 470 206, 420 213 C 360 221, 300 222, 300 190 Z" style="fill:rgba(205,184,148,.1);stroke:#CDB894;stroke-width:1.3;"></path>
+    <circle cx="340" cy="190" r="5" style="fill:none;stroke:#CDB894;opacity:.45;"></circle>
+    <circle cx="390" cy="186" r="6" style="fill:none;stroke:#CDB894;opacity:.45;"></circle>
+    <circle cx="460" cy="184" r="5" style="fill:none;stroke:#CDB894;opacity:.45;"></circle>
+    <circle cx="520" cy="178" r="4" style="fill:none;stroke:#CDB894;opacity:.45;"></circle></g>
+    <g transform="translate(400 345) scale(1.35) translate(-400 -345)"><path d="M 360 330 C 360 300, 440 300, 440 330 C 440 370, 418 395, 410 420 L 410 450 L 390 450 L 390 420 C 382 395, 360 370, 360 330 Z" style="fill:rgba(220,228,225,.06);stroke:#DCE4E1;stroke-width:1.3;"></path>
+    <path d="M 364 318 C 340 298, 312 296, 296 314" style="fill:none;stroke:#DCE4E1;stroke-width:1.3;stroke-linecap:round;"></path>
+    <path d="M 436 318 C 460 298, 488 296, 504 314" style="fill:none;stroke:#DCE4E1;stroke-width:1.3;stroke-linecap:round;"></path>
+    <circle cx="518" cy="330" r="18" style="fill:#CDB894;transform-box:fill-box;transform-origin:center;animation:trmPulse 3.4s ease-in-out 1.2s infinite;"></circle>
+    <ellipse cx="282" cy="330" rx="30" ry="20" style="fill:rgba(220,228,225,.08);stroke:#DCE4E1;stroke-width:1.3;"></ellipse>
+    <ellipse cx="518" cy="330" rx="30" ry="20" style="fill:rgba(220,228,225,.08);stroke:#DCE4E1;stroke-width:1.3;"></ellipse>
+    <circle cx="274" cy="326" r="5" style="fill:none;stroke:#DCE4E1;opacity:.6;"></circle>
+    <circle cx="290" cy="336" r="4" style="fill:none;stroke:#DCE4E1;opacity:.6;"></circle>
+    <circle cx="510" cy="334" r="4" style="fill:none;stroke:#DCE4E1;opacity:.6;"></circle>
+    <circle cx="526" cy="324" r="6" style="fill:none;stroke:#DCE4E1;opacity:.6;"></circle></g>
+  </svg>
+  <button type="button" onClick="{{ panToggle }}" aria-expanded="{{ panOpen }}" tabIndex="{{ organTab }}" style="position:absolute;left:55.5%;top:23%;transform:translate(-50%,-100%);min-height:44px;display:flex;align-items:center;gap:8px;padding:0 12px;background:none;border:0;cursor:pointer;pointer-events:{{ organPE }};font-family:var(--font-sans);font-size:clamp(10px,1.6cqw,13px);letter-spacing:.2em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">
+    <span>Pancreas</span>
+    <span style="display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid rgba(243,238,228,.6);font-size:13px;letter-spacing:0;line-height:1;transform:rotate({{ panRot }});transition:transform 220ms cubic-bezier(.23,1,.32,1);">+</span>
+  </button>
+  <button type="button" onClick="{{ ovaToggle }}" aria-expanded="{{ ovaOpen }}" tabIndex="{{ organTab }}" style="position:absolute;left:69.9%;top:61%;transform:translateX(-50%);min-height:44px;display:flex;align-items:center;gap:8px;padding:0 12px;background:none;border:0;cursor:pointer;pointer-events:{{ organPE }};font-family:var(--font-sans);font-size:clamp(10px,1.6cqw,13px);letter-spacing:.2em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">
+    <span>Ovary</span>
+    <span style="display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid rgba(243,238,228,.6);font-size:13px;letter-spacing:0;line-height:1;transform:rotate({{ ovaRot }});transition:transform 220ms cubic-bezier(.23,1,.32,1);">+</span>
+  </button>
+  <sc-if value="{{ panOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="note" style="position:absolute;left:30%;top:38%;width:min(300px,44cqw);min-width:200px;padding:14px 16px;background:#FAF7F1;color:#1B2A2D;border-radius:4px;box-shadow:0 14px 34px rgba(6,48,63,.35);font-family:var(--font-sans);">
+      <div style="font-family:var(--font-serif);font-size:clamp(18px,2.4cqw,22px);font-weight:500;line-height:1.1;margin-bottom:6px;">Pancreas</div>
+      <p style="margin:0;font-size:clamp(12px,1.7cqw,14px);font-weight:300;line-height:1.55;color:#3F4B4D;">Makes insulin, the hormone that lets cells take in glucose from the blood. When cells respond less well to insulin, the pancreas makes more of it. It also releases enzymes that help digest food.</p>
+    </div>
+  </sc-if>
+  <sc-if value="{{ ovaOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="note" style="position:absolute;left:22%;top:16%;width:min(300px,44cqw);min-width:200px;padding:14px 16px;background:#FAF7F1;color:#1B2A2D;border-radius:4px;box-shadow:0 14px 34px rgba(6,48,63,.35);font-family:var(--font-sans);">
+      <div style="font-family:var(--font-serif);font-size:clamp(18px,2.4cqw,22px);font-weight:500;line-height:1.1;margin-bottom:6px;">Ovary</div>
+      <p style="margin:0;font-size:clamp(12px,1.7cqw,14px);font-weight:300;line-height:1.55;color:#3F4B4D;">Releases eggs and makes reproductive hormones, including small amounts of androgens. In some women, high insulin can increase how much androgen the ovaries make.</p>
+    </div>
+  </sc-if>
+</div>
+
+<div style="position:absolute;inset:0;transform:scale({{ cellS }});transform-origin:50% 50%;opacity:{{ cellO }};visibility:{{ cellV }};">
+  <svg aria-hidden="true" viewBox="0 0 800 600" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
+    <defs>
+      <radialGradient id="trmCellGlow"><stop offset="0%" stop-color="#8FA9AA" stop-opacity=".22"></stop><stop offset="100%" stop-color="#8FA9AA" stop-opacity="0"></stop></radialGradient>
+    </defs>
+    <ellipse cx="400" cy="300" rx="300" ry="235" style="fill:none;stroke:#F3EEE4;stroke-width:1;stroke-dasharray:2 7;opacity:{{ orbitO }};"></ellipse>
+    <circle cx="400" cy="300" r="230" style="fill:url(#trmCellGlow);"></circle>
+    <circle cx="400" cy="300" r="170" style="fill:rgba(220,228,225,.05);stroke:#DCE4E1;stroke-width:1.5;"></circle>
+    <circle cx="400" cy="300" r="160" style="fill:none;stroke:#DCE4E1;stroke-width:1;stroke-dasharray:2 6;opacity:.45;"></circle>
+    <circle cx="370" cy="280" r="58" style="fill:rgba(205,184,148,.07);stroke:#CDB894;stroke-width:1.2;opacity:.8;"></circle>
+    <circle cx="384" cy="268" r="14" style="fill:none;stroke:#CDB894;stroke-width:1;opacity:.6;"></circle>
+    <g transform="translate(470 385) rotate(-18)">
+      <ellipse cx="0" cy="0" rx="40" ry="20" style="fill:rgba(205,184,148,.08);stroke:#CDB894;stroke-width:1.1;opacity:.75;"></ellipse>
+      <path d="M -28 0 C -22 -12, -16 12, -10 0 C -4 -12, 2 12, 8 0 C 14 -12, 20 12, 26 0" style="fill:none;stroke:#CDB894;stroke-width:1;opacity:.6;"></path>
+    </g>
+    <g transform="translate(458 140) rotate(20)">
+      <path d="M 0 16 L 0 -6 M 0 -6 L -11 -24 M 0 -6 L 11 -24" style="fill:none;stroke:#CDB894;stroke-width:2.6;stroke-linecap:round;"></path>
+    </g>
+    <g transform="translate(497 66) rotate(118)">
+      <circle cx="0" cy="0" r="8" style="fill:none;stroke:#CDB894;stroke-width:1.8;"></circle>
+      <path d="M 8 0 H 34 M 26 0 V 7 M 31 0 V 6" style="fill:none;stroke:#CDB894;stroke-width:1.8;stroke-linecap:round;"></path>
+    </g>
+    <g transform="translate(567 330) rotate(10)">
+      <rect x="-7" y="-36" width="14" height="26" rx="7" style="fill:#0B4458;stroke:#DCE4E1;stroke-width:1.4;"></rect>
+      <rect x="-7" y="10" width="14" height="26" rx="7" style="fill:#0B4458;stroke:#DCE4E1;stroke-width:1.4;"></rect>
+      <path d="M -4 -10 L 4 2" style="fill:none;stroke:#DCE4E1;stroke-width:2;stroke-linecap:round;"></path>
+    </g>
+    <g style="animation:trmBob 4s ease-in-out infinite;">
+      <polygon points="652,284 663,290 663,302 652,308 641,302 641,290" style="fill:none;stroke:#DCE4E1;stroke-width:1.3;"></polygon>
+    </g>
+    <g style="animation:trmBob 4.6s ease-in-out .8s infinite;">
+      <polygon points="692,334 703,340 703,352 692,358 681,352 681,340" style="fill:none;stroke:#DCE4E1;stroke-width:1.3;"></polygon>
+    </g>
+    <g style="animation:trmBob 5.2s ease-in-out 1.6s infinite;">
+      <polygon points="646,384 657,390 657,402 646,408 635,402 635,390" style="fill:none;stroke:#DCE4E1;stroke-width:1.3;"></polygon>
+    </g>
+    <line x1="575" y1="100" x2="470" y2="128" style="stroke:#CDB894;stroke-width:1.2;stroke-dasharray:110;stroke-dashoffset:{{ recOffA }};opacity:.7;"></line>
+    <line x1="665" y1="180" x2="474" y2="132" style="stroke:#CDB894;stroke-width:1.2;stroke-dasharray:200;stroke-dashoffset:{{ recOffB }};opacity:.7;"></line>
+    <sc-for list="{{ links }}" as="l" hint-placeholder-count="0">
+      <line x1="{{ l.x1 }}" y1="{{ l.y1 }}" x2="{{ l.x2 }}" y2="{{ l.y2 }}" style="stroke:#FAF7F1;stroke-width:1.4;stroke-dasharray:{{ l.len }};stroke-dashoffset:{{ l.off }};opacity:{{ l.op }};transition:stroke-dashoffset 700ms cubic-bezier(.23,1,.32,1), opacity 300ms ease;"></line>
+    </sc-for>
+  </svg>
+  <div aria-hidden="true" style="position:absolute;inset:0;opacity:{{ labelsO }};pointer-events:none;">
+    <span style="position:absolute;left:54%;top:7%;transform:translateX(-50%);font-family:var(--font-sans);font-size:clamp(9px,1.45cqw,12px);letter-spacing:.18em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">Insulin</span>
+    <span style="position:absolute;left:55%;top:26.5%;font-family:var(--font-sans);font-size:clamp(9px,1.45cqw,12px);letter-spacing:.18em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">Receptor</span>
+    <span style="position:absolute;left:72.5%;top:57.5%;transform:translateX(-50%);font-family:var(--font-sans);font-size:clamp(9px,1.45cqw,12px);letter-spacing:.18em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;">Channel</span>
+    <span style="position:absolute;left:82%;top:46%;font-family:var(--font-sans);font-size:clamp(9px,1.45cqw,12px);letter-spacing:.18em;text-transform:uppercase;color:#F3EEE4;white-space:nowrap;opacity:{{ glucoseO }};">Glucose</span>
+  </div>
+  <sc-if value="{{ ratioOn }}" hint-placeholder-val="{{ false }}">
+    <span style="position:absolute;left:77.5%;top:21%;transform:translate(-50%,-50%);padding:4px 10px;border-radius:999px;background:#FAF7F1;color:#1B2A2D;font-family:var(--font-serif);font-size:clamp(13px,2cqw,17px);font-style:italic;white-space:nowrap;box-shadow:0 6px 18px rgba(6,48,63,.3);">40 : 1</span>
+  </sc-if>
+  <sc-for list="{{ bubbles }}" as="b" hint-placeholder-count="0">
+    <button type="button" onClick="{{ b.pick }}" aria-label="{{ b.aria }}" tabIndex="{{ b.tab }}" style="position:absolute;left:{{ b.left }};top:{{ b.top }};width:{{ b.hit }};height:{{ b.hit }};margin:0;padding:0;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%) translate({{ b.tx }}px,{{ b.ty }}px) scale({{ b.sc }});opacity:{{ b.op }};pointer-events:{{ b.pe }};transition:opacity 320ms ease, transform 500ms cubic-bezier(.23,1,.32,1);">
+      <span style="display:flex;align-items:center;justify-content:center;width:{{ b.size }};height:{{ b.size }};border-radius:50%;background:radial-gradient(circle at 34% 30%, rgba(255,255,255,.55) 0%, {{ b.color }} 62%);box-shadow:{{ b.glow }};color:#1B2A2D;font-family:var(--font-sans);font-size:{{ b.fs }};font-weight:400;letter-spacing:.02em;animation:{{ b.anim }};transition:box-shadow 300ms ease;">{{ b.abbr }}</span>
+    </button>
+  </sc-for>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:800,&quot;height&quot;:600},&quot;t&quot;:{&quot;editor&quot;:null,&quot;min&quot;:0,&quot;max&quot;:4,&quot;step&quot;:0.01,&quot;default&quot;:3,&quot;tsType&quot;:&quot;number&quot;},&quot;filter&quot;:{&quot;editor&quot;:null,&quot;options&quot;:[&quot;All&quot;,&quot;Metabolic&quot;,&quot;Antioxidant&quot;,&quot;Calm&quot;,&quot;Foundation&quot;],&quot;default&quot;:&quot;All&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;selected&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;reduced&quot;:{&quot;editor&quot;:null,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onPick&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(id: string) =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { mx: 0, my: 0, organ: null, ready: !!window.TRM_SCIENCE };
+  componentDidMount() {
+    if (!window.TRM_SCIENCE) this._iv = setInterval(() => { if (window.TRM_SCIENCE) { clearInterval(this._iv); this.setState({ ready: true }); } }, 60);
+  }
+  componentWillUnmount() { clearInterval(this._iv); cancelAnimationFrame(this._raf); }
+  renderVals() {
+    const D = window.TRM_SCIENCE;
+    const items = D ? D.items : [];
+    const t = Math.max(0, Math.min(4, Number(this.props.t ?? 3)));
+    const filter = (this.props.filter || 'All').toLowerCase();
+    const sel = this.props.selected || null;
+    const reduced = !!this.props.reduced;
+    const ease = (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+    const seg = (a) => Math.max(0, Math.min(1, t - a));
+    const x01 = seg(0), x12 = seg(1), x23 = seg(2), x34 = seg(3);
+    let bodyS = 1, bodyO = 0, orgS = 1, orgO = 0, orgOrigin = '50% 55%', cellS = 1, cellO = 0;
+    if (t < 1) { bodyS = 1 + 2.4 * ease(x01); bodyO = 1 - x01; }
+    else if (t >= 3) { bodyS = 2.6 - 1.6 * ease(x34); bodyO = x34; }
+    if (t < 1) { orgS = 0.3 + 0.7 * ease(x01); orgO = x01; }
+    else if (t < 2) { orgS = 1 + 3 * ease(x12); orgO = 1 - x12; orgOrigin = '69.9% 54.2%'; }
+    if (t >= 1 && t < 2) { cellS = 0.25 + 0.75 * ease(x12); cellO = x12; }
+    else if (t >= 2 && t <= 3) { cellS = 1; cellO = 1; }
+    else if (t > 3) { cellS = 1 - 0.85 * ease(x34); cellO = 1 - x34; }
+    const appear = t >= 3 ? 1 : t >= 2 ? x23 : 0;
+    const byId = {}; items.forEach((it) => { byId[it.id] = it; });
+    const selItem = sel ? byId[sel] : null;
+    const related = selItem ? selItem.works : [];
+    const pairs = [];
+    items.forEach((it) => it.works.forEach((w) => {
+      const k = [it.id, w].sort().join('-');
+      if (!pairs.some((p) => p.k === k) && byId[w]) pairs.push({ k, a: it, b: byId[w] });
+    }));
+    const links = pairs.map(({ a, b }) => {
+      const len = Math.round(Math.hypot(a.x - b.x, a.y - b.y));
+      const on = !!selItem && (a.id === sel || b.id === sel);
+      return { x1: a.x, y1: a.y, x2: b.x, y2: b.y, len, off: on ? 0 : len, op: on ? 0.75 : 0 };
+    });
+    const { mx, my } = this.state;
+    const bubbles = items.map((it, i) => {
+      const main = it.kind === 'main';
+      const st = Math.max(0, Math.min(1, appear * 1.6 - (i % 8) * 0.07));
+      const match = filter === 'all' || it.group === filter;
+      const isSel = sel === it.id;
+      const rel = related.includes(it.id);
+      const highlight = isSel || (filter !== 'all' && match);
+      const color = D.groups[it.group].color;
+      let op = st * (match ? 1 : 0.16);
+      if (selItem && !isSel && !rel) op *= 0.4;
+      const depth = main ? 7 : 13;
+      return {
+        abbr: it.abbr, aria: it.name + ', ' + D.groups[it.group].label,
+        left: (it.x / 8) + '%', top: (it.y / 6) + '%',
+        hit: main ? 'max(44px, 8.6cqw)' : '44px',
+        size: main ? 'clamp(40px, 8.6cqw, 72px)' : 'clamp(22px, 4.3cqw, 36px)',
+        fs: main ? 'clamp(10px, 1.75cqw, 15px)' : 'clamp(9px, 1.3cqw, 11.5px)',
+        color,
+        glow: highlight ? '0 0 0 2px #FAF7F1, 0 0 30px 6px ' + color : rel ? '0 0 0 1px #FAF7F1, 0 0 22px 2px ' + color + '99' : '0 0 22px 2px ' + color + '55',
+        anim: reduced ? 'none' : 'trmDrift ' + (5 + (i % 5) * 0.8) + 's ease-in-out ' + (-i * 0.7) + 's infinite alternate',
+        tx: Math.round(mx * depth * 10) / 10, ty: Math.round(my * depth * 10) / 10,
+        sc: 0.6 + 0.4 * st + (isSel ? 0.08 : 0),
+        op, pe: st > 0.6 && match ? 'auto' : 'none', tab: st > 0.6 && match ? 0 : -1,
+        pick: () => this.props.onPick && this.props.onPick(it.id),
+      };
+    });
+    const orgOn = orgO > 0.6;
+    const organ = orgOn ? this.state.organ : null;
+    const tog = (k) => () => this.setState((p) => ({ organ: p.organ === k ? null : k }));
+    const vis = (o) => (o > 0.001 ? 'visible' : 'hidden');
+    return {
+      bodyS, bodyO, bodyV: vis(bodyO), orgS, orgO, orgOrigin, orgV: vis(orgO), cellS, cellO, cellV: vis(cellO),
+      orbitO: 0.35 * appear,
+      recOffA: 110 * (1 - appear), recOffB: 200 * (1 - appear),
+      labelsO: 1 - 0.45 * appear, glucoseO: 1,
+      links, bubbles,
+      organPE: orgOn ? 'auto' : 'none', organTab: orgOn ? 0 : -1,
+      panOpen: organ === 'pan', ovaOpen: organ === 'ova', panRot: organ === 'pan' ? '45deg' : '0deg', ovaRot: organ === 'ova' ? '45deg' : '0deg',
+      panToggle: tog('pan'), ovaToggle: tog('ova'),
+      ratioOn: !!selItem && !!selItem.ratio && appear > 0.9,
+      onMove: (e) => {
+        if (reduced || appear < 0.5) return;
+        const r = e.currentTarget.getBoundingClientRect();
+        const nx = ((e.clientX - r.left) / r.width - 0.5) * 2, ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        cancelAnimationFrame(this._raf);
+        this._raf = requestAnimationFrame(() => this.setState({ mx: nx, my: ny }));
+      },
+      onLeave: () => this.setState({ mx: 0, my: 0 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

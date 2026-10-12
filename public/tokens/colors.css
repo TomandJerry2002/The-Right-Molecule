@@ -1,0 +1,57 @@
+:root{
+/* Brand palette — from the packaging board ("Colour palette") */
+--trm-ocean-teal:#174F55;
+--trm-midnight-blue:#172C46;
+--trm-aubergine:#38243F;
+--trm-ivory:#F3EEE4;
+/* Pack render (demo 1.png) — sampled from the final sachet artwork */
+--trm-petrol:#0B4458;
+--trm-petrol-deep:#06303F;
+--trm-indigo:#1D3F6A;
+--trm-plum:#2C1B3A;
+--trm-silver:#D9DCDD;
+/* Extended — sampled from sachets + site */
+--trm-teal-900:#0F3A3F;
+--trm-teal-800:#133F44;
+--trm-teal-700:#174F55;
+--trm-teal-600:#2A6167;
+--trm-teal-300:#8FA9AA;
+--trm-teal-100:#DCE4E1;
+--trm-ivory-50:#FAF7F1;
+--trm-ivory-100:#F3EEE4;
+--trm-ivory-200:#EAE3D6;
+--trm-ivory-300:#DDD4C3;
+--trm-stone-400:#B9AF9E;
+--trm-champagne:#CDB894;
+--trm-champagne-soft:#E3D6BD;
+--trm-ink:#1B2A2D;
+--trm-ink-2:#3F4B4D;
+--trm-ink-3:#6D7674;
+--trm-white:#FFFFFF;
+/* Semantic */
+--bg-page:var(--trm-ivory-100);
+--bg-page-raised:var(--trm-ivory-50);
+--bg-sunken:var(--trm-ivory-200);
+--bg-inverse:var(--trm-petrol);
+--bg-inverse-deep:var(--trm-petrol-deep);
+--fg-1:var(--trm-ink);
+--fg-2:var(--trm-ink-2);
+--fg-3:var(--trm-ink-3);
+--fg-on-inverse:var(--trm-ivory-100);
+--fg-on-inverse-2:#C9D3CF;
+--fg-accent:var(--trm-petrol);
+--fg-line-art:var(--trm-champagne);
+--border-hairline:rgba(27,42,45,.14);
+--border-strong:rgba(27,42,45,.32);
+--border-on-inverse:rgba(243,238,228,.22);
+--action-primary:var(--trm-petrol);
+--action-primary-hover:#093A4C;
+--action-primary-press:var(--trm-petrol-deep);
+--action-on-primary:var(--trm-ivory-50);
+--focus-ring:rgba(23,79,85,.35);
+--status-success:#3E6B57;
+--status-error:#8A3B3B;
+/* Signature gradient — the sachet fade: petrol → indigo → plum (matched to pack render) */
+--gradient-sachet:linear-gradient(180deg,#0B4A5E 0%,#06384B 45%,var(--trm-indigo) 74%,var(--trm-plum) 100%);
+--gradient-sachet-diag:linear-gradient(155deg,#0B4A5E 0%,#06384B 42%,var(--trm-indigo) 76%,var(--trm-plum) 100%);
+}
