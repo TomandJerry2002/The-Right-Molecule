@@ -504,11 +504,11 @@ class Component extends DCLogic {
     const r = el.getBoundingClientRect(); const total = r.height - window.innerHeight;
     window.scrollTo({ top: window.scrollY + r.top + (k / 4) * total + 2, behavior: this.state.reduced ? 'auto' : 'smooth' });
   }
-  leave(route) { if (/[?&]embed/.test(window.location.search) && window.parent !== window) { window.parent.postMessage({ trmNav: route }, '*'); return; } localStorage.setItem('trm-route', route); const M = window.TRMMotion; M && M.navigateTo ? M.navigateTo(WEBSITE) : (window.location.href = WEBSITE); }
+  leave(route) { if (/[?&]embed/.test(window.location.search) && window.parent !== window) { window.parent.postMessage({ trmNav: route }, '*'); return; } const dest = route === 'Waitlist' ? WEBSITE + '?waitlist' : WEBSITE; localStorage.setItem('trm-route', route === 'Waitlist' ? 'Home' : route); const M = window.TRMMotion; M && M.navigateTo ? M.navigateTo(dest) : (window.location.href = dest); }
   nav = (label) => {
     this.setState({ menu: false });
     if (label === 'Our Science') window.scrollTo({ top: 0, behavior: 'smooth' });
-    else this.leave(label === 'Products' || label === 'Be Part of Our Beginning' ? 'Products' : 'Home');
+    else if (label !== 'Contact') this.leave(label === 'Be Part of Our Beginning' ? 'Waitlist' : label === 'Products' ? label : 'Home');
   };
   renderVals() {
     const s = this.state;
@@ -555,9 +555,9 @@ class Component extends DCLogic {
       journeyRef: this.journeyRef, pillarsRef: this.pillarsRef, rootRef: this.rootRef,
       isDesktop: !mobile, isMobile: mobile,
       headerPad: mobile ? '10px var(--gutter)' : '22px var(--gutter)',
-      navLinks: ['Home', 'Products', 'Our Science', 'About'].map((label) => ({ label, go: () => this.nav(label), current: label === 'Our Science' ? 'page' : undefined, line: label === 'Our Science' ? 1 : 0, dot: label === 'Our Science' ? 'var(--fg-1)' : 'transparent' })),
+      navLinks: ['Home', 'Products', 'Our Science'].map((label) => ({ label, go: () => this.nav(label), current: label === 'Our Science' ? 'page' : undefined, line: label === 'Our Science' ? 1 : 0, dot: label === 'Our Science' ? 'var(--fg-1)' : 'transparent' })),
       goHome: () => this.leave('Home'),
-      goWaitlist: () => this.leave('Products'),
+      goWaitlist: () => this.leave('Waitlist'),
       goProduct: () => this.leave('Products'),
       openMenu: () => this.setState({ menu: true }),
       closeMenu: () => this.setState({ menu: false }),
@@ -577,7 +577,7 @@ class Component extends DCLogic {
       pillarCols: mobile ? 'minmax(0,1fr)' : 'minmax(0,1.05fr) minmax(0,1fr)',
       visPos: mobile ? 'relative' : 'sticky',
       pillars,
-      footerLinks: ['Be Part of Our Beginning', 'Our Science', 'About', 'Contact'].map((label) => ({ label, go: () => this.nav(label) })),
+      footerLinks: ['Be Part of Our Beginning', 'Our Science', 'Contact'].map((label) => ({ label, go: () => this.nav(label) })),
       panelHidden: !panelOn, panelPE: panelOn ? 'auto' : 'none', panelOp: panelOn ? 1 : 0,
       closePanel: () => this.setState({ selected: null }),
       pTop: mobile ? 'auto' : '0', pLeft: mobile ? '0' : 'auto', pWidth: mobile ? 'auto' : 'min(460px, 100%)', pMaxH: mobile ? '86vh' : 'none',

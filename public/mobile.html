@@ -10,7 +10,7 @@
 <helmet>
 <link rel="stylesheet" href="styles.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>html,body{margin:0;background:#EAE3D6;color:#1B2A2D;font-family:var(--font-sans);-webkit-font-smoothing:antialiased}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}a{color:var(--fg-accent);text-decoration:none}a:hover{color:var(--action-primary-hover)}button{font-family:inherit}input::placeholder{color:#6D7674}[data-snap]::-webkit-scrollbar,[data-scroller]::-webkit-scrollbar{display:none}@media (prefers-reduced-motion: reduce){*{transition-duration:1ms!important}}</style>
+<style>html,body{margin:0;background:#EAE3D6;color:#1B2A2D;font-family:var(--font-sans);-webkit-font-smoothing:antialiased}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}a{color:var(--fg-accent);text-decoration:none}a:hover{color:var(--action-primary-hover)}button{font-family:inherit}input::placeholder{color:#6D7674}[data-snap]::-webkit-scrollbar,[data-scroller]::-webkit-scrollbar{display:none}@keyframes mUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes mFade{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion: reduce){*{transition-duration:1ms!important;animation-duration:1ms!important;animation-delay:0ms!important}}</style>
 <script src="_ds_bundle.js"></script>
 <script src="waitlist.js"></script>
 </helmet>
@@ -261,6 +261,7 @@
 </main>
 </sc-if>
 
+
 <footer style="background:var(--bg-inverse-deep);color:var(--fg-on-inverse);padding:44px 24px {{ footerPad }};">
   <div style="font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><div>the right</div><div>molecule</div></div>
   <nav style="display:grid;grid-template-columns:1fr 1fr;margin:28px 0 24px;">
@@ -280,6 +281,10 @@
   </div>
   <button type="button" onClick="{{ openWaitlist }}" tabIndex="{{ barTab }}" style="height:44px;padding:0 16px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:13px;letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">Be Part of Our Beginning</button>
 </div>
+
+<sc-if value="{{ isScience }}" hint-placeholder-val="{{ false }}">
+<iframe data-screen-label="Mobile Our Science" title="Our Science" src="Our Science.dc.html?embed=m" style="position:absolute;inset:0;z-index:30;width:100%;height:100%;border:0;display:block;background:var(--bg-page);animation:mUp 560ms cubic-bezier(.22,1,.36,1) both;"></iframe>
+</sc-if>
 
 <div aria-hidden="{{ menuHidden }}" style="position:absolute;inset:0;z-index:40;background:var(--bg-page);display:flex;flex-direction:column;opacity:{{ menuOp }};transform:translateY({{ menuY }});pointer-events:{{ menuPE }};transition:opacity 220ms ease, transform 300ms cubic-bezier(.23,1,.32,1);">
   <div style="height:60px;padding:0 8px 0 20px;display:flex;align-items:center;justify-content:space-between;margin-top:{{ statusPad }};">
@@ -396,22 +401,22 @@ class Component extends DCLogic {
   quoteRef = React.createRef();
   scienceRef = React.createRef();
   state = {
-    screen: (this.props.startScreen ?? localStorage.getItem('trm-m-screen') ?? 'Home') === 'Product' ? 'product' : 'home',
+    screen: ({ Home: 'home', Product: 'product', Science: 'science' })[this.props.startScreen ?? localStorage.getItem('trm-m-screen') ?? 'Home'] || 'home', sciReady: false,
     scrollY: 0, menu: false, sheet: null, ing: 0, flavour: 0, shot: 0, quote: 0, open: 'use',
     waitName: '', waitNameError: false, waitSending: false, memberNo: 128, waitEmail: '', waitError: false, waitDone: false, newsEmail: '', newsError: false, newsDone: false,
   };
-  componentDidMount() { try { if (new URLSearchParams(location.search).has('waitlist')) this.setState({ sheet: 'waitlist' }); } catch (e) {} this._key = (e) => { if (e.key === 'Escape') this.setState({ sheet: null, menu: false }); }; document.addEventListener('keydown', this._key); }
-  componentWillUnmount() { document.removeEventListener('keydown', this._key); }
-  componentDidUpdate(pp) { if (pp.startScreen !== this.props.startScreen && this.props.startScreen) this.go(this.props.startScreen === 'Product' ? 'product' : 'home'); }
+  componentDidMount() { try { if (new URLSearchParams(location.search).has('waitlist')) this.setState({ sheet: 'waitlist' }); } catch (e) {} this._msg = (e) => { const d = e.data || {}; if (!d.trmNav) return; if (d.trmNav === 'Waitlist') this.openWaitlist(); else this.go(d.trmNav === 'Products' ? 'product' : 'home'); }; window.addEventListener('message', this._msg); this._key = (e) => { if (e.key === 'Escape') this.setState({ sheet: null, menu: false }); }; document.addEventListener('keydown', this._key); }
+  componentWillUnmount() { document.removeEventListener('keydown', this._key); window.removeEventListener('message', this._msg); }
+  componentDidUpdate(pp) { if (pp.startScreen !== this.props.startScreen && this.props.startScreen) this.go(({ Home: 'home', Product: 'product', Science: 'science' })[this.props.startScreen] || 'home'); }
   go(screen, after) {
-    localStorage.setItem('trm-m-screen', screen === 'product' ? 'Product' : 'Home');
-    this.setState({ screen, menu: false, scrollY: 0 }, () => {
+    localStorage.setItem('trm-m-screen', { home: 'Home', product: 'Product', science: 'Science', about: 'About' }[screen] || 'Home');
+    this.setState({ screen, menu: false, scrollY: 0, sciReady: screen === 'science' ? this.state.sciReady && this.state.screen === 'science' : false }, () => {
       const s = this.scrollerRef.current; if (!s) return;
       s.scrollTop = 0;
       if (after) requestAnimationFrame(() => after(s));
     });
   }
-  goScience = () => this.go('home', (s) => { const el = this.scienceRef.current; el && s.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' }); });
+  goScience = () => this.go('science');
   openWaitlist = () => this.setState({ sheet: 'waitlist', menu: false, waitError: false });
   validate(v) { return EMAIL.test(v.trim()); }
   renderVals() {
@@ -419,7 +424,8 @@ class Component extends DCLogic {
     const framed = this.props.showFrame ?? (typeof window === 'undefined' || window.innerWidth > 600);
     const homeBar = this.props.homeStickyCTA ?? true;
     const isHome = s.screen === 'home';
-    const barOn = !s.menu && !s.sheet && (isHome ? homeBar && s.scrollY > 560 : true);
+    const isSci = s.screen === 'science', isAbout = s.screen === 'about';
+    const barOn = !s.menu && !s.sheet && !isSci && (isHome ? homeBar && s.scrollY > 560 : true);
     const solid = !isHome || s.scrollY > 8 || s.menu;
     const sheetOn = !!s.sheet;
     const ing = INGREDIENTS[s.ing];
@@ -437,12 +443,12 @@ class Component extends DCLogic {
       frameBorder: framed ? '10px solid #10191C' : '0',
       frameShadow: framed ? '0 40px 80px rgba(6,48,63,.22)' : 'none',
       statusPad: '0px',
-      screenLabel: isHome ? 'Mobile Home' : 'Mobile Product',
+      screenLabel: isHome ? 'Mobile Home' : isSci ? 'Mobile Our Science' : isAbout ? 'Mobile About' : 'Mobile Product',
       scrollerRef: this.scrollerRef, galleryRef: this.galleryRef, quoteRef: this.quoteRef, scienceRef: this.scienceRef,
       onScroll: (e) => { const y = e.currentTarget.scrollTop; if ((y > 8) !== (s.scrollY > 8) || (y > 560) !== (s.scrollY > 560)) this.setState({ scrollY: y }); },
       headerBg: solid ? 'rgba(243,238,228,.9)' : 'rgba(243,238,228,0)',
       headerBorder: solid && !s.menu ? 'var(--border-hairline)' : 'transparent',
-      isHome, isProduct: !isHome,
+      isHome, isProduct: s.screen === 'product', isScience: isSci, isAbout,
       goHome: () => this.go('home'),
       goProduct: () => this.go('product'),
       goScience: this.goScience,
@@ -481,13 +487,13 @@ class Component extends DCLogic {
         { n: '03', t: 'Keep it fresh', b: 'Store in a cool, dry place. Do not use if the seal is broken.' },
       ],
       footerPad: barOn || !isHome ? '104px' : '40px',
-      footerLinks: ['Be Part of Our Beginning', 'Our Science', 'About', 'Contact'].map((label) => ({ label, go: nav(label) })),
+      footerLinks: ['Be Part of Our Beginning', 'Our Science', 'Contact'].map((label) => ({ label, go: nav(label) })),
       barHidden: !barOn, barTab: barOn ? 0 : -1,
       barBottom: framed ? '16px' : 'calc(12px + env(safe-area-inset-bottom))',
       barY: barOn ? '0' : '140%', barOp: barOn ? 1 : 0, barPE: barOn ? 'auto' : 'none',
       barSub: isHome ? '₹1,480 · 31 sachets' : FLAVOURS[s.flavour] + ' · ₹1,480',
       menuHidden: !s.menu, menuOp: s.menu ? 1 : 0, menuY: s.menu ? '0' : '-12px', menuPE: s.menu ? 'auto' : 'none',
-      menuLinks: ['Home', 'Products', 'Our Science', 'About', 'Contact'].map((label) => ({ label, go: nav(label), dot: (label === 'Home' && isHome) || (label === 'Products' && !isHome) ? 'var(--fg-1)' : 'transparent' })),
+      menuLinks: ['Home', 'Products', 'Our Science', 'Contact'].map((label) => ({ label, go: nav(label), dot: (label === 'Home' && isHome) || (label === 'Products' && s.screen === 'product') || (label === 'Our Science' && isSci) || (label === 'About' && isAbout) ? 'var(--fg-1)' : 'transparent' })),
       sheetHidden: !sheetOn, sheetPE: sheetOn ? 'auto' : 'none', sheetOp: sheetOn ? 1 : 0, sheetY: sheetOn ? '0' : '105%',
       sheetLabel: s.sheet === 'ingredient' ? ing.name : 'Be Part of Our Beginning',
       closeSheet: () => this.setState({ sheet: null }),

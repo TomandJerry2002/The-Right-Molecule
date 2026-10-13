@@ -809,7 +809,7 @@ function PrebookModal({ onClose }) {
 function TRMSite({ page }) {
   const { SiteHeader, SiteFooter } = DS;
   const qs = new URLSearchParams(window.location.search); const embedded = qs.has('embed') && window.parent !== window;
-  const [route, setRoute] = React.useState(() => qs.get('route') || page || localStorage.getItem('trm-route') || 'Home');
+  const [route, setRoute] = React.useState(() => { const r0 = qs.get('route') || page || localStorage.getItem('trm-route') || 'Home'; return r0 === 'About' ? 'Home' : r0; });
   React.useEffect(() => { if (page) setRoute(page); }, [page]);
   const [bag, setBag] = React.useState([]);
   const [bagOpen, setBagOpen] = React.useState(false);
@@ -817,7 +817,7 @@ function TRMSite({ page }) {
   const [prebook, setPrebook] = React.useState(false);
   const [wl, setWl] = React.useState(() => qs.has('waitlist') ? { rect: null } : null);
   const openWL = (e) => { const el = (e && e.currentTarget && e.currentTarget.getBoundingClientRect) ? e.currentTarget : document.activeElement; const rect = el && el !== document.body && el.getBoundingClientRect ? el.getBoundingClientRect() : null; if (el && el.animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.95)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' }); setWl({ rect }); };
-  const go = (r) => { if (r === 'Be Part of Our Beginning') { openWL(); return; } const M = window.TRMMotion; if (embedded) { const n2 = r === 'Our Science' ? 'Our Science' : r === 'Products' || r === 'Shop' || r === 'Be Part of Our Beginning' ? 'Products' : 'Home'; window.parent.postMessage({ trmNav: n2 }, '*'); return; } if (r === 'Our Science') { M && M.navigateTo ? M.navigateTo('Our Science.dc.html') : (window.location.href = 'Our Science.dc.html'); return; } const n = r === 'About' ? 'About' : r === 'Products' || r === 'Shop' || r === 'Be Part of Our Beginning' ? 'Products' : 'Home'; const swap = () => { setRoute(n); localStorage.setItem('trm-route', n); window.scrollTo(0, 0); }; if (n === route) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; } M && M.transition ? M.transition(swap) : swap(); };
+  const go = (r) => { if (r === 'Be Part of Our Beginning') { openWL(); return; } if (r === 'About' || r === 'Contact') return; const M = window.TRMMotion; if (embedded) { const n2 = r === 'Our Science' ? r : r === 'Products' || r === 'Shop' || r === 'Be Part of Our Beginning' ? 'Products' : 'Home'; window.parent.postMessage({ trmNav: n2 }, '*'); return; } if (r === 'Our Science') { M && M.navigateTo ? M.navigateTo('Our Science.dc.html') : (window.location.href = 'Our Science.dc.html'); return; } const n = r === 'Products' || r === 'Shop' || r === 'Be Part of Our Beginning' ? 'Products' : 'Home'; const swap = () => { setRoute(n); localStorage.setItem('trm-route', n); window.scrollTo(0, 0); }; if (n === route) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; } M && M.transition ? M.transition(swap) : swap(); };
   const add = ({ flavour, qty }) => {
     const M = window.TRMMotion;
     const commit = () => {
@@ -835,7 +835,7 @@ function TRMSite({ page }) {
       <div data-anim="header" data-solid={route === 'Home' ? '0' : '1'} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, borderBottom: '1px solid transparent' }}>
         <SiteHeader active={route} onNavigate={go} bagCount={0} brandMark onShop={openWL} transparent={route === 'Home'} />
       </div>
-      {route === 'Home' ? <div style={{ paddingTop: 96, background: 'var(--bg-page)' }}><HomeScreen onShop={openWL} onIngredient={setIngredient} onTest={() => setPrebook(true)} /></div> : route === 'About' ? <div style={{ paddingTop: 96 }}><AboutScreen /></div> : <div style={{ paddingTop: 96 }}><ProductScreen onJoin={openWL} onNavigate={go} onIngredient={setIngredient} /></div>}
+      {route === 'Home' ? <div style={{ paddingTop: 96, background: 'var(--bg-page)' }}><HomeScreen onShop={openWL} onIngredient={setIngredient} onTest={() => setPrebook(true)} /></div> : <div style={{ paddingTop: 96 }}><ProductScreen onJoin={openWL} onNavigate={go} onIngredient={setIngredient} /></div>}
       <SiteFooter onNavigate={go} />
       <BagDrawer open={bagOpen} items={bag} onClose={() => setBagOpen(false)} onQty={(k, v) => setBag((b) => b.map((x, i) => i === k ? { ...x, qty: v } : x))} onRemove={(k) => setBag((b) => b.filter((_, i) => i !== k))} />
       {ingredient && <IngredientModal item={ingredient} onClose={() => setIngredient(null)} />}

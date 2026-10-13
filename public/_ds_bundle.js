@@ -1053,7 +1053,7 @@ Object.assign(__ds_scope, { EmailSignup });
 // components/navigation/SiteFooter.jsx
 try { (() => {
 function SiteFooter({
-  links = ['Be Part of Our Beginning', 'Our Science', 'About', 'Contact'],
+  links = ['Be Part of Our Beginning', 'Our Science', 'Contact'],
   onNavigate,
   year = 2026,
   signoff = 'Science. Balance. You.'
@@ -1135,7 +1135,7 @@ Object.assign(__ds_scope, { SiteFooter });
 
 // components/navigation/SiteHeader.jsx
 try { (() => {
-const DEFAULT_LINKS = ['Home', 'Products', 'Our Science', 'About'];
+const DEFAULT_LINKS = ['Home', 'Products', 'Our Science'];
 function NavLink({
   label,
   active,
