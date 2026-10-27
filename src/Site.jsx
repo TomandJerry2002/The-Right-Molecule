@@ -16,8 +16,11 @@ function Line({ children }) {
 
 const ASSET = 'assets/';
 const inr = (n) => '₹' + n.toLocaleString('en-IN');
+// Pre-launch the store is closed and every buy button opens the waitlist. Flip in public/config.js.
+const STORE_OPEN = !!(window.TRMConfig && window.TRMConfig.storeOpen);
+const checkoutUrl = (items) => 'checkout.html?' + items.map((i) => 'item=' + encodeURIComponent(i.flavour + ':' + i.qty)).join('&');
 const PRODUCT = {
-  name: 'PCOS', italic: 'Harmony', price: 1480, descriptor: 'Daily support for PCOS, built from the biology up',
+  name: 'PCOS', italic: 'Harmony', price: 1580, descriptor: 'Daily support for PCOS, built from the biology up',
   flavours: ['Passion Fruit'],
   ingredients: [
     { icon: 'network', name: 'Myo-Inositol', benefit: 'Promotes hormone balance', blurb: 'A naturally occurring compound found in fruit, beans and whole grains. Inositols act as messengers in insulin signalling, and myo-inositol is one of the most studied nutrients in women\'s hormonal health.' },
@@ -287,7 +290,7 @@ function useCountUp(value, ms = 520) {
   return n;
 }
 
-function ProductScreen({ onJoin, onNavigate, onIngredient }) {
+function ProductScreen({ onJoin, onAdd, onNavigate, onIngredient }) {
   const { Eyebrow, Heading, Button, QuantityStepper, IngredientItem, Icon, StackedCaps } = DS;
   const shots = [['sachets-pair.png', 'contain'], ['sachet-front.png', 'contain'], ['sachet-back.png', 'contain'], ['detail-label.jpg', 'cover'], ['detail-art.jpg', 'cover'], ['detail-ingredients.jpg', 'cover']];
   const [shot, setShot] = React.useState(0);
@@ -358,10 +361,10 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
             {PRODUCT.flavours.map((f, k) => <button key={f} ref={(el) => { flavourRefs.current[k] = el; }} role="radio" aria-checked={f === flavour} onClick={() => setFlavour(f)} style={{ position: 'relative', flex: 'none', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)', fontSize: 13, padding: '10px 16px', borderRadius: 'var(--radius-1)', cursor: 'pointer', background: (!pill || !pill.width) && f === flavour ? 'var(--fg-1)' : 'transparent', color: f === flavour ? 'var(--trm-ivory-50)' : 'var(--fg-1)', border: '1px solid var(--border-strong)', transition: 'color 300ms ease 80ms' }}>{f}</button>)}
           </div>
           <div ref={cta}>
-            <Button fullWidth onClick={onJoin}>Be Part of Our Beginning</Button>
+            {STORE_OPEN ? <Button fullWidth onClick={() => onAdd({ flavour, qty: 1 })}>Add to bag</Button> : <Button fullWidth onClick={onJoin}>Be Part of Our Beginning</Button>}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, marginTop: 16, flexWrap: 'wrap', ...small }}>
-                        <span style={{ width: '100%', textAlign: 'center' }}>Register your interest · No payment required</span>
+                        <span style={{ width: '100%', textAlign: 'center' }}>{STORE_OPEN ? 'Secure checkout · UPI, cards & netbanking' : 'Register your interest · No payment required'}</span>
           </div>
           <div style={{ marginTop: 36, borderTop: '1px solid var(--border-hairline)' }}>
             {acc.map(([id, t, body]) => (
@@ -403,10 +406,10 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
         <img src={`${ASSET}product/sachet-front.png`} alt="" style={{ height: 48, width: 'auto' }} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontFamily: 'var(--font-serif)', fontSize: 19, fontWeight: 500, lineHeight: 1.1 }}>PCOS <em style={{ fontWeight: 400 }}>Harmony</em></div>
-          <div style={{ fontSize: 12, color: 'var(--fg-2)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{flavour} · 31 sachets · launching soon</div>
+          <div style={{ fontSize: 12, color: 'var(--fg-2)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{flavour} · 31 sachets{STORE_OPEN ? '' : ' · launching soon'}</div>
         </div>
         <span style={{ fontSize: 15, fontVariantNumeric: 'tabular-nums' }}>{inr(PRODUCT.price)}</span>
-        <Button size="sm" onClick={onJoin}>Be Part of Our Beginning</Button>
+        {STORE_OPEN ? <Button size="sm" onClick={() => onAdd({ flavour, qty: 1 })}>Add to bag</Button> : <Button size="sm" onClick={onJoin}>Be Part of Our Beginning</Button>}
       </div>
       <style>{'@keyframes pdpInR{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}@keyframes pdpInL{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}@keyframes pdpNum{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion: reduce){[style*="pdpIn"],[style*="pdpNum"]{animation:none!important}}'}</style>
     </main>
@@ -450,7 +453,7 @@ function BagDrawer({ open, items, onClose, onQty, onRemove }) {
         </div>
         <div style={{ padding: '24px 28px', borderTop: '1px solid var(--border-hairline)', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14 }}><span>Subtotal</span><span>{inr(subtotal)}</span></div>
-          <Button fullWidth disabled={!items.length}>Checkout</Button>
+          <Button fullWidth disabled={!items.length} onClick={() => { window.location.href = checkoutUrl(items); }}>Checkout</Button>
         </div>
       </aside>
     </div>
@@ -552,6 +555,7 @@ function WaitlistForm({ source, answers, onDone, onSubmit = submitWaitlist, focu
   const [email, setEmail] = React.useState('');
   const [touched, setTouched] = React.useState({});
   const [status, setStatus] = React.useState('idle');
+  const [failed, setFailed] = React.useState(false);
   const errs = {
     name: name.trim().length < 2 ? 'Please enter your name.' : '',
     email: !email.trim() ? 'Please enter your email.' : !EMAIL_RE.test(email.trim()) ? 'That email doesn\u2019t look right. Check for typos.' : '',
@@ -562,9 +566,9 @@ function WaitlistForm({ source, answers, onDone, onSubmit = submitWaitlist, focu
     setTouched({ name: true, email: true });
     if (errs.name) { nameRef.current.focus(); return; }
     if (errs.email) { emailRef.current.focus(); return; }
-    setStatus('sending');
+    setStatus('sending'); setFailed(false);
     try { const res = await onSubmit({ name: name.trim(), email: email.trim(), source, answers }); onDone({ name: name.trim(), email: email.trim(), memberNumber: res && res.memberNumber }); }
-    catch (er) { setStatus('idle'); }
+    catch (er) { setStatus('idle'); setFailed(true); }
   };
   return (
     <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column' }}>
@@ -577,6 +581,7 @@ function WaitlistForm({ source, answers, onDone, onSubmit = submitWaitlist, focu
       <button data-pb-btn="" type="submit" disabled={status === 'sending'} aria-busy={status === 'sending'} style={{ ...tBtn, marginTop: 10, minHeight: 56, cursor: status === 'sending' ? 'progress' : 'pointer' }}>
         {status === 'sending' ? <span aria-hidden="true" style={{ width: 16, height: 16, borderRadius: '50%', border: '1.5px solid rgba(250,247,241,.35)', borderTopColor: 'var(--action-on-primary)', animation: 'pbSpin 700ms linear infinite' }}></span> : <>Be Part of Our Beginning <span aria-hidden="true">→</span></>}
       </button>
+      {failed && <p role="alert" style={{ margin: '14px 0 0', fontSize: 13, fontStyle: 'italic', color: 'var(--fg-2)', textAlign: 'center' }}>We couldn’t save your place just now. Please try again.</p>}
       <p style={{ margin: '14px 0 0', fontSize: 12, color: 'var(--fg-3)', textAlign: 'center' }}>Launch updates only. Unsubscribe anytime.</p>
     </form>
   );
@@ -811,7 +816,9 @@ function TRMSite({ page }) {
   const qs = new URLSearchParams(window.location.search); const embedded = qs.has('embed') && window.parent !== window;
   const [route, setRoute] = React.useState(() => { const r0 = qs.get('route') || page || localStorage.getItem('trm-route') || 'Home'; return r0 === 'About' ? 'Home' : r0; });
   React.useEffect(() => { if (page) setRoute(page); }, [page]);
-  const [bag, setBag] = React.useState([]);
+  // The bag survives a trip to checkout and back (cleared there once the order is paid).
+  const [bag, setBag] = React.useState(() => { try { return JSON.parse(sessionStorage.getItem('trm-bag')) || []; } catch (e) { return []; } });
+  React.useEffect(() => { try { sessionStorage.setItem('trm-bag', JSON.stringify(bag)); } catch (e) {} }, [bag]);
   const [bagOpen, setBagOpen] = React.useState(false);
   const [ingredient, setIngredient] = React.useState(null);
   const [prebook, setPrebook] = React.useState(false);
@@ -833,9 +840,9 @@ function TRMSite({ page }) {
   return (
     <div key={route} data-screen-label={route}>
       <div data-anim="header" data-solid={route === 'Home' ? '0' : '1'} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, borderBottom: '1px solid transparent' }}>
-        <SiteHeader active={route} onNavigate={go} bagCount={0} brandMark onShop={openWL} transparent={route === 'Home'} />
+        <SiteHeader active={route} onNavigate={go} bagCount={STORE_OPEN ? count : 0} onBag={STORE_OPEN ? () => setBagOpen(true) : undefined} brandMark={!STORE_OPEN} onShop={openWL} transparent={route === 'Home'} />
       </div>
-      {route === 'Home' ? <div style={{ paddingTop: 96, background: 'var(--bg-page)' }}><HomeScreen onShop={openWL} onIngredient={setIngredient} onTest={() => setPrebook(true)} /></div> : <div style={{ paddingTop: 96 }}><ProductScreen onJoin={openWL} onNavigate={go} onIngredient={setIngredient} /></div>}
+      {route === 'Home' ? <div style={{ paddingTop: 96, background: 'var(--bg-page)' }}><HomeScreen onShop={openWL} onIngredient={setIngredient} onTest={() => setPrebook(true)} /></div> : <div style={{ paddingTop: 96 }}><ProductScreen onJoin={openWL} onAdd={add} onNavigate={go} onIngredient={setIngredient} /></div>}
       <SiteFooter onNavigate={go} />
       <BagDrawer open={bagOpen} items={bag} onClose={() => setBagOpen(false)} onQty={(k, v) => setBag((b) => b.map((x, i) => i === k ? { ...x, qty: v } : x))} onRemove={(k) => setBag((b) => b.filter((_, i) => i !== k))} />
       {ingredient && <IngredientModal item={ingredient} onClose={() => setIngredient(null)} />}

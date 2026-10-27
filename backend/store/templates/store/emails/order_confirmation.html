@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order {{ order.order_id }} confirmed</title>
+</head>
+<body style="margin:0;padding:0;background:#F3EEE4;color:#1B2A2D;font-family:Helvetica,Arial,sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F3EEE4;">
+  <tr><td align="center" style="padding:32px 16px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FAF7F1;border:1px solid #E2DACB;">
+      <tr><td style="padding:32px 32px 8px;">
+        <div style="font-size:12px;letter-spacing:3px;text-transform:lowercase;line-height:1.3;">the right<br>molecule</div>
+      </td></tr>
+      <tr><td style="padding:24px 32px 8px;">
+        <h1 style="margin:0 0 12px;font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:30px;line-height:1.15;">Thank you, {{ order.customer_name }}.</h1>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#4A5856;">Your payment has been received and we're getting your order ready.</p>
+      </td></tr>
+      <tr><td style="padding:20px 32px 0;">
+        <p style="margin:0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A5856;">Order {{ order.order_id }} · {{ order.paid_at|date:"j M Y" }}</p>
+      </td></tr>
+      <tr><td style="padding:12px 32px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;">
+          {% for item in items %}
+          <tr>
+            <td style="padding:12px 0;border-bottom:1px solid #E2DACB;">
+              {{ item.product_name }}{% if item.flavour %} <span style="color:#4A5856;">· {{ item.flavour }}</span>{% endif %}<br>
+              <span style="font-size:13px;color:#4A5856;">Qty {{ item.quantity }} × ₹{{ item.unit_price }}</span>
+            </td>
+            <td align="right" style="padding:12px 0;border-bottom:1px solid #E2DACB;white-space:nowrap;">₹{{ item.line_total }}</td>
+          </tr>
+          {% endfor %}
+          <tr><td style="padding:12px 0 4px;color:#4A5856;">Subtotal</td><td align="right" style="padding:12px 0 4px;">₹{{ order.subtotal }}</td></tr>
+          <tr><td style="padding:4px 0;color:#4A5856;">Shipping</td><td align="right" style="padding:4px 0;">{% if order.shipping_fee %}₹{{ order.shipping_fee }}{% else %}Free{% endif %}</td></tr>
+          <tr><td style="padding:8px 0 0;font-weight:bold;">Total paid</td><td align="right" style="padding:8px 0 0;font-weight:bold;">₹{{ order.total }}</td></tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding:28px 32px 0;">
+        <p style="margin:0 0 6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4A5856;">Shipping to</p>
+        <p style="margin:0;font-size:15px;line-height:1.6;">
+          {{ order.customer_name }}<br>
+          {{ order.address_line1 }}<br>
+          {% if order.address_line2 %}{{ order.address_line2 }}<br>{% endif %}
+          {{ order.city }}, {{ order.state }} {{ order.pincode }}<br>
+          {{ order.phone }}
+        </p>
+      </td></tr>
+      <tr><td style="padding:28px 32px 32px;">
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#4A5856;">We'll write again with tracking details once your order ships. Questions? Just reply to this email or write to <a href="mailto:{{ support_email }}" style="color:#0B4458;">{{ support_email }}</a>.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% autoescape off %}Hi {{ order.customer_name }},
+
+Thank you for your order. Your payment has been received and we're getting it ready.
+
+Order: {{ order.order_id }}
+Date: {{ order.paid_at|date:"j F Y, g:i A" }}
+
+{% for item in items %}{{ item.quantity }} × {{ item.product_name }}{% if item.flavour %} ({{ item.flavour }}){% endif %} — ₹{{ item.line_total }}
+{% endfor %}
+Subtotal: ₹{{ order.subtotal }}
+Shipping: {% if order.shipping_fee %}₹{{ order.shipping_fee }}{% else %}Free{% endif %}
+Total paid: ₹{{ order.total }}
+
+Shipping to:
+{{ order.customer_name }}
+{{ order.address_line1 }}{% if order.address_line2 %}
+{{ order.address_line2 }}{% endif %}
+{{ order.city }}, {{ order.state }} {{ order.pincode }}
+{{ order.phone }}
+
+We'll write again with tracking details once your order ships.
+Questions? Reply to this email or write to {{ support_email }}.
+
+The Right Molecule
+{% endautoescape %}

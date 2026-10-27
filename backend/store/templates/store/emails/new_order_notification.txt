@@ -1,0 +1,12 @@
+{% autoescape off %}New paid order {{ order.order_id }} — ₹{{ order.total }}
+
+{% for item in items %}{{ item.quantity }} × {{ item.product_name }}{% if item.flavour %} ({{ item.flavour }}){% endif %}
+{% endfor %}
+Ship to:
+{{ order.customer_name }}
+{{ order.address_line1 }}{% if order.address_line2 %}
+{{ order.address_line2 }}{% endif %}
+{{ order.city }}, {{ order.state }} {{ order.pincode }}
+Phone: {{ order.phone }}
+Email: {{ order.email }}
+{% endautoescape %}

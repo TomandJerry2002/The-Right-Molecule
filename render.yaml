@@ -1,0 +1,65 @@
+# Render Blueprint for the backend. In Render: New → Blueprint → pick this repo.
+# Values marked sync: false are asked for once in the Render dashboard; they are never stored here.
+# Region and plans can't be changed by editing this file later without recreating the service,
+# so check them before the first deploy.
+
+databases:
+  - name: trm-db
+    plan: basic-256mb        # paid; free Postgres is deleted after 30 days
+    region: singapore        # closest Render region to India
+    databaseName: trm
+    user: trm
+
+services:
+  - type: web
+    name: trm-backend
+    runtime: python
+    plan: starter            # paid; free instances sleep and block SMTP (no order emails)
+    region: singapore
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: python manage.py migrate --noinput && gunicorn trm.wsgi --bind 0.0.0.0:$PORT --workers 2 --timeout 60
+    healthCheckPath: /api/products/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: DATABASE_URL
+        fromDatabase:
+          name: trm-db
+          property: connectionString
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: trm-backend.onrender.com,api.therightmolecule.com
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://trm-backend.onrender.com,https://api.therightmolecule.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://www.therightmolecule.com,https://therightmolecule.com
+      - key: BACKEND_PUBLIC_URL
+        value: https://trm-backend.onrender.com
+      - key: CHECKOUT_RETURN_URL
+        value: https://www.therightmolecule.com/checkout.html?order_id={order_id}
+      - key: CASHFREE_ENV
+        value: sandbox       # switch to production after a successful sandbox test
+      - key: CASHFREE_CLIENT_ID
+        sync: false
+      - key: CASHFREE_CLIENT_SECRET
+        sync: false
+      - key: SHIPPING_FEE_INR
+        value: "0"
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
+        value: The Right Molecule <orders@therightmolecule.com>
+      - key: SUPPORT_EMAIL
+        value: hello@therightmolecule.com
+      - key: ORDER_NOTIFY_EMAILS
+        sync: false

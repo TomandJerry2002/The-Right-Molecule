@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./config.js"></script>
 </head>
 <body>
 <x-dc>
@@ -194,7 +195,7 @@
     <h1 style="margin:0 0 6px;font-family:var(--font-serif);font-weight:500;font-size:40px;line-height:1.05;color:var(--fg-1);">PCOS <em style="font-weight:400;">Harmony</em></h1>
     <p style="margin:0 0 18px;font-size:13px;color:var(--fg-2);">Daily support for PCOS, built from the biology up</p>
     <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px;">
-      <span style="font-family:var(--font-serif);font-size:28px;font-weight:500;">₹1,480</span>
+      <span style="font-family:var(--font-serif);font-size:28px;font-weight:500;">₹1,580</span>
       <span style="font-size:12px;color:var(--fg-2);">31 sachets · approx. 7 g each</span>
     </div>
     <p style="margin:0 0 26px;font-size:15px;font-weight:300;line-height:1.65;color:var(--fg-2);text-wrap:pretty;">A thoughtfully formulated blend of clinically studied nutrients to promote hormone balance, regulate cycle rhythm, enhance metabolic health and overall women's wellness.</p>
@@ -279,7 +280,7 @@
     <div style="font-family:var(--font-serif);font-size:18px;font-weight:500;line-height:1.1;">PCOS <em style="font-weight:400;">Harmony</em></div>
     <div style="font-size:12px;color:var(--fg-2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ barSub }}</div>
   </div>
-  <button type="button" onClick="{{ openWaitlist }}" tabIndex="{{ barTab }}" style="height:44px;padding:0 16px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:13px;letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">Be Part of Our Beginning</button>
+  <button type="button" onClick="{{ barAction }}" tabIndex="{{ barTab }}" style="height:44px;padding:0 16px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:13px;letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">{{ barLabel }}</button>
 </div>
 
 <sc-if value="{{ isScience }}" hint-placeholder-val="{{ false }}">
@@ -425,6 +426,7 @@ class Component extends DCLogic {
     const homeBar = this.props.homeStickyCTA ?? true;
     const isHome = s.screen === 'home';
     const isSci = s.screen === 'science', isAbout = s.screen === 'about';
+    const buyNow = !!(window.TRMConfig && window.TRMConfig.storeOpen) && s.screen === 'product';
     const barOn = !s.menu && !s.sheet && !isSci && (isHome ? homeBar && s.scrollY > 560 : true);
     const solid = !isHome || s.scrollY > 8 || s.menu;
     const sheetOn = !!s.sheet;
@@ -491,7 +493,10 @@ class Component extends DCLogic {
       barHidden: !barOn, barTab: barOn ? 0 : -1,
       barBottom: framed ? '16px' : 'calc(12px + env(safe-area-inset-bottom))',
       barY: barOn ? '0' : '140%', barOp: barOn ? 1 : 0, barPE: barOn ? 'auto' : 'none',
-      barSub: isHome ? '₹1,480 · 31 sachets' : FLAVOURS[s.flavour] + ' · ₹1,480',
+      barSub: isHome ? '₹1,580 · 31 sachets' : FLAVOURS[s.flavour] + ' · ₹1,580',
+      // Store open (config.js): the product page bar goes straight to checkout; home keeps the waitlist.
+      barLabel: buyNow ? 'Buy now' : 'Be Part of Our Beginning',
+      barAction: buyNow ? () => { location.href = 'checkout.html?item=' + encodeURIComponent(FLAVOURS[s.flavour] + ':1'); } : this.openWaitlist,
       menuHidden: !s.menu, menuOp: s.menu ? 1 : 0, menuY: s.menu ? '0' : '-12px', menuPE: s.menu ? 'auto' : 'none',
       menuLinks: ['Home', 'Products', 'Our Science', 'Contact'].map((label) => ({ label, go: nav(label), dot: (label === 'Home' && isHome) || (label === 'Products' && s.screen === 'product') || (label === 'Our Science' && isSci) || (label === 'About' && isAbout) ? 'var(--fg-1)' : 'transparent' })),
       sheetHidden: !sheetOn, sheetPE: sheetOn ? 'auto' : 'none', sheetOp: sheetOn ? 1 : 0, sheetY: sheetOn ? '0' : '105%',
