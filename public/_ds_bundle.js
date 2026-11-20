@@ -543,7 +543,7 @@ function ProductCard({
   nameItalic = 'Harmony',
   descriptor = 'Daily support for PCOS, built from the biology up',
   meta = '31 sachets · Passion Fruit',
-  price = '₹1,580',
+  price = '₹1,480',
   onAdd,
   onOpen
 }) {
@@ -4787,7 +4787,7 @@ const ASSET = '../../assets/';
 const PRODUCT = {
   name: 'PCOS',
   italic: 'Harmony',
-  price: 1580,
+  price: 1480,
   descriptor: 'Daily support for PCOS, built from the biology up',
   flavours: ['Passion Fruit'],
   ingredients: [{

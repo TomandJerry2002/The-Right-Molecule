@@ -7,18 +7,22 @@ npm run build    # production build → dist/
 ```
 
 ## Pages
-- `/` — desktop site (React): Home, Products, About, the test, and the waitlist pop-up.
-- `/mobile.html` — mobile site. Phones (≤640px) opening `/` are sent here automatically; add `?desktop` to stay on the desktop site.
-- `/Our Science.dc.html` — Our Science page.
+- `/` — desktop site, one page: Home, Products, Our Science, Our Story and Blog all load inside it with a single shared header and footer.
+- `/mobile.html` — mobile site (same sections). Phones (≤640px) opening `/` are sent here automatically; add `?desktop` to stay on the desktop site.
+- Open a section directly with `?route=Products`, `?route=Our Science`, `?route=Our Story` or `?route=Blog`.
 
 ## Waitlist
-- Open it directly with `?waitlist` on either site, e.g. `/?waitlist` or `/mobile.html?waitlist`.
-- **Connect your backend in `public/waitlist.js`** — `window.TRMWaitlist.submit({ name, email, source, answers })`. Desktop pop-up, desktop test and the mobile sheet all call it. It must resolve to `{ memberNumber }` (shown on the Founding Member card). `source` is `waitlist`, `test` or `mobile`.
+- Open it directly with `?waitlist`, e.g. `/?waitlist` or `/mobile.html?waitlist`.
+- **Connect your backend in `public/waitlist.js`** — `window.TRMWaitlist.submit({ name, email, source })` must resolve to `{ memberNumber }` (shown on the Founding Member card).
+
+## Blog
+- Add posts to `BLOG_POSTS` in `public/site/Site.jsx`: `{ title, excerpt, date: 'YYYY-MM-DD', tag, image, href }`.
 
 ## Structure
-- `src/Site.jsx` — desktop site components.
-- `src/main.jsx` — entry; sets up React, GSAP, the waitlist module and the design-system bundle.
-- `public/_ds_bundle.js` — design-system components (header, footer, buttons, icons, motion).
-- `public/styles.css` + `public/tokens/` — colours, type, spacing.
+- `index.html` — desktop entry.
+- `public/site/Site.jsx` — desktop site components (header, Home, Products, Blog, waitlist pop-up).
+- `public/Our Science.dc.html`, `public/Our Story v2.dc.html`, `public/CellScene.dc.html` — section pages, embedded into the desktop and mobile sites.
+- `public/mobile.html` — mobile site.
+- `public/_ds_bundle.js` — design-system components; `public/support.js` — page runtime.
+- `public/styles.css` + `public/tokens/` — colours, type (EB Garamond Italic + Jost), spacing.
 - `public/assets/` — sachet images, brand line art, icons.
-- `public/support.js` — runtime for the mobile and Our Science pages.

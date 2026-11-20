@@ -16,8 +16,9 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="_ds_bundle.js"></script>
 </helmet>
-<div ref="{{ rootRef }}" style="background:var(--bg-page);min-height:100vh;">
+<div ref="{{ rootRef }}" style="background:var(--bg-page);min-height:100vh;padding-top:{{ embedPad }};">
 
+<sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
 <header style="position:sticky;top:0;z-index:40;background:rgba(243,238,228,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-hairline);">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:{{ headerPad }};">
     <button type="button" onClick="{{ goHome }}" aria-label="the right molecule, home" style="background:none;border:0;padding:6px 0;cursor:pointer;display:flex;">
@@ -41,6 +42,7 @@
     </sc-if>
   </div>
 </header>
+</sc-if>
 
 <main>
 <section data-screen-label="Science Hero" style="position:relative;overflow:hidden;padding:clamp(80px,12vw,168px) var(--gutter) clamp(48px,7vw,88px);display:flex;flex-direction:column;align-items:center;text-align:center;">
@@ -260,6 +262,7 @@
 </section>
 </main>
 
+<sc-if value="{{ showFooter }}" hint-placeholder-val="{{ true }}">
 <footer style="background:var(--bg-inverse);color:var(--fg-on-inverse);padding:clamp(44px,5vw,56px) var(--gutter) 28px;">
   <p data-anim="fade" style="margin:0 0 40px;padding-bottom:28px;border-bottom:1px solid var(--border-on-inverse);max-width:880px;font-size:12px;line-height:1.7;color:var(--fg-on-inverse-2);">These statements have not been evaluated as a medical treatment. PCOS Harmony is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Consult your doctor before use, especially if you are pregnant, nursing, taking medication or managing a medical condition.</p>
   <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px 40px;">
@@ -275,6 +278,7 @@
     <span style="color:var(--fg-on-inverse);">Science. Balance. You.</span>
   </div>
 </footer>
+</sc-if>
 
 <div aria-hidden="{{ menuHidden }}" style="position:fixed;inset:0;z-index:70;background:var(--bg-page);display:flex;flex-direction:column;opacity:{{ menuOp }};transform:translateY({{ menuY }});pointer-events:{{ menuPE }};transition:opacity 220ms ease, transform 300ms cubic-bezier(.23,1,.32,1);">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:{{ headerPad }};">
@@ -383,7 +387,7 @@ const EV_EXPLAIN = {
   limited: 'Human evidence for a PCOS-specific benefit is limited or mixed.',
 };
 const ORDER = ['metabolic', 'antioxidant', 'calm', 'foundation'];
-const WEBSITE = './';
+const WEBSITE = 'The Right Molecule Website.dc.html';
 
 class Component extends DCLogic {
   journeyRef = React.createRef();
@@ -504,7 +508,7 @@ class Component extends DCLogic {
     const r = el.getBoundingClientRect(); const total = r.height - window.innerHeight;
     window.scrollTo({ top: window.scrollY + r.top + (k / 4) * total + 2, behavior: this.state.reduced ? 'auto' : 'smooth' });
   }
-  leave(route) { if (/[?&]embed/.test(window.location.search) && window.parent !== window) { window.parent.postMessage({ trmNav: route }, '*'); return; } const dest = route === 'Waitlist' ? WEBSITE + '?waitlist' : WEBSITE; localStorage.setItem('trm-route', route === 'Waitlist' ? 'Home' : route); const M = window.TRMMotion; M && M.navigateTo ? M.navigateTo(dest) : (window.location.href = dest); }
+  leave(route) { if (this.props.onNavigate) { this.props.onNavigate(route); return; } if (/[?&]embed/.test(window.location.search) && window.parent !== window) { window.parent.postMessage({ trmNav: route }, '*'); return; } const dest = route === 'Waitlist' ? WEBSITE + '?waitlist' : WEBSITE; localStorage.setItem('trm-route', route === 'Waitlist' ? 'Home' : route); const M = window.TRMMotion; M && M.navigateTo ? M.navigateTo(dest) : (window.location.href = dest); }
   nav = (label) => {
     this.setState({ menu: false });
     if (label === 'Our Science') window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -553,7 +557,7 @@ class Component extends DCLogic {
     const panelOn = !!sel;
     return {
       journeyRef: this.journeyRef, pillarsRef: this.pillarsRef, rootRef: this.rootRef,
-      isDesktop: !mobile, isMobile: mobile,
+      isDesktop: !mobile, isMobile: mobile, showChrome: !this.props.embedded && !/[?&]embed=m/.test(location.search), showFooter: !this.props.embedded, embedPad: /[?&]embed=m/.test(location.search) ? '60px' : '0px',
       headerPad: mobile ? '10px var(--gutter)' : '22px var(--gutter)',
       navLinks: ['Home', 'Products', 'Our Science'].map((label) => ({ label, go: () => this.nav(label), current: label === 'Our Science' ? 'page' : undefined, line: label === 'Our Science' ? 1 : 0, dot: label === 'Our Science' ? 'var(--fg-1)' : 'transparent' })),
       goHome: () => this.leave('Home'),
