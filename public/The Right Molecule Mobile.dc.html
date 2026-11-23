@@ -432,7 +432,7 @@ class Component extends DCLogic {
     if (!mPathRouting() || !M_PATHS[screen]) return;
     document.title = M_TITLES[screen];
     const u = new URL(location.href); u.searchParams.delete('path'); u.searchParams.delete('route');
-    const want = M_PATHS[screen] + (replace ? u.search + u.hash : '');
+    const want = M_PATHS[screen] + (replace ? u.search.replace(/=(?=&|$)/g, '') + u.hash : '');
     if (location.pathname + location.search + location.hash !== want) history[replace ? 'replaceState' : 'pushState'](null, '', want);
   }
   componentDidUpdate(pp) { if (pp.startScreen !== this.props.startScreen && this.props.startScreen) this.go(({ Home: 'home', Product: 'product', Science: 'science' })[this.props.startScreen] || 'home'); }

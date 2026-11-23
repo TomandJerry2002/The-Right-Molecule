@@ -864,7 +864,7 @@ function TRMSite({ page, onRoute, children }) {
     if (!usePaths) return;
     document.title = ROUTE_TITLES[route];
     const u = new URL(window.location.href); u.searchParams.delete('route');
-    const want = ROUTE_PATHS[route] + (first ? u.search + u.hash : '');
+    const want = ROUTE_PATHS[route] + (first ? u.search.replace(/=(?=&|$)/g, '') + u.hash : '');
     if (window.location.pathname + window.location.search + window.location.hash === want) return;
     history[first ? 'replaceState' : 'pushState'](null, '', want);
   }, [route]);

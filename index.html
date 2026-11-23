@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>The Right Molecule — PCOS Harmony</title>
-<script>/* Phones get the mobile site (which shows the same path, e.g. /blog); ?desktop keeps this one */try{var q=location.search,p=location.pathname;if(window.innerWidth<=640&&q.indexOf('desktop')<0&&q.indexOf('embed')<0)location.replace('/mobile.html'+q+(/^\/(index\.html)?$/.test(p)?'':(q?'&':'?')+'path='+encodeURIComponent(p))+location.hash)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Phones get the mobile site (which shows the same path, e.g. /blog); ?desktop keeps this one.
+   screen.width is the device width even before layout; innerWidth alone reads ~980px on phones this early. */try{var q=location.search,p=location.pathname;if(Math.min(window.innerWidth||1e4,screen.width||1e4)<=640&&q.indexOf('desktop')<0&&q.indexOf('embed')<0)location.replace('/mobile.html'+q+(/^\/(index\.html)?$/.test(p)?'':(q?'&':'?')+'path='+encodeURIComponent(p))+location.hash)}catch(e){}</script>
 <script src="./support.js"></script>
 </head>
 <body>
