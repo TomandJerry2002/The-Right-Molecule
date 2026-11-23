@@ -1,0 +1,11 @@
+{
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/products", "destination": "/index.html" },
+    { "source": "/our-science", "destination": "/index.html" },
+    { "source": "/our-story", "destination": "/index.html" },
+    { "source": "/blog", "destination": "/index.html" },
+    { "source": "/terms", "destination": "/Legal.dc.html" },
+    { "source": "/privacy", "destination": "/Legal.dc.html" }
+  ]
+}

@@ -840,11 +840,40 @@ function BlogScreen({ onJoin }) {
   );
 }
 
+// Each section has its own URL (/products, /blog …); vercel.json and vite.config.js serve index.html for them.
+// Opened as a .dc.html file (the design tool), the address bar is left alone and the last route comes from localStorage.
+const ROUTE_PATHS = { Home: '/', Products: '/products', 'Our Science': '/our-science', 'Our Story': '/our-story', Blog: '/blog' };
+const ROUTE_TITLES = { Home: 'The Right Molecule — PCOS Harmony', Products: 'PCOS Harmony — The Right Molecule', 'Our Science': 'Our Science — The Right Molecule', 'Our Story': 'Our Story — The Right Molecule', Blog: 'Blog — The Right Molecule' };
+const pathRouting = () => !/\.dc\.html?$/i.test(decodeURIComponent(window.location.pathname));
+const routeFromPath = (p) => Object.keys(ROUTE_PATHS).find((r) => ROUTE_PATHS[r] === (p.replace(/\/+$/, '') || '/') || (r === 'Home' && /^\/index\.html$/.test(p)));
+
 function TRMSite({ page, onRoute, children }) {
   const { SiteHeader, SiteFooter } = DS;
   const qs = new URLSearchParams(window.location.search); const embedded = qs.has('embed') && window.parent !== window;
-  const [route, setRoute] = React.useState(() => { const r0 = qs.get('route') || page || localStorage.getItem('trm-route') || 'Home'; return r0 === 'About' ? 'Home' : r0; });
+  const usePaths = !embedded && pathRouting();
+  const [route, setRoute] = React.useState(() => {
+    const legacy = qs.get('route');
+    const r0 = page || (legacy && ROUTE_PATHS[legacy] ? legacy : null) || (usePaths ? routeFromPath(window.location.pathname) || 'Home' : localStorage.getItem('trm-route') || 'Home');
+    return ROUTE_PATHS[r0] ? r0 : 'Home';
+  });
   React.useEffect(() => { if (page) setRoute(page); }, [page]);
+  // Keep the address bar and tab title in step with the section; old ?route= links are rewritten to their path.
+  const firstRoute = React.useRef(true);
+  React.useEffect(() => {
+    const first = firstRoute.current; firstRoute.current = false;
+    if (!usePaths) return;
+    document.title = ROUTE_TITLES[route];
+    const u = new URL(window.location.href); u.searchParams.delete('route');
+    const want = ROUTE_PATHS[route] + (first ? u.search + u.hash : '');
+    if (window.location.pathname + window.location.search + window.location.hash === want) return;
+    history[first ? 'replaceState' : 'pushState'](null, '', want);
+  }, [route]);
+  React.useEffect(() => {
+    if (!usePaths) return;
+    const onPop = () => { const r = routeFromPath(window.location.pathname) || 'Home'; const M = window.TRMMotion; const swap = () => { setRoute(r); window.scrollTo(0, 0); }; M && M.transition ? M.transition(swap) : swap(); };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
   const [bag, setBag] = React.useState([]);
   const [bagOpen, setBagOpen] = React.useState(false);
   const [ingredient, setIngredient] = React.useState(null);
@@ -869,6 +898,7 @@ function TRMSite({ page, onRoute, children }) {
     if (/Our Science(?: v2)?\.dc\.html/.test(h)) r = 'Our Science';
     else if (/Our Story(?: v2)?\.dc\.html/.test(h)) r = 'Our Story';
     else if (/The Right Molecule Website\.dc\.html/.test(h)) r = /waitlist/.test(h) ? 'Waitlist' : /route=Products/.test(h) ? 'Products' : 'Home';
+    else if (/^\/[^?#]*/.test(h)) { const p = h.match(/^[^?#]*/)[0]; r = p === '/' && /waitlist/.test(h) ? 'Waitlist' : routeFromPath(p) || null; }
     if (r) { e.preventDefault(); e.stopPropagation(); go(r); }
   };
   const add = ({ flavour, qty }) => {

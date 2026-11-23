@@ -21,12 +21,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--focus-ring);outline
 <div style="font-family:var(--font-sans);color:var(--fg-1);min-height:100vh;display:flex;flex-direction:column;">
 
 <header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;padding:26px var(--gutter);">
-  <a href="The Right Molecule Website.dc.html" aria-label="the right molecule — home" style="text-decoration:none;display:inline-flex;flex-direction:column;color:var(--fg-1);font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><span>the right</span><span>molecule</span></a>
+  <a href="/" aria-label="the right molecule — home" style="text-decoration:none;display:inline-flex;flex-direction:column;color:var(--fg-1);font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><span>the right</span><span>molecule</span></a>
   <nav aria-label="Main" style="display:flex;flex-wrap:wrap;gap:clamp(18px,2.6vw,40px);">
-    <a href="The Right Molecule Website.dc.html" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Home</a>
-    <a href="The Right Molecule Website.dc.html?route=Products" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Products</a>
-    <a href="Our Science.dc.html" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Our Science</a>
-    <a href="Our Story v2.dc.html" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Our Story</a>
+    <a href="/" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Home</a>
+    <a href="/products" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Products</a>
+    <a href="/our-science" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Our Science</a>
+    <a href="/our-story" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Our Story</a>
   </nav>
 </header>
 
@@ -128,17 +128,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--focus-ring);outline
   <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px 40px;">
     <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Logotype" inverse="{{ true }}" rule="{{ true }}" size="md" hint-size="140px,40px"></x-import>
     <nav style="display:flex;flex-wrap:wrap;gap:4px clamp(20px,3vw,48px);">
-      <a href="The Right Molecule Website.dc.html?waitlist" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Be Part of Our Beginning</a>
-      <a href="Our Science.dc.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Our Science</a>
-      <a href="Our Story v2.dc.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Our Story</a>
+      <a href="/?waitlist" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Be Part of Our Beginning</a>
+      <a href="/our-science" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Our Science</a>
+      <a href="/our-story" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Our Story</a>
       <a href="mailto:therightmolecule1@gmail.com" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Contact</a>
     </nav>
   </div>
   <div style="margin-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;font-size:12px;color:var(--fg-on-inverse-2);">
     <div style="display:flex;flex-wrap:wrap;gap:8px 20px;">
       <span>© 2026 The Right Molecule. All rights reserved.</span>
-      <a href="Legal.dc.html?doc=privacy" style="color:var(--fg-on-inverse-2);">Privacy Policy</a>
-      <a href="Legal.dc.html" style="color:var(--fg-on-inverse-2);">Terms &amp; Conditions</a>
+      <a href="/privacy" style="color:var(--fg-on-inverse-2);">Privacy Policy</a>
+      <a href="/terms" style="color:var(--fg-on-inverse-2);">Terms &amp; Conditions</a>
     </div>
     <span style="color:var(--fg-on-inverse);">Science. Balance. You.</span>
   </div>
@@ -147,19 +147,32 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--focus-ring);outline
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { doc: /[?&]doc=privacy/.test(location.search) ? 'privacy' : 'terms' };
+  // Served at /terms and /privacy (see vercel.json); opened as Legal.dc.html it falls back to ?doc=privacy.
+  usePaths = !/\.dc\.html?$/i.test(decodeURIComponent(location.pathname));
+  state = { doc: /^\/privacy\/?$/.test(location.pathname) ||/[?&]doc=privacy/.test(location.search) ? 'privacy' : 'terms' };
+  componentDidMount() {
+    if (this.usePaths) { const u = new URL(location.href); u.searchParams.delete('doc'); history.replaceState(null, '', '/' + this.state.doc + u.search + u.hash); }
+    this._pop = () => { if (this.usePaths) this.setState({ doc: /^\/privacy\/?$/.test(location.pathname) ? 'privacy' : 'terms' }); };
+    window.addEventListener('popstate', this._pop);
+  }
+  componentWillUnmount() { window.removeEventListener('popstate', this._pop); }
   setDoc(doc) {
+    if (doc === this.state.doc) return;
     this.setState({ doc });
-    const u = new URL(location.href);
-    if (doc === 'privacy') u.searchParams.set('doc', 'privacy'); else u.searchParams.delete('doc');
-    u.hash = '';
-    history.replaceState(null, '', u);
+    if (this.usePaths) history.pushState(null, '', '/' + doc);
+    else {
+      const u = new URL(location.href);
+      if (doc === 'privacy') u.searchParams.set('doc', 'privacy'); else u.searchParams.delete('doc');
+      u.hash = '';
+      history.replaceState(null, '', u);
+    }
     window.scrollTo({ top: 0 });
   }
   renderVals() {
     const p = this.state.doc === 'privacy';
     const terms = ['Who we are', 'Eligibility', 'Health information', 'The waitlist', 'Orders and pricing', 'Shipping', 'Returns and refunds', 'Use of the site', 'Liability', 'Changes, law and disputes', 'Grievances and contact'];
     const priv = ['Who is responsible', 'What we collect', 'Why we use it', 'Who we share it with', 'Cookies', 'How long we keep it', 'Your rights', 'Security and children', 'Grievance Officer'];
+    document.title = (p ? 'Privacy Policy' : 'Terms & Conditions') + ' — The Right Molecule';
     return {
       isTerms: !p, isPrivacy: p,
       title: p ? 'Privacy Policy' : 'Terms & Conditions',
