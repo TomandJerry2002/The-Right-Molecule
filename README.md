@@ -9,6 +9,7 @@ npm run build    # production build → dist/
 ## Pages
 - `/` — desktop site, one page: Home, Products, Our Science, Our Story and Blog all load inside it with a single shared header and footer.
 - `/mobile.html` — mobile site (same sections). Phones (≤640px) opening `/` are sent here automatically; add `?desktop` to stay on the desktop site.
+- `/Legal.dc.html` — Terms & Conditions; `/Legal.dc.html?doc=privacy` — Privacy Policy (interim). Linked from every footer.
 - Open a section directly with `?route=Products`, `?route=Our Science`, `?route=Our Story` or `?route=Blog`.
 
 ## Waitlist

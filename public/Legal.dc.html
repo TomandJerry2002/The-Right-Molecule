@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<script src="./_ds_bundle.js"></script>
+<title>Terms & Privacy — The Right Molecule</title>
+<style>
+html,body{margin:0;background:#F3EEE4;color:#1B2A2D}
+*{box-sizing:border-box}
+a{color:var(--fg-accent)}a:hover{color:var(--action-primary-hover)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+</style>
+</helmet>
+<div style="font-family:var(--font-sans);color:var(--fg-1);min-height:100vh;display:flex;flex-direction:column;">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;padding:26px var(--gutter);">
+  <a href="The Right Molecule Website.dc.html" aria-label="the right molecule — home" style="text-decoration:none;display:inline-flex;flex-direction:column;color:var(--fg-1);font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><span>the right</span><span>molecule</span></a>
+  <nav aria-label="Main" style="display:flex;flex-wrap:wrap;gap:clamp(18px,2.6vw,40px);">
+    <a href="The Right Molecule Website.dc.html" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Home</a>
+    <a href="The Right Molecule Website.dc.html?route=Products" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Products</a>
+    <a href="Our Science.dc.html" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Our Science</a>
+    <a href="Our Story v2.dc.html" style="font-size:var(--type-nav);color:var(--fg-1);text-decoration:none;padding:6px 0;white-space:nowrap;flex-shrink:0;" style-hover="border-bottom:1px solid var(--fg-1)">Our Story</a>
+  </nav>
+</header>
+
+<main style="flex:1;width:100%;max-width:1180px;margin:0 auto;padding:clamp(40px,7vw,96px) var(--gutter) clamp(64px,8vw,120px);">
+  <p style="margin:0 0 20px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Legal</p>
+  <h1 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,5vw,64px);line-height:1.06;letter-spacing:-.015em;text-wrap:balance;">{{ title }}</h1>
+  <p style="margin:18px 0 0;font-size:14px;color:var(--fg-2);">Effective 23 November 2026 · Interim version</p>
+
+  <div role="tablist" aria-label="Legal documents" style="display:flex;gap:8px;margin:40px 0 0;border-bottom:1px solid rgba(27,42,45,.16);">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+      <button type="button" role="tab" aria-selected="{{ t.sel }}" onClick="{{ t.go }}" style="white-space:nowrap;flex-shrink:0;min-height:48px;padding:0 4px;margin-right:24px;background:none;border:0;border-bottom:2px solid {{ t.line }};margin-bottom:-1px;cursor:pointer;font-family:var(--font-sans);font-size:15px;color:var(--fg-1);opacity:{{ t.op }};">{{ t.label }}</button>
+    </sc-for>
+  </div>
+
+  <p style="margin:32px 0 0;padding:16px 20px;background:#E8E0D0;border-radius:4px;font-size:14px;line-height:1.6;color:var(--fg-1);max-width:72ch;">This is an interim document. It applies until our formal policy is published, and we will notify waitlist members when it changes. Items in [brackets] are still being finalised.</p>
+
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:40px clamp(40px,6vw,96px);margin-top:48px;">
+    <nav aria-label="On this page" style="flex:0 0 220px;position:sticky;top:32px;display:flex;flex-direction:column;gap:2px;">
+      <p style="margin:0 0 10px;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">On this page</p>
+      <sc-for list="{{ toc }}" as="s" hint-placeholder-count="8">
+        <a href="#{{ s.id }}" style="padding:6px 0;font-size:14px;line-height:1.4;color:var(--fg-2);text-decoration:none;" style-hover="color:var(--fg-1)">{{ s.label }}</a>
+      </sc-for>
+    </nav>
+
+    <article style="flex:1 1 480px;min-width:0;max-width:68ch;font-size:16px;font-weight:300;line-height:1.7;color:var(--fg-1);">
+      <sc-if value="{{ isTerms }}" hint-placeholder-val="{{ true }}">
+        <p style="margin:0 0 20px;">These Terms and Conditions govern your use of the website of The Right Molecule and any purchase you make from us. By using the site, joining the waitlist or placing an order, you agree to these terms. If you do not agree, please do not use the site.</p>
+
+        <h2 id="t1" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">1. Who we are</h2>
+        <p style="margin:0 0 16px;">The Right Molecule ("we", "us", "our") is a business based in India, located at [registered address]. You can reach us at <a href="mailto:therightmolecule1@gmail.com">therightmolecule1@gmail.com</a>.</p>
+
+        <h2 id="t2" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">2. Eligibility</h2>
+        <p style="margin:0 0 16px;">You must be at least 18 years old and able to enter into a binding contract under Indian law to place an order.</p>
+
+        <h2 id="t3" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">3. Health information</h2>
+        <p style="margin:0 0 16px;">Our products are dietary supplements. They are not medicines and are not intended to diagnose, treat, cure or prevent any disease. Content on this site is for general information only and is not medical advice. Consult a qualified doctor before use, especially if you are pregnant, nursing, taking medication or managing a medical condition.</p>
+
+        <h2 id="t4" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">4. The waitlist</h2>
+        <p style="margin:0 0 16px;">Joining the waitlist is free and does not create an order or reserve stock. We may contact you about launch, availability and early access. You can leave the waitlist at any time by emailing us.</p>
+
+        <h2 id="t5" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">5. Orders and pricing</h2>
+        <p style="margin:0 0 16px;">All prices are in Indian Rupees and include applicable taxes unless stated otherwise. An order is accepted only when we send you an order confirmation. We may decline or cancel an order if a product is unavailable, if there is a clear pricing error, or if we suspect fraud; in that case any amount paid will be refunded in full.</p>
+
+        <h2 id="t6" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">6. Shipping</h2>
+        <p style="margin:0 0 16px;">We currently ship within India. Delivery times shown at checkout are estimates. Risk in the products passes to you on delivery.</p>
+
+        <h2 id="t7" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">7. Returns and refunds</h2>
+        <p style="margin:0 0 16px;">For hygiene and safety reasons, opened products cannot be returned. Unopened products with intact seals may be returned within [7] days of delivery. If your order arrives damaged, incorrect or past its expiry date, email us within 48 hours of delivery with photos and we will replace it or refund you. Approved refunds are made to the original payment method within 7 working days.</p>
+
+        <h2 id="t8" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">8. Use of the site</h2>
+        <p style="margin:0 0 16px;">You agree not to misuse the site, interfere with its operation, attempt unauthorised access, or use it for any unlawful purpose. All content on the site, including text, images, product names and the wordmark, belongs to The Right Molecule and may not be copied without our written permission.</p>
+
+        <h2 id="t9" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">9. Liability</h2>
+        <p style="margin:0 0 16px;">To the extent permitted by law, our total liability for any claim relating to a product is limited to the amount you paid for it. Nothing in these terms limits your rights under the Consumer Protection Act, 2019.</p>
+
+        <h2 id="t10" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">10. Changes, law and disputes</h2>
+        <p style="margin:0 0 16px;">We may update these terms. The version published on this page at the time of your order applies to that order. These terms are governed by the laws of India, and the courts at [city] have jurisdiction.</p>
+
+        <h2 id="t11" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">11. Grievances and contact</h2>
+        <p style="margin:0 0 16px;">Complaints can be sent to our Grievance Officer, [name], at <a href="mailto:therightmolecule1@gmail.com">therightmolecule1@gmail.com</a>. We will acknowledge your complaint within 48 hours and aim to resolve it within one month.</p>
+      </sc-if>
+
+      <sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0 0 20px;">This Privacy Policy explains what personal data The Right Molecule collects, why, and the choices you have. It is written to meet the Digital Personal Data Protection Act, 2023 and the Information Technology Act, 2000.</p>
+
+        <h2 id="p1" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">1. Who is responsible</h2>
+        <p style="margin:0 0 16px;">The Right Molecule, [registered address], is the Data Fiduciary for your personal data. Contact: <a href="mailto:therightmolecule1@gmail.com">therightmolecule1@gmail.com</a>.</p>
+
+        <h2 id="p2" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">2. What we collect</h2>
+        <p style="margin:0 0 16px;">When you join the waitlist, we collect your name and email address. We do not ask for health information. Our hosting provider automatically records basic technical data, such as IP address and browser type, to keep the site running and secure.</p>
+        <p style="margin:0 0 16px;">When online ordering opens, we will also collect the delivery and contact details needed to fulfil your order. Card or UPI payments will be handled by a payment provider; we will not see or store your full payment details. This policy will be updated before ordering opens.</p>
+
+        <h2 id="p3" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">3. Why we use it</h2>
+        <p style="margin:0 0 16px;">We use your name and email to tell you about our launch, product availability and early access, which you asked for by joining the waitlist. We rely on your consent, given when you submit the form. We do not sell your data and do not use it for advertising profiles.</p>
+
+        <h2 id="p4" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">4. Who we share it with</h2>
+        <p style="margin:0 0 16px;">The site is hosted by Vercel Inc., which processes data on our behalf and may store it on servers outside India. We share data only with service providers needed to run the site, or where required by law.</p>
+
+        <h2 id="p5" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">5. Cookies</h2>
+        <p style="margin:0 0 16px;">We do not use advertising or analytics cookies. The site stores small preferences in your browser, such as your last viewed page, which never leave your device.</p>
+
+        <h2 id="p6" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">6. How long we keep it</h2>
+        <p style="margin:0 0 16px;">We keep waitlist details until you ask to be removed, or until 12 months after launch if you have not become a customer, whichever is earlier.</p>
+
+        <h2 id="p7" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">7. Your rights</h2>
+        <p style="margin:0 0 16px;">You may withdraw consent, access a summary of your data, ask us to correct or erase it, nominate someone to exercise your rights, and raise a grievance. Email us and we will respond within 30 days. If you are not satisfied, you may complain to the Data Protection Board of India.</p>
+
+        <h2 id="p8" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">8. Security and children</h2>
+        <p style="margin:0 0 16px;">We use reasonable technical measures to protect your data, and will notify you and the Board of any breach as required by law. The site is not intended for anyone under 18, and we do not knowingly collect their data.</p>
+
+        <h2 id="p9" style="margin:48px 0 14px;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.2;">9. Grievance Officer</h2>
+        <p style="margin:0 0 16px;">[Name], Grievance Officer, The Right Molecule, [registered address]. Email: <a href="mailto:therightmolecule1@gmail.com">therightmolecule1@gmail.com</a>.</p>
+      </sc-if>
+    </article>
+  </div>
+</main>
+
+<footer style="background:var(--bg-inverse);color:var(--fg-on-inverse);padding:clamp(44px,5vw,56px) var(--gutter) 28px;">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px 40px;">
+    <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Logotype" inverse="{{ true }}" rule="{{ true }}" size="md" hint-size="140px,40px"></x-import>
+    <nav style="display:flex;flex-wrap:wrap;gap:4px clamp(20px,3vw,48px);">
+      <a href="The Right Molecule Website.dc.html?waitlist" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Be Part of Our Beginning</a>
+      <a href="Our Science.dc.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Our Science</a>
+      <a href="Our Story v2.dc.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Our Story</a>
+      <a href="mailto:therightmolecule1@gmail.com" style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:var(--fg-on-inverse);text-decoration:none;opacity:.9;white-space:nowrap;">Contact</a>
+    </nav>
+  </div>
+  <div style="margin-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;font-size:12px;color:var(--fg-on-inverse-2);">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 20px;">
+      <span>© 2026 The Right Molecule. All rights reserved.</span>
+      <a href="Legal.dc.html?doc=privacy" style="color:var(--fg-on-inverse-2);">Privacy Policy</a>
+      <a href="Legal.dc.html" style="color:var(--fg-on-inverse-2);">Terms &amp; Conditions</a>
+    </div>
+    <span style="color:var(--fg-on-inverse);">Science. Balance. You.</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { doc: /[?&]doc=privacy/.test(location.search) ? 'privacy' : 'terms' };
+  setDoc(doc) {
+    this.setState({ doc });
+    const u = new URL(location.href);
+    if (doc === 'privacy') u.searchParams.set('doc', 'privacy'); else u.searchParams.delete('doc');
+    u.hash = '';
+    history.replaceState(null, '', u);
+    window.scrollTo({ top: 0 });
+  }
+  renderVals() {
+    const p = this.state.doc === 'privacy';
+    const terms = ['Who we are', 'Eligibility', 'Health information', 'The waitlist', 'Orders and pricing', 'Shipping', 'Returns and refunds', 'Use of the site', 'Liability', 'Changes, law and disputes', 'Grievances and contact'];
+    const priv = ['Who is responsible', 'What we collect', 'Why we use it', 'Who we share it with', 'Cookies', 'How long we keep it', 'Your rights', 'Security and children', 'Grievance Officer'];
+    return {
+      isTerms: !p, isPrivacy: p,
+      title: p ? 'Privacy Policy' : 'Terms & Conditions',
+      tabs: [['terms', 'Terms & Conditions'], ['privacy', 'Privacy Policy']].map(([k, label]) => {
+        const sel = this.state.doc === k;
+        return { label, sel: String(sel), line: sel ? 'var(--fg-1)' : 'transparent', op: sel ? 1 : 0.6, go: () => this.setDoc(k) };
+      }),
+      toc: (p ? priv : terms).map((label, i) => ({ label, id: (p ? 'p' : 't') + (i + 1) })),
+    };
+  }
+}
+</script>
+</body>
+</html>
