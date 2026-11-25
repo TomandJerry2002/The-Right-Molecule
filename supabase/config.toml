@@ -1,0 +1,10 @@
+project_id = "the-right-molecule"
+
+# Called from the public webinar page with no login. The price is fixed server-side,
+# so the function does its own input validation instead of requiring a Supabase JWT.
+[functions.create-order]
+verify_jwt = false
+
+# Razorpay can't send a Supabase JWT; the X-Razorpay-Signature check is the auth.
+[functions.razorpay-webhook]
+verify_jwt = false
