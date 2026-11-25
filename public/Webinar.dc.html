@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Phones get the mobile page; ?desktop keeps this one */try{var q=location.search;if((screen.width||9999)<=640&&q.indexOf('desktop')<0&&q.indexOf('embed')<0)location.replace('Webinar Mobile.dc.html'+q)}catch(e){}</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -187,10 +188,10 @@ details[open] .faq-plus{transform:rotate(45deg)}
             <p style="margin:0;font-family:var(--font-serif);font-size:24px;">₹188</p>
           </div>
           <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Name
-            <input required="" name="name" autocomplete="name" minlength="2" maxlength="80" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+            <input required="" name="name" autocomplete="name" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
           </label>
           <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Email, for your joining link
-            <input required="" type="email" name="email" autocomplete="email" maxlength="254" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+            <input required="" type="email" name="email" autocomplete="email" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
           </label>
           <div style="display:flex;flex-direction:column;gap:10px;">
             <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Pay with</p>
@@ -201,10 +202,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
             </div>
           </div>
           <button type="submit" disabled="{{ processing }}" style="min-height:60px;margin-top:6px;border:0;border-radius:var(--radius-1);background:var(--action-primary);color:var(--action-on-primary);font-family:var(--font-sans);font-size:17px;letter-spacing:var(--tracking-button);cursor:pointer;" style-hover="background:var(--action-primary-hover)">{{ payLabel }}</button>
-          <sc-if value="{{ hasPayError }}" hint-placeholder-val="{{ false }}">
-            <p role="alert" style="margin:0;font-size:13px;line-height:1.5;color:var(--status-error);">{{ payError }}</p>
-          </sc-if>
-          <p style="margin:0;font-size:12px;line-height:1.6;color:var(--fg-3);">Secure payment via Razorpay. You'll return to The Right Molecule once it's complete. <a href="Legal.dc.html">Terms &amp; Privacy</a></p>
+          <p style="margin:0;font-size:12px;line-height:1.6;color:var(--fg-3);">Secure payment via our payment partner. You'll return to The Right Molecule once it's complete. <a href="Legal.dc.html">Terms &amp; Privacy</a></p>
         </form>
       </sc-if>
       <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
@@ -262,46 +260,6 @@ class Component extends DCLogic {
     this.raf = setTimeout(() => this.setState({ entered: true }), 120);
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000); }
   componentWillUnmount() { window.removeEventListener("keydown", this.onKey); clearTimeout(this.spT); this.ro && this.ro.disconnect(); window.removeEventListener("resize", this.onResize); clearTimeout(this.raf); clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); }
-  // Supabase Edge Functions for this project (see supabase/README.md).
-  FN_URL = "https://dlyhjxlhptfuxstfykkh.supabase.co/functions/v1";
-  PRODUCT = "pcos-webinar-founding";
-  loadCheckout() {
-    if (window.Razorpay) return Promise.resolve();
-    return this.checkoutJs || (this.checkoutJs = new Promise((resolve, reject) => {
-      const s = document.createElement("script");
-      s.src = "https://checkout.razorpay.com/v1/checkout.js";
-      s.onload = resolve;
-      s.onerror = () => { this.checkoutJs = null; reject(new Error("Could not load the payment window. Check your connection and try again.")); };
-      document.head.appendChild(s);
-    }));
-  }
-  async startPayment(form) {
-    const fd = new FormData(form);
-    const name = String(fd.get("name") || "").trim(), email = String(fd.get("email") || "").trim();
-    this.setState({ processing: true, email, payError: "" });
-    try {
-      const [res] = await Promise.all([
-        fetch(this.FN_URL + "/create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ product: this.PRODUCT, name, email }) }),
-        this.loadCheckout()
-      ]);
-      const order = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(order.error || "Could not start payment. Please try again.");
-      const rzp = new window.Razorpay({
-        key: order.key_id, order_id: order.order_id, amount: order.amount, currency: order.currency,
-        name: "The Right Molecule", description: order.product_label,
-        prefill: { name, email, method: this.state.method.toLowerCase() },
-        notes: { customer_name: name, product: this.PRODUCT },
-        theme: { color: "#174F55" },
-        // Only a UX signal: the razorpay-webhook function is what records the payment as captured.
-        handler: () => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); },
-        modal: { ondismiss: () => this.setState({ processing: false }) }
-      });
-      rzp.on("payment.failed", (r) => this.setState({ payError: (r && r.error && r.error.description) || "Payment failed. Please try again." }));
-      rzp.open();
-    } catch (err) {
-      this.setState({ processing: false, payError: (err && err.message) || "Could not start payment. Please try again." });
-    }
-  }
   startRedirect() {
     this.t = setInterval(() => {
       const s = this.state.secs - 1;
@@ -357,8 +315,12 @@ class Component extends DCLogic {
         return { label, select: () => this.setState({ method: label }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "var(--action-primary)" : "transparent", fg: on ? "var(--action-on-primary)" : "var(--fg-1)" };
       }),
       payLabel: processing ? "Processing payment…" : "Pay ₹188 via " + method,
-      pay: (e) => { e.preventDefault(); if (!this.state.processing) this.startPayment(e.target); },
-      payError: this.state.payError, hasPayError: !!this.state.payError,
+      pay: (e) => {
+        e.preventDefault();
+        const em = e.target.email.value;
+        this.setState({ processing: true, email: em });
+        this.p = setTimeout(() => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); }, 1500);
+      },
       redirectLabel: "Taking you to The Right Molecule in " + secs + "s…"
     };
   }
