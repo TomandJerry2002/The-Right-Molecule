@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>InnerAtlas × Plyolife live workshop · The Right Molecule</title>
+<style>
+html,body{margin:0;background:#F3EEE4;color:#1B2A2D;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+a{color:var(--fg-accent)}a:hover{color:var(--action-primary-hover)}
+summary::-webkit-details-marker{display:none}
+details[open] .faq-plus{transform:rotate(45deg)}
+@keyframes mUp{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@keyframes mRise{from{opacity:0;translate:0 40px;scale:.94}to{opacity:1;translate:0 0;scale:1}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:{{ outerPad }};background:{{ deskBg }};">
+<div data-screen-label="Phone" style="position:relative;width:{{ frameW }};height:{{ frameH }};border-radius:{{ frameR }};border:{{ frameB }};box-shadow:{{ frameShadow }};overflow:hidden;background:var(--bg-page);isolation:isolate;font-family:var(--font-sans);color:var(--fg-1);">
+<div ref="{{ scrollerRef }}" onScroll="{{ onScrollEl }}" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;scroll-behavior:smooth;">
+
+<div style="background:var(--gradient-sachet-diag);color:var(--fg-on-inverse);">
+  <header style="position:sticky;top:0;z-index:20;transform:{{ headT }};transition:transform .3s cubic-bezier(.32,.72,0,1);height:{{ headH }};padding:{{ safeTop }} 12px 0 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:color-mix(in oklch, var(--trm-petrol-deep) 70%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);">
+    <a href="mobile.html" aria-label="The Right Molecule home" style="display:flex;flex-direction:column;font-family:var(--font-logo);font-weight:300;font-size:12px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;color:var(--fg-on-inverse);text-decoration:none;"><span>the right</span><span>molecule</span></a>
+    <a href="#founding" style="display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-pill);font-size:13px;letter-spacing:var(--tracking-button);color:var(--fg-on-inverse);text-decoration:none;white-space:nowrap;" style-active="transform:scale(.97)">Reserve · ₹188</a>
+  </header>
+
+  <section data-screen-label="1 Hero" style="padding:28px 22px 0;display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <div style="display:flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-pill);font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);white-space:nowrap;animation:mUp .6s cubic-bezier(.23,1,.32,1) 80ms both;"><span style="flex:none;width:6px;height:6px;border-radius:50%;background:var(--trm-champagne);"></span>InnerAtlas × Plyolife</div>
+    <h1 style="margin:20px 0 0;font-family:var(--font-serif);font-weight:500;font-size:40px;line-height:1.06;letter-spacing:-.01em;text-wrap:balance;animation:mUp .7s cubic-bezier(.23,1,.32,1) 140ms both;">You know what to do. <em style="font-style:italic;color:var(--trm-champagne);">This is why it's hard to do it.</em></h1>
+    <p style="margin:16px 0 0;font-size:16px;font-weight:300;line-height:1.6;color:var(--fg-on-inverse-2);text-wrap:pretty;animation:mUp .7s cubic-bezier(.23,1,.32,1) 200ms both;">Eat better, move more, sleep well, manage stress: the advice is familiar, yet it rarely sticks. In 70 minutes, learn how your biology connects these habits and leave with a plan you can test in your own week.</p>
+    <a href="#founding" style="margin-top:26px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;background:var(--trm-ivory);color:var(--trm-ocean-teal);text-decoration:none;font-size:17px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);box-shadow:var(--shadow-product);transition:transform .16s ease-out;animation:mUp .7s cubic-bezier(.23,1,.32,1) 260ms both;" style-active="transform:scale(.97)">Reserve My Seat <span style="opacity:.75;font-size:15px;">· ₹188</span></a>
+    <p style="margin:10px 0 0;font-size:12px;color:var(--fg-on-inverse-2);animation:mUp .7s cubic-bezier(.23,1,.32,1) 300ms both;">Founding edition price · this session only</p>
+    <dl style="margin:24px 0 0;width:100%;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border-on-inverse);text-align:left;animation:mUp .7s cubic-bezier(.23,1,.32,1) 340ms both;">
+      <div style="padding:12px 0;border-bottom:1px solid var(--border-on-inverse);display:flex;flex-direction:column;gap:3px;"><dt style="font-size:10px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Date</dt><dd style="margin:0;font-size:15px;">Sun, 29 Nov</dd></div>
+      <div style="padding:12px 0 12px 16px;border-bottom:1px solid var(--border-on-inverse);border-left:1px solid var(--border-on-inverse);display:flex;flex-direction:column;gap:3px;"><dt style="font-size:10px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Time</dt><dd style="margin:0;font-size:15px;">6:00 PM IST</dd></div>
+      <div style="padding:12px 0;border-bottom:1px solid var(--border-on-inverse);display:flex;flex-direction:column;gap:3px;"><dt style="font-size:10px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Duration</dt><dd style="margin:0;font-size:15px;">70 minutes</dd></div>
+      <div style="padding:12px 0 12px 16px;border-bottom:1px solid var(--border-on-inverse);border-left:1px solid var(--border-on-inverse);display:flex;flex-direction:column;gap:3px;"><dt style="font-size:10px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Format</dt><dd style="margin:0;font-size:15px;">Live online</dd></div>
+    </dl>
+
+    <p style="margin:28px 0 0;font-size:12px;color:var(--fg-on-inverse-2);">Tap a facilitator to meet them</p>
+    <div style="margin-top:6px;width:100%;display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:6px;">
+      <button type="button" onClick="{{ pA.tap }}" aria-expanded="{{ pA.on }}" aria-label="{{ pA.aria }}" style="position:relative;padding:0;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;opacity:{{ pA.op }};transform:{{ pA.t }};transform-origin:bottom center;transition:opacity .3s ease, transform .45s cubic-bezier(.23,1,.32,1);">
+          <span aria-hidden="true" style="position:absolute;left:50%;bottom:10%;width:110%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 30%, transparent), transparent);"></span>
+          <span style="position:relative;display:flex;justify-content:center;align-items:flex-start;width:100%;aspect-ratio:758/740;overflow:hidden;animation:mRise .9s cubic-bezier(.23,1,.32,1) 300ms both;"><img src="assets/speaker-left-body2.png" alt="{{ pA.name }}" style="display:block;width:100%;height:auto;flex:none;"></span>
+          <span style="position:relative;margin-top:-34px;display:flex;flex-direction:column;gap:1px;padding:8px 12px;background:color-mix(in oklch, var(--trm-petrol-deep) 60%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);color:var(--fg-on-inverse);">
+            <span style="font-family:var(--font-serif);font-size:16px;line-height:1.2;">{{ pA.name }}</span>
+            <span style="font-size:9px;letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;color:var(--fg-on-inverse-2);">{{ pA.short }}</span>
+          </span>
+        </button>
+        <button type="button" onClick="{{ pD.tap }}" aria-expanded="{{ pD.on }}" aria-label="{{ pD.aria }}" style="position:relative;padding:0;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;opacity:{{ pD.op }};transform:{{ pD.t }};transform-origin:bottom center;transition:opacity .3s ease, transform .45s cubic-bezier(.23,1,.32,1);">
+          <span aria-hidden="true" style="position:absolute;left:50%;bottom:10%;width:110%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 30%, transparent), transparent);"></span>
+          <span style="position:relative;display:flex;justify-content:center;align-items:flex-start;width:100%;aspect-ratio:758/740;overflow:hidden;animation:mRise .9s cubic-bezier(.23,1,.32,1) 420ms both;"><img src="assets/speaker-right.png" alt="{{ pD.name }}" style="display:block;width:87.86%;height:auto;flex:none;"></span>
+          <span style="position:relative;margin-top:-34px;display:flex;flex-direction:column;gap:1px;padding:8px 12px;background:color-mix(in oklch, var(--trm-petrol-deep) 60%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);color:var(--fg-on-inverse);">
+            <span style="font-family:var(--font-serif);font-size:16px;line-height:1.2;">{{ pD.name }}</span>
+            <span style="font-size:9px;letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;color:var(--fg-on-inverse-2);">{{ pD.short }}</span>
+          </span>
+        </button>
+    </div>
+    <div style="width:100%;display:grid;grid-template-rows:{{ bioRows }};transition:grid-template-rows .4s cubic-bezier(.23,1,.32,1);">
+      <div style="overflow:hidden;min-height:0;">
+        <div style="margin-top:18px;padding:22px 20px;background:color-mix(in oklch, var(--trm-petrol-deep) 55%, transparent);border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);text-align:left;display:flex;flex-direction:column;gap:10px;opacity:{{ bioOp }};transition:opacity .3s ease .1s;">
+          <p style="margin:0;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">{{ sp.role }}</p>
+          <p style="margin:0;font-family:var(--font-serif);font-size:28px;line-height:1.1;">{{ sp.name }}</p>
+          <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:19px;line-height:1.3;color:var(--trm-champagne);">{{ sp.tagline }}</p>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-on-inverse-2);">{{ sp.bio }}</p>
+          <button type="button" onClick="{{ closeBio }}" style="align-self:flex-start;min-height:44px;padding:0;border:0;background:none;font-family:var(--font-sans);font-size:14px;color:var(--fg-on-inverse);border-bottom:1px solid var(--border-on-inverse);cursor:pointer;">Close</button>
+        </div>
+      </div>
+    </div>
+    <div style="height:56px;"></div>
+  </section>
+</div>
+
+<section data-screen-label="2 What you'll get" style="position:relative;margin-top:-28px;border-radius:28px 28px 0 0;background:var(--bg-sunken);padding:48px 22px 56px;box-shadow:0 -14px 30px rgba(6,48,63,.18);">
+  <p style="margin:0 0 12px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">What you'll get</p>
+  <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:34px;line-height:1.1;text-wrap:balance;">Understand the why, <em style="font-style:italic;color:var(--fg-accent);">leave with the how</em></h2>
+  <p style="margin:14px 0 0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">70 minutes in three movements: understand your biology, rethink your habits, then turn it into a plan for your own week.</p>
+  <div style="margin-top:32px;display:flex;flex-direction:column;gap:28px;">
+    <sc-for list="{{ phases }}" as="ph" hint-placeholder-count="3">
+      <div style="display:flex;flex-direction:column;gap:12px;animation:mUp linear both;animation-timeline:view();animation-range:entry 5% cover 25%;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:2px solid var(--fg-accent);">
+          <span style="font-family:var(--font-serif);font-size:24px;line-height:1;">{{ ph.name }}</span>
+          <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-3);">{{ ph.mins }}</span>
+        </div>
+        <sc-for list="{{ ph.items }}" as="t" hint-placeholder-count="1">
+          <article style="display:flex;flex-direction:column;gap:10px;padding:18px;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);">
+            <div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;"><span style="color:var(--fg-accent);">{{ t.start }}</span><span style="color:var(--fg-3);">{{ t.time }}</span></div>
+            <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:21px;line-height:1.22;">{{ t.session }}</h3>
+            <p style="margin:0;font-size:14px;font-weight:300;line-height:1.55;color:var(--fg-2);">{{ t.outcome }}</p>
+            <p style="margin:0;padding-top:10px;border-top:1px solid var(--border-hairline);font-size:13px;color:var(--fg-2);">With {{ t.speaker }}</p>
+          </article>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:40px;padding:24px 20px;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);">
+    <p style="margin:0;font-family:var(--font-serif);font-size:26px;line-height:1.15;">Yours to keep</p>
+    <p style="margin:6px 0 0;font-size:14px;font-weight:300;color:var(--fg-2);">Sent to your inbox after the session.</p>
+    <ol style="list-style:none;margin:16px 0 0;padding:0;">
+      <sc-for list="{{ takeaways }}" as="k" hint-placeholder-count="4">
+        <li style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;padding:14px 0;border-top:1px solid var(--border-hairline);">
+          <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);color:var(--fg-accent);padding-top:4px;">{{ k.n }}</span>
+          <span style="font-family:var(--font-serif);font-size:18px;line-height:1.3;">{{ k.label }}</span>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+
+<section data-screen-label="3 FAQ" style="padding:48px 22px;">
+  <p style="margin:0 0 8px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Questions</p>
+  <div style="border-top:1px solid var(--border-strong);">
+    <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+      <details style="border-bottom:1px solid var(--border-strong);">
+        <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:16px 0;font-family:var(--font-serif);font-size:19px;line-height:1.3;">
+          <span>{{ f.q }}</span>
+          <span class="faq-plus" style="flex:none;font-family:var(--font-sans);font-size:22px;font-weight:300;color:var(--fg-2);transition:transform .2s ease;">+</span>
+        </summary>
+        <p style="margin:0;padding:0 0 18px;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">{{ f.a }}</p>
+      </details>
+    </sc-for>
+  </div>
+</section>
+
+<section id="founding" data-screen-label="4 Founding Edition" style="background:var(--gradient-sachet-diag);color:var(--fg-on-inverse);padding:52px 22px 40px;">
+  <p style="margin:0 0 12px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">Founding edition</p>
+  <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:36px;line-height:1.08;">₹188 for the first session only</h2>
+  <p style="margin:14px 0 0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-on-inverse-2);">Registration closes when the workshop begins.</p>
+  <div style="margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+    <sc-for list="{{ countdown }}" as="c" hint-placeholder-count="4">
+      <div style="padding:12px 4px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-1);display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <span style="font-family:var(--font-serif);font-size:28px;line-height:1;font-variant-numeric:tabular-nums;">{{ c.n }}</span>
+        <span style="font-size:10px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">{{ c.label }}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin-top:28px;background:var(--bg-page-raised);color:var(--fg-1);padding:24px 20px;border-radius:var(--radius-2);box-shadow:var(--shadow-product);">
+    <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ pay }}" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--border-hairline);">
+          <p style="margin:0;font-family:var(--font-serif);font-size:22px;">Reserve my seat</p>
+          <p style="margin:0;font-family:var(--font-serif);font-size:22px;">₹188</p>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Name
+          <input required="" name="name" autocomplete="name" style="min-height:50px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Email, for your joining link
+          <input required="" type="email" name="email" autocomplete="email" inputMode="email" style="min-height:50px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+        </label>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <p style="margin:0;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Pay with</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+            <sc-for list="{{ methods }}" as="m" hint-placeholder-count="3">
+              <button type="button" onClick="{{ m.select }}" style="min-height:46px;padding:0 6px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};border-radius:var(--radius-pill);font-family:var(--font-sans);font-size:13px;cursor:pointer;">{{ m.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <button type="submit" disabled="{{ processing }}" style="min-height:58px;margin-top:4px;border:0;border-radius:var(--radius-1);background:var(--action-primary);color:var(--action-on-primary);font-family:var(--font-sans);font-size:16px;letter-spacing:var(--tracking-button);cursor:pointer;transition:transform .16s ease-out;" style-active="transform:scale(.97)">{{ payLabel }}</button>
+        <p style="margin:0;font-size:12px;line-height:1.6;color:var(--fg-3);">Secure payment via our payment partner. You'll return to The Right Molecule once it's complete. <a href="Legal.dc.html">Terms &amp; Privacy</a></p>
+      </form>
+    </sc-if>
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:14px;padding:8px 0;">
+        <p style="margin:0;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--status-success);">Payment successful · Seat reserved</p>
+        <p style="margin:0;font-family:var(--font-serif);font-size:28px;line-height:1.15;">See you on Sunday, 29 November.</p>
+        <p style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">Your receipt and joining link are on their way to {{ email }}.</p>
+        <p style="margin:4px 0 0;font-size:14px;color:var(--fg-2);">{{ redirectLabel }}</p>
+        <a href="mobile.html" style="display:flex;align-items:center;justify-content:center;min-height:52px;background:var(--action-primary);color:var(--action-on-primary);text-decoration:none;font-size:15px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);">Go to The Right Molecule now</a>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<footer style="padding:24px 22px 104px;display:flex;flex-direction:column;gap:8px;font-size:12px;line-height:1.6;color:var(--fg-3);">
+  <span>© 2026 The Right Molecule</span>
+  <span>This workshop is educational and is not medical advice or a consultation. Please consult a qualified doctor about your health.</span>
+</footer>
+
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;pointer-events:none;transform:{{ barT }};transition:transform .35s cubic-bezier(.32,.72,0,1);">
+  <div style="width:100%;max-width:520px;padding:12px 16px {{ barPadB }};background:color-mix(in oklch, var(--bg-page) 86%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--border-hairline);display:flex;align-items:center;gap:14px;pointer-events:auto;">
+    <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+      <span style="font-family:var(--font-serif);font-size:20px;line-height:1;">₹188</span>
+      <span style="font-size:11px;color:var(--fg-2);white-space:nowrap;">Sun 29 Nov · 6 PM IST</span>
+    </div>
+    <a href="#founding" style="flex:1;display:flex;align-items:center;justify-content:center;min-height:50px;background:var(--action-primary);color:var(--action-on-primary);text-decoration:none;font-size:15px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);transition:transform .16s ease-out;" style-active="transform:scale(.97)">Reserve My Seat</a>
+  </div>
+</div>
+<sc-if value="{{ framed }}" hint-placeholder-val="{{ true }}">
+  <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:47px;z-index:40;pointer-events:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;color:var(--fg-on-inverse);font-family:-apple-system,system-ui,sans-serif;font-size:16px;font-weight:600;">
+    <span>9:41</span>
+    <span style="position:absolute;left:50%;top:11px;width:122px;height:35px;margin-left:-61px;border-radius:20px;background:#000;"></span>
+    <span style="display:flex;align-items:center;gap:6px;"><span style="display:flex;align-items:flex-end;gap:2px;height:11px;"><span style="width:3px;height:4px;background:currentColor;border-radius:1px;"></span><span style="width:3px;height:6px;background:currentColor;border-radius:1px;"></span><span style="width:3px;height:8px;background:currentColor;border-radius:1px;"></span><span style="width:3px;height:11px;background:currentColor;border-radius:1px;"></span></span><span style="width:25px;height:12px;border:1.5px solid currentColor;border-radius:4px;padding:1.5px;opacity:.9;"><span style="display:block;width:75%;height:100%;background:currentColor;border-radius:1.5px;"></span></span></span>
+  </div>
+  <span aria-hidden="true" style="position:absolute;left:50%;bottom:8px;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:#111;z-index:40;pointer-events:none;"></span>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sp: null, step: "form", email: "", method: "UPI", processing: false, secs: 5, now: Date.now(), atForm: false };
+  HOME = "mobile.html";
+  START = new Date("2026-11-29T18:00:00+05:30").getTime();
+  scroller = React.createRef();
+  speakers = {
+    a: { name: "Aaron Thomas", short: "Molecular Biologist", role: "Molecular Biologist · Founder, TRM", tagline: "Making the invisible understandable.", bio: "With a research background in molecular and computational biology, Aaron translates the complex science of hormones and metabolism into knowledge you can use in everyday life." },
+    d: { name: "David", short: "Lifestyle Coach", role: "Lifestyle Coach · Plyolife", tagline: "Making the understandable achievable.", bio: "Bringing together nutrition, movement and behavioural science, David helps turn health knowledge into realistic, sustainable everyday habits." }
+  };
+  timeline = [
+    { min: 10, session: "Biological foundations", outcome: "How your hormones and metabolism respond to daily life.", speaker: "Aaron" },
+    { min: 15, session: "Biology and psychology of nutrition", outcome: "Why cravings and eating patterns form, and what changes them.", speaker: "David" },
+    { min: 15, session: "Lifestyle and behavioural architecture", outcome: "How sleep, stress and movement connect, and how to design around them.", speaker: "David" },
+    { min: 10, session: "Evidence-informed micro-habits", outcome: "Small changes to test in your own week.", speaker: "David" },
+    { min: 20, session: "Interactive discussion and Q&A", outcome: "Bring your questions for both facilitators.", speaker: "Aaron & David" }
+  ];
+  phases = [["Understand", 0, 0], ["Rethink", 1, 2], ["Apply", 3, 4]];
+  faqs = [
+    { q: "What is the cancellation and refund policy?", a: "[Cancellation and refund policy to be confirmed.]" },
+    { q: "How do I access the workshop?", a: "Your joining link is emailed straight after payment, with a reminder before the session starts. You can join from a phone or a computer." },
+    { q: "How do I pay, and is it secure?", a: "You can pay by UPI, card or netbanking. Payments are handled by our payment partner, and we never see or store your card details." },
+    { q: "Do I need to have PCOS to attend?", a: "No. The workshop is relevant to anyone interested in their hormonal and metabolic health." },
+    { q: "Is this a medical consultation?", a: "No. The workshop is educational and does not replace advice from your doctor." }
+  ];
+  onScroll = () => {
+    const el = document.getElementById("founding"), sc = this.scroller.current; if (!el || !sc) return;
+    const v = el.getBoundingClientRect().top - sc.getBoundingClientRect().top < sc.clientHeight * 0.85;
+    if (v !== this.state.atForm) this.setState({ atForm: v });
+    const y = sc.scrollTop, last = this.lastY || 0, hide = y > 120 && y > last + 4 ? true : y < last - 4 || y <= 120 ? false : this.state.headHidden;
+    this.lastY = y; if (hide !== this.state.headHidden) this.setState({ headHidden: hide });
+  };
+  onResize = () => this.setState({ vw: window.innerWidth });
+  componentDidMount() {
+    window.addEventListener("resize", this.onResize);
+    this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.onScroll();
+  }
+  componentWillUnmount() { clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); window.removeEventListener("resize", this.onResize); }
+  startRedirect() {
+    this.t = setInterval(() => { const s = this.state.secs - 1; if (s <= 0) { clearInterval(this.t); window.location.href = this.HOME; } else this.setState({ secs: s }); }, 1000);
+  }
+  renderVals() {
+    const { sp, step, email, method, processing, secs, now, atForm } = this.state;
+    const vw = this.state.vw || window.innerWidth || 1200, framed = vw > 600;
+    const d = Math.max(0, Math.floor((this.START - now) / 1000));
+    const pad = n => String(n).padStart(2, "0");
+    let off = 0;
+    const items = this.timeline.map(t => { const m = 18 * 60 + off; off += t.min; return { ...t, time: t.min + " min", start: (Math.floor(m / 60) - 12) + ":" + pad(m % 60) + " PM" }; });
+    const person = (k) => { const s = this.speakers[k], on = sp === k, dim = !!sp && !on; return { ...s, on, aria: s.name + ", " + s.short, op: dim ? 0.4 : 1, t: on ? "scale(1.06)" : dim ? "scale(.94)" : "none", tap: () => this.setState({ sp: on ? null : k }) }; };
+    return {
+      framed, scrollerRef: this.scroller, onScrollEl: this.onScroll,
+      outerPad: framed ? "32px 16px" : "0", deskBg: framed ? "var(--bg-sunken)" : "var(--bg-page)",
+      frameW: framed ? "390px" : "100%", frameH: framed ? "min(844px, calc(100vh - 64px))" : "100dvh", frameR: framed ? "56px" : "0",
+      frameB: framed ? "11px solid #101418" : "0", frameShadow: framed ? "0 0 0 1px #2a3036, 0 40px 80px -20px rgba(6,48,63,.45)" : "none",
+      headT: this.state.headHidden ? "translateY(-100%)" : "none", headH: framed ? "107px" : "calc(60px + env(safe-area-inset-top))", safeTop: framed ? "47px" : "env(safe-area-inset-top)", barPadB: framed ? "30px" : "calc(12px + env(safe-area-inset-bottom))",
+      pA: person("a"), pD: person("d"),
+      sp: this.speakers[sp] || this.speakers.a, bioRows: sp ? "1fr" : "0fr", bioOp: sp ? 1 : 0, closeBio: () => this.setState({ sp: null }),
+      phases: this.phases.map(([name, a, b]) => ({ name, items: items.slice(a, b + 1), mins: items.slice(a, b + 1).reduce((s, x) => s + x.min, 0) + " min" })),
+      takeaways: ["Visual educational guide", "Personal lifestyle reflection map", "Ten practical, evidence-informed habits", "Seven-day behavioural experiment worksheet"].map((label, i) => ({ n: "0" + (i + 1), label })),
+      faqs: this.faqs,
+      countdown: [{ n: pad(Math.floor(d / 86400)), label: "Days" }, { n: pad(Math.floor(d % 86400 / 3600)), label: "Hours" }, { n: pad(Math.floor(d % 3600 / 60)), label: "Mins" }, { n: pad(d % 60), label: "Secs" }],
+      barT: atForm || step === "done" ? "translateY(110%)" : "none",
+      isForm: step === "form", isDone: step === "done", email, processing,
+      methods: ["UPI", "Card", "Netbanking"].map(label => { const on = label === method; return { label, select: () => this.setState({ method: label }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "var(--action-primary)" : "transparent", fg: on ? "var(--action-on-primary)" : "var(--fg-1)" }; }),
+      payLabel: processing ? "Processing payment…" : "Pay ₹188 via " + method,
+      pay: (e) => { e.preventDefault(); this.setState({ processing: true, email: e.target.email.value }); this.p = setTimeout(() => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); }, 1500); },
+      redirectLabel: "Taking you to The Right Molecule in " + secs + "s…"
+    };
+  }
+}
+</script>
+</body>
+</html>

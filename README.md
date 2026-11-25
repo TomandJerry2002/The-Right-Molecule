@@ -10,6 +10,7 @@ npm run build    # production build → dist/
 - `/` — desktop site, one page: Home, Products, Our Science, Our Story and Blog all load inside it with a single shared header and footer.
 - `/mobile.html` — mobile site (same sections). Phones (≤640px) opening `/` are sent here automatically; add `?desktop` to stay on the desktop site.
 - `/Webinar.dc.html` — InnerAtlas × Plyolife workshop landing page (not in the main nav; linked from the top announcement banner and the InnerAtlas section on Home). After payment it returns visitors to `/`. Connect your payment gateway in the `pay` handler and set its success URL to your homepage.
+- `/Webinar Mobile.dc.html` — phone version of the workshop page (shown in a phone frame on desktop). Linked from the banner at the top of `/mobile.html`.
 - `/Legal.dc.html` — Terms & Conditions; `/Legal.dc.html?doc=privacy` — Privacy Policy (interim). Linked from every footer.
 - Open a section directly with `?route=Products`, `?route=Our Science`, `?route=Our Story` or `?route=Blog`.
 
