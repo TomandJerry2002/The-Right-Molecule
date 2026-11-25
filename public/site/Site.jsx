@@ -265,8 +265,59 @@ function AboutScreen() {
   );
 }
 
+
+// InnerAtlas — workshop banner + home section. Webinar page is not in the main nav.
+const WORKSHOP_URL = 'Webinar.dc.html';
+function useNarrow(q = '(max-width: 720px)') {
+  const [n, setN] = React.useState(() => typeof window !== 'undefined' && window.matchMedia && window.matchMedia(q).matches);
+  React.useEffect(() => { const m = window.matchMedia(q); const f = () => setN(m.matches); m.addEventListener ? m.addEventListener('change', f) : m.addListener(f); f(); window.addEventListener('resize', f); return () => { m.removeEventListener ? m.removeEventListener('change', f) : m.removeListener(f); window.removeEventListener('resize', f); }; }, [q]);
+  return n;
+}
+function WorkshopBanner() {
+  const narrow = useNarrow();
+  const dot = <span aria-hidden="true" style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--fg-on-inverse-2)', flex: 'none' }}></span>;
+  return (
+    <a href={WORKSHOP_URL} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, height: 36, padding: '0 var(--gutter)', background: 'var(--bg-inverse-deep)', color: 'var(--fg-on-inverse)', fontSize: 12, letterSpacing: '.04em', whiteSpace: 'nowrap', overflow: 'hidden', textDecoration: 'none' }}>
+      {!narrow && <span style={{ color: 'var(--fg-on-inverse-2)' }}>Upcoming live experience</span>}
+      {!narrow && dot}
+      <span>InnerAtlas × Plyolife</span>
+      {dot}
+      <span>29 November</span>
+      {dot}
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--trm-champagne)', borderBottom: '1px solid currentColor', paddingBottom: 1 }}>{narrow ? 'Explore' : 'Explore the workshop'} <span aria-hidden="true">→</span></span>
+    </a>
+  );
+}
+function InnerAtlasSection() {
+  const { Eyebrow, Heading, Button } = DS;
+  const meta = [['Date', 'Sunday, 29 November · 6:00 PM IST'], ['Duration', '70 minutes, live online'], ['In collaboration with', 'Plyolife'], ['Ticket', '₹188 · founding edition']];
+  const lbl = { fontSize: 11, letterSpacing: 'var(--tracking-eyebrow)', textTransform: 'uppercase', color: 'var(--fg-3)' };
+  return (
+    <section id="inneratlas" style={{ background: 'var(--bg-sunken)', padding: 'var(--section-y) var(--gutter)' }}>
+      <div style={{ maxWidth: 'var(--container)', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))', gap: 'clamp(40px, 6vw, 96px)', alignItems: 'center' }}>
+        <Reveal>
+          <Eyebrow>InnerAtlas</Eyebrow>
+          <Heading level="m" style={{ margin: '16px 0 20px' }}><Line>Learning, from</Line><Line><em style={{ fontWeight: 400 }}>the biology up.</em></Line></Heading>
+          <p style={{ margin: 0, maxWidth: 420, fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', textWrap: 'pretty' }}>InnerAtlas is the educational initiative of The Right Molecule: live sessions that explain the science behind your health and how to put it into practice.</p>
+        </Reveal>
+        <Reveal delay={150}>
+          <a href={WORKSHOP_URL} style={{ display: 'flex', flexDirection: 'column', gap: 22, padding: 'clamp(24px, 3vw, 36px)', background: 'var(--bg-page-raised)', border: '1px solid var(--border-hairline)', borderRadius: 'var(--radius-2)', color: 'var(--fg-1)', textDecoration: 'none', boxShadow: 'var(--shadow-product)' }}>
+            <span style={{ ...lbl, color: 'var(--fg-accent)' }}>Live workshop · Founding edition</span>
+            <span style={{ fontFamily: 'var(--font-serif)', fontWeight: 500, fontSize: 'clamp(24px, 2.4vw, 30px)', lineHeight: 1.15, textWrap: 'balance' }}>You know what to do. <em style={{ fontWeight: 400 }}>This is why it's hard to do it.</em></span>
+            <span style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>Learn how your biology connects nutrition, sleep, movement and stress, and leave with a plan you can test in your own week.</span>
+            <dl style={{ margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '14px 24px', paddingTop: 18, borderTop: '1px solid var(--border-hairline)' }}>
+              {meta.map(([k, v]) => <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}><dt style={lbl}>{k}</dt><dd style={{ margin: 0, fontSize: 15 }}>{v}</dd></div>)}
+            </dl>
+            <span style={{ alignSelf: 'flex-start' }}><Button size="sm" onClick={(e) => { e.preventDefault(); window.location.href = WORKSHOP_URL; }}>Explore the workshop</Button></span>
+          </a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function HomeScreen({ onShop, onIngredient, onTest }) {
-  return <main><Hero onShop={onShop} onTest={onTest} /><TrustBand /><BalanceSection onShop={onShop} onIngredient={onIngredient} /><PhilosophySplit /><WomensHealthBanner onShop={onShop} /><Newsletter /></main>;
+  return <main><Hero onShop={onShop} onTest={onTest} /><TrustBand /><BalanceSection onShop={onShop} onIngredient={onIngredient} /><PhilosophySplit /><InnerAtlasSection /><WomensHealthBanner onShop={onShop} /><Newsletter /></main>;
 }
 
 
@@ -840,40 +891,11 @@ function BlogScreen({ onJoin }) {
   );
 }
 
-// Each section has its own URL (/products, /blog …); vercel.json and vite.config.js serve index.html for them.
-// Opened as a .dc.html file (the design tool), the address bar is left alone and the last route comes from localStorage.
-const ROUTE_PATHS = { Home: '/', Products: '/products', 'Our Science': '/our-science', 'Our Story': '/our-story', Blog: '/blog' };
-const ROUTE_TITLES = { Home: 'The Right Molecule — PCOS Harmony', Products: 'PCOS Harmony — The Right Molecule', 'Our Science': 'Our Science — The Right Molecule', 'Our Story': 'Our Story — The Right Molecule', Blog: 'Blog — The Right Molecule' };
-const pathRouting = () => !/\.dc\.html?$/i.test(decodeURIComponent(window.location.pathname));
-const routeFromPath = (p) => Object.keys(ROUTE_PATHS).find((r) => ROUTE_PATHS[r] === (p.replace(/\/+$/, '') || '/') || (r === 'Home' && /^\/index\.html$/.test(p)));
-
 function TRMSite({ page, onRoute, children }) {
   const { SiteHeader, SiteFooter } = DS;
   const qs = new URLSearchParams(window.location.search); const embedded = qs.has('embed') && window.parent !== window;
-  const usePaths = !embedded && pathRouting();
-  const [route, setRoute] = React.useState(() => {
-    const legacy = qs.get('route');
-    const r0 = page || (legacy && ROUTE_PATHS[legacy] ? legacy : null) || (usePaths ? routeFromPath(window.location.pathname) || 'Home' : localStorage.getItem('trm-route') || 'Home');
-    return ROUTE_PATHS[r0] ? r0 : 'Home';
-  });
+  const [route, setRoute] = React.useState(() => { const r0 = qs.get('route') || page || localStorage.getItem('trm-route') || 'Home'; return r0 === 'About' ? 'Home' : r0; });
   React.useEffect(() => { if (page) setRoute(page); }, [page]);
-  // Keep the address bar and tab title in step with the section; old ?route= links are rewritten to their path.
-  const firstRoute = React.useRef(true);
-  React.useEffect(() => {
-    const first = firstRoute.current; firstRoute.current = false;
-    if (!usePaths) return;
-    document.title = ROUTE_TITLES[route];
-    const u = new URL(window.location.href); u.searchParams.delete('route');
-    const want = ROUTE_PATHS[route] + (first ? u.search.replace(/=(?=&|$)/g, '') + u.hash : '');
-    if (window.location.pathname + window.location.search + window.location.hash === want) return;
-    history[first ? 'replaceState' : 'pushState'](null, '', want);
-  }, [route]);
-  React.useEffect(() => {
-    if (!usePaths) return;
-    const onPop = () => { const r = routeFromPath(window.location.pathname) || 'Home'; const M = window.TRMMotion; const swap = () => { setRoute(r); window.scrollTo(0, 0); }; M && M.transition ? M.transition(swap) : swap(); };
-    window.addEventListener('popstate', onPop);
-    return () => window.removeEventListener('popstate', onPop);
-  }, []);
   const [bag, setBag] = React.useState([]);
   const [bagOpen, setBagOpen] = React.useState(false);
   const [ingredient, setIngredient] = React.useState(null);
@@ -898,7 +920,6 @@ function TRMSite({ page, onRoute, children }) {
     if (/Our Science(?: v2)?\.dc\.html/.test(h)) r = 'Our Science';
     else if (/Our Story(?: v2)?\.dc\.html/.test(h)) r = 'Our Story';
     else if (/The Right Molecule Website\.dc\.html/.test(h)) r = /waitlist/.test(h) ? 'Waitlist' : /route=Products/.test(h) ? 'Products' : 'Home';
-    else if (/^\/[^?#]*/.test(h)) { const p = h.match(/^[^?#]*/)[0]; r = p === '/' && /waitlist/.test(h) ? 'Waitlist' : routeFromPath(p) || null; }
     if (r) { e.preventDefault(); e.stopPropagation(); go(r); }
   };
   const add = ({ flavour, qty }) => {
@@ -916,8 +937,10 @@ function TRMSite({ page, onRoute, children }) {
   return (
     <div key={route} data-screen-label={route} onClickCapture={onLink}>
       <div data-anim="header" data-solid={route === 'Home' ? '0' : '1'} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, borderBottom: '1px solid transparent' }}>
+        {!embedded && <WorkshopBanner />}
         <SiteHeader links={['Home', 'Products', 'Our Science', 'Our Story', 'Blog']} active={route} onNavigate={go} bagCount={0} brandMark onShop={openWL} transparent />
       </div>
+      {!embedded && <div aria-hidden="true" style={{ height: 36 }}></div>}
       {route === 'Our Science' || route === 'Our Story' ? <div style={{ paddingTop: route === 'Our Science' ? 96 : 0 }}>{children}</div> : route === 'Blog' ? <div style={{ paddingTop: 96 }}><BlogScreen onJoin={openWL} /></div> : route === 'Home' ? <div style={{ paddingTop: 96, background: 'var(--bg-page)' }}><HomeScreen onShop={openWL} onIngredient={setIngredient} onTest={() => setPrebook(true)} /></div> : <div style={{ paddingTop: 96 }}><ProductScreen onJoin={openWL} onNavigate={go} onIngredient={setIngredient} /></div>}
       <SiteFooter links={['Be Part of Our Beginning', 'Our Science', 'Our Story', 'Blog', 'Contact']} onNavigate={go} />
       <BagDrawer open={bagOpen} items={bag} onClose={() => setBagOpen(false)} onQty={(k, v) => setBag((b) => b.map((x, i) => i === k ? { ...x, qty: v } : x))} onRemove={(k) => setBag((b) => b.filter((_, i) => i !== k))} />

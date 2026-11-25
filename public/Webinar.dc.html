@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<script src="./image-slot.js"></script>
+<title>InnerAtlas × Plyolife live workshop · The Right Molecule</title>
+<meta name="robots" content="noindex">
+<style>
+html,body{margin:0;background:#F3EEE4;color:#1B2A2D}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:var(--fg-accent)}a:hover{color:var(--action-primary-hover)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+summary::-webkit-details-marker{display:none}
+@keyframes trmUp{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+@keyframes trmCard{from{opacity:0;translate:0 28px;scale:.96;filter:blur(4px)}to{opacity:1;translate:0 0;scale:1;filter:blur(0)}}
+@keyframes trmBar{from{scale:0 1}to{scale:1 1}}
+@keyframes trmRise{from{opacity:0;transform:translateY(48px) scale(.92)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-delay:0ms!important}}
+details[open] .faq-plus{transform:rotate(45deg)}
+</style>
+</helmet>
+<div style="font-family:var(--font-sans);color:var(--fg-1);min-height:100vh;display:flex;flex-direction:column;">
+
+<div style="position:relative;background:var(--gradient-sachet-diag);">
+<header style="background:transparent;color:var(--fg-on-inverse);position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px var(--gutter);">
+  <div style="display:inline-flex;flex-direction:column;font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><span>the right</span><span>molecule</span></div>
+  <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);white-space:nowrap;">InnerAtlas × Plyolife</p>
+</header>
+
+<section data-screen-label="1 Hero" style="background:transparent;color:var(--fg-on-inverse);position:relative;overflow:hidden;min-height:{{ heroMinH }};padding:clamp(20px,4vw,48px) var(--gutter) 0;display:flex;flex-direction:column;">
+  <div style="position:relative;z-index:2;max-width:560px;margin:0 auto;padding-bottom:{{ textPadB }};opacity:{{ textOp }};pointer-events:{{ textPe }};transition:opacity .3s ease;display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-pill);font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);white-space:nowrap;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 100ms both;"><span style="width:6px;height:6px;border-radius:50%;background:var(--trm-champagne);"></span>Live workshop · Founding edition</div>
+    <h1 style="margin:26px 0 0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);letter-spacing:-.015em;text-wrap:balance;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 160ms both;">You know what to do. <em style="font-style:italic;color:var(--trm-champagne);">This is why it's hard to do it.</em></h1>
+    <p style="margin:22px 0 0;max-width:44ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);text-wrap:pretty;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 220ms both;">Eat better, move more, sleep well, manage stress: the advice is familiar, yet it rarely sticks. In 70 minutes, learn how your biology connects these habits and leave with a plan you can test in your own week.</p>
+    <div style="margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:12px;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 280ms both;">
+      <a href="#founding" style="display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:64px;padding:0 44px;background:var(--trm-ivory);color:var(--trm-ocean-teal);text-decoration:none;font-size:18px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);white-space:nowrap;box-shadow:var(--shadow-product);transition:background .2s ease, transform .16s ease-out;" style-hover="background:var(--trm-champagne)" style-active="transform:scale(.97)">Reserve My Seat <span style="font-size:16px;opacity:.75;">· ₹188</span></a>
+      <span style="font-size:13px;color:var(--fg-on-inverse-2);">Founding edition price · this session only</span>
+    </div>
+    <dl style="margin:36px 0 0;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));border-top:1px solid var(--border-on-inverse);border-bottom:1px solid var(--border-on-inverse);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 340ms both;">
+      <div style="padding:14px 8px;display:flex;flex-direction:column;gap:4px;"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Date</dt><dd style="margin:0;font-size:15px;">Sun, 29 Nov</dd></div>
+      <div style="padding:14px 8px;display:flex;flex-direction:column;gap:4px;"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Time</dt><dd style="margin:0;font-size:15px;">6:00 PM IST</dd></div>
+      <div style="padding:14px 8px;display:flex;flex-direction:column;gap:4px;"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Duration</dt><dd style="margin:0;font-size:15px;">70 minutes</dd></div>
+      <div style="padding:14px 8px;display:flex;flex-direction:column;gap:4px;"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Format</dt><dd style="margin:0;font-size:15px;">Live online</dd></div>
+    </dl>
+    <p style="margin:18px 0 0;font-size:13px;color:var(--fg-on-inverse-2);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 400ms both;">{{ tapHint }}</p>
+  </div>
+  <sc-if value="{{ hasSpeaker }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;z-index:3;top:clamp(28px,6vw,80px);left:50%;width:min(560px,calc(100% - 2 * var(--gutter)));transform:translateX(-50%) translateY({{ descY }});opacity:{{ descOp }};transition:opacity .45s ease .2s, transform .55s cubic-bezier(.2,.9,.25,1) .2s;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;">
+      <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">{{ sp.role }}</p>
+      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);">{{ sp.name }}</h2>
+      <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,2vw,26px);line-height:1.3;color:var(--trm-champagne);">{{ sp.tagline }}</p>
+      <p style="margin:6px 0 0;max-width:46ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);text-wrap:pretty;">{{ sp.bio }}</p>
+      <p style="margin:0;font-size:14px;color:var(--fg-on-inverse-2);">Speaking on: {{ sp.sessions }}</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 24px;margin-top:16px;">
+        <a href="#founding" style="display:inline-flex;align-items:center;min-height:52px;padding:0 30px;background:var(--trm-ivory);color:var(--trm-ocean-teal);text-decoration:none;font-size:15px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);white-space:nowrap;" style-hover="background:var(--trm-champagne)">Reserve My Seat · ₹188</a>
+        <button type="button" onClick="{{ closeSpeaker }}" style="min-height:44px;padding:0 4px;border:0;background:none;border-bottom:1px solid var(--border-on-inverse);font-family:var(--font-sans);font-size:14px;letter-spacing:var(--tracking-button);color:var(--fg-on-inverse);cursor:pointer;white-space:nowrap;">← Back</button>
+      </div>
+    </div>
+  </sc-if>
+  <div style="position:{{ figPos }};left:0;right:0;bottom:0;top:0;z-index:1;pointer-events:none;display:flex;justify-content:{{ figJustify }};align-items:flex-end;gap:12px;margin-top:{{ figMarginT }};">
+    <div role="button" tabIndex="0" aria-label="Aaron Thomas, Molecular Biologist" onClick="{{ openLeft }}" onKeyDown="{{ keyLeft }}" style="position:relative;pointer-events:auto;cursor:pointer;max-width:{{ figMaxW }};transform-origin:bottom center;opacity:{{ figOpL }};transform:{{ figTL }};transition:opacity .5s ease, transform .9s cubic-bezier(.23,1,.32,1);">
+      <div aria-hidden="true" style="position:absolute;left:50%;bottom:6%;width:115%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 30%, transparent), transparent);pointer-events:none;"></div>
+      <img src="assets/speaker-left-body2.png" alt="Aaron Thomas" style="position:relative;display:block;animation:trmRise .9s cubic-bezier(.23,1,.32,1) 250ms both;height:{{ figH }};width:auto;max-width:100%;object-fit:contain;object-position:bottom;transition:filter .3s ease;" style-hover="filter:drop-shadow(0 18px 30px rgba(0,0,0,.35))">
+      <span style="position:absolute;bottom:{{ chipB }};left:{{ chipInset }};max-width:calc(100% - 16px);display:flex;flex-direction:column;gap:2px;padding:10px 16px;background:color-mix(in oklch, var(--trm-petrol-deep) 55%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);text-align:left;opacity:{{ chipOpL }};animation:trmUp .6s cubic-bezier(.23,1,.32,1) 800ms both;transition:opacity .3s ease;pointer-events:none;">
+        <span style="font-family:var(--font-serif);font-size:19px;line-height:1.2;color:var(--fg-on-inverse);">Aaron Thomas</span>
+        <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Molecular Biologist</span>
+      </span>
+    </div>
+    <div role="button" tabIndex="0" aria-label="David, Lifestyle Coach" onClick="{{ openRight }}" onKeyDown="{{ keyRight }}" style="position:relative;pointer-events:auto;cursor:pointer;max-width:{{ figMaxW }};transform-origin:bottom center;opacity:{{ figOpR }};transform:{{ figTR }};transition:opacity .5s ease, transform .9s cubic-bezier(.23,1,.32,1);">
+      <div aria-hidden="true" style="position:absolute;left:50%;bottom:6%;width:115%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 30%, transparent), transparent);pointer-events:none;"></div>
+      <img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;animation:trmRise .9s cubic-bezier(.23,1,.32,1) 250ms both;height:{{ figH }};width:auto;max-width:100%;aspect-ratio:666/748;object-fit:cover;object-position:top;transition:filter .3s ease;" style-hover="filter:drop-shadow(0 18px 30px rgba(0,0,0,.35))">
+      <span style="position:absolute;bottom:{{ chipB }};right:{{ chipInset }};max-width:calc(100% - 16px);display:flex;flex-direction:column;gap:2px;padding:10px 16px;background:color-mix(in oklch, var(--trm-petrol-deep) 55%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);text-align:left;opacity:{{ chipOpR }};animation:trmUp .6s cubic-bezier(.23,1,.32,1) 800ms both;transition:opacity .3s ease;pointer-events:none;">
+        <span style="font-family:var(--font-serif);font-size:19px;line-height:1.2;color:var(--fg-on-inverse);">David</span>
+        <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Lifestyle Coach</span>
+      </span>
+    </div>
+  </div>
+</section>
+</div>
+
+<section data-screen-label="2 What you'll get" style="position:relative;z-index:5;margin-top:clamp(-72px,-6vw,-40px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;box-shadow:0 -18px 40px rgba(6,48,63,.18);background:var(--bg-sunken);padding:var(--section-y) var(--gutter);">
+  <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(48px,6vw,80px);">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
+      <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">What you'll get</p>
+      <h2 style="margin:0;max-width:20ch;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Understand the why, <em style="font-style:italic;color:var(--fg-accent);">leave with the how</em></h2>
+      <p style="margin:0;max-width:52ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-2);text-wrap:pretty;">70 minutes in three movements: understand your biology, rethink your habits, then turn it into a plan for your own week.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:{{ progCols }};gap:16px;align-items:stretch;">
+      <sc-for list="{{ phases }}" as="p" hint-placeholder-count="3">
+        <div style="grid-column:{{ p.col }};grid-row:{{ p.row }};order:{{ p.order }};display:flex;flex-direction:column;gap:12px;padding-top:{{ p.padT }};animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+            <span style="font-family:var(--font-serif);font-size:26px;line-height:1;">{{ p.name }}</span>
+            <span style="font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-3);white-space:nowrap;">{{ p.mins }}</span>
+          </div>
+          <span style="display:block;height:3px;border-radius:var(--radius-pill);background:{{ p.bar }};transform-origin:left center;transition:background .2s ease;animation:trmBar linear both;animation-timeline:view();animation-range:entry 20% cover 40%;"></span>
+        </div>
+      </sc-for>
+      <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
+        <article onMouseEnter="{{ t.enter }}" onMouseLeave="{{ t.leave }}" style="grid-row:{{ t.row }};order:{{ t.order }};display:flex;flex-direction:column;gap:14px;padding:24px 22px 22px;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);box-shadow:{{ t.shadow }};transform:{{ t.cardT }};transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:{{ t.range }};">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;">
+            <span style="color:var(--fg-accent);font-variant-numeric:tabular-nums;">{{ t.start }}</span>
+            <span style="color:var(--fg-3);">{{ t.time }}</span>
+          </div>
+          <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(20px,1.7vw,23px);line-height:1.22;text-wrap:balance;">{{ t.session }}</h3>
+          <p style="margin:0;flex:1;font-size:14px;font-weight:300;line-height:1.55;color:var(--fg-2);text-wrap:pretty;">{{ t.outcome }}</p>
+          <div style="display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--border-hairline);">
+            <div style="display:flex;">
+              <sc-if value="{{ t.hasA }}" hint-placeholder-val="{{ false }}"><span style="width:28px;height:28px;margin-right:-8px;border-radius:50%;overflow:hidden;border:2px solid var(--bg-page-raised);background:var(--trm-petrol);display:block;"><img src="assets/speaker-left-body2.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.9);transform-origin:50% 12%;display:block;"></span></sc-if>
+              <sc-if value="{{ t.hasD }}" hint-placeholder-val="{{ false }}"><span style="width:28px;height:28px;margin-right:-8px;border-radius:50%;overflow:hidden;border:2px solid var(--bg-page-raised);background:var(--trm-petrol);display:block;"><img src="assets/speaker-right.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.9);transform-origin:50% 12%;display:block;"></span></sc-if>
+            </div>
+            <span style="margin-left:8px;font-size:13px;color:var(--fg-2);">{{ t.speaker }}</span>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px clamp(32px,5vw,72px);align-items:start;padding-top:clamp(40px,5vw,64px);border-top:1px solid var(--border-strong);animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <p style="margin:0;font-family:var(--font-serif);font-size:var(--type-display-s);line-height:1.15;">Yours to keep</p>
+        <p style="margin:0;max-width:32ch;font-size:15px;font-weight:300;line-height:var(--leading-body);color:var(--fg-2);">Sent to your inbox after the session, so you can start on Monday.</p>
+      </div>
+      <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:0 32px;">
+        <sc-for list="{{ takeaways }}" as="k" hint-placeholder-count="4">
+          <li style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;padding:16px 0;border-bottom:1px solid var(--border-hairline);animation:trmUp linear both;animation-timeline:view();animation-range:{{ k.range }};">
+            <span style="font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);padding-top:4px;">{{ k.n }}</span>
+            <span style="font-family:var(--font-serif);font-size:19px;line-height:1.3;">{{ k.label }}</span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="3 FAQ" style="padding:var(--section-y) var(--gutter);">
+  <div style="max-width:var(--container);margin:0 auto;">
+    <div style="max-width:880px;">
+      <p style="margin:0 0 8px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Questions</p>
+      <div style="border-top:1px solid var(--border-strong);">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+          <details style="border-bottom:1px solid var(--border-strong);">
+            <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:44px;padding:20px 0;font-family:var(--font-serif);font-size:clamp(19px,1.8vw,22px);line-height:1.3;">
+              <span>{{ f.q }}</span>
+              <span class="faq-plus" style="flex:none;font-family:var(--font-sans);font-size:24px;font-weight:300;color:var(--fg-2);transition:transform .2s ease;">+</span>
+            </summary>
+            <p style="margin:0;padding:0 0 22px;max-width:64ch;font-size:15px;font-weight:300;line-height:var(--leading-body);color:var(--fg-2);text-wrap:pretty;">{{ f.a }}</p>
+          </details>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founding" data-screen-label="4 Founding Edition" style="background:var(--gradient-sachet-diag);color:var(--fg-on-inverse);padding:var(--section-y) var(--gutter);">
+  <div style="max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:48px clamp(40px,7vw,112px);align-items:start;">
+    <div>
+      <p style="margin:0 0 16px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">Founding edition</p>
+      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">₹188 for the first session only</h2>
+      <p style="margin:20px 0 0;max-width:44ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);">Founding pricing applies to this first live session only. Registration closes when the workshop begins.</p>
+      <div style="margin-top:36px;display:flex;flex-direction:column;gap:12px;">
+        <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Workshop starts in</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;">
+          <sc-for list="{{ countdown }}" as="c" hint-placeholder-count="4">
+            <div style="min-width:76px;padding:14px 12px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-1);display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <span style="font-family:var(--font-serif);font-size:34px;line-height:1;">{{ c.n }}</span>
+              <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">{{ c.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin:4px 0 0;font-size:14px;color:var(--fg-on-inverse-2);">Sunday, 29 November 2026 · 6:00 PM IST</p>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-page-raised);color:var(--fg-1);padding:clamp(28px,4vw,44px);border-radius:var(--radius-2);box-shadow:var(--shadow-product);">
+      <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ pay }}" style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--border-hairline);">
+            <p style="margin:0;font-family:var(--font-serif);font-size:24px;line-height:1.2;">Reserve my seat</p>
+            <p style="margin:0;font-family:var(--font-serif);font-size:24px;">₹188</p>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Name
+            <input required="" name="name" autocomplete="name" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Email, for your joining link
+            <input required="" type="email" name="email" autocomplete="email" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+          </label>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Pay with</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <sc-for list="{{ methods }}" as="m" hint-placeholder-count="3">
+                <button type="button" onClick="{{ m.select }}" style="min-height:44px;padding:0 20px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};border-radius:var(--radius-pill);font-family:var(--font-sans);font-size:14px;cursor:pointer;">{{ m.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <button type="submit" disabled="{{ processing }}" style="min-height:60px;margin-top:6px;border:0;border-radius:var(--radius-1);background:var(--action-primary);color:var(--action-on-primary);font-family:var(--font-sans);font-size:17px;letter-spacing:var(--tracking-button);cursor:pointer;" style-hover="background:var(--action-primary-hover)">{{ payLabel }}</button>
+          <p style="margin:0;font-size:12px;line-height:1.6;color:var(--fg-3);">Secure payment via our payment partner. You'll return to The Right Molecule once it's complete. <a href="Legal.dc.html">Terms &amp; Privacy</a></p>
+        </form>
+      </sc-if>
+      <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:16px;padding:20px 0;">
+          <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--status-success);">Payment successful · Seat reserved</p>
+          <p style="margin:0;font-family:var(--font-serif);font-size:30px;line-height:1.2;">See you on Sunday, 29 November.</p>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:var(--leading-body);color:var(--fg-2);">Your receipt and joining link are on their way to {{ email }}.</p>
+          <p style="margin:8px 0 0;font-size:14px;color:var(--fg-2);">{{ redirectLabel }}</p>
+          <a href="./" style="align-self:flex-start;display:inline-flex;align-items:center;min-height:48px;padding:0 28px;background:var(--action-primary);color:var(--action-on-primary);text-decoration:none;font-size:14px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);white-space:nowrap;" style-hover="background:var(--action-primary-hover)">Go to The Right Molecule now</a>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<footer style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding:28px var(--gutter);font-size:12px;color:var(--fg-3);">
+  <span>© 2026 The Right Molecule</span>
+  <span style="max-width:70ch;">This workshop is educational and is not medical advice or a consultation. Please consult a qualified doctor about your health.</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { step: "form", email: "", method: "UPI", processing: false, secs: 5, now: Date.now() };
+  HOME = "./";
+  START = new Date("2026-11-29T18:00:00+05:30").getTime();
+  timeline = [
+    { min: 10, time: "10 min", session: "Biological foundations", outcome: "How your hormones and metabolism respond to daily life.", speaker: "Aaron" },
+    { min: 15, time: "15 min", session: "Biology and psychology of nutrition", outcome: "Why cravings and eating patterns form, and what changes them.", speaker: "David" },
+    { min: 15, time: "15 min", session: "Lifestyle and behavioural architecture", outcome: "How sleep, stress and movement connect, and how to design around them.", speaker: "David" },
+    { min: 10, time: "10 min", session: "Evidence-informed micro-habits", outcome: "Small changes to test in your own week.", speaker: "David" },
+    { min: 20, time: "20 min", session: "Interactive discussion and Q&A", outcome: "Bring your questions for both speakers.", speaker: "Aaron & David" }
+  ];
+  phases = [{ name: "Understand", from: 0, to: 0 }, { name: "Rethink", from: 1, to: 2 }, { name: "Apply", from: 3, to: 4 }];
+  takeaways = ["Visual educational guide", "Personal lifestyle reflection map", "Ten practical, evidence-informed habits", "Seven-day behavioural experiment worksheet"].map((label, i) => ({ n: "0" + (i + 1), label, range: "entry " + (10 + i * 8) + "% cover " + (30 + i * 6) + "%" }));
+  faqs = [
+    { q: "What is the cancellation and refund policy?", a: "[Cancellation and refund policy to be confirmed.]" },
+    { q: "How do I access the workshop?", a: "Your joining link is emailed straight after payment, with a reminder before the session starts. You can join from a phone or a computer." },
+    { q: "How do I pay, and is it secure?", a: "You can pay by UPI, card or netbanking. Payments are handled by our payment partner, and we never see or store your card details." },
+    { q: "Do I need to have PCOS to attend?", a: "No. The workshop is relevant to anyone interested in their hormonal and metabolic health." },
+    { q: "Is this a medical consultation?", a: "No. The workshop is educational and does not replace advice from your doctor." }
+  ];
+  speakers = {
+    left: { name: "Aaron Thomas", img: "assets/speaker-left-body2.png", role: "Molecular Biologist · Founder, TRM", tagline: "Making the invisible understandable.", bio: "With a research background in molecular and computational biology, Aaron translates the complex science of hormones and metabolism into knowledge you can use in everyday life.", sessions: "Biological foundations, Q&A" },
+    right: { name: "David", img: "assets/speaker-right.png", role: "Lifestyle Coach · Plyolife", tagline: "Making the understandable achievable.", bio: "Bringing together nutrition, movement and behavioural science, David helps turn health knowledge into realistic, sustainable everyday habits.", sessions: "Nutrition, lifestyle architecture, micro-habits, Q&A" }
+  };
+  openSp = (k) => { clearTimeout(this.spT); if (this.state.sp === k && this.state.spIn) return this.closeSp(); this.setState({ sp: k, spIn: false }); this.spT = setTimeout(() => this.setState({ spIn: true }), 20); };
+  closeSp = () => { this.setState({ spIn: false }); clearTimeout(this.spT); this.spT = setTimeout(() => this.setState({ sp: null }), 300); };
+  onKey = (e) => { if (e.key === "Escape" && this.state.sp) this.closeSp(); };
+  componentDidMount() {
+    window.addEventListener("keydown", this.onKey);
+    this.onResize = () => { const w = document.documentElement.clientWidth || window.innerWidth; if (w) this.setState({ vw: w }); };
+    window.addEventListener("resize", this.onResize); this.onResize();
+    this.ro = new ResizeObserver(this.onResize); this.ro.observe(document.documentElement);
+    this.raf = setTimeout(() => this.setState({ entered: true }), 120);
+    this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000); }
+  componentWillUnmount() { window.removeEventListener("keydown", this.onKey); clearTimeout(this.spT); this.ro && this.ro.disconnect(); window.removeEventListener("resize", this.onResize); clearTimeout(this.raf); clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); }
+  startRedirect() {
+    this.t = setInterval(() => {
+      const s = this.state.secs - 1;
+      if (s <= 0) { clearInterval(this.t); window.location.href = this.HOME; }
+      else this.setState({ secs: s });
+    }, 1000);
+  }
+  renderVals() {
+    const { step, email, method, processing, secs, now, entered } = this.state;
+    const vw = this.state.vw || 1280;
+    const wide = vw >= 1200;
+    const figH = wide ? Math.min(580, Math.round(((vw - 560) / 2) / 0.98)) + "px" : Math.max(220, Math.min(320, Math.round(vw * 0.5))) + "px";
+    const d = Math.max(0, Math.floor((this.START - now) / 1000));
+    const pad = n => String(n).padStart(2, "0");
+    return {
+      progCols: wide ? "repeat(5,minmax(0,1fr))" : "minmax(0,1fr)",
+      phases: this.phases.map((p, pi) => {
+        const mins = this.timeline.slice(p.from, p.to + 1).reduce((s, x) => s + x.min, 0);
+        const active = this.state.hv != null && this.state.hv >= p.from && this.state.hv <= p.to;
+        return { name: p.name, mins: mins + " min", col: wide ? (p.from + 1) + " / " + (p.to + 2) : "auto", row: wide ? "1" : "auto",
+          order: wide ? 0 : p.from + pi, padT: wide || pi === 0 ? "0" : "24px", bar: active ? "var(--action-primary)" : "var(--fg-accent)" };
+      }),
+      timeline: this.timeline.map((t, i) => {
+        const hv = this.state.hv, on = hv === i, dim = hv != null && !on;
+        return { ...t, enter: () => this.setState({ hv: i }), leave: () => this.setState({ hv: null }),
+          barBg: on ? "var(--action-primary)" : dim ? "var(--border-strong)" : "var(--fg-accent)", barT: on ? "scaleY(1.6)" : "none",
+          n: "0" + (i + 1), numColor: on ? "var(--fg-accent)" : "var(--fg-3)", rowT: on ? "translateX(6px)" : "none", row: wide ? "2" : "auto", order: wide ? 0 : i + (i >= 3 ? 3 : i >= 1 ? 2 : 1), cardT: on ? "translateY(-4px)" : "none", range: wide ? "entry " + (10 + i * 7) + "% cover " + (32 + i * 5) + "%" : "entry 10% cover 32%", shadow: on ? "var(--shadow-product)" : "none",
+          start: (() => { const m = 18 * 60 + this.timeline.slice(0, i).reduce((s, x) => s + x.min, 0); return (Math.floor(m / 60) - 12) + ":" + String(m % 60).padStart(2, "0") + " PM"; })(),
+          hasA: t.speaker !== "David", hasD: t.speaker !== "Aaron" };
+      }), takeaways: this.takeaways, faqs: this.faqs, email, processing,
+      figPos: wide ? "absolute" : "relative", figJustify: wide ? "space-between" : "center", figMarginT: wide ? "0" : "36px",
+      hasSpeaker: !!this.state.sp, isLeftSp: this.state.sp === "left", isRightSp: this.state.sp === "right", sp: this.speakers[this.state.sp] || this.speakers.left,
+      openLeft: () => this.openSp("left"), openRight: () => this.openSp("right"), closeSpeaker: this.closeSp, stop: (e) => e.stopPropagation(),
+      textOp: this.state.sp ? 0 : 1, textPe: this.state.sp ? "none" : "auto",
+      descOp: this.state.spIn ? 1 : 0, descY: this.state.spIn ? "0" : "16px",
+      figH, figMaxW: wide ? "calc((100% - 560px) / 2 - 16px)" : "46%", heroMinH: wide ? figH : "auto", textPadB: wide ? "80px" : "0",
+      enOp: entered ? 1 : 0, enT: entered ? "translateY(0)" : "translateY(12px)",
+      chipOpL: this.state.sp ? 0 : 1, chipOpR: this.state.sp ? 0 : 1, chipT: entered ? "translateY(0)" : "translateY(8px)", chipB: wide ? "120px" : "64px", chipInset: wide ? "var(--gutter)" : "8px",
+      tapHint: vw >= 1200 ? "Click Aaron or David to meet your facilitators" : "Tap a speaker below to meet them",
+      keyLeft: (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); this.openSp("left"); } },
+      keyRight: (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); this.openSp("right"); } },
+      figOpL: this.state.sp === "right" ? 0.18 : 1, figOpR: this.state.sp === "left" ? 0.18 : 1, figTL: this.state.sp === "left" ? (wide ? "translateX(-4%) scale(1.1)" : "translateX(25%) scale(1.15)") : this.state.sp === "right" ? "translateY(40px) scale(.92)" : "none",
+      figTR: this.state.sp === "right" ? (wide ? "translateX(4%) scale(1.1)" : "translateX(-25%) scale(1.15)") : this.state.sp === "left" ? "translateY(40px) scale(.92)" : "none",
+      countdown: [
+        { n: pad(Math.floor(d / 86400)), label: "Days" },
+        { n: pad(Math.floor(d % 86400 / 3600)), label: "Hours" },
+        { n: pad(Math.floor(d % 3600 / 60)), label: "Mins" },
+        { n: pad(d % 60), label: "Secs" }
+      ],
+      isForm: step === "form", isDone: step === "done",
+      methods: ["UPI", "Card", "Netbanking"].map(label => {
+        const on = label === method;
+        return { label, select: () => this.setState({ method: label }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "var(--action-primary)" : "transparent", fg: on ? "var(--action-on-primary)" : "var(--fg-1)" };
+      }),
+      payLabel: processing ? "Processing payment…" : "Pay ₹188 via " + method,
+      pay: (e) => {
+        e.preventDefault();
+        const em = e.target.email.value;
+        this.setState({ processing: true, email: em });
+        this.p = setTimeout(() => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); }, 1500);
+      },
+      redirectLabel: "Taking you to The Right Molecule in " + secs + "s…"
+    };
+  }
+}
+</script>
+</body>
+</html>

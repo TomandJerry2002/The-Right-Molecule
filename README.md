@@ -7,21 +7,11 @@ npm run build    # production build → dist/
 ```
 
 ## Pages
-Every page has its own URL; the address bar follows you as you navigate, and Back/Forward work.
-
-| URL | Page |
-| --- | --- |
-| `/` | Home |
-| `/products` | Products |
-| `/our-science` | Our Science |
-| `/our-story` | Our Story |
-| `/blog` | Blog |
-| `/terms` | Terms & Conditions (interim) |
-| `/privacy` | Privacy Policy (interim) |
-
-- The five site pages are all served by `index.html` (one shared header and footer); `/terms` and `/privacy` by `public/Legal.dc.html`. The rewrites live in `vercel.json` (production) and `vite.config.js` (dev/preview) — keep them in sync when adding a page.
-- Phones (≤640px) are sent to the mobile site (`public/mobile.html`), which keeps the same URL, e.g. `/blog`; add `?desktop` to stay on the desktop site.
-- Old `?route=Products`-style links still work and are rewritten to the clean path.
+- `/` — desktop site, one page: Home, Products, Our Science, Our Story and Blog all load inside it with a single shared header and footer.
+- `/mobile.html` — mobile site (same sections). Phones (≤640px) opening `/` are sent here automatically; add `?desktop` to stay on the desktop site.
+- `/Webinar.dc.html` — InnerAtlas × Plyolife workshop landing page (not in the main nav; linked from the top announcement banner and the InnerAtlas section on Home). After payment it returns visitors to `/`. Connect your payment gateway in the `pay` handler and set its success URL to your homepage.
+- `/Legal.dc.html` — Terms & Conditions; `/Legal.dc.html?doc=privacy` — Privacy Policy (interim). Linked from every footer.
+- Open a section directly with `?route=Products`, `?route=Our Science`, `?route=Our Story` or `?route=Blog`.
 
 ## Waitlist
 - Open it directly with `?waitlist`, e.g. `/?waitlist` or `/mobile.html?waitlist`.

@@ -280,7 +280,7 @@
       <button type="button" onClick="{{ l.go }}" style="min-height:44px;text-align:left;padding:0;background:none;border:0;font-size:14px;color:var(--fg-on-inverse);cursor:pointer;">{{ l.label }}</button>
     </sc-for>
   </nav>
-  <div style="display:flex;flex-wrap:wrap;gap:8px 20px;padding-top:20px;border-top:1px solid var(--border-on-inverse);font-size:12px;color:var(--fg-on-inverse-2);"><span>© 2026 The Right Molecule</span><a href="/privacy" style="color:var(--fg-on-inverse-2);">Privacy Policy</a><a href="/terms" style="color:var(--fg-on-inverse-2);">Terms &amp; Conditions</a></div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px 20px;padding-top:20px;border-top:1px solid var(--border-on-inverse);font-size:12px;color:var(--fg-on-inverse-2);"><span>© 2026 The Right Molecule</span><a href="Legal.dc.html?doc=privacy" style="color:var(--fg-on-inverse-2);">Privacy Policy</a><a href="Legal.dc.html" style="color:var(--fg-on-inverse-2);">Terms &amp; Conditions</a></div>
 </footer>
 </div>
 
@@ -408,12 +408,6 @@ const QUOTES = [
 ];
 const FLAVOURS = ['Passion Fruit'];
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-// Each screen has its own URL (/products, /blog …), shared with the desktop site. Opened as a .dc.html file the address bar is left alone.
-const M_PATHS = { home: '/', product: '/products', science: '/our-science', story: '/our-story', blog: '/blog' };
-const M_TITLES = { home: 'The Right Molecule — PCOS Harmony', product: 'PCOS Harmony — The Right Molecule', science: 'Our Science — The Right Molecule', story: 'Our Story — The Right Molecule', blog: 'Blog — The Right Molecule' };
-const M_ROUTES = { Home: 'home', Products: 'product', 'Our Science': 'science', 'Our Story': 'story', Blog: 'blog' };
-const mPathRouting = () => !/\.dc\.html?$/i.test(decodeURIComponent(location.pathname)) && !/[?&]embed/.test(location.search);
-const mScreenFromUrl = () => { const q = new URLSearchParams(location.search); const p = (q.get('path') || location.pathname).replace(/\/+$/, '') || '/'; return Object.keys(M_PATHS).find((k) => M_PATHS[k] === p) || M_ROUTES[q.get('route')] || 'home'; };
 
 class Component extends DCLogic {
   scrollerRef = React.createRef();
@@ -423,22 +417,14 @@ class Component extends DCLogic {
   sciFrameRef = React.createRef();
   storyFrameRef = React.createRef();
   state = {
-    screen: this.props.startScreen == null && mPathRouting() ? mScreenFromUrl() : ({ Home: 'home', Product: 'product', Science: 'science', Story: 'story', Blog: 'blog' })[this.props.startScreen ?? localStorage.getItem('trm-m-screen') ?? 'Home'] || 'home', sciReady: false,
+    screen: ({ Home: 'home', Product: 'product', Science: 'science', Story: 'story', Blog: 'blog' })[this.props.startScreen ?? localStorage.getItem('trm-m-screen') ?? 'Home'] || 'home', sciReady: false,
     scrollY: 0, menu: false, sheet: null, ing: 0, flavour: 0, shot: 0, quote: 0, open: 'use',
     waitName: '', waitNameError: false, waitSending: false, memberNo: 128, waitEmail: '', waitError: false, waitDone: false, newsEmail: '', newsError: false, newsDone: false,
   };
-  componentDidMount() { this._pre = setTimeout(() => this.setState({ preload: true }), 1200); try { if (new URLSearchParams(location.search).has('waitlist')) this.setState({ sheet: 'waitlist' }); } catch (e) {} this._msg = (e) => { const d = e.data || {}; if (!d.trmNav) return; if (d.trmNav === 'Waitlist' || d.trmNav === 'Be Part of Our Beginning') this.openWaitlist(); else this.go(({ Products: 'product', 'Our Science': 'science', 'Our Story': 'story', Blog: 'blog' })[d.trmNav] || 'home'); }; window.addEventListener('message', this._msg); this._key = (e) => { if (e.key === 'Escape') this.setState({ sheet: null, menu: false }); }; document.addEventListener('keydown', this._key); if (mPathRouting()) { this.syncUrl(this.state.screen, true); this._pop = () => this.go(mScreenFromUrl(), null, true); window.addEventListener('popstate', this._pop); } }
-  componentWillUnmount() { clearTimeout(this._pre); document.removeEventListener('keydown', this._key); window.removeEventListener('message', this._msg); window.removeEventListener('popstate', this._pop); }
-  syncUrl(screen, replace) {
-    if (!mPathRouting() || !M_PATHS[screen]) return;
-    document.title = M_TITLES[screen];
-    const u = new URL(location.href); u.searchParams.delete('path'); u.searchParams.delete('route');
-    const want = M_PATHS[screen] + (replace ? u.search.replace(/=(?=&|$)/g, '') + u.hash : '');
-    if (location.pathname + location.search + location.hash !== want) history[replace ? 'replaceState' : 'pushState'](null, '', want);
-  }
+  componentDidMount() { this._pre = setTimeout(() => this.setState({ preload: true }), 1200); try { if (new URLSearchParams(location.search).has('waitlist')) this.setState({ sheet: 'waitlist' }); } catch (e) {} this._msg = (e) => { const d = e.data || {}; if (!d.trmNav) return; if (d.trmNav === 'Waitlist' || d.trmNav === 'Be Part of Our Beginning') this.openWaitlist(); else this.go(({ Products: 'product', 'Our Science': 'science', 'Our Story': 'story', Blog: 'blog' })[d.trmNav] || 'home'); }; window.addEventListener('message', this._msg); this._key = (e) => { if (e.key === 'Escape') this.setState({ sheet: null, menu: false }); }; document.addEventListener('keydown', this._key); }
+  componentWillUnmount() { clearTimeout(this._pre); document.removeEventListener('keydown', this._key); window.removeEventListener('message', this._msg); }
   componentDidUpdate(pp) { if (pp.startScreen !== this.props.startScreen && this.props.startScreen) this.go(({ Home: 'home', Product: 'product', Science: 'science' })[this.props.startScreen] || 'home'); }
-  go(screen, after, fromHistory) {
-    if (screen !== this.state.screen) { if (!fromHistory) this.syncUrl(screen); else if (mPathRouting() && M_TITLES[screen]) document.title = M_TITLES[screen]; }
+  go(screen, after) {
     localStorage.setItem('trm-m-screen', { home: 'Home', product: 'Product', science: 'Science', story: 'Story', blog: 'Blog', about: 'About' }[screen] || 'Home');
     const fr = screen === 'science' ? this.sciFrameRef.current : screen === 'story' ? this.storyFrameRef.current : null;
     if (fr && screen !== this.state.screen) { try { fr.contentWindow.scrollTo(0, 0); } catch (e) {} }

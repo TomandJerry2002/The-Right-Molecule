@@ -1124,7 +1124,7 @@ function SiteFooter({
       fontSize: 12,
       color: 'var(--fg-on-inverse-2)'
     }
-  }, /*#__PURE__*/React.createElement("span", null, "\xA9 ", year, " The Right Molecule. All rights reserved.", /*#__PURE__*/React.createElement("a", { href: "/privacy", style: { color: 'var(--fg-on-inverse-2)', marginLeft: 20 } }, "Privacy Policy"), /*#__PURE__*/React.createElement("a", { href: "/terms", style: { color: 'var(--fg-on-inverse-2)', marginLeft: 20 } }, "Terms & Conditions")), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", null, "\xA9 ", year, " The Right Molecule. All rights reserved.", /*#__PURE__*/React.createElement("a", { href: "Legal.dc.html?doc=privacy", style: { color: 'var(--fg-on-inverse-2)', marginLeft: 20 } }, "Privacy Policy"), /*#__PURE__*/React.createElement("a", { href: "Legal.dc.html", style: { color: 'var(--fg-on-inverse-2)', marginLeft: 20 } }, "Terms & Conditions")), /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--fg-on-inverse)'
     }

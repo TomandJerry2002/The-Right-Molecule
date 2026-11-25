@@ -2,3 +2,7 @@ html{font-synthesis-weight:none;font-synthesis:none}
 a{color:var(--fg-accent);text-decoration:none}
 a:hover{color:var(--action-primary-hover)}
 ::selection{background:var(--trm-teal-100);color:var(--trm-ink)}
+
+/* Hide scrollbars site-wide (scrolling still works) */
+html,body,*{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none;width:0;height:0}
