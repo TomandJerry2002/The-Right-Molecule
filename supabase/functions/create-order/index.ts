@@ -3,6 +3,7 @@
 import { admin, json } from "../_shared/supabase.ts";
 
 const PRODUCTS: Record<string, { amount: number; label: string }> = {
+  "pcos-webinar-workshop": { amount: 13800, label: "PCOS Workshop · Live workshop" }, // ₹138
   "pcos-webinar-founding": { amount: 18800, label: "PCOS Workshop · Founding edition" }, // ₹188
 };
 

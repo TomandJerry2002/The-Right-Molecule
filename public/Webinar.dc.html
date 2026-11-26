@@ -261,6 +261,9 @@ details[open] .faq-plus{transform:rotate(45deg)}
           </div>
           <button type="submit" disabled="{{ processing }}" aria-busy="{{ processing }}" style="min-height:60px;margin-top:6px;border:0;border-radius:var(--radius-1);background:var(--action-primary);color:var(--action-on-primary);font-family:var(--font-sans);font-size:17px;letter-spacing:var(--tracking-button);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform 160ms ease-out, background-color 200ms ease;" style-hover="background:var(--action-primary-hover)" style-active="transform:scale(.97)"><sc-if value="{{ processing }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:wSpin 700ms linear infinite;flex:none;"></span></sc-if><span>{{ payLabel }}</span></button>
           <ul aria-label="What to expect" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--fg-2);"><li>✓ Instant confirmation email</li><li>✓ Join from phone or computer</li><li>✓ Payments by our secure partner</li></ul>
+          <sc-if value="{{ hasPayError }}" hint-placeholder-val="{{ false }}">
+            <p role="alert" style="margin:0;font-size:13px;line-height:1.5;color:var(--status-error);">{{ payError }}</p>
+          </sc-if>
           <p style="margin:0;font-size:12px;line-height:1.6;color:var(--fg-3);">Secure payment via our payment partner. You'll return to The Right Molecule once it's complete. <a href="Legal.dc.html">Terms &amp; Privacy</a></p>
         </form>
       </sc-if>
@@ -288,8 +291,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
 class Component extends DCLogic {
   state = { step: "form", email: "", method: "UPI", processing: false, secs: 5, now: Date.now(), pass: "workshop" };
   PASSES = [
-    { id: "workshop", name: "Live workshop", sub: "70 minutes live, with Q&A.", price: 138 },
-    { id: "kit", name: "Workshop + Hormone & Habit Kit", sub: "Adds the four-part kit and seven days of WhatsApp reminders.", price: 188 }
+    { id: "workshop", product: "pcos-webinar-workshop", name: "Live workshop", sub: "70 minutes live, with Q&A.", price: 138 },
+    { id: "kit", product: "pcos-webinar-founding", name: "Workshop + Hormone & Habit Kit", sub: "Adds the four-part kit and seven days of WhatsApp reminders.", price: 188 }
   ];
   kit = [
     { title: "Know Your Cycle", sub: "Illustrated menstrual health guide", bg: "var(--trm-ocean-teal)" },
@@ -333,6 +336,46 @@ class Component extends DCLogic {
     this.raf = setTimeout(() => this.setState({ entered: true }), 120);
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000); }
   componentWillUnmount() { window.removeEventListener("popstate", this._onSpPop); window.removeEventListener("keydown", this.onKey); clearTimeout(this.spT); this.ro && this.ro.disconnect(); window.removeEventListener("resize", this.onResize); clearTimeout(this.raf); clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); }
+  // Supabase Edge Functions for this project (see supabase/README.md).
+  FN_URL = "https://dlyhjxlhptfuxstfykkh.supabase.co/functions/v1";
+  loadCheckout() {
+    if (window.Razorpay) return Promise.resolve();
+    return this.checkoutJs || (this.checkoutJs = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://checkout.razorpay.com/v1/checkout.js";
+      s.onload = resolve;
+      s.onerror = () => { this.checkoutJs = null; reject(new Error("Could not load the payment window. Check your connection and try again.")); };
+      document.head.appendChild(s);
+    }));
+  }
+  async startPayment(form) {
+    const fd = new FormData(form);
+    const name = String(fd.get("name") || "").trim(), email = String(fd.get("email") || "").trim();
+    const product = (this.PASSES.find(p => p.id === this.state.pass) || this.PASSES[0]).product;
+    this.setState({ processing: true, email, payError: "" });
+    try {
+      const [res] = await Promise.all([
+        fetch(this.FN_URL + "/create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ product, name, email }) }),
+        this.loadCheckout()
+      ]);
+      const order = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(order.error || "Could not start payment. Please try again.");
+      const rzp = new window.Razorpay({
+        key: order.key_id, order_id: order.order_id, amount: order.amount, currency: order.currency,
+        name: "The Right Molecule", description: order.product_label,
+        prefill: { name, email, method: this.state.method.toLowerCase() },
+        notes: { customer_name: name, product },
+        theme: { color: "#174F55" },
+        // Only a UX signal: the razorpay-webhook function is what records the payment as captured.
+        handler: () => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); },
+        modal: { ondismiss: () => this.setState({ processing: false }) }
+      });
+      rzp.on("payment.failed", (r) => this.setState({ payError: (r && r.error && r.error.description) || "Payment failed. Please try again." }));
+      rzp.open();
+    } catch (err) {
+      this.setState({ processing: false, payError: (err && err.message) || "Could not start payment. Please try again." });
+    }
+  }
   validate(f) {
     const name = (f.name && f.name.value || "").trim(), email = (f.email && f.email.value || "").trim();
     return { name: name.length < 2 ? "Please enter your name." : "", email: !email ? "Enter the email we should send your joining link to." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "That email doesn't look right. Check for typos, e.g. name@gmail.com." : "" };
@@ -408,11 +451,8 @@ class Component extends DCLogic {
         return { label, on, select: () => this.setState({ method: label }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "var(--action-primary)" : "transparent", fg: on ? "var(--action-on-primary)" : "var(--fg-1)" };
       }),
       payLabel: processing ? "Processing payment…" : "Pay ₹" + pass.price + " via " + method,
-      pay: (e) => { e.preventDefault(); if (!this.checkForm(e.currentTarget || e.target)) return;
-        const em = e.target.email.value;
-        this.setState({ processing: true, email: em });
-        this.p = setTimeout(() => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); }, 1500);
-      },
+      pay: (e) => { e.preventDefault(); const f = e.currentTarget || e.target; if (this.state.processing || !this.checkForm(f)) return; this.startPayment(f); },
+      payError: this.state.payError, hasPayError: !!this.state.payError,
       redirectLabel: "Taking you to The Right Molecule in " + secs + "s…"
     };
   }
