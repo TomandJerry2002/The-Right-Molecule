@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>/* Phones get the mobile page; ?desktop keeps this one */try{var q=location.search;if((screen.width||9999)<=640&&q.indexOf('desktop')<0&&q.indexOf('embed')<0)location.replace('Webinar Mobile.dc.html'+q)}catch(e){}</script>
+<script>/* Phones get the mobile page; ?desktop keeps this one */try{var q=location.search;if((screen.width||9999)<=640&&q.indexOf('desktop')<0&&q.indexOf('embed')<0)location.replace('Webinar Mobile.dc.html'+q+location.hash)}catch(e){}</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -12,14 +12,25 @@
 <link rel="stylesheet" href="styles.css">
 <script src="./image-slot.js"></script>
 <title>InnerAtlas × Plyolife live workshop · The Right Molecule</title>
-<meta name="robots" content="noindex">
+
 <style>
 html,body{margin:0;background:#F3EEE4;color:#1B2A2D}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 a{color:var(--fg-accent)}a:hover{color:var(--action-primary-hover)}
-a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
 summary::-webkit-details-marker{display:none}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[role="button"]:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+a,button,input,summary,[role="button"]{touch-action:manipulation}
+input{transition:border-color 160ms ease,box-shadow 160ms ease}
+input:focus{outline:none;border-color:var(--fg-accent)!important;box-shadow:0 0 0 3px color-mix(in oklch, var(--fg-accent) 18%, transparent)}
+input[aria-invalid="true"]{border-color:var(--status-error)!important}
+button:disabled{cursor:progress;opacity:.85}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 16px;background:var(--trm-ivory);color:var(--trm-ocean-teal);border-radius:var(--radius-1);font-size:14px;text-decoration:none;transition:top 160ms ease-out}
+.skip:focus{top:12px}
+@keyframes wSpin{to{transform:rotate(360deg)}}
+@keyframes wCheck{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
+@keyframes wPop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+
 @keyframes trmUp{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
 @keyframes trmCard{from{opacity:0;translate:0 28px;scale:.96;filter:blur(4px)}to{opacity:1;translate:0 0;scale:1;filter:blur(0)}}
 @keyframes trmBar{from{scale:0 1}to{scale:1 1}}
@@ -29,6 +40,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </style>
 </helmet>
 <div style="font-family:var(--font-sans);color:var(--fg-1);min-height:100vh;display:flex;flex-direction:column;">
+<a class="skip" href="#founding">Skip to registration</a>
 
 <div style="position:relative;background:var(--gradient-sachet-diag);">
 <header style="background:transparent;color:var(--fg-on-inverse);position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px var(--gutter);">
@@ -36,7 +48,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
   <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);white-space:nowrap;">InnerAtlas × Plyolife</p>
 </header>
 
-<section data-screen-label="1 Hero" style="background:transparent;color:var(--fg-on-inverse);position:relative;overflow:hidden;min-height:{{ heroMinH }};padding:clamp(20px,4vw,48px) var(--gutter) 0;display:flex;flex-direction:column;">
+<section id="top" data-screen-label="1 Hero" style="background:transparent;color:var(--fg-on-inverse);position:relative;overflow:hidden;min-height:{{ heroMinH }};padding:clamp(20px,4vw,48px) var(--gutter) 0;display:flex;flex-direction:column;">
   <div style="position:relative;z-index:2;max-width:560px;margin:0 auto;padding-bottom:{{ textPadB }};opacity:{{ textOp }};pointer-events:{{ textPe }};transition:opacity .3s ease;display:flex;flex-direction:column;align-items:center;text-align:center;">
     <div style="display:flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-pill);font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);white-space:nowrap;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 100ms both;"><span style="width:6px;height:6px;border-radius:50%;background:var(--trm-champagne);"></span>Live workshop · Founding edition</div>
     <h1 style="margin:26px 0 0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);letter-spacing:-.015em;text-wrap:balance;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 160ms both;">You know what to do. <em style="font-style:italic;color:var(--trm-champagne);">This is why it's hard to do it.</em></h1>
@@ -87,7 +99,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </section>
 </div>
 
-<section data-screen-label="2 What you'll get" style="position:relative;z-index:5;margin-top:clamp(-72px,-6vw,-40px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;box-shadow:0 -18px 40px rgba(6,48,63,.18);background:var(--bg-sunken);padding:var(--section-y) var(--gutter);">
+<section id="agenda" data-screen-label="2 What you'll get" style="scroll-margin-top:24px;position:relative;z-index:5;margin-top:clamp(-72px,-6vw,-40px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;box-shadow:0 -18px 40px rgba(6,48,63,.18);background:var(--bg-sunken);padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(48px,6vw,80px);">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
       <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">What you'll get</p>
@@ -141,7 +153,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
   </div>
 </section>
 
-<section data-screen-label="3 FAQ" style="padding:var(--section-y) var(--gutter);">
+<section id="faq" data-screen-label="3 FAQ" style="padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;">
     <div style="max-width:880px;">
       <p style="margin:0 0 8px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Questions</p>
@@ -171,7 +183,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
         <div style="display:flex;flex-wrap:wrap;gap:12px;">
           <sc-for list="{{ countdown }}" as="c" hint-placeholder-count="4">
             <div style="min-width:76px;padding:14px 12px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-1);display:flex;flex-direction:column;align-items:center;gap:4px;">
-              <span style="font-family:var(--font-serif);font-size:34px;line-height:1;">{{ c.n }}</span>
+              <span style="font-family:var(--font-serif);font-size:34px;line-height:1;font-variant-numeric:tabular-nums;">{{ c.n }}</span>
               <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">{{ c.label }}</span>
             </div>
           </sc-for>
@@ -182,31 +194,35 @@ details[open] .faq-plus{transform:rotate(45deg)}
 
     <div style="background:var(--bg-page-raised);color:var(--fg-1);padding:clamp(28px,4vw,44px);border-radius:var(--radius-2);box-shadow:var(--shadow-product);">
       <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
-        <form onSubmit="{{ pay }}" style="display:flex;flex-direction:column;gap:18px;">
+        <form noValidate="" onSubmit="{{ pay }}" aria-label="Reserve your seat" style="display:flex;flex-direction:column;gap:18px;">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--border-hairline);">
             <p style="margin:0;font-family:var(--font-serif);font-size:24px;line-height:1.2;">Reserve my seat</p>
             <p style="margin:0;font-family:var(--font-serif);font-size:24px;">₹188</p>
           </div>
-          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Name
-            <input required="" name="name" autocomplete="name" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);"><span>Name<span aria-hidden="true" style="color:var(--status-error);"> *</span></span>
+            <input required="" name="name" autocomplete="name" autoCapitalize="words" enterKeyHint="next" aria-invalid="{{ nameErr }}" aria-describedby="err-name" onBlur="{{ blurName }}" onInput="{{ fixName }}" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+            <sc-if value="{{ nameErr }}" hint-placeholder-val="{{ false }}"><span id="err-name" role="alert" style="font-size:13px;letter-spacing:0;text-transform:none;color:var(--status-error);">{{ nameMsg }}</span></sc-if>
           </label>
-          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Email, for your joining link
-            <input required="" type="email" name="email" autocomplete="email" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);"><span>Email, for your joining link<span aria-hidden="true" style="color:var(--status-error);"> *</span></span>
+            <input required="" type="email" name="email" autocomplete="email" inputMode="email" autoCapitalize="none" spellCheck="false" enterKeyHint="done" aria-invalid="{{ emailErr }}" aria-describedby="err-email" onBlur="{{ blurEmail }}" onInput="{{ fixEmail }}" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
+            <sc-if value="{{ emailErr }}" hint-placeholder-val="{{ false }}"><span id="err-email" role="alert" style="font-size:13px;letter-spacing:0;text-transform:none;color:var(--status-error);">{{ emailMsg }}</span></sc-if>
           </label>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Pay with</p>
-            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);" id="pay-with">Pay with</p>
+            <div role="radiogroup" aria-labelledby="pay-with" style="display:flex;flex-wrap:wrap;gap:10px;">
               <sc-for list="{{ methods }}" as="m" hint-placeholder-count="3">
-                <button type="button" onClick="{{ m.select }}" style="min-height:44px;padding:0 20px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};border-radius:var(--radius-pill);font-family:var(--font-sans);font-size:14px;cursor:pointer;">{{ m.label }}</button>
+                <button type="button" role="radio" aria-checked="{{ m.on }}" onClick="{{ m.select }}" style="min-height:44px;padding:0 20px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};border-radius:var(--radius-pill);font-family:var(--font-sans);font-size:14px;cursor:pointer;transition:transform 140ms ease-out, background-color 160ms ease, color 160ms ease, border-color 160ms ease;" style-active="transform:scale(.97)">{{ m.label }}</button>
               </sc-for>
             </div>
           </div>
-          <button type="submit" disabled="{{ processing }}" style="min-height:60px;margin-top:6px;border:0;border-radius:var(--radius-1);background:var(--action-primary);color:var(--action-on-primary);font-family:var(--font-sans);font-size:17px;letter-spacing:var(--tracking-button);cursor:pointer;" style-hover="background:var(--action-primary-hover)">{{ payLabel }}</button>
+          <button type="submit" disabled="{{ processing }}" aria-busy="{{ processing }}" style="min-height:60px;margin-top:6px;border:0;border-radius:var(--radius-1);background:var(--action-primary);color:var(--action-on-primary);font-family:var(--font-sans);font-size:17px;letter-spacing:var(--tracking-button);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform 160ms ease-out, background-color 200ms ease;" style-hover="background:var(--action-primary-hover)" style-active="transform:scale(.97)"><sc-if value="{{ processing }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:wSpin 700ms linear infinite;flex:none;"></span></sc-if><span>{{ payLabel }}</span></button>
+          <ul aria-label="What to expect" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--fg-2);"><li>✓ Instant confirmation email</li><li>✓ Join from phone or computer</li><li>✓ Payments by our secure partner</li></ul>
           <p style="margin:0;font-size:12px;line-height:1.6;color:var(--fg-3);">Secure payment via our payment partner. You'll return to The Right Molecule once it's complete. <a href="Legal.dc.html">Terms &amp; Privacy</a></p>
         </form>
       </sc-if>
       <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
-        <div style="display:flex;flex-direction:column;gap:16px;padding:20px 0;">
+        <div role="status" aria-live="polite" style="display:flex;flex-direction:column;gap:16px;padding:20px 0;">
+          <span aria-hidden="true" style="width:48px;height:48px;border-radius:50%;background:color-mix(in oklch, var(--status-success) 14%, transparent);display:flex;align-items:center;justify-content:center;animation:wPop 360ms cubic-bezier(.23,1,.32,1) both;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" style="stroke-dasharray:24;stroke-dashoffset:24;animation:wCheck 420ms cubic-bezier(.23,1,.32,1) 160ms forwards;"></path></svg></span>
           <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--status-success);">Payment successful · Seat reserved</p>
           <p style="margin:0;font-family:var(--font-serif);font-size:30px;line-height:1.2;">See you on Sunday, 29 November.</p>
           <p style="margin:0;font-size:15px;font-weight:300;line-height:var(--leading-body);color:var(--fg-2);">Your receipt and joining link are on their way to {{ email }}.</p>
@@ -249,17 +265,33 @@ class Component extends DCLogic {
     left: { name: "Aaron Thomas", img: "assets/speaker-left-body2.png", role: "Molecular Biologist · Founder, TRM", tagline: "Making the invisible understandable.", bio: "With a research background in molecular and computational biology, Aaron translates the complex science of hormones and metabolism into knowledge you can use in everyday life.", sessions: "Biological foundations, Q&A" },
     right: { name: "David", img: "assets/speaker-right.png", role: "Lifestyle Coach · Plyolife", tagline: "Making the understandable achievable.", bio: "Bringing together nutrition, movement and behavioural science, David helps turn health knowledge into realistic, sustainable everyday habits.", sessions: "Nutrition, lifestyle architecture, micro-habits, Q&A" }
   };
-  openSp = (k) => { clearTimeout(this.spT); if (this.state.sp === k && this.state.spIn) return this.closeSp(); this.setState({ sp: k, spIn: false }); this.spT = setTimeout(() => this.setState({ spIn: true }), 20); };
-  closeSp = () => { this.setState({ spIn: false }); clearTimeout(this.spT); this.spT = setTimeout(() => this.setState({ sp: null }), 300); };
+  openSp = (k) => { clearTimeout(this.spT); if (this.state.sp === k && this.state.spIn) return this.closeSp(); if (!this._spPop) { const hh = { left: "#aaron", right: "#david" }[k]; try { if (location.hash !== hh) (location.hash === "#aaron" || location.hash === "#david" ? history.replaceState : history.pushState).call(history, { sp: 1 }, "", hh); } catch (e) {} } this.setState({ sp: k, spIn: false }); this.spT = setTimeout(() => this.setState({ spIn: true }), 20); };
+  closeSp = () => { if (!this._spPop && (location.hash === "#aaron" || location.hash === "#david")) { try { history.back(); return; } catch (e) {} } this.setState({ spIn: false }); clearTimeout(this.spT); this.spT = setTimeout(() => this.setState({ sp: null }), 300); };
   onKey = (e) => { if (e.key === "Escape" && this.state.sp) this.closeSp(); };
   componentDidMount() {
+    this._onSpPop = () => { const k = location.hash === "#aaron" ? "left" : location.hash === "#david" ? "right" : null; this._spPop = true; if (k) { if (this.state.sp !== k || !this.state.spIn) this.openSp(k); } else if (this.state.sp) this.closeSp(); this._spPop = false; };
+    window.addEventListener("popstate", this._onSpPop);
+    if (location.hash === "#aaron" || location.hash === "#david") setTimeout(this._onSpPop, 300);
     window.addEventListener("keydown", this.onKey);
     this.onResize = () => { const w = document.documentElement.clientWidth || window.innerWidth; if (w) this.setState({ vw: w }); };
     window.addEventListener("resize", this.onResize); this.onResize();
     this.ro = new ResizeObserver(this.onResize); this.ro.observe(document.documentElement);
     this.raf = setTimeout(() => this.setState({ entered: true }), 120);
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000); }
-  componentWillUnmount() { window.removeEventListener("keydown", this.onKey); clearTimeout(this.spT); this.ro && this.ro.disconnect(); window.removeEventListener("resize", this.onResize); clearTimeout(this.raf); clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); }
+  componentWillUnmount() { window.removeEventListener("popstate", this._onSpPop); window.removeEventListener("keydown", this.onKey); clearTimeout(this.spT); this.ro && this.ro.disconnect(); window.removeEventListener("resize", this.onResize); clearTimeout(this.raf); clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); }
+  validate(f) {
+    const name = (f.name && f.name.value || "").trim(), email = (f.email && f.email.value || "").trim();
+    return { name: name.length < 2 ? "Please enter your name." : "", email: !email ? "Enter the email we should send your joining link to." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "That email doesn't look right. Check for typos, e.g. name@gmail.com." : "" };
+  }
+  checkForm(f) {
+    const errs = this.validate(f);
+    this.setState({ errs });
+    const bad = errs.name ? "name" : errs.email ? "email" : null;
+    if (bad) { const el = f.querySelector('[name="' + bad + '"]'); el && el.focus(); return false; }
+    return true;
+  }
+  fieldBlur(k, e) { const f = e.target.form; if (!f || !e.target.value) return; const v = this.validate(f); this.setState(s => ({ errs: { ...(s.errs || {}), [k]: v[k] } })); }
+  fieldFix(k, e) { const errs = this.state.errs || {}; if (!errs[k]) return; const v = this.validate(e.target.form); if (!v[k]) this.setState({ errs: { ...errs, [k]: "" } }); }
   startRedirect() {
     this.t = setInterval(() => {
       const s = this.state.secs - 1;
@@ -274,7 +306,11 @@ class Component extends DCLogic {
     const figH = wide ? Math.min(580, Math.round(((vw - 560) / 2) / 0.98)) + "px" : Math.max(220, Math.min(320, Math.round(vw * 0.5))) + "px";
     const d = Math.max(0, Math.floor((this.START - now) / 1000));
     const pad = n => String(n).padStart(2, "0");
+    const errs = this.state.errs || {};
     return {
+      nameErr: !!errs.name, nameMsg: errs.name || "", emailErr: !!errs.email, emailMsg: errs.email || "",
+      blurName: (e) => this.fieldBlur("name", e), blurEmail: (e) => this.fieldBlur("email", e),
+      fixName: (e) => this.fieldFix("name", e), fixEmail: (e) => this.fieldFix("email", e),
       progCols: wide ? "repeat(5,minmax(0,1fr))" : "minmax(0,1fr)",
       phases: this.phases.map((p, pi) => {
         const mins = this.timeline.slice(p.from, p.to + 1).reduce((s, x) => s + x.min, 0);
@@ -312,11 +348,10 @@ class Component extends DCLogic {
       isForm: step === "form", isDone: step === "done",
       methods: ["UPI", "Card", "Netbanking"].map(label => {
         const on = label === method;
-        return { label, select: () => this.setState({ method: label }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "var(--action-primary)" : "transparent", fg: on ? "var(--action-on-primary)" : "var(--fg-1)" };
+        return { label, on, select: () => this.setState({ method: label }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "var(--action-primary)" : "transparent", fg: on ? "var(--action-on-primary)" : "var(--fg-1)" };
       }),
       payLabel: processing ? "Processing payment…" : "Pay ₹188 via " + method,
-      pay: (e) => {
-        e.preventDefault();
+      pay: (e) => { e.preventDefault(); if (!this.checkForm(e.currentTarget || e.target)) return;
         const em = e.target.email.value;
         this.setState({ processing: true, email: em });
         this.p = setTimeout(() => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); }, 1500);

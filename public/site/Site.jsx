@@ -112,15 +112,15 @@ function BalanceSection({ onShop, onIngredient }) {
   const { Eyebrow, Heading, Button, IngredientItem } = DS;
   return (
     <div data-pin="balance">
-    <section data-pin-section="" data-crossfade="from-dark" style={{ position: 'relative', background: 'var(--bg-page)', padding: 'max(var(--section-y), 128px) var(--gutter) var(--section-y)', minHeight: '100vh', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr)', gap: 48, alignItems: 'center', overflow: 'hidden' }}>
+    <section data-pin-section="" data-crossfade="from-dark" style={{ position: 'relative', background: 'var(--bg-page)', padding: '168px var(--gutter) 56px', minHeight: '100vh', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr)', gap: 48, alignItems: 'center', overflow: 'hidden' }}>
       <Reveal>
         <Heading level="l" style={{ margin: '0 0 22px' }}><Line>Built around</Line><Line>how PCOS</Line><Line><em style={{ fontWeight: 400 }}>actually works.</em></Line></Heading>
         <p style={{ margin: '0 0 32px', fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', maxWidth: 380, textWrap: 'pretty' }}>PCOS isn’t one thing. It’s how your ovaries, insulin and stress signals talk to each other. Harmony is designed with that conversation in mind, in one simple daily ritual.</p>
         <Button onClick={onShop}>Be Part of Our Beginning</Button>
       </Reveal>
       <Reveal delay={150} y={30} style={{ justifySelf: 'center', position: 'relative' }}>
-        <div style={{ position: 'absolute', left: '50%', top: '50%', width: 360, height: 360, transform: 'translate(-50%,-50%)', borderRadius: '50%', background: 'radial-gradient(circle, var(--trm-ivory-50) 0%, rgba(250,247,241,0) 70%)' }}></div>
-        <div data-flip="" data-tilt="" style={{ position: 'relative', height: 'min(560px, 70vw, calc(100vh - 200px))', aspectRatio: '370/1368', perspective: '1400px', transformStyle: 'preserve-3d' }}>
+        <div style={{ position: 'absolute', left: '50%', top: '50%', width: 440, height: 440, transform: 'translate(-50%,-50%)', borderRadius: '50%', background: 'radial-gradient(circle, var(--trm-ivory-50) 0%, rgba(250,247,241,0) 70%)' }}></div>
+        <div data-flip="" data-tilt="" style={{ position: 'relative', height: 'min(680px, 80vw, calc(100vh - 230px))', aspectRatio: '370/1368', perspective: '1400px', transformStyle: 'preserve-3d' }}>
           <span data-flip-shadow="" aria-hidden="true" style={{ position: 'absolute', left: '-14%', right: '-14%', bottom: '-3.5%', height: '6%', borderRadius: '50%', background: 'radial-gradient(ellipse at center, rgba(6,48,63,.34) 0%, rgba(6,48,63,0) 70%)', pointerEvents: 'none' }}></span>
           <span data-sheen="" aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none', opacity: 0, mixBlendMode: 'soft-light', background: 'radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.75) 0%, rgba(255,255,255,0) 45%)' }}></span>
           <div data-flip-stage="" style={{ position: 'absolute', inset: 0, transformStyle: 'preserve-3d' }}>
@@ -856,7 +856,7 @@ function PrebookModal({ onClose }) {
   );
 }
 
-// Add posts here: { title, excerpt, date: 'YYYY-MM-DD', tag, image, href }
+// Add posts here: { title, excerpt, date: 'YYYY-MM-DD', tag, image, href, slug } — each gets #/blog/<slug>
 const BLOG_POSTS = [];
 function BlogScreen({ onJoin }) {
   const { Heading, Button } = DS;
@@ -873,7 +873,7 @@ function BlogScreen({ onJoin }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))', gap: 'clamp(32px,4vw,56px) clamp(24px,3vw,40px)' }}>
           {posts.map((p, i) => (
             <Reveal key={p.title + i} delay={(i % 3) * 80}>
-              <a href={p.href || '#'} style={{ display: 'flex', flexDirection: 'column', gap: 16, color: 'inherit', textDecoration: 'none' }}>
+              <a id={'post-' + (p.slug || slugify(p.title))} href={p.href || ('#/blog/' + (p.slug || slugify(p.title)))} style={{ scrollMarginTop: 140, display: 'flex', flexDirection: 'column', gap: 16, color: 'inherit', textDecoration: 'none' }}>
                 <div style={{ aspectRatio: '4 / 3', background: 'rgba(11,68,88,.06)', borderRadius: 'var(--radius-2)', overflow: 'hidden' }}>{p.image && <img src={p.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />}</div>
                 <div style={{ display: 'flex', gap: 12, ...meta }}>{p.tag && <span style={{ color: 'var(--fg-accent)' }}>{p.tag}</span>}{p.date && <span>{fmt(p.date)}</span>}</div>
                 <h2 style={{ margin: 0, fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 'clamp(24px,2.4vw,30px)', lineHeight: 1.15, color: 'var(--fg-1)', textWrap: 'pretty' }}>{p.title}</h2>
@@ -891,16 +891,44 @@ function BlogScreen({ onJoin }) {
   );
 }
 
+// Hash router — every page and pop-up has a shareable address; Back/Forward work.
+// #/  #/products  #/science  #/story  #/blog  #/blog/<post>  + overlays: /ingredient/<name>  /waitlist  /test
+const slugify = (t) => String(t || '').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const ROUTE_SLUG = { 'Home': '', 'Products': 'products', 'Our Science': 'science', 'Our Story': 'story', 'Blog': 'blog' };
+const SLUG_ROUTE = { '': 'Home', 'home': 'Home', 'products': 'Products', 'shop': 'Products', 'science': 'Our Science', 'story': 'Our Story', 'blog': 'Blog' };
+function parseHash(h) {
+  const parts = String(h || '').replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
+  const out = { route: null, post: null, overlay: null };
+  if (!parts.length) return h && h.length > 1 ? out : { ...out, route: null };
+  let i = 0;
+  if (parts[0] in SLUG_ROUTE) { out.route = SLUG_ROUTE[parts[0]]; i = 1; }
+  if (out.route === 'Blog' && parts[i] && !['ingredient', 'waitlist', 'test'].includes(parts[i])) { out.post = parts[i]; i++; }
+  if (parts[i] === 'waitlist') out.overlay = { type: 'waitlist' };
+  else if (parts[i] === 'test') out.overlay = { type: 'test' };
+  else if (parts[i] === 'ingredient' && parts[i + 1]) out.overlay = { type: 'ingredient', slug: parts[i + 1] };
+  if (!out.route && out.overlay) out.route = null;
+  return out;
+}
+function buildHash(route, post, overlay) {
+  const seg = [ROUTE_SLUG[route] ?? ''];
+  if (route === 'Blog' && post) seg.push(post);
+  if (overlay) seg.push(...(overlay.type === 'ingredient' ? ['ingredient', overlay.slug] : [overlay.type]));
+  return '#/' + seg.filter(Boolean).join('/');
+}
+
 function TRMSite({ page, onRoute, children }) {
   const { SiteHeader, SiteFooter } = DS;
   const qs = new URLSearchParams(window.location.search); const embedded = qs.has('embed') && window.parent !== window;
-  const [route, setRoute] = React.useState(() => { const r0 = qs.get('route') || page || localStorage.getItem('trm-route') || 'Home'; return r0 === 'About' ? 'Home' : r0; });
+  const h0 = parseHash(window.location.hash || window.__TRM_INITIAL_HASH || '');
+  const [route, setRoute] = React.useState(() => { const r0 = h0.route || qs.get('route') || page || (window.location.hash ? 'Home' : localStorage.getItem('trm-route')) || 'Home'; return r0 === 'About' ? 'Home' : r0; });
+  const [post, setPost] = React.useState(h0.post);
   React.useEffect(() => { if (page) setRoute(page); }, [page]);
   const [bag, setBag] = React.useState([]);
   const [bagOpen, setBagOpen] = React.useState(false);
-  const [ingredient, setIngredient] = React.useState(null);
-  const [prebook, setPrebook] = React.useState(false);
-  const [wl, setWl] = React.useState(() => qs.has('waitlist') ? { rect: null } : null);
+  const ingBySlug = (sl) => (PRODUCT.ingredients || []).find((g) => slugify(g.name) === sl) || null;
+  const [ingredient, setIngredient] = React.useState(() => h0.overlay && h0.overlay.type === 'ingredient' ? ingBySlug(h0.overlay.slug) : null);
+  const [prebook, setPrebook] = React.useState(() => !!(h0.overlay && h0.overlay.type === 'test'));
+  const [wl, setWl] = React.useState(() => qs.has('waitlist') || (h0.overlay && h0.overlay.type === 'waitlist') ? { rect: null } : null);
   const openWL = (e) => { const el = (e && e.currentTarget && e.currentTarget.getBoundingClientRect) ? e.currentTarget : document.activeElement; const rect = el && el !== document.body && el.getBoundingClientRect ? el.getBoundingClientRect() : null; if (el && el.animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.95)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' }); setWl({ rect }); };
   const go = (r) => {
     if (r === 'Be Part of Our Beginning' || r === 'Waitlist') { openWL(); return; }
@@ -909,14 +937,40 @@ function TRMSite({ page, onRoute, children }) {
     if (embedded) { window.parent.postMessage({ trmNav: n }, '*'); return; }
     if (n === route) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
     const M = window.TRMMotion;
-    const swap = () => { setRoute(n); try { localStorage.setItem('trm-route', n); } catch (e) {} window.scrollTo(0, 0); };
+    const swap = () => { setRoute(n); setPost(null); try { localStorage.setItem('trm-route', n); } catch (e) {} window.scrollTo(0, 0); };
     M && M.transition ? M.transition(swap) : swap();
   };
   window.TRMGo = go;
+  const overlay = ingredient ? { type: 'ingredient', slug: slugify(ingredient.name) } : prebook ? { type: 'test' } : wl ? { type: 'waitlist' } : null;
+  const fromPop = React.useRef(false);
+  const first = React.useRef(true);
+  const want = buildHash(route, post, overlay);
+  React.useEffect(() => {
+    if (embedded) return;
+    if (first.current) { first.current = false; if (!window.location.hash && window.__TRM_INITIAL_HASH === want) return; if (window.location.hash !== want) history.replaceState({ trm: 1, ov: !!overlay }, '', want); return; }
+    if (window.location.hash === want) { fromPop.current = false; return; }
+    if (fromPop.current) { fromPop.current = false; return; }
+    const cur = history.state || {};
+    if (!overlay && cur.ov && parseHash(window.location.hash).route === route) { history.back(); return; }
+    history.pushState({ trm: 1, ov: !!overlay }, '', want);
+  }, [want]);
+  React.useEffect(() => {
+    if (embedded) return;
+    const onPop = () => {
+      const p = parseHash(window.location.hash); fromPop.current = true;
+      const r = p.route || 'Home';
+      const apply = () => { setRoute(r); setPost(p.post); setIngredient(p.overlay && p.overlay.type === 'ingredient' ? ingBySlug(p.overlay.slug) : null); setPrebook(!!(p.overlay && p.overlay.type === 'test')); setWl(p.overlay && p.overlay.type === 'waitlist' ? { rect: null } : null); };
+      if (r !== route) { const M = window.TRMMotion; const sw = () => { apply(); window.scrollTo(0, 0); }; M && M.transition ? M.transition(sw) : sw(); } else apply();
+    };
+    window.addEventListener('popstate', onPop); window.addEventListener('hashchange', onPop);
+    return () => { window.removeEventListener('popstate', onPop); window.removeEventListener('hashchange', onPop); };
+  }, [route]);
+  React.useEffect(() => { if (route !== 'Blog' || !post) return; const t = setTimeout(() => { const el = document.getElementById('post-' + post); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' }); }, 400); return () => clearTimeout(t); }, [route, post]);
   React.useEffect(() => { onRoute && onRoute(route); }, [route]);
   const onLink = (e) => {
     const el = e.target.closest && e.target.closest('a[href]'); if (!el) return;
     const h = decodeURIComponent(el.getAttribute('href') || ''); let r = null;
+    if (/^#\//.test(h)) { e.preventDefault(); e.stopPropagation(); const p = parseHash(h); if (p.overlay && p.overlay.type === 'waitlist') { openWL(); return; } if (p.overlay && p.overlay.type === 'test') { setPrebook(true); return; } if (p.overlay && p.overlay.type === 'ingredient') { setIngredient(ingBySlug(p.overlay.slug)); return; } go(p.route || 'Home'); if (p.post) setPost(p.post); return; }
     if (/Our Science(?: v2)?\.dc\.html/.test(h)) r = 'Our Science';
     else if (/Our Story(?: v2)?\.dc\.html/.test(h)) r = 'Our Story';
     else if (/The Right Molecule Website\.dc\.html/.test(h)) r = /waitlist/.test(h) ? 'Waitlist' : /route=Products/.test(h) ? 'Products' : 'Home';

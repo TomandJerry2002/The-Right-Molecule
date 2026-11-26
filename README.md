@@ -29,3 +29,29 @@ npm run build    # production build → dist/
 - `public/_ds_bundle.js` — design-system components; `public/support.js` — page runtime.
 - `public/styles.css` + `public/tokens/` — colours, type (EB Garamond Italic + Jost), spacing.
 - `public/assets/` — sachet images, brand line art, icons.
+
+## Shareable links
+Every page and pop-up has its own address, and Back/Forward work.
+
+Main site (desktop `/`, mobile `/mobile.html`):
+- `#/` Home · `#/products` · `#/science` · `#/story` · `#/blog` · `#/blog/<post-slug>`
+- Pop-ups, added after any page: `/waitlist` · `/test` (desktop) · `/ingredient/<name>`
+  e.g. `#/products/ingredient/myo-inositol`, `#/waitlist`, `#/test`
+
+Workshop pages:
+- `#agenda` · `#faq` · `#founding` (registration) · `#aaron` · `#david` (opens the facilitator)
+
+Phones opening a desktop address are redirected to the mobile page with the same link.
+
+## Pre-rendering (search engines & link previews)
+`npm run build` builds the site, then opens every page in headless Chrome and saves the fully rendered HTML, so Google, WhatsApp, LinkedIn etc. see real content without running JavaScript.
+
+1. Set your live domain in `seo.config.js` (`SITE_URL`) or run `SITE_URL=https://yourdomain.com npm run build`.
+2. Upload `dist/` to the root of your domain.
+
+Output:
+- Real pages at `/`, `/products/`, `/science/`, `/story/`, `/blog/`, `/workshop/`, `/legal/`, each with its own title, description, social preview tags and structured data (Organization, Product, Event for the workshop).
+- `sitemap.xml` and `robots.txt`. Submit the sitemap in Google Search Console.
+
+Page titles and descriptions live in `seo.config.js`. `npm run build:spa` skips pre-rendering.
+Requires Node 18+; the first install downloads Chromium for Puppeteer.
