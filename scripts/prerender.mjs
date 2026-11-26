@@ -79,7 +79,14 @@ async function snapshot(page, url) {
 
 const server = await preview({ preview: { port: 4179, strictPort: true, open: false } });
 const base = 'http://localhost:4179/';
-const browser = await puppeteer.launch({ headless: 'new' });
+// Vercel's build image lacks Chrome's system libraries (libnss3 etc.), so use
+// the self-contained @sparticuz/chromium build there; locally use Puppeteer's Chrome.
+async function launchBrowser() {
+  if (!process.env.VERCEL) return puppeteer.launch({ headless: 'new' });
+  const { default: chromium } = await import('@sparticuz/chromium');
+  return puppeteer.launch({ args: chromium.args, executablePath: await chromium.executablePath(), headless: true });
+}
+const browser = await launchBrowser();
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
 
