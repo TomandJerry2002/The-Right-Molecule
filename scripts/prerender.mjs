@@ -83,7 +83,7 @@ const base = 'http://localhost:4179/';
 // Vercel's build image lacks Chrome's system libraries (libnss3 etc.), so use
 // the self-contained @sparticuz/chromium build there; locally use Puppeteer's Chrome.
 async function launchBrowser() {
-  if (!process.env.VERCEL) return puppeteer.launch({ headless: 'new' });
+  if (!process.env.VERCEL && process.platform !== 'linux') return puppeteer.launch({ headless: 'new' });
   // @sparticuz/chromium only unpacks its bundled shared libs (al2023) and sets
   // LD_LIBRARY_PATH when it detects a Lambda Node 20+ runtime, so declare one.
   process.env.AWS_LAMBDA_JS_RUNTIME ??= 'nodejs22.x';
