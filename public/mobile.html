@@ -335,12 +335,14 @@
       </button>
     </sc-for>
   </nav>
+  <sc-if value="{{ fullSite }}" hint-placeholder-val="{{ false }}">
   <div style="padding:24px 24px 32px;">
     <button type="button" onClick="{{ openWaitlistFromMenu }}" style="height:52px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--action-primary);color:var(--action-on-primary);border:0;border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">
       <span>Be Part of Our Beginning</span>
       <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="arrow-right" size="{{ 16 }}" stroke="{{ 1.2 }}" hint-size="16px,16px"></x-import>
     </button>
   </div>
+  </sc-if>
 </div>
 
 <div aria-hidden="{{ sheetHidden }}" style="position:absolute;inset:0;z-index:50;pointer-events:{{ sheetPE }};">
@@ -436,8 +438,10 @@ class Component extends DCLogic {
   scienceRef = React.createRef();
   sciFrameRef = React.createRef();
   storyFrameRef = React.createRef();
+  // FULL_SITE = false → only Our Story + Workshop. Other screens and the waitlist are hidden, not deleted.
+  FULL_SITE = false;
   state = {
-    screen: ({ Home: 'home', Product: 'product', Science: 'science', Story: 'story', Blog: 'blog' })[this.props.startScreen ?? localStorage.getItem('trm-m-screen') ?? 'Home'] || 'home', sciReady: false,
+    screen: !this.FULL_SITE ? 'story' : ({ Home: 'home', Product: 'product', Science: 'science', Story: 'story', Blog: 'blog' })[this.props.startScreen ?? localStorage.getItem('trm-m-screen') ?? 'Home'] || 'home', sciReady: false,
     scrollY: 0, menu: false, sheet: null, ing: 0, flavour: 0, shot: 0, quote: 0, open: 'use',
     waitName: '', waitNameError: false, waitSending: false, memberNo: 128, waitEmail: '', waitError: false, waitDone: false, newsEmail: '', newsError: false, newsDone: false,
   };
@@ -484,6 +488,7 @@ class Component extends DCLogic {
       }
     } if (pp.startScreen !== this.props.startScreen && this.props.startScreen) this.go(({ Home: 'home', Product: 'product', Science: 'science' })[this.props.startScreen] || 'home'); }
   go(screen, after) {
+    if (!this.FULL_SITE && screen !== 'story') screen = 'story';
     localStorage.setItem('trm-m-screen', { home: 'Home', product: 'Product', science: 'Science', story: 'Story', blog: 'Blog', about: 'About' }[screen] || 'Home');
     const fr = screen === 'science' ? this.sciFrameRef.current : screen === 'story' ? this.storyFrameRef.current : null;
     if (fr && screen !== this.state.screen) { try { fr.contentWindow.scrollTo(0, 0); } catch (e) {} }
@@ -494,7 +499,7 @@ class Component extends DCLogic {
     });
   }
   goScience = () => this.go('science');
-  openWaitlist = () => this.setState({ sheet: 'waitlist', menu: false, waitError: false });
+  openWaitlist = () => this.FULL_SITE && this.setState({ sheet: 'waitlist', menu: false, waitError: false });
   validate(v) { return EMAIL.test(v.trim()); }
   renderVals() {
     const s = this.state;
@@ -507,6 +512,7 @@ class Component extends DCLogic {
     const sheetOn = !!s.sheet;
     const ing = INGREDIENTS[s.ing];
     const nav = (label) => () => {
+      if (label === 'Workshop') { window.location.href = 'Webinar Mobile.dc.html'; return; }
       if (label === 'Home') this.go('home');
       else if (label === 'Products' || label === 'Be Part of Our Beginning') label === 'Be Part of Our Beginning' ? this.openWaitlist() : this.go('product');
       else if (label === 'Our Science') this.goScience();
@@ -569,13 +575,14 @@ class Component extends DCLogic {
         { n: '03', t: 'Keep it fresh', b: 'Store in a cool, dry place. Do not use if the seal is broken.' },
       ],
       footerPad: barOn || !isHome ? '104px' : '40px',
-      footerLinks: ['Be Part of Our Beginning', 'Our Science', 'Our Story', 'Blog', 'Contact'].map((label) => ({ label, go: nav(label) })),
+      footerLinks: (this.FULL_SITE ? ['Be Part of Our Beginning', 'Our Science', 'Our Story', 'Blog', 'Contact'] : ['Our Story', 'Workshop', 'Contact']).map((label) => ({ label, go: nav(label) })),
       barHidden: !barOn, barTab: barOn ? 0 : -1,
       barBottom: framed ? '16px' : 'calc(12px + env(safe-area-inset-bottom))',
       barY: barOn ? '0' : '140%', barOp: barOn ? 1 : 0, barPE: barOn ? 'auto' : 'none',
       barSub: isHome ? '₹1,480 · 31 sachets' : FLAVOURS[s.flavour] + ' · ₹1,480',
       menuHidden: !s.menu, menuOp: s.menu ? 1 : 0, menuY: s.menu ? '0' : '-12px', menuPE: s.menu ? 'auto' : 'none',
-      menuLinks: ['Home', 'Products', 'Our Science', 'Our Story', 'Blog'].map((label) => ({ label, go: nav(label), dot: (label === 'Home' && isHome) || (label === 'Products' && s.screen === 'product') || (label === 'Our Science' && s.screen === 'science') || (label === 'Our Story' && s.screen === 'story') || (label === 'Blog' && s.screen === 'blog') || (label === 'About' && isAbout) ? 'var(--fg-1)' : 'transparent' })),
+      fullSite: this.FULL_SITE,
+      menuLinks: (this.FULL_SITE ? ['Home', 'Products', 'Our Science', 'Our Story', 'Blog'] : ['Our Story', 'Workshop']).map((label) => ({ label, go: nav(label), dot: (label === 'Home' && isHome) || (label === 'Products' && s.screen === 'product') || (label === 'Our Science' && s.screen === 'science') || (label === 'Our Story' && s.screen === 'story') || (label === 'Blog' && s.screen === 'blog') || (label === 'About' && isAbout) ? 'var(--fg-1)' : 'transparent' })),
       sheetHidden: !sheetOn, sheetPE: sheetOn ? 'auto' : 'none', sheetOp: sheetOn ? 1 : 0, sheetY: sheetOn ? '0' : '105%',
       sheetLabel: s.sheet === 'ingredient' ? ing.name : 'Be Part of Our Beginning',
       closeSheet: () => this.setState({ sheet: null }),

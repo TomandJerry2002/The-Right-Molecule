@@ -266,6 +266,22 @@ function AboutScreen() {
 }
 
 
+// SITE_FULL = false → only Our Story + Workshop are live. Home, Products, Our Science, Blog
+// and every "Be Part of Our Beginning" / waitlist entry point are hidden, not deleted.
+// Set to true to bring everything back.
+const SITE_FULL = false;
+function StoryHeader({ onNavigate, active }) {
+  const { Logotype, Icon } = DS;
+  const link = (l) => <a key={l} href="#" onClick={(e) => { e.preventDefault(); onNavigate(l); }} style={{ position: 'relative', fontFamily: 'var(--font-sans)', fontSize: 'var(--type-nav)', color: 'var(--fg-1)', textDecoration: 'none', padding: '6px 0', letterSpacing: '.01em', borderBottom: l === active ? '1px solid var(--fg-1)' : '1px solid transparent', transition: 'border-color .2s ease' }}>{l}</a>;
+  return (
+    <header style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 24, padding: '26px var(--gutter)' }}>
+      <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('Our Story'); }} style={{ justifySelf: 'start', textDecoration: 'none' }}><Logotype size="md" /></a>
+      <nav aria-label="Main" style={{ display: 'flex', gap: 'clamp(18px,2.6vw,40px)' }}>{['Our Story', 'Workshop'].map(link)}</nav>
+      <span aria-hidden="true" data-anim="sparkle" data-delay="900" style={{ justifySelf: 'end', display: 'inline-flex', padding: 4, color: 'var(--fg-1)' }}><Icon name="moon-star" size={22} stroke={1} /></span>
+    </header>
+  );
+}
+
 // InnerAtlas — workshop banner + home section. Webinar page is not in the main nav.
 const WORKSHOP_URL = 'Webinar.dc.html';
 function useNarrow(q = '(max-width: 720px)') {
@@ -290,7 +306,7 @@ function WorkshopBanner() {
 }
 function InnerAtlasSection() {
   const { Eyebrow, Heading, Button } = DS;
-  const meta = [['Date', 'Sunday, 29 November · 6:00 PM IST'], ['Duration', '70 minutes, live online'], ['In collaboration with', 'Plyolife'], ['Ticket', '₹188 · founding edition']];
+  const meta = [['Date', 'Sunday, 29 November · 6:00 PM IST'], ['Duration', '70 minutes, live online'], ['In collaboration with', 'Plyolife'], ['Ticket', 'From ₹138']];
   const lbl = { fontSize: 11, letterSpacing: 'var(--tracking-eyebrow)', textTransform: 'uppercase', color: 'var(--fg-3)' };
   return (
     <section id="inneratlas" style={{ background: 'var(--bg-sunken)', padding: 'var(--section-y) var(--gutter)' }}>
@@ -920,17 +936,18 @@ function TRMSite({ page, onRoute, children }) {
   const { SiteHeader, SiteFooter } = DS;
   const qs = new URLSearchParams(window.location.search); const embedded = qs.has('embed') && window.parent !== window;
   const h0 = parseHash(window.location.hash || window.__TRM_INITIAL_HASH || '');
-  const [route, setRoute] = React.useState(() => { const r0 = h0.route || qs.get('route') || page || (window.location.hash ? 'Home' : localStorage.getItem('trm-route')) || 'Home'; return r0 === 'About' ? 'Home' : r0; });
+  const [route, setRoute] = React.useState(() => { if (!SITE_FULL) return 'Our Story'; const r0 = h0.route || qs.get('route') || page || (window.location.hash ? 'Home' : localStorage.getItem('trm-route')) || 'Home'; return r0 === 'About' ? 'Home' : r0; });
   const [post, setPost] = React.useState(h0.post);
   React.useEffect(() => { if (page) setRoute(page); }, [page]);
   const [bag, setBag] = React.useState([]);
   const [bagOpen, setBagOpen] = React.useState(false);
   const ingBySlug = (sl) => (PRODUCT.ingredients || []).find((g) => slugify(g.name) === sl) || null;
-  const [ingredient, setIngredient] = React.useState(() => h0.overlay && h0.overlay.type === 'ingredient' ? ingBySlug(h0.overlay.slug) : null);
-  const [prebook, setPrebook] = React.useState(() => !!(h0.overlay && h0.overlay.type === 'test'));
-  const [wl, setWl] = React.useState(() => qs.has('waitlist') || (h0.overlay && h0.overlay.type === 'waitlist') ? { rect: null } : null);
-  const openWL = (e) => { const el = (e && e.currentTarget && e.currentTarget.getBoundingClientRect) ? e.currentTarget : document.activeElement; const rect = el && el !== document.body && el.getBoundingClientRect ? el.getBoundingClientRect() : null; if (el && el.animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.95)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' }); setWl({ rect }); };
+  const [ingredient, setIngredient] = React.useState(() => SITE_FULL && h0.overlay && h0.overlay.type === 'ingredient' ? ingBySlug(h0.overlay.slug) : null);
+  const [prebook, setPrebook] = React.useState(() => SITE_FULL && !!(h0.overlay && h0.overlay.type === 'test'));
+  const [wl, setWl] = React.useState(() => SITE_FULL && (qs.has('waitlist') || (h0.overlay && h0.overlay.type === 'waitlist')) ? { rect: null } : null);
+  const openWL = (e) => { if (!SITE_FULL) return; const el = (e && e.currentTarget && e.currentTarget.getBoundingClientRect) ? e.currentTarget : document.activeElement; const rect = el && el !== document.body && el.getBoundingClientRect ? el.getBoundingClientRect() : null; if (el && el.animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.95)' }, { transform: 'scale(1)' }], { duration: 220, easing: 'cubic-bezier(.22,1,.36,1)' }); setWl({ rect }); };
   const go = (r) => {
+    if (!SITE_FULL) { if (r === 'Workshop') { window.location.href = WORKSHOP_URL; return; } if (r === 'Contact') return; r = 'Our Story'; }
     if (r === 'Be Part of Our Beginning' || r === 'Waitlist') { openWL(); return; }
     if (r === 'About' || r === 'Contact') return;
     const n = r === 'Our Science' || r === 'Our Story' || r === 'Blog' ? r : (r === 'Products' || r === 'Shop') ? 'Products' : 'Home';
@@ -992,11 +1009,11 @@ function TRMSite({ page, onRoute, children }) {
     <div key={route} data-screen-label={route} onClickCapture={onLink}>
       <div data-anim="header" data-solid={route === 'Home' ? '0' : '1'} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, borderBottom: '1px solid transparent' }}>
         {!embedded && <WorkshopBanner />}
-        <SiteHeader links={['Home', 'Products', 'Our Science', 'Our Story', 'Blog']} active={route} onNavigate={go} bagCount={0} brandMark onShop={openWL} transparent />
+        {SITE_FULL ? <SiteHeader links={['Home', 'Products', 'Our Science', 'Our Story', 'Blog']} active={route} onNavigate={go} bagCount={0} brandMark onShop={openWL} transparent /> : <StoryHeader onNavigate={go} active={route} />}
       </div>
       {!embedded && <div aria-hidden="true" style={{ height: 36 }}></div>}
       {route === 'Our Science' || route === 'Our Story' ? <div style={{ paddingTop: route === 'Our Science' ? 96 : 0 }}>{children}</div> : route === 'Blog' ? <div style={{ paddingTop: 96 }}><BlogScreen onJoin={openWL} /></div> : route === 'Home' ? <div style={{ paddingTop: 96, background: 'var(--bg-page)' }}><HomeScreen onShop={openWL} onIngredient={setIngredient} onTest={() => setPrebook(true)} /></div> : <div style={{ paddingTop: 96 }}><ProductScreen onJoin={openWL} onNavigate={go} onIngredient={setIngredient} /></div>}
-      <SiteFooter links={['Be Part of Our Beginning', 'Our Science', 'Our Story', 'Blog', 'Contact']} onNavigate={go} />
+      <SiteFooter links={SITE_FULL ? ['Be Part of Our Beginning', 'Our Science', 'Our Story', 'Blog', 'Contact'] : ['Our Story', 'Workshop', 'Contact']} onNavigate={go} />
       <BagDrawer open={bagOpen} items={bag} onClose={() => setBagOpen(false)} onQty={(k, v) => setBag((b) => b.map((x, i) => i === k ? { ...x, qty: v } : x))} onRemove={(k) => setBag((b) => b.filter((_, i) => i !== k))} />
       {ingredient && <IngredientModal item={ingredient} onClose={() => setIngredient(null)} />}
       {prebook && <PrebookModal onClose={() => setPrebook(false)} />}
