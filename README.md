@@ -55,3 +55,7 @@ Output:
 
 Page titles and descriptions live in `seo.config.js`. `npm run build:spa` skips pre-rendering.
 Requires Node 18+; the first install downloads Chromium for Puppeteer.
+
+
+## Landing page
+therightmolecule.com (`/`) opens on the workshop page. `index.html` is a copy of `public/Webinar.dc.html`; if you edit the workshop, copy it over again (and remove its `noindex` meta). Our Story is at `/story/`.

@@ -39,7 +39,14 @@ button:disabled{cursor:progress;opacity:.85}
 @keyframes trmCard{from{opacity:0;translate:0 28px;scale:.96;filter:blur(4px)}to{opacity:1;translate:0 0;scale:1;filter:blur(0)}}
 @keyframes trmBar{from{scale:0 1}to{scale:1 1}}
 @keyframes trmRise{from{opacity:0;transform:translateY(48px) scale(.92)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-delay:0ms!important}}
+@keyframes trmHeroOut{to{opacity:0;translate:0 -90px}}
+@keyframes trmHeroOut2{to{opacity:.15;translate:0 -40px}}
+@keyframes trmKitIn{from{opacity:0;transform:perspective(900px) rotateX(16deg) rotateZ(-4deg) scale(.86)}to{opacity:1;transform:none}}
+@keyframes trmSlideIn{from{opacity:0;translate:56px 0}to{opacity:1;translate:0 0}}
+@keyframes trmGlow{0%{box-shadow:0 0 0 0 transparent}55%{box-shadow:0 0 0 5px color-mix(in oklch, var(--trm-champagne) 45%, transparent),0 0 28px color-mix(in oklch, var(--trm-champagne) 80%, transparent)}100%{box-shadow:0 0 18px color-mix(in oklch, var(--trm-champagne) 55%, transparent)}}
+@keyframes trmRow{from{opacity:0;translate:0 26px}to{opacity:1;translate:0 0}}
+@keyframes trmBgIn{from{background-color:var(--from)}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-delay:0ms!important;animation-timeline:auto!important}}
 details[open] .faq-plus{transform:rotate(45deg)}
 </style>
 </helmet>
@@ -52,15 +59,23 @@ details[open] .faq-plus{transform:rotate(45deg)}
   <span style="position:absolute;right:-20%;top:10%;width:min(80vw,1000px);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-ocean-teal) 55%, transparent), transparent);animation:trmDriftB 32s ease-in-out infinite alternate;will-change:transform;"></span>
   <span style="position:absolute;left:25%;bottom:-35%;width:min(60vw,780px);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-aubergine) 45%, transparent), transparent);animation:trmDriftC 38s ease-in-out infinite alternate;will-change:transform;"></span>
 </div>
-<header style="background:transparent;color:var(--fg-on-inverse);position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px var(--gutter);">
-  <div style="display:inline-flex;flex-direction:column;font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;"><span>the right</span><span>molecule</span></div>
-  <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);white-space:nowrap;">Edition 001</p>
+<header style="background:transparent;color:var(--fg-on-inverse);position:relative;z-index:4;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:20px var(--gutter);">
+  <a href="{{ storyUrl }}" target="_top" style="justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--fg-on-inverse);text-decoration:none;font-size:14px;letter-spacing:var(--tracking-button);transition:color .2s ease;" style-hover="color:var(--trm-champagne)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg><span>Our Story</span></a>
+  <a href="{{ storyUrl }}" target="_top" aria-label="The Right Molecule · Our Story" style="display:inline-flex;flex-direction:column;color:var(--fg-on-inverse);text-decoration:none;font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;" style-hover="color:var(--fg-on-inverse)"><span>the right</span><span>molecule</span></a>
+  <p style="justify-self:end;margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);white-space:nowrap;">Edition 001</p>
 </header>
+<nav aria-label="On this page" style="position:fixed;top:12px;left:50%;z-index:150;width:max-content;max-width:calc(100% - 24px);transform:translate(-50%,{{ navY }});opacity:{{ navOp }};pointer-events:{{ navPe }};transition:transform 320ms cubic-bezier(.23,1,.32,1), opacity 200ms ease;display:flex;align-items:center;gap:4px;padding:5px;border-radius:var(--radius-pill);background:color-mix(in oklch, var(--trm-ivory) 88%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border-hairline);box-shadow:0 10px 30px rgba(6,48,63,.14);overflow-x:auto;scrollbar-width:none;">
+  <a href="{{ storyUrl }}" target="_top" aria-label="Back to Our Story" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:var(--fg-1);text-decoration:none;transition:background-color .2s ease;" style-hover="background:var(--bg-sunken);color:var(--fg-1)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></a>
+  <sc-for list="{{ navLinks }}" as="nl" hint-placeholder-count="5">
+    <a href="{{ nl.href }}" aria-current="{{ nl.cur }}" style="flex:none;display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:var(--radius-pill);font-size:14px;white-space:nowrap;text-decoration:none;color:{{ nl.fg }};background:{{ nl.bg }};transition:background-color .2s ease, color .2s ease;" style-hover="color:var(--fg-1)">{{ nl.label }}</a>
+  </sc-for>
+  <a href="#founding" style="flex:none;display:inline-flex;align-items:center;min-height:40px;padding:0 16px;margin-left:4px;border-radius:var(--radius-pill);background:var(--action-primary);color:var(--action-on-primary);font-size:14px;letter-spacing:var(--tracking-button);white-space:nowrap;text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1);" style-hover="background:var(--action-primary-hover);color:var(--action-on-primary)" style-active="transform:scale(.97)">Reserve · ₹138</a>
+</nav>
 <div aria-hidden="true" style="margin:0 var(--gutter);height:1px;background:var(--border-on-inverse);position:relative;z-index:4;"></div>
 
 <section id="top" data-screen-label="1 Hero" style="background:transparent;color:var(--fg-on-inverse);position:relative;z-index:1;padding:clamp(40px,6vw,88px) var(--gutter) clamp(112px,11vw,160px);">
   <div style="max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px clamp(40px,6vw,96px);align-items:center;">
-    <div style="display:flex;flex-direction:column;gap:28px;">
+    <div style="display:flex;flex-direction:column;gap:28px;animation:trmHeroOut linear both;animation-timeline:view();animation-range:exit 0% exit 100%;">
       <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 100ms both;">InnerAtlas × Plyolife · Beyond the Period</p>
       <h1 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);letter-spacing:-.015em;text-wrap:balance;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 160ms both;">Is this normal,<br><em style="font-style:italic;color:var(--trm-champagne);">or have I just gotten used to it?</em></h1>
       <div style="display:flex;flex-direction:column;gap:10px;max-width:46ch;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 220ms both;">
@@ -69,10 +84,10 @@ details[open] .faq-plus{transform:rotate(45deg)}
       </div>
       <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 280ms both;">
         <a href="#founding" style="display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 32px;background:var(--trm-ivory);color:var(--trm-ocean-teal);text-decoration:none;font-size:17px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);box-shadow:var(--shadow-product);transition:background-color .2s ease, transform 160ms cubic-bezier(.23,1,.32,1);" style-hover="background:var(--trm-champagne);color:var(--trm-ocean-teal)" style-active="transform:scale(.97)">Reserve my seat · From ₹138</a>
-        <span style="font-size:14px;color:var(--fg-on-inverse-2);">With or without a PCOS diagnosis.</span>
+        <span style="font-size:14px;color:var(--fg-on-inverse-2);">With or without a PMOS diagnosis.</span>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);background:color-mix(in oklch, var(--trm-petrol-deep) 40%, transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 340ms both;">
+    <div style="animation:trmHeroOut2 linear both;animation-timeline:view();animation-range:exit 0% exit 100%;"><div style="display:flex;flex-direction:column;border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);background:color-mix(in oklch, var(--trm-petrol-deep) 40%, transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 340ms both;">
       <dl style="margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));">
         <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Date</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">Sun, 29 Nov</dd></div>
         <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);border-left:1px solid var(--border-on-inverse);"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Time</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">6:00 PM IST</dd></div>
@@ -86,16 +101,12 @@ details[open] .faq-plus{transform:rotate(45deg)}
           <li style="display:flex;gap:12px;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--trm-champagne)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Discover 10 small habits you can start practising.</span></li>
         </ul>
       </div>
-      <a href="#kit" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(18px,2.4vw,28px);border-top:1px solid var(--border-on-inverse);color:var(--fg-on-inverse);text-decoration:none;border-radius:0 0 var(--radius-2) var(--radius-2);transition:background-color .2s ease;" style-hover="background:color-mix(in oklch, var(--trm-petrol-deep) 40%, transparent);color:var(--fg-on-inverse)">
-        <span style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:var(--font-serif);font-size:20px;line-height:1.2;color:var(--trm-champagne);">More than a Sunday workshop.</span><span style="font-size:14px;line-height:1.5;color:var(--fg-on-inverse-2);">Take home an optional seven-day habit toolkit with daily WhatsApp reminders.</span></span>
-        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-      </a>
-    </div>
+    </div></div>
   </div>
 </section>
 </div>
 
-<section id="speakers" data-screen-label="2 Your facilitators" style="scroll-margin-top:24px;position:relative;z-index:5;margin-top:clamp(-72px,-6vw,-40px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;box-shadow:0 -18px 40px rgba(6,48,63,.18);background:var(--bg-page);padding:var(--section-y) var(--gutter);">
+<section id="speakers" data-screen-label="2 Your facilitators" style="scroll-margin-top:76px;position:relative;z-index:5;margin-top:clamp(-72px,-6vw,-40px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;box-shadow:0 -18px 40px rgba(6,48,63,.18);background:var(--bg-page);padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(32px,4vw,56px);">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
       <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Your facilitators</p>
@@ -103,9 +114,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:20px;">
       <div role="button" tabIndex="0" aria-haspopup="dialog" aria-label="Read about Aaron Thomas" onClick="{{ openLeft }}" onKeyDown="{{ keyLeft }}" style="cursor:pointer;display:flex;flex-direction:column;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);overflow:hidden;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:entry 8% cover 32%;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)">
-        <div style="position:relative;aspect-ratio:5/4;background:var(--gradient-sachet-diag);display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
-          <div aria-hidden="true" style="position:absolute;left:50%;bottom:-10%;width:80%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 30%, transparent), transparent);"></div>
-          <img src="assets/aaron-cutout-v3.png" alt="Aaron Thomas" style="position:relative;display:block;height:92%;width:auto;max-width:100%;object-fit:contain;object-position:bottom;">
+        <div style="position:relative;aspect-ratio:4/5;background:transparent;border-bottom:1px solid var(--border-hairline);padding-top:24px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
+          <img src="assets/aaron-portrait.png" alt="Aaron Thomas" style="position:relative;display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;">
         </div>
         <div style="display:flex;flex-direction:column;gap:12px;padding:clamp(24px,3vw,32px);">
           <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Molecular Biologist · Founder, TRM</p>
@@ -115,9 +125,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
         </div>
       </div>
       <div role="button" tabIndex="0" aria-haspopup="dialog" aria-label="Read about David" onClick="{{ openRight }}" onKeyDown="{{ keyRight }}" style="cursor:pointer;display:flex;flex-direction:column;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);overflow:hidden;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:entry 14% cover 32%;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)">
-        <div style="position:relative;aspect-ratio:5/4;background:var(--gradient-sachet-diag);display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
-          <div aria-hidden="true" style="position:absolute;left:50%;bottom:-10%;width:80%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 30%, transparent), transparent);"></div>
-          <img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;height:92%;width:auto;max-width:100%;object-fit:cover;object-position:bottom;aspect-ratio:666/748;object-position:top;">
+        <div style="position:relative;aspect-ratio:4/5;background:transparent;border-bottom:1px solid var(--border-hairline);padding-top:24px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
+          <img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;">
         </div>
         <div style="display:flex;flex-direction:column;gap:12px;padding:clamp(24px,3vw,32px);">
           <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Lifestyle Coach · Plyolife</p>
@@ -130,12 +139,12 @@ details[open] .faq-plus{transform:rotate(45deg)}
   </div>
 </section>
 
-<section id="pain" data-screen-label="3 Pain points" style="scroll-margin-top:24px;background:var(--trm-aubergine);color:var(--fg-on-inverse);padding:var(--section-y) var(--gutter);">
+<section id="pain" data-screen-label="3 Pain points" style="--from:var(--bg-page);animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%;scroll-margin-top:76px;background:var(--trm-aubergine);color:var(--fg-on-inverse);padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px clamp(40px,6vw,96px);align-items:start;">
     <div style="display:flex;flex-direction:column;gap:18px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
       <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">Sound familiar?</p>
       <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Signals you’ve <em style="font-style:italic;color:var(--trm-champagne);">learned to live with.</em></h2>
-      <p style="margin:0;max-width:40ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);text-wrap:pretty;">With or without a PCOS diagnosis, these patterns are common. They are also worth understanding.</p>
+      <p style="margin:0;max-width:40ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);text-wrap:pretty;">With or without a PMOS diagnosis, these patterns are common. They are also worth understanding.</p>
       <div aria-live="polite" style="margin-top:18px;padding:24px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);display:flex;flex-direction:column;gap:16px;">
         <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;">
           <sc-for list="{{ painBars }}" as="b" hint-placeholder-count="6"><span style="display:block;height:4px;border-radius:var(--radius-pill);background:{{ b.bg }};transition:background-color .25s ease;"></span></sc-for>
@@ -187,8 +196,8 @@ details[open] .faq-plus{transform:rotate(45deg)}
   </div>
 </section>
 
-<section id="value" ref="{{ valueRef }}" data-screen-label="4 Value proposition" style="scroll-margin-top:24px;position:relative;overflow:hidden;background:color-mix(in oklch, var(--trm-champagne) 18%, var(--trm-ivory));color:var(--fg-1);padding:var(--section-y) var(--gutter);">
-  <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,72px);">
+<section id="value" ref="{{ valueRef }}" data-screen-label="4 Value proposition" style="scroll-margin-top:76px;position:relative;overflow:hidden;background:color-mix(in oklch, var(--trm-champagne) 18%, var(--trm-ivory));--from:var(--trm-aubergine);animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%;color:var(--fg-1);padding:var(--section-y) var(--gutter);">
+  <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,72px);timeline-scope:--trmRows;">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:24px clamp(32px,5vw,80px);align-items:end;">
       <div style="display:flex;align-items:flex-end;gap:clamp(12px,2vw,24px);">
         <span aria-hidden="true" style="font-family:var(--font-serif);font-weight:500;font-size:clamp(150px,22vw,320px);line-height:.78;letter-spacing:-.04em;color:var(--trm-ocean-teal);animation:trmStair .6s cubic-bezier(.23,1,.32,1) 0ms both;animation-play-state:{{ valuePlay }};">70</span>
@@ -200,7 +209,15 @@ details[open] .faq-plus{transform:rotate(45deg)}
         <p style="margin:0;max-width:44ch;font-size:var(--type-body-l);line-height:var(--leading-body);text-wrap:pretty;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 440ms both;animation-play-state:{{ valuePlay }};">Spend 70 minutes making sense of your hormonal health and discovering practical habits that fit your everyday life.</p>
       </div>
     </div>
-    <ol style="list-style:none;margin:0;padding:0;border-top:2px solid var(--fg-1);">
+<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:calc(-1 * clamp(20px,2.5vw,40px));">
+      <div role="img" aria-label="70-minute timeline: Understand 10 min, Connect 30 min, Act 30 min" style="position:relative;height:6px;border-radius:var(--radius-pill);background:color-mix(in oklch, var(--fg-1) 12%, transparent);">
+        <span style="position:absolute;inset:0;border-radius:var(--radius-pill);background:var(--trm-ocean-teal);transform-origin:left center;animation:trmBar linear both;animation-timeline:--trmRows;animation-range:entry 70% exit 45%;"></span>
+        <span aria-hidden="true" style="position:absolute;top:-4px;bottom:-4px;left:14.29%;width:2px;background:var(--fg-1);"></span>
+        <span aria-hidden="true" style="position:absolute;top:-4px;bottom:-4px;left:57.14%;width:2px;background:var(--fg-1);"></span>
+      </div>
+      <div aria-hidden="true" style="position:relative;height:16px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--fg-2);"><span style="position:absolute;left:0%;transform:translateX(0);white-space:nowrap;">0</span><span style="position:absolute;left:14.29%;transform:translateX(-50%);white-space:nowrap;">10 min</span><span style="position:absolute;left:57.14%;transform:translateX(-50%);white-space:nowrap;">40 min</span><span style="position:absolute;left:100%;transform:translateX(-100%);white-space:nowrap;">70 min</span></div>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;border-top:2px solid var(--fg-1);view-timeline-name:--trmRows;">
       <li style="display:grid;grid-template-columns:{{ valueCols }};gap:12px clamp(24px,4vw,56px);align-items:center;padding:clamp(24px,3vw,36px) 0;border-bottom:1px solid var(--fg-1);">
         <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;font-variant-numeric:tabular-nums;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 550ms both;animation-play-state:{{ valuePlay }};">
           <span style="color:var(--trm-ocean-teal);">01 · 10 min</span><span>With Aaron</span>
@@ -239,7 +256,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
   </div>
 </section>
 
-<section id="kit" data-screen-label="5 Your take-home experience" style="scroll-margin-top:24px;background:var(--bg-sunken);padding:var(--section-y) var(--gutter);">
+<section id="kit" data-screen-label="5 Your take-home experience" style="--from:color-mix(in oklch, var(--trm-champagne) 18%, var(--trm-ivory));animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%;scroll-margin-top:76px;background:var(--bg-sunken);padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(48px,6vw,80px);">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
       <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">InnerAtlas · Your take-home experience</p>
@@ -267,7 +284,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
           <p style="margin:0;flex:1;font-size:14px;font-weight:300;line-height:1.55;color:var(--fg-2);text-wrap:pretty;">{{ t.outcome }}</p>
           <div style="display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--border-hairline);">
             <div style="display:flex;">
-              <sc-if value="{{ t.hasA }}" hint-placeholder-val="{{ false }}"><span style="width:28px;height:28px;margin-right:-8px;border-radius:50%;overflow:hidden;border:2px solid var(--bg-page-raised);background:var(--trm-petrol);display:block;"><img src="assets/aaron-cutout-v3.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.9);transform-origin:50% 12%;display:block;"></span></sc-if>
+              <sc-if value="{{ t.hasA }}" hint-placeholder-val="{{ false }}"><span style="width:28px;height:28px;margin-right:-8px;border-radius:50%;overflow:hidden;border:2px solid var(--bg-page-raised);background:var(--trm-petrol);display:block;"><img src="assets/aaron-portrait.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.9);transform-origin:50% 12%;display:block;"></span></sc-if>
               <sc-if value="{{ t.hasD }}" hint-placeholder-val="{{ false }}"><span style="width:28px;height:28px;margin-right:-8px;border-radius:50%;overflow:hidden;border:2px solid var(--bg-page-raised);background:var(--trm-petrol);display:block;"><img src="assets/speaker-right.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.9);transform-origin:50% 12%;display:block;"></span></sc-if>
             </div>
             <span style="margin-left:8px;font-size:13px;color:var(--fg-2);">{{ t.speaker }}</span>
@@ -276,24 +293,15 @@ details[open] .faq-plus{transform:rotate(45deg)}
       </sc-for>
     </div>
 
-    <button type="button" onClick="{{ openKit }}" aria-haspopup="dialog" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px clamp(24px,4vw,64px);align-items:center;padding:clamp(20px,3vw,40px);text-align:left;border:1px solid var(--border-hairline);border-radius:var(--radius-2);background:var(--bg-page-raised);color:var(--fg-1);font-family:var(--font-sans);cursor:pointer;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)" style-active="transform:scale(.99)">
-      <img src="assets/biology-starter-kit.png" alt="The Hormone &amp; Habit Kit: cover, 7-day habit tracker and 10 micro-habits cards" style="justify-self:center;display:block;width:100%;max-width:400px;height:auto;border-radius:var(--radius-2);">
-      <span style="display:flex;flex-direction:column;gap:14px;">
-        <span style="font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Optional add-on · ₹188 with the workshop</span>
-        <span style="font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">The Hormone &amp; Habit Kit.</span>
-        <span style="font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,1.8vw,24px);line-height:1.35;color:var(--fg-2);">Seven days of getting to know yourself a little better.</span>
-        <span style="margin-top:8px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding-bottom:2px;border-bottom:1px solid var(--fg-accent);font-size:15px;letter-spacing:var(--tracking-button);color:var(--fg-accent);">See what's inside <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-      </span>
-    </button>
   </div>
 </section>
 
-<section id="founding" data-screen-label="6 Payment" style="background:var(--gradient-sachet-diag);color:var(--fg-on-inverse);padding:var(--section-y) var(--gutter);">
+<section id="founding" data-screen-label="6 Payment" style="scroll-margin-top:76px;background:var(--gradient-sachet-diag);color:var(--fg-on-inverse);padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:48px clamp(40px,7vw,112px);align-items:start;">
     <div>
       <p style="margin:0 0 16px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">Founding edition</p>
-      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Founding edition, from ₹138</h2>
-      <p style="margin:20px 0 0;max-width:44ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);">Join the live workshop on its own, or add the Hormone &amp; Habit Kit with seven days of WhatsApp reminders. Registration closes when the workshop begins.</p>
+      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Founding edition, ₹138</h2>
+      <p style="margin:20px 0 0;max-width:44ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);">Join the live workshop. Registration closes when the workshop begins.</p>
       <div style="margin-top:36px;display:flex;flex-direction:column;gap:12px;">
         <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Workshop starts in</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;">
@@ -319,10 +327,10 @@ details[open] .faq-plus{transform:rotate(45deg)}
             <p id="pass-label" style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Choose your pass</p>
             <div role="radiogroup" aria-labelledby="pass-label" style="display:flex;flex-direction:column;gap:10px;">
               <sc-for list="{{ passes }}" as="ps" hint-placeholder-count="2">
-                <button type="button" role="radio" aria-checked="{{ ps.on }}" onClick="{{ ps.select }}" style="display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:12px;align-items:start;padding:{{ ps.pad }};text-align:left;border:{{ ps.bw }} solid {{ ps.border }};background:{{ ps.bg }};border-radius:var(--radius-1);font-family:var(--font-sans);color:var(--fg-1);cursor:pointer;transition:border-color .16s ease, background-color .16s ease, transform .14s ease-out;" style-active="transform:scale(.99)">
+                <button type="button" role="radio" aria-checked="{{ ps.on }}" onClick="{{ ps.select }}" style="display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:12px;align-items:start;padding:{{ ps.pad }};text-align:left;border:{{ ps.bw }} solid {{ ps.border }};background:{{ ps.bg }};border-radius:var(--radius-1);font-family:var(--font-sans);color:var(--fg-1);cursor:pointer;transition:border-color .16s ease, background-color .16s ease, transform .14s ease-out;animation:trmSlideIn linear both;animation-timeline:view();animation-range:{{ ps.range }};" style-active="transform:scale(.99)">
                   <span aria-hidden="true" style="width:18px;height:18px;margin-top:2px;border-radius:50%;border:1.5px solid {{ ps.border }};display:flex;align-items:center;justify-content:center;"><span style="width:8px;height:8px;border-radius:50%;background:var(--action-primary);opacity:{{ ps.dot }};transition:opacity .16s ease;"></span></span>
                   <span style="display:flex;flex-direction:column;gap:3px;">
-                    <sc-if value="{{ ps.isKit }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;margin-bottom:4px;padding:3px 10px;border-radius:var(--radius-pill);background:var(--trm-champagne);color:var(--trm-ocean-teal);font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;">Recommended · Best value</span></sc-if>
+                    <sc-if value="{{ ps.isKit }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;margin-bottom:4px;padding:3px 10px;border-radius:var(--radius-pill);background:var(--trm-champagne);color:var(--trm-ocean-teal);font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;animation:trmGlow linear both;animation-timeline:view();animation-range:entry 70% cover 55%;">Recommended · Best value</span></sc-if>
                     <span style="font-size:15px;">{{ ps.name }}</span><span style="font-size:13px;color:var(--fg-2);line-height:1.45;">{{ ps.sub }}</span>
                     <sc-if value="{{ ps.isKit }}" hint-placeholder-val="{{ false }}"><span style="margin-top:6px;display:flex;flex-direction:column;gap:5px;">
                       <sc-for list="{{ ps.includes }}" as="inc" hint-placeholder-count="5"><span style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4;"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>{{ inc }}</span></span></sc-for>
@@ -351,9 +359,6 @@ details[open] .faq-plus{transform:rotate(45deg)}
           </div>
           <button type="submit" disabled="{{ processing }}" aria-busy="{{ processing }}" style="min-height:60px;margin-top:6px;border:0;border-radius:var(--radius-1);background:var(--action-primary);color:var(--action-on-primary);font-family:var(--font-sans);font-size:17px;letter-spacing:var(--tracking-button);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform 160ms ease-out, background-color 200ms ease;" style-hover="background:var(--action-primary-hover)" style-active="transform:scale(.97)"><sc-if value="{{ processing }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:wSpin 700ms linear infinite;flex:none;"></span></sc-if><span>{{ payLabel }}</span></button>
           <ul aria-label="What to expect" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--fg-2);"><li>✓ Instant confirmation email</li><li>✓ Join from phone or computer</li><li>✓ Payments by our secure partner</li></ul>
-          <sc-if value="{{ hasPayError }}" hint-placeholder-val="{{ false }}">
-            <p role="alert" style="margin:0;font-size:13px;line-height:1.5;color:var(--status-error);">{{ payError }}</p>
-          </sc-if>
           <p style="margin:0;font-size:12px;line-height:1.6;color:var(--fg-3);">Secure payment via our payment partner. You'll return to The Right Molecule once it's complete. <a href="Legal.dc.html">Terms &amp; Privacy</a></p>
         </form>
       </sc-if>
@@ -372,13 +377,13 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </section>
 
 
-<section id="faq" data-screen-label="7 FAQ" style="padding:var(--section-y) var(--gutter);">
+<section id="faq" data-screen-label="7 FAQ" style="background-color:var(--bg-page);--from:var(--trm-petrol);animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 35%;scroll-margin-top:76px;padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;">
     <div style="max-width:880px;">
       <p style="margin:0 0 8px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Questions</p>
       <div style="border-top:1px solid var(--border-strong);">
         <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
-          <details style="border-bottom:1px solid var(--border-strong);">
+          <details style="border-bottom:1px solid var(--border-strong);animation:trmRow linear both;animation-timeline:view();animation-range:entry 10% entry 100%;">
             <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:44px;padding:20px 0;font-family:var(--font-serif);font-size:clamp(19px,1.8vw,22px);line-height:1.3;">
               <span>{{ f.q }}</span>
               <span class="faq-plus" style="flex:none;font-family:var(--font-sans);font-size:24px;font-weight:300;color:var(--fg-2);transition:transform .2s ease;">+</span>
@@ -391,50 +396,13 @@ details[open] .faq-plus{transform:rotate(45deg)}
   </div>
 </section>
 
-<sc-if value="{{ kitOpen }}" hint-placeholder-val="{{ false }}">
-<div role="dialog" aria-modal="true" aria-labelledby="kit-title" style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);">
-  <div onClick="{{ closeKit }}" aria-hidden="true" style="position:absolute;inset:0;background:color-mix(in oklch, var(--trm-petrol-deep) 62%, transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:wFade .25s ease both;"></div>
-  <div ref="{{ kitRef }}" tabIndex="-1" style="position:relative;width:min(1080px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;background:var(--bg-page);color:var(--fg-1);border-radius:var(--radius-2);box-shadow:var(--shadow-product);padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);outline:none;animation:wPop .35s cubic-bezier(.23,1,.32,1) both;">
-    <button type="button" onClick="{{ closeKit }}" aria-label="Close" style="position:absolute;top:12px;right:12px;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--fg-1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background-color .16s ease;" style-hover="background:var(--bg-sunken)"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px clamp(24px,4vw,56px);align-items:center;">
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">InnerAtlas · Your take-home experience</p>
-        <h2 id="kit-title" style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">The Hormone &amp; Habit Kit.</h2>
-        <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,1.8vw,24px);line-height:1.35;color:var(--fg-2);">Seven days of getting to know yourself a little better.</p>
-      </div>
-      <img src="assets/biology-starter-kit.png" alt="" style="justify-self:center;display:block;width:100%;max-width:340px;height:auto;border-radius:var(--radius-2);">
-    </div>
-    <div style="display:grid;grid-template-columns:{{ kitCols }};gap:12px;">
-      <sc-for list="{{ kit }}" as="k" hint-placeholder-count="4">
-        <article style="min-height:300px;padding:22px 22px 20px;border-radius:var(--radius-2);background:{{ k.bg }};color:var(--fg-on-inverse);display:flex;flex-direction:column;gap:14px;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard .5s cubic-bezier(.23,1,.32,1) {{ k.delay }} both;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)">
-          <span style="font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">{{ k.n }} / InnerAtlas</span>
-          <h3 style="margin:0;flex:1;font-family:var(--font-serif);font-weight:500;font-size:clamp(24px,2vw,28px);line-height:1.15;">{{ k.title }}</h3>
-          <span style="font-size:14px;color:var(--fg-on-inverse-2);">{{ k.sub }}</span>
-        </article>
-      </sc-for>
-    </div>
-    <div style="display:flex;align-items:flex-start;gap:14px;">
-      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--fg-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:4px;"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.4A8.5 8.5 0 1 1 21 11.5z"></path></svg>
-      <div style="display:flex;flex-direction:column;gap:4px;">
-        <p style="margin:0;font-family:var(--font-serif);font-size:22px;line-height:1.2;">Seven days of gentle reminders</p>
-        <p style="margin:0;font-size:15px;font-weight:300;color:var(--fg-2);">One practical prompt every day through WhatsApp.</p>
-      </div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;padding-top:20px;border-top:1px solid var(--border-strong);">
-      <p style="margin:0;font-size:14px;color:var(--fg-2);">Digital · Printable · Yours to keep</p>
-      <a href="#founding" onClick="{{ pickKitClose }}" style="display:inline-flex;align-items:center;min-height:48px;padding:0 24px;background:var(--action-primary);color:var(--action-on-primary);text-decoration:none;font-size:14px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);white-space:nowrap;transition:transform .16s ease-out;" style-hover="background:var(--action-primary-hover);color:var(--action-on-primary)" style-active="transform:scale(.97)">Add the kit · ₹188 total</a>
-    </div>
-  </div>
-</div>
-</sc-if>
 <sc-if value="{{ hasSpeaker }}" hint-placeholder-val="{{ false }}">
 <div role="dialog" aria-modal="true" aria-labelledby="sp-title" style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);">
   <div onClick="{{ closeSpeaker }}" aria-hidden="true" style="position:absolute;inset:0;background:color-mix(in oklch, var(--trm-petrol-deep) 62%, transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:{{ descOp }};transition:opacity .25s ease;"></div>
   <div ref="{{ spRef }}" tabIndex="-1" style="position:relative;width:min(920px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;background:var(--bg-page);color:var(--fg-1);border-radius:var(--radius-2);box-shadow:var(--shadow-product);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));outline:none;opacity:{{ descOp }};transform:translateY({{ descY }});transition:opacity .3s ease, transform .4s cubic-bezier(.23,1,.32,1);">
-    <div style="position:relative;min-height:320px;background:var(--gradient-sachet-diag);display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
-      <div aria-hidden="true" style="position:absolute;left:50%;bottom:-10%;width:90%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 30%, transparent), transparent);"></div>
-      <sc-if value="{{ isLeftSp }}" hint-placeholder-val="{{ false }}"><img src="assets/aaron-cutout-v3.png" alt="Aaron Thomas" style="position:relative;display:block;width:100%;height:100%;max-height:520px;object-fit:contain;object-position:bottom;"></sc-if>
-      <sc-if value="{{ isRightSp }}" hint-placeholder-val="{{ false }}"><img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;width:100%;height:100%;max-height:520px;object-fit:cover;object-position:top;"></sc-if>
+    <div style="position:relative;min-height:420px;background:transparent;padding-top:24px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
+      <sc-if value="{{ isLeftSp }}" hint-placeholder-val="{{ false }}"><img src="assets/aaron-portrait.png" alt="Aaron Thomas" style="position:relative;display:block;width:100%;height:100%;max-height:560px;object-fit:contain;object-position:bottom center;"></sc-if>
+      <sc-if value="{{ isRightSp }}" hint-placeholder-val="{{ false }}"><img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;width:100%;height:100%;max-height:560px;object-fit:contain;object-position:bottom center;"></sc-if>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;padding:clamp(28px,4vw,48px);">
       <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">{{ sp.role }}</p>
@@ -449,17 +417,16 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </div>
 </sc-if>
 <footer style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding:28px var(--gutter);font-size:12px;color:var(--fg-3);">
-  <span>© 2026 The Right Molecule</span>
+  <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;"><span>© 2026 The Right Molecule</span><a href="{{ storyUrl }}" target="_top" style="color:var(--fg-2);">Our Story</a><a href="#speakers" style="color:var(--fg-2);">Facilitators</a><a href="#habit-kit" style="color:var(--fg-2);">Habit Kit</a><a href="#faq" style="color:var(--fg-2);">FAQ</a></span>
   <span style="max-width:70ch;">This workshop is educational and is not medical advice or a consultation. Please consult a qualified doctor about your health.</span>
 </footer>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { step: "form", email: "", method: "UPI", processing: false, secs: 5, now: Date.now(), pass: "kit" };
+  state = { step: "form", email: "", method: "UPI", processing: false, secs: 5, now: Date.now(), pass: "workshop" };
   PASSES = [
-    { id: "kit", product: "pcos-webinar-founding", name: "Workshop + Hormone & Habit Kit", sub: "Everything in the live workshop, plus:", price: 188, isKit: true, extra: "Only ₹50 more", includes: ["Know Your Cycle guide", "Lifestyle reflection map", "Ten practical habit cards", "Seven-day habit tracker", "Daily WhatsApp reminders for 7 days"] },
-    { id: "workshop", product: "pcos-webinar-workshop", name: "Live workshop only", sub: "70 minutes live, with Q&A.", price: 138, isKit: false, extra: "", includes: [] }
+    { id: "workshop", name: "Live workshop only", sub: "70 minutes live, with Q&A.", price: 138, isKit: false, extra: "", includes: [] }
   ];
   kit = [
     { title: "Know Your Cycle", sub: "Illustrated menstrual health guide", bg: "var(--trm-ocean-teal)" },
@@ -468,8 +435,8 @@ class Component extends DCLogic {
     { title: "My Next Seven Days", sub: "Personal habit tracker", bg: "var(--trm-ocean-teal)" }
   ].map((k, i) => ({ ...k, n: "0" + (i + 1), delay: (120 + i * 70) + "ms" }));
   kitRef = React.createRef();
-  openKit = () => { this._kitFrom = document.activeElement; document.body.style.overflow = "hidden"; this.setState({ kitOpen: true }, () => setTimeout(() => this.kitRef.current && this.kitRef.current.focus({ preventScroll: true }), 30)); };
-  closeKit = () => { document.body.style.overflow = ""; this.setState({ kitOpen: false }, () => this._kitFrom && this._kitFrom.focus && this._kitFrom.focus({ preventScroll: true })); };
+  openKit = () => { if (location.hash !== "#habit-kit") { try { history.pushState(null, "", "#habit-kit"); } catch (e) {} } this._kitFrom = document.activeElement; document.body.style.overflow = "hidden"; this.setState({ kitOpen: true }, () => setTimeout(() => this.kitRef.current && this.kitRef.current.focus({ preventScroll: true }), 30)); };
+  closeKit = () => { if (location.hash === "#habit-kit") { try { history.replaceState(null, "", "#kit"); } catch (e) {} } document.body.style.overflow = ""; this.setState({ kitOpen: false }, () => this._kitFrom && this._kitFrom.focus && this._kitFrom.focus({ preventScroll: true })); };
   PAINS = [
     { quote: "My period shows up whenever it wants.", tag: "Irregular periods" },
     { quote: "Some weeks, the cravings win every single time.", tag: "Changing cravings" },
@@ -498,11 +465,11 @@ class Component extends DCLogic {
     { q: "What is the cancellation and refund policy?", a: "[Cancellation and refund policy to be confirmed.]" },
     { q: "How do I access the workshop?", a: "Your joining link is emailed straight after payment, with a reminder before the session starts. You can join from a phone or a computer." },
     { q: "How do I pay, and is it secure?", a: "You can pay by UPI, card or netbanking. Payments are handled by our payment partner, and we never see or store your card details." },
-    { q: "Do I need to have PCOS to attend?", a: "No. The workshop is relevant to anyone interested in their hormonal and metabolic health." },
+    { q: "Do I need to have PMOS to attend?", a: "No. The workshop is relevant to anyone interested in their hormonal and metabolic health." },
     { q: "Is this a medical consultation?", a: "No. The workshop is educational and does not replace advice from your doctor." }
   ];
   speakers = {
-    left: { name: "Aaron Thomas", img: "assets/aaron-cutout-v3.png", fit: "contain", pos: "bottom", role: "Molecular Biologist · Founder, TRM", tagline: "Making the invisible understandable.", bio: "With a research background in molecular and computational biology, Aaron translates the complex science of hormones and metabolism into knowledge you can use in everyday life.", sessions: "Biological foundations, Q&A" },
+    left: { name: "Aaron Thomas", img: "assets/aaron-portrait.png", fit: "contain", pos: "bottom", role: "Molecular Biologist · Founder, TRM", tagline: "Making the invisible understandable.", bio: "With a research background in molecular and computational biology, Aaron translates the complex science of hormones and metabolism into knowledge you can use in everyday life.", sessions: "Biological foundations, Q&A" },
     right: { name: "David", img: "assets/speaker-right.png", fit: "cover", pos: "top", role: "Lifestyle Coach · Plyolife", tagline: "Making the understandable achievable.", bio: "Bringing together nutrition, movement and behavioural science, David helps turn health knowledge into realistic, sustainable everyday habits.", sessions: "Nutrition, lifestyle architecture, micro-habits, Q&A" }
   };
   openSp = (k) => { clearTimeout(this.spT); if (this.state.sp === k && this.state.spIn) return this.closeSp(); if (!this._spPop) { const hh = { left: "#aaron", right: "#david" }[k]; try { if (location.hash !== hh) (location.hash === "#aaron" || location.hash === "#david" ? history.replaceState : history.pushState).call(history, { sp: 1 }, "", hh); } catch (e) {} } this._spFrom = document.activeElement; this.setState({ sp: k, spIn: false }); this.spT = setTimeout(() => { this.setState({ spIn: true }); this.spRef.current && this.spRef.current.focus({ preventScroll: true }); }, 20); };
@@ -514,6 +481,12 @@ class Component extends DCLogic {
   componentDidMount() {
     this._onSpPop = () => { const k = location.hash === "#aaron" ? "left" : location.hash === "#david" ? "right" : null; this._spPop = true; if (k) { if (this.state.sp !== k || !this.state.spIn) this.openSp(k); } else if (this.state.sp) this.closeSp(); this._spPop = false; };
     window.addEventListener("popstate", this._onSpPop);
+    this._onKitHash = () => { const want = location.hash === "#habit-kit"; if (want && !this.state.kitOpen) this.openKit(); else if (!want && this.state.kitOpen) { document.body.style.overflow = ""; this.setState({ kitOpen: false }); } };
+    window.addEventListener("hashchange", this._onKitHash); window.addEventListener("popstate", this._onKitHash);
+    if (location.hash === "#habit-kit") setTimeout(this._onKitHash, 300);
+    this.NAV_IDS = ["speakers", "pain", "value", "kit", "faq"];
+    this._onNavScroll = () => { const y = window.scrollY, vh = window.innerHeight; const hero = document.getElementById("top"); const show = !!hero && y > hero.offsetTop + hero.offsetHeight * 0.6; let act = null; for (const id of this.NAV_IDS) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= vh * 0.35) act = id; } const pay = document.getElementById("founding"); if (pay) { const r = pay.getBoundingClientRect(); if (r.top <= vh * 0.35 && r.bottom > vh * 0.35) act = "founding"; } if (show !== this.state.navShow || act !== this.state.navAct) this.setState({ navShow: show, navAct: act }); };
+    window.addEventListener("scroll", this._onNavScroll, { passive: true }); this._onNavScroll();
     if (location.hash === "#aaron" || location.hash === "#david") setTimeout(this._onSpPop, 300);
     window.addEventListener("keydown", this.onKey);
     this.onResize = () => { const w = document.documentElement.clientWidth || window.innerWidth; if (w) this.setState({ vw: w }); };
@@ -522,47 +495,7 @@ class Component extends DCLogic {
     this.raf = setTimeout(() => this.setState({ entered: true }), 120);
     this.vFallback = setTimeout(() => { if (!this.vio) { const el = document.getElementById("value"); if (el) this.valueRef(el); else this.setState({ valueIn: true }); } }, 1500);
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000); }
-  componentWillUnmount() { clearTimeout(this.pT1); clearTimeout(this.pT2); this.vio && this.vio.disconnect(); clearTimeout(this.vFallback); document.body.style.overflow = ""; window.removeEventListener("popstate", this._onSpPop); window.removeEventListener("keydown", this.onKey); clearTimeout(this.spT); this.ro && this.ro.disconnect(); window.removeEventListener("resize", this.onResize); clearTimeout(this.raf); clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); }
-  // Supabase Edge Functions for this project (see supabase/README.md).
-  FN_URL = "https://dlyhjxlhptfuxstfykkh.supabase.co/functions/v1";
-  loadCheckout() {
-    if (window.Razorpay) return Promise.resolve();
-    return this.checkoutJs || (this.checkoutJs = new Promise((resolve, reject) => {
-      const s = document.createElement("script");
-      s.src = "https://checkout.razorpay.com/v1/checkout.js";
-      s.onload = resolve;
-      s.onerror = () => { this.checkoutJs = null; reject(new Error("Could not load the payment window. Check your connection and try again.")); };
-      document.head.appendChild(s);
-    }));
-  }
-  async startPayment(form) {
-    const fd = new FormData(form);
-    const name = String(fd.get("name") || "").trim(), email = String(fd.get("email") || "").trim();
-    const product = (this.PASSES.find(p => p.id === this.state.pass) || this.PASSES[0]).product;
-    this.setState({ processing: true, email, payError: "" });
-    try {
-      const [res] = await Promise.all([
-        fetch(this.FN_URL + "/create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ product, name, email }) }),
-        this.loadCheckout()
-      ]);
-      const order = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(order.error || "Could not start payment. Please try again.");
-      const rzp = new window.Razorpay({
-        key: order.key_id, order_id: order.order_id, amount: order.amount, currency: order.currency,
-        name: "The Right Molecule", description: order.product_label,
-        prefill: { name, email, method: this.state.method.toLowerCase() },
-        notes: { customer_name: name, product },
-        theme: { color: "#174F55" },
-        // Only a UX signal: the razorpay-webhook function is what records the payment as captured.
-        handler: () => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); },
-        modal: { ondismiss: () => this.setState({ processing: false }) }
-      });
-      rzp.on("payment.failed", (r) => this.setState({ payError: (r && r.error && r.error.description) || "Payment failed. Please try again." }));
-      rzp.open();
-    } catch (err) {
-      this.setState({ processing: false, payError: (err && err.message) || "Could not start payment. Please try again." });
-    }
-  }
+  componentWillUnmount() { window.removeEventListener("scroll", this._onNavScroll); window.removeEventListener("hashchange", this._onKitHash); window.removeEventListener("popstate", this._onKitHash); clearTimeout(this.pT1); clearTimeout(this.pT2); this.vio && this.vio.disconnect(); clearTimeout(this.vFallback); document.body.style.overflow = ""; window.removeEventListener("popstate", this._onSpPop); window.removeEventListener("keydown", this.onKey); clearTimeout(this.spT); this.ro && this.ro.disconnect(); window.removeEventListener("resize", this.onResize); clearTimeout(this.raf); clearInterval(this.clock); clearInterval(this.t); clearTimeout(this.p); }
   validate(f) {
     const name = (f.name && f.name.value || "").trim(), email = (f.email && f.email.value || "").trim();
     return { name: name.length < 2 ? "Please enter your name." : "", email: !email ? "Enter the email we should send your joining link to." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "That email doesn't look right. Check for typos, e.g. name@gmail.com." : "" };
@@ -608,7 +541,7 @@ class Component extends DCLogic {
       }; })(),
       valueRef: this.valueRef, valuePlay: this.state.valueIn ? "running" : "paused", valueCols: vw >= 960 ? "140px minmax(0,1.25fr) minmax(0,1fr)" : "minmax(0,1fr)",
       pickKit: () => this.setState({ pass: "kit" }), kitOpen: !!this.state.kitOpen, openKit: this.openKit, closeKit: this.closeKit, kitRef: this.kitRef, pickKitClose: () => { document.body.style.overflow = ""; this.setState({ pass: "kit", kitOpen: false }); }, passPrice: "₹" + pass.price, kitNote: pass.id === "kit" ? ", plus your Hormone & Habit Kit," : "",
-      passes: this.PASSES.map(p => { const on = p.id === pass.id; return { ...p, on, priceLabel: "₹" + p.price, priceSize: p.isKit ? "24px" : "18px", pad: p.isKit ? "18px 16px" : "12px 16px", bw: on ? "2px" : "1px", select: () => this.setState({ pass: p.id }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "color-mix(in oklch, var(--action-primary) 6%, var(--trm-white))" : "var(--trm-white)", dot: on ? 1 : 0 }; }),
+      passes: this.PASSES.map(p => { const on = p.id === pass.id; return { ...p, on, range: p.isKit ? "entry 60% cover 42%" : "entry 20% cover 28%", priceLabel: "₹" + p.price, priceSize: p.isKit ? "24px" : "18px", pad: p.isKit ? "18px 16px" : "12px 16px", bw: on ? "2px" : "1px", select: () => this.setState({ pass: p.id }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "color-mix(in oklch, var(--action-primary) 6%, var(--trm-white))" : "var(--trm-white)", dot: on ? 1 : 0 }; }),
       nameErr: !!errs.name, nameMsg: errs.name || "", emailErr: !!errs.email, emailMsg: errs.email || "",
       blurName: (e) => this.fieldBlur("name", e), blurEmail: (e) => this.fieldBlur("email", e),
       fixName: (e) => this.fieldFix("name", e), fixEmail: (e) => this.fieldFix("email", e),
@@ -652,8 +585,14 @@ class Component extends DCLogic {
         return { label, on, select: () => this.setState({ method: label }), border: on ? "var(--action-primary)" : "var(--border-strong)", bg: on ? "var(--action-primary)" : "transparent", fg: on ? "var(--action-on-primary)" : "var(--fg-1)" };
       }),
       payLabel: processing ? "Processing payment…" : "Pay ₹" + pass.price + " via " + method,
-      payError: this.state.payError, hasPayError: !!this.state.payError,
-      pay: (e) => { e.preventDefault(); const f = e.currentTarget || e.target; if (!this.checkForm(f)) return; this.startPayment(f); },
+      pay: (e) => { e.preventDefault(); if (!this.checkForm(e.currentTarget || e.target)) return;
+        const em = e.target.email.value;
+        this.setState({ processing: true, email: em });
+        this.p = setTimeout(() => { this.setState({ processing: false, step: "done", secs: 5 }); this.startRedirect(); }, 1500);
+      },
+      storyUrl: this.HOME + "#/story",
+      navY: this.state.navShow ? "0" : "-140%", navOp: this.state.navShow ? 1 : 0, navPe: this.state.navShow ? "auto" : "none",
+      navLinks: [["speakers", "Facilitators"], ["pain", "Sound familiar?"], ["value", "70 minutes"], ["kit", "Programme"], ["faq", "FAQ"]].map(([id, label]) => { const on = this.state.navAct === id; return { href: "#" + id, label, cur: on ? "true" : "false", fg: on ? "var(--fg-1)" : "var(--fg-2)", bg: on ? "var(--bg-sunken)" : "transparent" }; }),
       homeUrl: this.HOME, redirectLabel: "Taking you to The Right Molecule in " + secs + "s…"
     };
   }
