@@ -17,14 +17,14 @@ export const ROUTES = [
   },
   {
     path: '/products/', hidden: true, source: 'The Right Molecule Website.dc.html', hash: '#/products',
-    title: 'PCOS Harmony · 31-day supply · The Right Molecule',
-    description: 'One sachet a day. Myo-inositol, D-chiro-inositol, chromium, L-carnitine and magnesium, formulated around the biology of PCOS.',
+    title: 'PMOS Harmony · 31-day supply · The Right Molecule',
+    description: 'One sachet a day. Myo-inositol, D-chiro-inositol, chromium, L-carnitine and magnesium, formulated around the biology of PMOS.',
     priority: '0.9'
   },
   {
     path: '/science/', hidden: true, source: 'The Right Molecule Website.dc.html', hash: '#/science',
-    title: 'Our Science · How PCOS works · The Right Molecule',
-    description: 'How ovaries, insulin and stress signals interact in PCOS, and the research behind each molecule in PCOS Harmony.',
+    title: 'Our Science · How PMOS works · The Right Molecule',
+    description: 'How ovaries, insulin and stress signals interact in PMOS, and the research behind each molecule in PMOS Harmony.',
     priority: '0.8'
   },
   {
@@ -35,8 +35,8 @@ export const ROUTES = [
   },
   {
     path: '/blog/', hidden: true, source: 'The Right Molecule Website.dc.html', hash: '#/blog',
-    title: 'Blog · Notes on PCOS, nutrition and science · The Right Molecule',
-    description: 'Notes on PCOS, nutrition and the science behind what we make.',
+    title: 'Blog · Notes on PMOS, nutrition and science · The Right Molecule',
+    description: 'Notes on PMOS, nutrition and the science behind what we make.',
     priority: '0.6'
   },
   {

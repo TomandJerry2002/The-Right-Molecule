@@ -16,7 +16,7 @@ function Line({ children }) {
 const ASSET = 'assets/';
 const inr = (n) => '₹' + n.toLocaleString('en-IN');
 const PRODUCT = {
-  name: 'PCOS', italic: 'Harmony', price: 1480, descriptor: 'Daily support for PCOS, built from the biology up',
+  name: 'PMOS', italic: 'Harmony', price: 1480, descriptor: 'Daily support for PMOS, built from the biology up',
   flavours: ['Passion Fruit'],
   ingredients: [
     { icon: 'network', name: 'Myo-Inositol', benefit: 'Promotes hormone balance', blurb: 'A naturally occurring compound found in fruit, beans and whole grains. Inositols act as messengers in insulin signalling, and myo-inositol is one of the most studied nutrients in women\'s hormonal health.' },
@@ -72,13 +72,13 @@ function Hero({ onShop, onTest }) {
           <div data-parallax-y="-50" data-parallax-rot="2" style={{ position: 'absolute', inset: 0 }}><span style={{ position: 'absolute', height: '92%', aspectRatio: '372/1368', left: '46%', top: '6%', transform: 'rotate(5deg)', transformOrigin: 'bottom center' }}><img src={`${ASSET}product/sachet-back.png`} alt="" style={{ display: 'block', width: '100%', height: '100%' }} /><span data-shine="" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 50%, rgba(255,255,255,0) 60%)', backgroundSize: '260% 100%', backgroundPosition: '130% 0', mixBlendMode: 'soft-light', WebkitMaskImage: `url(${ASSET}product/sachet-back.png)`, maskImage: `url(${ASSET}product/sachet-back.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%' }}></span></span></div>
           <div data-parallax-y="-110" data-parallax-rot="-1.5" style={{ position: 'absolute', inset: 0 }}>
             <span data-anim="sparkle" data-delay="1500" aria-hidden="true" style={{ position: 'absolute', left: '-7%', top: '31%', color: 'var(--trm-petrol)', zIndex: 2, pointerEvents: 'none' }}><DS.Icon name="sparkle" size={18} stroke={1} /></span>
-            <span style={{ position: 'absolute', height: '100%', aspectRatio: '370/1368', left: '4%', top: 0, transform: 'rotate(-3deg)', transformOrigin: 'bottom center' }}><img src={`${ASSET}product/sachet-front.png`} alt="PCOS Harmony sachet" style={{ display: 'block', width: '100%', height: '100%', filter: 'drop-shadow(0 30px 40px rgba(6,48,63,.25))' }} /><span data-shine="" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 50%, rgba(255,255,255,0) 60%)', backgroundSize: '260% 100%', backgroundPosition: '130% 0', mixBlendMode: 'soft-light', WebkitMaskImage: `url(${ASSET}product/sachet-front.png)`, maskImage: `url(${ASSET}product/sachet-front.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%' }}></span></span>
+            <span style={{ position: 'absolute', height: '100%', aspectRatio: '370/1368', left: '4%', top: 0, transform: 'rotate(-3deg)', transformOrigin: 'bottom center' }}><img src={`${ASSET}product/sachet-front.png`} alt="PMOS Harmony sachet" style={{ display: 'block', width: '100%', height: '100%', filter: 'drop-shadow(0 30px 40px rgba(6,48,63,.25))' }} /><span data-shine="" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 50%, rgba(255,255,255,0) 60%)', backgroundSize: '260% 100%', backgroundPosition: '130% 0', mixBlendMode: 'soft-light', WebkitMaskImage: `url(${ASSET}product/sachet-front.png)`, maskImage: `url(${ASSET}product/sachet-front.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%' }}></span></span>
           </div>
           <span data-sheen="" aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none', opacity: 0, mixBlendMode: 'soft-light', background: 'radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.75) 0%, rgba(255,255,255,0) 45%)' }}></span>
         </Reveal>
       </div>
         <div style={{ gridColumn: 1, gridRow: 1, maxWidth: 620 }}>
-          <Reveal delay={120}><Heading as="h1" level="xl" style={{ margin: '0 0 28px', fontSize: 'clamp(40px,4.8vw,72px)', lineHeight: 1.02, letterSpacing: '-.01em' }}><Line>Designed around</Line><Line>the science of <em style={{ fontWeight: 400 }}>PCOS.</em></Line></Heading></Reveal>
+          <Reveal delay={120}><Heading as="h1" level="xl" style={{ margin: '0 0 28px', fontSize: 'clamp(40px,4.8vw,72px)', lineHeight: 1.02, letterSpacing: '-.01em' }}><Line>Designed around</Line><Line>the science of <em style={{ fontWeight: 400 }}>PMOS.</em></Line></Heading></Reveal>
           <Reveal delay={240}><p style={{ margin: 0, fontSize: 'var(--type-body-l)', fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', maxWidth: 440, textWrap: 'pretty' }}>A simple daily ritual with you in mind, made to complete the care you already have.</p></Reveal>
           <Reveal delay={360} style={{ display: 'flex', alignItems: 'center', gap: 32, marginTop: 36 }}>
             <Button onClick={onTest || onShop}>Discover your Biology</Button>
@@ -94,7 +94,7 @@ function Hero({ onShop, onTest }) {
 
 function TrustBand() {
   const { TrustPoint, Icon } = DS;
-  const pts = [['search', 'Entire Ingredient\nTransparency', 'Every Ingredient. Every amount. Clearly Disclosed'], ['flask-conical', 'Evidence,\nClearly Explained.', 'We distinguish established evidence from emerging research'], ['shield-check', 'Designed around\nPCOS Biology', 'Purpose-built nutritional support, informed by the biology of PCOS']];
+  const pts = [['search', 'Entire Ingredient\nTransparency', 'Every Ingredient. Every amount. Clearly Disclosed'], ['flask-conical', 'Evidence,\nClearly Explained.', 'We distinguish established evidence from emerging research'], ['shield-check', 'Designed around\nPMOS Biology', 'Purpose-built nutritional support, informed by the biology of PMOS']];
   return (
     <section style={{ background: 'var(--bg-inverse)', padding: '8px var(--gutter) 44px' }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 24 }}>
@@ -114,8 +114,8 @@ function BalanceSection({ onShop, onIngredient }) {
     <div data-pin="balance">
     <section data-pin-section="" data-crossfade="from-dark" style={{ position: 'relative', background: 'var(--bg-page)', padding: '168px var(--gutter) 56px', minHeight: '100vh', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr)', gap: 48, alignItems: 'center', overflow: 'hidden' }}>
       <Reveal>
-        <Heading level="l" style={{ margin: '0 0 22px' }}><Line>Built around</Line><Line>how PCOS</Line><Line><em style={{ fontWeight: 400 }}>actually works.</em></Line></Heading>
-        <p style={{ margin: '0 0 32px', fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', maxWidth: 380, textWrap: 'pretty' }}>PCOS isn’t one thing. It’s how your ovaries, insulin and stress signals talk to each other. Harmony is designed with that conversation in mind, in one simple daily ritual.</p>
+        <Heading level="l" style={{ margin: '0 0 22px' }}><Line>Built around</Line><Line>how PMOS</Line><Line><em style={{ fontWeight: 400 }}>actually works.</em></Line></Heading>
+        <p style={{ margin: '0 0 32px', fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', maxWidth: 380, textWrap: 'pretty' }}>PMOS isn’t one thing. It’s how your ovaries, insulin and stress signals talk to each other. Harmony is designed with that conversation in mind, in one simple daily ritual.</p>
         <Button onClick={onShop}>Be Part of Our Beginning</Button>
       </Reveal>
       <Reveal delay={150} y={30} style={{ justifySelf: 'center', position: 'relative' }}>
@@ -126,7 +126,7 @@ function BalanceSection({ onShop, onIngredient }) {
           <div data-flip-stage="" style={{ position: 'absolute', inset: 0, transformStyle: 'preserve-3d' }}>
             <div data-flip-card="" style={{ position: 'absolute', inset: 0, transformStyle: 'preserve-3d' }}>
               <div data-flip-front="" style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(5px)' }}>
-                <img src={`${ASSET}product/sachet-front.png`} alt="PCOS Harmony sachet" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+                <img src={`${ASSET}product/sachet-front.png`} alt="PMOS Harmony sachet" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
                 <span data-face-shade="" aria-hidden="true" style={{ position: 'absolute', inset: 0, background: '#04161D', opacity: 0, pointerEvents: 'none', WebkitMaskImage: `url(${ASSET}product/sachet-front.png)`, maskImage: `url(${ASSET}product/sachet-front.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%' }}></span>
               </div>
               <span data-flip-edge="" aria-hidden="true" style={{ position: 'absolute', top: '4%', bottom: '4%', left: 'calc(9% - 5px)', width: 10, transform: 'rotateY(90deg)', background: 'linear-gradient(180deg,#0B4A5E 0%,#06384B 45%,#1D3F6A 74%,#2C1B3A 100%)' }}></span>
@@ -167,13 +167,13 @@ function PhilosophySplit() {
           <g data-orbit-dot="" style={{ transformOrigin: '50px 50px' }}><circle cx="50" cy="2" r="0.9" fill="#0B4458"></circle></g>
         </svg>
         <div data-zoom="" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4%' }}>
-          <span data-split="left" style={{ position: 'relative', display: 'block', height: '100%', transform: 'rotate(-2deg)' }}><img src={`${ASSET}product/sachet-front.png`} alt="PCOS Harmony front" style={{ height: '100%', width: 'auto', display: 'block' }} /><span data-sweep="" aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(255,255,255,0) 38%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 62%)', backgroundSize: '250% 100%', backgroundPosition: '130% 0', mixBlendMode: 'soft-light', WebkitMaskImage: `url(${ASSET}product/sachet-front.png)`, maskImage: `url(${ASSET}product/sachet-front.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%', pointerEvents: 'none' }}></span></span>
-          <span data-split="right" style={{ position: 'relative', display: 'block', height: '92%', transform: 'rotate(3deg)' }}><img src={`${ASSET}product/sachet-back.png`} alt="PCOS Harmony back" style={{ height: '100%', width: 'auto', display: 'block' }} /><span data-sweep="" aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(255,255,255,0) 38%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 62%)', backgroundSize: '250% 100%', backgroundPosition: '130% 0', mixBlendMode: 'soft-light', WebkitMaskImage: `url(${ASSET}product/sachet-back.png)`, maskImage: `url(${ASSET}product/sachet-back.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%', pointerEvents: 'none' }}></span></span>
+          <span data-split="left" style={{ position: 'relative', display: 'block', height: '100%', transform: 'rotate(-2deg)' }}><img src={`${ASSET}product/sachet-front.png`} alt="PMOS Harmony front" style={{ height: '100%', width: 'auto', display: 'block' }} /><span data-sweep="" aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(255,255,255,0) 38%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 62%)', backgroundSize: '250% 100%', backgroundPosition: '130% 0', mixBlendMode: 'soft-light', WebkitMaskImage: `url(${ASSET}product/sachet-front.png)`, maskImage: `url(${ASSET}product/sachet-front.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%', pointerEvents: 'none' }}></span></span>
+          <span data-split="right" style={{ position: 'relative', display: 'block', height: '92%', transform: 'rotate(3deg)' }}><img src={`${ASSET}product/sachet-back.png`} alt="PMOS Harmony back" style={{ height: '100%', width: 'auto', display: 'block' }} /><span data-sweep="" aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(255,255,255,0) 38%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 62%)', backgroundSize: '250% 100%', backgroundPosition: '130% 0', mixBlendMode: 'soft-light', WebkitMaskImage: `url(${ASSET}product/sachet-back.png)`, maskImage: `url(${ASSET}product/sachet-back.png)`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%', pointerEvents: 'none' }}></span></span>
         </div>
       </div>
       <Reveal style={{ padding: 'var(--section-y) var(--gutter)', alignSelf: 'center' }}>
         <Heading level="m" style={{ margin: '0 0 24px' }}><Line>Nutrition</Line><Line><em style={{ fontWeight: 400 }}>with intention.</em></Line></Heading>
-        <p style={{ margin: '0 0 28px', fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', maxWidth: 400 }}>We bring scientific thinking and purposeful formulation together to rethink nutritional solutions. PCOS Harmony is where our story begins.</p>
+        <p style={{ margin: '0 0 28px', fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', maxWidth: 400 }}>We bring scientific thinking and purposeful formulation together to rethink nutritional solutions. PMOS Harmony is where our story begins.</p>
         <TextLink arrow href="Our Science.dc.html" onClick={(e) => { e.preventDefault(); const M = window.TRMMotion; M && M.navigateTo ? M.navigateTo('Our Science.dc.html') : (window.location.href = 'Our Science.dc.html'); }}>Our Science</TextLink>
       </Reveal>
     </section>
@@ -389,7 +389,7 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
   return (
     <main style={{ background: 'var(--bg-page)' }}>
       <div style={{ padding: '8px var(--gutter) 0', display: 'flex', gap: 10, ...small }}>
-        <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('Home'); }} style={{ color: 'var(--fg-2)' }}>Home</a><span>/</span><span>Waitlist</span><span>/</span><span style={{ color: 'var(--fg-1)' }}>PCOS Harmony</span>
+        <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('Home'); }} style={{ color: 'var(--fg-2)' }}>Home</a><span>/</span><span>Waitlist</span><span>/</span><span style={{ color: 'var(--fg-1)' }}>PMOS Harmony</span>
       </div>
       <section style={{ padding: '32px var(--gutter) var(--section-y)', display: 'grid', gridTemplateColumns: '88px minmax(0,1.1fr) minmax(0,1fr)', gap: 32, alignItems: 'start' }}>
         <Reveal anim="stagger" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -397,7 +397,7 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
         </Reveal>
         <div data-tilt="" data-tilt-max="4" data-fly-src="" tabIndex={0} aria-label="Product gallery, use arrow keys" onKeyDown={(e) => { if (e.key === 'ArrowRight') go(shot + 1); if (e.key === 'ArrowLeft') go(shot - 1); }} onPointerDown={(e) => { swipe.current = e.clientX; }} onPointerUp={(e) => { if (swipe.current == null) return; const dx = e.clientX - swipe.current; swipe.current = null; if (Math.abs(dx) > 40) go(shot + (dx < 0 ? 1 : -1)); }} style={{ position: 'relative', aspectRatio: '4/5', overflow: 'hidden', background: 'var(--bg-sunken)', outline: 'none', touchAction: 'pan-y' }}>
           <span data-sheen="" aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none', opacity: 0, mixBlendMode: 'soft-light', background: 'radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255,255,255,.75) 0%, rgba(255,255,255,0) 45%)' }}></span>
-          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 55% at 50% 48%, var(--trm-ivory-50) 0%, var(--bg-sunken) 75%)' }}></div><img key={shot} src={`${ASSET}product/${shots[shot][0]}`} alt="PCOS Harmony" style={{ position: 'relative', width: '100%', height: '100%', objectFit: shots[shot][1], padding: shots[shot][1] === 'contain' ? '6% 10%' : 0, animation: `${dir > 0 ? 'pdpInR' : 'pdpInL'} 700ms var(--ease-out)`, pointerEvents: 'none', userSelect: 'none' }} draggable={false} />
+          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 55% at 50% 48%, var(--trm-ivory-50) 0%, var(--bg-sunken) 75%)' }}></div><img key={shot} src={`${ASSET}product/${shots[shot][0]}`} alt="PMOS Harmony" style={{ position: 'relative', width: '100%', height: '100%', objectFit: shots[shot][1], padding: shots[shot][1] === 'contain' ? '6% 10%' : 0, animation: `${dir > 0 ? 'pdpInR' : 'pdpInL'} 700ms var(--ease-out)`, pointerEvents: 'none', userSelect: 'none' }} draggable={false} />
           <div style={{ position: 'absolute', left: 20, right: 20, bottom: 18, zIndex: 4, display: 'flex', alignItems: 'center', justifyContent: 'space-between', pointerEvents: 'none' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 11, letterSpacing: '.18em', color: 'var(--fg-2)' }}>
               <span key={shot} style={{ display: 'inline-block', color: 'var(--fg-1)', animation: 'pdpNum 500ms var(--ease-out)' }}>{String(shot + 1).padStart(2, '0')}</span>
@@ -411,8 +411,8 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
         </div>
         <Reveal style={{ paddingTop: 12, maxWidth: 440 }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 14, fontSize: 11, letterSpacing: '.18em', whiteSpace: 'nowrap', maxWidth: '100%', textTransform: 'uppercase', color: 'var(--fg-1)' }}>The Right Molecule</span>
-          <Heading as="h1" level="l" style={{ margin: '0 0 14px' }}><Line>PCOS <em style={{ fontWeight: 400 }}>Harmony</em></Line></Heading>
-          <p style={{ margin: 0, fontSize: 15, fontWeight: 300, lineHeight: 1.65, color: 'var(--fg-2)' }}>A daily nutritional formula designed around the biology of PCOS.</p>
+          <Heading as="h1" level="l" style={{ margin: '0 0 14px' }}><Line>PMOS <em style={{ fontWeight: 400 }}>Harmony</em></Line></Heading>
+          <p style={{ margin: 0, fontSize: 15, fontWeight: 300, lineHeight: 1.65, color: 'var(--fg-2)' }}>A daily nutritional formula designed around the biology of PMOS.</p>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, margin: '26px 0' }}>
             <span style={{ fontFamily: 'var(--font-serif)', fontSize: 30, fontWeight: 500 }}>{inr(PRODUCT.price)}</span>
             <span style={{ ...small, fontSize: 14 }}>31-day supply</span>
@@ -468,7 +468,7 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
       <div aria-hidden={!barOn} style={{ position: 'fixed', left: '50%', bottom: 20, zIndex: 30, width: 'min(640px, calc(100% - 140px))', transform: `translate(-50%, ${barOn ? '0' : '140%'})`, visibility: barOn ? 'visible' : 'hidden', transition: barOn ? 'transform 520ms var(--ease-out), visibility 0s' : 'transform 420ms var(--ease-soft), visibility 0s linear 420ms', display: 'flex', alignItems: 'center', gap: 14, padding: '8px 8px 8px 12px', background: 'rgba(250,247,241,.9)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid var(--border-hairline)', borderRadius: 'var(--radius-2)', boxShadow: 'var(--shadow-float)' }}>
         <img src={`${ASSET}product/sachet-front.png`} alt="" style={{ height: 48, width: 'auto' }} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontFamily: 'var(--font-serif)', fontSize: 19, fontWeight: 500, lineHeight: 1.1 }}>PCOS <em style={{ fontWeight: 400 }}>Harmony</em></div>
+          <div style={{ fontFamily: 'var(--font-serif)', fontSize: 19, fontWeight: 500, lineHeight: 1.1 }}>PMOS <em style={{ fontWeight: 400 }}>Harmony</em></div>
           <div style={{ fontSize: 12, color: 'var(--fg-2)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{flavour} · 31 sachets · launching soon</div>
         </div>
         <span style={{ fontSize: 15, fontVariantNumeric: 'tabular-nums' }}>{inr(PRODUCT.price)}</span>
@@ -503,7 +503,7 @@ function BagDrawer({ open, items, onClose, onQty, onRemove }) {
             <div key={k} style={{ display: 'grid', gridTemplateColumns: '72px 1fr auto', gap: 16, padding: '20px 0', borderBottom: '1px solid var(--border-hairline)' }}>
               <div style={{ aspectRatio: '4/5', overflow: 'hidden', background: 'var(--bg-sunken)', padding: 6 }}><img src={`${ASSET}product/sachet-front.png`} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} /></div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20, fontWeight: 500 }}>PCOS <em style={{ fontWeight: 400 }}>Harmony</em></span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20, fontWeight: 500 }}>PMOS <em style={{ fontWeight: 400 }}>Harmony</em></span>
                 <span style={{ fontSize: 12, color: 'var(--fg-2)' }}>{it.flavour} · 31 sachets</span>
                 <div style={{ marginTop: 6 }}><QuantityStepper size="sm" value={it.qty} onChange={(v) => onQty(k, v)} /></div>
               </div>
@@ -635,7 +635,7 @@ function WaitlistForm({ source, answers, onDone, onSubmit = submitWaitlist, focu
   return (
     <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column' }}>
       <h2 id={titleId} style={{ ...tH, margin: '0 0 12px', fontSize: big ? 'clamp(36px,5.6vw,64px)' : 'clamp(32px,4.4vw,42px)' }}>Reserve your <em style={{ fontWeight: 400 }}>invitation.</em></h2>
-      <p style={{ margin: '0 0 24px', fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>Leave your name and email and we'll let you know the moment PCOS Harmony is ready to order.</p>
+      <p style={{ margin: '0 0 24px', fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>Leave your name and email and we'll let you know the moment PMOS Harmony is ready to order.</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <PrebookField id={titleId + '-name'} label="Your name" type="text" autoComplete="name" placeholder="First and last name" value={name} onChange={setName} onBlur={() => setTouched((t) => ({ ...t, name: !!name || t.name }))} error={touched.name && errs.name} inputRef={nameRef} delay={0} />
         <PrebookField id={titleId + '-email'} label="Email" type="email" autoComplete="email" placeholder="you@gmail.com" value={email} onChange={setEmail} onBlur={() => setTouched((t) => ({ ...t, email: !!email || t.email }))} error={touched.email && errs.email} inputRef={emailRef} delay={0} />
@@ -658,7 +658,7 @@ function FoundingCard({ number, headingRef, titleId = 'wl-title', showSachet = f
       <div style={{ minWidth: 0 }}>
         <p style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--fg-accent)' }}><Icon name="moon-star" size={14} stroke={1.2} />Founding Member No. <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtMember(number || 128)}</span></p>
         <h2 ref={headingRef} tabIndex={-1} id={titleId} style={{ ...tH, outline: 'none', margin: '14px 0 10px', fontSize: big ? 'clamp(36px,5.6vw,60px)' : 'clamp(30px,4vw,40px)' }}>You’re on the <em style={{ fontWeight: 400 }}>list.</em></h2>
-        <p style={{ margin: '0 0 14px', fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>We'll write to you the moment PCOS Harmony is ready.</p>
+        <p style={{ margin: '0 0 14px', fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>We'll write to you the moment PMOS Harmony is ready.</p>
         <button data-pb-link="" type="button" onClick={share} aria-live="polite" style={{ minHeight: 44, padding: 0, background: 'none', border: 0, fontFamily: 'var(--font-sans)', fontSize: 13, color: 'var(--fg-accent)', textDecoration: 'underline', textUnderlineOffset: 4, cursor: 'pointer' }}>{copied ? 'Link copied' : 'Share with a friend'}</button>
       </div>
     </div>
@@ -763,7 +763,7 @@ function WaitlistModal({ origin, onClose, onSubmit = submitWaitlist }) {
 
 const TEST_Q = [
   { tag: 'About you', q: 'What would you love to feel better about right now?', multi: true, opts: ['Feeling more energetic', 'Low stress / feel less anxious', 'Sleeping better', 'My skin / acne', 'Periods & cycle', 'Feeling comfortable in my body', 'Digestion & gut health', 'My overall health', 'I\u2019m doing pretty well right now'] },
-  { tag: 'Your health', q: 'Have you ever been diagnosed with PCOS / PCOD?', opts: ['Yes, formally diagnosed by a doctor', 'I suspect I have it, but not formally diagnosed', 'No', 'But I know a loved one'] },
+  { tag: 'Your health', q: 'Have you ever been diagnosed with PMOS / PCOD?', opts: ['Yes, formally diagnosed by a doctor', 'I suspect I have it, but not formally diagnosed', 'No', 'But I know a loved one'] },
   { tag: 'Your journey', q: 'What is the hardest part of your journey?', multi: true, opts: ['I don\u2019t know what actually works for me', 'I start, but can\u2019t stay consistent', 'I\u2019ve tried things but haven\u2019t seen results', 'It\u2019s difficult to find something I actually trust', 'It\u2019s too expensive', 'I don\u2019t have enough guidance', 'Honestly, I\u2019m just tired of trying things', 'Nothing in particular'] },
   { tag: 'Founding member', perks: [['4-year founder pricing protection', 'Your membership price won\u2019t increase for 4 years, even if our standard pricing does.'], ['4 years of access to the Right Molecule tracking platform', 'Track your cycle, symptoms, habits and progress as the platform develops.'], ['Direct founder feedback channel', 'Tell us what is working, what isn\u2019t, and what we should build next.']], q: 'Would you like us to reserve your Founding Member invitation?', opts: ['YES \u2014 Reserve my invitation', 'Tell me more first', 'Not for me'] },
 ];
@@ -883,7 +883,7 @@ function BlogScreen({ onJoin }) {
     <section data-screen-label="Blog" style={{ background: 'var(--bg-page)', padding: 'clamp(64px,9vw,120px) var(--gutter) var(--section-y)', minHeight: '70vh' }}>
       <Reveal style={{ maxWidth: 640, marginBottom: 'clamp(48px,6vw,80px)' }}>
         <Heading as="h1" level="xl" style={{ margin: '0 0 20px' }}><Line>Blog</Line></Heading>
-        <p style={{ margin: 0, fontSize: 'var(--type-body-l)', fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>Notes on PCOS, nutrition and the science behind what we make.</p>
+        <p style={{ margin: 0, fontSize: 'var(--type-body-l)', fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>Notes on PMOS, nutrition and the science behind what we make.</p>
       </Reveal>
       {posts.length ? (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))', gap: 'clamp(32px,4vw,56px) clamp(24px,3vw,40px)' }}>
@@ -1005,9 +1005,21 @@ function TRMSite({ page, onRoute, children }) {
   };
   const count = bag.reduce((s, i) => s + i.qty, 0);
   React.useEffect(() => { const id = requestAnimationFrame(() => { const M = window.TRMMotion; if (M && M.config && M.config.header) { M.config.header.solidBg = 'rgba(243,238,228,0.5)'; M.config.header.blur = Math.max(M.config.header.blur || 0, 18); } M && M.init(); }); return () => cancelAnimationFrame(id); }, [route]);
+  const [navHidden, setNavHidden] = React.useState(false);
+  React.useEffect(() => {
+    let lastY = window.scrollY, mouseTop = false, raf = 0;
+    const update = () => { raf = 0; const y = window.scrollY; const down = y > lastY + 4, up = y < lastY - 4;
+      if (y < 120 || mouseTop) setNavHidden(false); else if (down) setNavHidden(true); else if (up) setNavHidden(false);
+      if (down || up) lastY = y; };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const onMove = (e) => { const t = e.clientY < Math.max(100, window.innerHeight * 0.12); if (t === mouseTop) return; mouseTop = t; if (t) setNavHidden(false); else if (window.scrollY >= 120) setNavHidden(true); };
+    const onFocus = (e) => { if (e.target.closest && e.target.closest('[data-anim="header"]')) setNavHidden(false); };
+    window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('mousemove', onMove, { passive: true }); document.addEventListener('focusin', onFocus);
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('mousemove', onMove); document.removeEventListener('focusin', onFocus); if (raf) cancelAnimationFrame(raf); };
+  }, []);
   return (
     <div key={route} data-screen-label={route} onClickCapture={onLink}>
-      <div data-anim="header" data-solid={route === 'Home' ? '0' : '1'} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, borderBottom: '1px solid transparent' }}>
+      <div data-anim="header" data-solid={route === 'Home' ? '0' : '1'} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10, borderBottom: '1px solid transparent', translate: navHidden ? '0 -110%' : '0 0', transition: 'translate 420ms cubic-bezier(.23,1,.32,1)' }}>
         {!embedded && <WorkshopBanner />}
         {SITE_FULL ? <SiteHeader links={['Home', 'Products', 'Our Science', 'Our Story', 'Blog']} active={route} onNavigate={go} bagCount={0} brandMark onShop={openWL} transparent /> : <StoryHeader onNavigate={go} active={route} />}
       </div>

@@ -539,9 +539,9 @@ Object.assign(__ds_scope, { Button });
 try { (() => {
 function ProductCard({
   image,
-  name = 'PCOS',
+  name = 'PMOS',
   nameItalic = 'Harmony',
-  descriptor = 'Daily support for PCOS, built from the biology up',
+  descriptor = 'Daily support for PMOS, built from the biology up',
   meta = '31 sachets · Passion Fruit',
   price = '₹1,480',
   onAdd,
@@ -1404,7 +1404,7 @@ function BagDrawer({
       fontSize: 20,
       fontWeight: 500
     }
-  }, "PCOS ", /*#__PURE__*/React.createElement("em", {
+  }, "PMOS ", /*#__PURE__*/React.createElement("em", {
     style: {
       fontWeight: 400
     }
@@ -1613,7 +1613,7 @@ function Hero({
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: `${ASSET}product/sachet-front.png`,
-    alt: "PCOS Harmony sachet",
+    alt: "PMOS Harmony sachet",
     style: {
       display: 'block',
       width: '100%',
@@ -1816,7 +1816,7 @@ function BalanceSection({
       alignItems: 'center',
       overflow: 'hidden'
     }
-  }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(Eyebrow, null, "PCOS Harmony"), /*#__PURE__*/React.createElement(Heading, {
+  }, /*#__PURE__*/React.createElement(Reveal, null, /*#__PURE__*/React.createElement(Eyebrow, null, "PMOS Harmony"), /*#__PURE__*/React.createElement(Heading, {
     level: "l",
     style: {
       margin: '22px 0'
@@ -1918,7 +1918,7 @@ function BalanceSection({
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: `${ASSET}product/sachet-front.png`,
-    alt: "PCOS Harmony sachet",
+    alt: "PMOS Harmony sachet",
     style: {
       width: '100%',
       height: '100%',
@@ -2140,7 +2140,7 @@ function PhilosophySplit() {
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: `${ASSET}product/sachet-front.png`,
-    alt: "PCOS Harmony front",
+    alt: "PMOS Harmony front",
     style: {
       height: '100%',
       width: 'auto',
@@ -2172,7 +2172,7 @@ function PhilosophySplit() {
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: `${ASSET}product/sachet-back.png`,
-    alt: "PCOS Harmony back",
+    alt: "PMOS Harmony back",
     style: {
       height: '100%',
       width: 'auto',
@@ -2744,7 +2744,7 @@ function ProductScreen({
     style: {
       color: 'var(--fg-1)'
     }
-  }, "PCOS Harmony")), /*#__PURE__*/React.createElement("section", {
+  }, "PMOS Harmony")), /*#__PURE__*/React.createElement("section", {
     style: {
       padding: '32px var(--gutter) var(--section-y)',
       display: 'grid',
@@ -2830,7 +2830,7 @@ function ProductScreen({
   }), /*#__PURE__*/React.createElement("img", {
     key: shot,
     src: `${ASSET}product/${shots[shot][0]}`,
-    alt: "PCOS Harmony",
+    alt: "PMOS Harmony",
     style: {
       position: 'relative',
       width: '100%',
@@ -2928,7 +2928,7 @@ function ProductScreen({
     style: {
       margin: '18px 0 14px'
     }
-  }, /*#__PURE__*/React.createElement(Line, null, "PCOS ", /*#__PURE__*/React.createElement("em", {
+  }, /*#__PURE__*/React.createElement(Line, null, "PMOS ", /*#__PURE__*/React.createElement("em", {
     style: {
       fontWeight: 400
     }
@@ -3252,7 +3252,7 @@ function ProductScreen({
       fontWeight: 500,
       lineHeight: 1.1
     }
-  }, "PCOS ", /*#__PURE__*/React.createElement("em", {
+  }, "PMOS ", /*#__PURE__*/React.createElement("em", {
     style: {
       fontWeight: 400
     }
@@ -4785,10 +4785,10 @@ function Line({
 }
 const ASSET = '../../assets/';
 const PRODUCT = {
-  name: 'PCOS',
+  name: 'PMOS',
   italic: 'Harmony',
   price: 1480,
-  descriptor: 'Daily support for PCOS, built from the biology up',
+  descriptor: 'Daily support for PMOS, built from the biology up',
   flavours: ['Passion Fruit'],
   ingredients: [{
     icon: 'network',
