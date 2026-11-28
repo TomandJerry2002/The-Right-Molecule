@@ -54,14 +54,10 @@ details[open] .faq-plus{transform:rotate(45deg)}
 
 <div style="position:relative;background:var(--gradient-sachet-diag);">
 <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
-  <span style="position:absolute;left:-15%;top:-25%;width:min(70vw,900px);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-champagne) 22%, transparent), transparent);animation:trmDriftA 26s ease-in-out infinite alternate;will-change:transform;"></span>
-  <span style="position:absolute;right:-20%;top:10%;width:min(80vw,1000px);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-ocean-teal) 55%, transparent), transparent);animation:trmDriftB 32s ease-in-out infinite alternate;will-change:transform;"></span>
-  <span style="position:absolute;left:25%;bottom:-35%;width:min(60vw,780px);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side, color-mix(in oklch, var(--trm-aubergine) 45%, transparent), transparent);animation:trmDriftC 38s ease-in-out infinite alternate;will-change:transform;"></span>
 </div>
 <header style="background:transparent;color:var(--fg-on-inverse);position:relative;z-index:4;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:20px var(--gutter);">
   <a href="{{ storyUrl }}" target="_top" style="justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--fg-on-inverse);text-decoration:none;font-size:14px;letter-spacing:var(--tracking-button);transition:color .2s ease;" style-hover="color:var(--trm-champagne)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg><span>Our Story</span></a>
   <a href="{{ storyUrl }}" target="_top" aria-label="The Right Molecule · Our Story" style="display:inline-flex;flex-direction:column;color:var(--fg-on-inverse);text-decoration:none;font-family:var(--font-logo);font-weight:300;font-size:14px;line-height:1.28;letter-spacing:var(--tracking-logo);text-transform:lowercase;" style-hover="color:var(--fg-on-inverse)"><span>the right</span><span>molecule</span></a>
-  <p style="justify-self:end;margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);white-space:nowrap;">Edition 001</p>
 </header>
 <nav aria-label="On this page" style="position:fixed;top:12px;left:50%;z-index:150;width:max-content;max-width:calc(100% - 24px);transform:translate(-50%,{{ navY }});opacity:{{ navOp }};pointer-events:{{ navPe }};transition:transform 320ms cubic-bezier(.23,1,.32,1), opacity 200ms ease;display:flex;align-items:center;gap:4px;padding:5px;border-radius:var(--radius-pill);background:color-mix(in oklch, var(--trm-ivory) 88%, transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border-hairline);box-shadow:0 10px 30px rgba(6,48,63,.14);overflow-x:auto;scrollbar-width:none;">
   <a href="{{ storyUrl }}" target="_top" aria-label="Back to Our Story" style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:var(--fg-1);text-decoration:none;transition:background-color .2s ease;" style-hover="background:var(--bg-sunken);color:var(--fg-1)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></a>
@@ -75,207 +71,125 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <section id="top" data-screen-label="1 Hero" style="background:transparent;color:var(--fg-on-inverse);position:relative;z-index:1;padding:clamp(40px,6vw,88px) var(--gutter) clamp(112px,11vw,160px);">
   <div style="max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px clamp(40px,6vw,96px);align-items:center;">
     <div style="display:flex;flex-direction:column;gap:28px;animation:trmHeroOut linear both;animation-timeline:view();animation-range:exit 0% exit 100%;">
-      <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 100ms both;">InnerAtlas × Plyolife · Beyond the Period</p>
-      <h1 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);letter-spacing:-.015em;text-wrap:balance;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 160ms both;">Is this normal,<br><em style="font-style:italic;color:var(--trm-champagne);">or have I just gotten used to it?</em></h1>
+      <p style="margin:0;font-size:14px;color:var(--trm-champagne);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 100ms both;">InnerAtlas × Plyolife · Beyond the Period</p>
+      <h1 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);text-wrap:balance;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 160ms both;">Is this normal,<br><span style="font-style:normal;color:var(--trm-champagne);">or have I just gotten used to it?</span></h1>
       <div style="display:flex;flex-direction:column;gap:10px;max-width:46ch;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 220ms both;">
         <p style="margin:0;font-size:var(--type-body-l);line-height:var(--leading-body);text-wrap:pretty;">Irregular periods. Changing cravings. Unpredictable energy. Conflicting health advice.</p>
         <p style="margin:0;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);text-wrap:pretty;">Spend 70 minutes making sense of your hormonal health and discovering practical habits that fit your everyday life.</p>
       </div>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 280ms both;">
-        <a href="#founding" style="display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 32px;background:var(--trm-ivory);color:var(--trm-ocean-teal);text-decoration:none;font-size:17px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);box-shadow:var(--shadow-product);transition:background-color .2s ease, transform 160ms cubic-bezier(.23,1,.32,1);" style-hover="background:var(--trm-champagne);color:var(--trm-ocean-teal)" style-active="transform:scale(.97)">Reserve my seat · From ₹138</a>
-        <span style="font-size:14px;color:var(--fg-on-inverse-2);">With or without a PMOS diagnosis.</span>
-      </div>
     </div>
-    <div style="animation:trmHeroOut2 linear both;animation-timeline:view();animation-range:exit 0% exit 100%;"><div style="display:flex;flex-direction:column;border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);background:color-mix(in oklch, var(--trm-petrol-deep) 40%, transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 340ms both;">
+    <div style="display:flex;flex-direction:column;gap:20px;animation:trmHeroOut2 linear both;animation-timeline:view();animation-range:exit 0% exit 100%;"><div style="display:flex;flex-direction:column;border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);background:color-mix(in oklch, var(--trm-petrol-deep) 40%, transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:trmUp .7s cubic-bezier(.23,1,.32,1) 340ms both;">
       <dl style="margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));">
-        <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Date</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">Sun, 29 Nov</dd></div>
-        <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);border-left:1px solid var(--border-on-inverse);"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Time</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">6:00 PM IST</dd></div>
-        <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);border-left:1px solid var(--border-on-inverse);"><dt style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Format</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">Live · 70 min</dd></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);"><dt style="font-size:14px;color:var(--fg-on-inverse-2);">Date</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">Sun, 29 Nov</dd></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);border-left:1px solid var(--border-on-inverse);"><dt style="font-size:14px;color:var(--fg-on-inverse-2);">Time</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">6:00 PM IST</dd></div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px clamp(14px,2vw,22px);border-left:1px solid var(--border-on-inverse);"><dt style="font-size:14px;color:var(--fg-on-inverse-2);">Format</dt><dd style="margin:0;font-family:var(--font-serif);font-size:clamp(17px,1.5vw,20px);line-height:1.2;">Live · 70 min</dd></div>
       </dl>
       <div style="padding:24px clamp(18px,2.4vw,28px);border-top:1px solid var(--border-on-inverse);display:flex;flex-direction:column;gap:14px;">
-        <p style="margin:0;font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">You'll leave able to</p>
+        <p style="margin:0;font-size:14px;color:var(--fg-on-inverse-2);">You'll leave able to</p>
         <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.45;">
           <li style="display:flex;gap:12px;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--trm-champagne)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Know what's typical for your menstrual cycle.</span></li>
           <li style="display:flex;gap:12px;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--trm-champagne)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Understand how hormones, food and lifestyle interact.</span></li>
           <li style="display:flex;gap:12px;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--trm-champagne)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Discover 10 small habits you can start practising.</span></li>
         </ul>
       </div>
-    </div></div>
+    </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;animation:trmUp .7s cubic-bezier(.23,1,.32,1) 400ms both;">
+        <a href="#founding" style="display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 32px;background:var(--trm-ivory);color:var(--trm-ocean-teal);text-decoration:none;font-size:17px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);box-shadow:var(--shadow-product);transition:background-color .2s ease, transform 160ms cubic-bezier(.23,1,.32,1);" style-hover="background:var(--trm-champagne);color:var(--trm-ocean-teal)" style-active="transform:scale(.97)">Reserve my seat · From ₹138</a>
+        <span style="font-size:14px;color:var(--fg-on-inverse-2);">With or without a PMOS diagnosis.</span>
+      </div>
+    </div>
   </div>
 </section>
 </div>
 
-<section id="speakers" data-screen-label="2 Your facilitators" style="scroll-margin-top:76px;position:relative;z-index:5;margin-top:clamp(-72px,-6vw,-40px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;box-shadow:0 -18px 40px rgba(6,48,63,.18);background:var(--bg-page);padding:var(--section-y) var(--gutter);">
-  <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(32px,4vw,56px);">
-    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
-      <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Your facilitators</p>
-      <h2 style="margin:0;max-width:22ch;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">A molecular biologist × <em style="font-style:italic;color:var(--fg-accent);">a lifestyle coach</em></h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:20px;">
-      <div role="button" tabIndex="0" aria-haspopup="dialog" aria-label="Read about Aaron Thomas" onClick="{{ openLeft }}" onKeyDown="{{ keyLeft }}" style="cursor:pointer;display:flex;flex-direction:column;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);overflow:hidden;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:entry 8% cover 32%;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)">
-        <div style="position:relative;aspect-ratio:4/5;background:transparent;border-bottom:1px solid var(--border-hairline);padding-top:24px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
-          <img src="assets/aaron-portrait.png" alt="Aaron Thomas" style="position:relative;display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;">
-        </div>
-        <div style="display:flex;flex-direction:column;gap:12px;padding:clamp(24px,3vw,32px);">
-          <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Molecular Biologist · Founder, TRM</p>
-          <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(30px,2.6vw,38px);line-height:1.1;">Aaron Thomas</h3>
-          <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:21px;line-height:1.3;color:var(--fg-2);">Making the invisible understandable.</p>
-          <span style="margin-top:6px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding-bottom:2px;border-bottom:1px solid var(--fg-accent);font-size:15px;letter-spacing:var(--tracking-button);color:var(--fg-accent);">Read their story <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </div>
-      </div>
-      <div role="button" tabIndex="0" aria-haspopup="dialog" aria-label="Read about David" onClick="{{ openRight }}" onKeyDown="{{ keyRight }}" style="cursor:pointer;display:flex;flex-direction:column;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);overflow:hidden;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:entry 14% cover 32%;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)">
-        <div style="position:relative;aspect-ratio:4/5;background:transparent;border-bottom:1px solid var(--border-hairline);padding-top:24px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
-          <img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;">
-        </div>
-        <div style="display:flex;flex-direction:column;gap:12px;padding:clamp(24px,3vw,32px);">
-          <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Lifestyle Coach · Plyolife</p>
-          <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(30px,2.6vw,38px);line-height:1.1;">David</h3>
-          <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:21px;line-height:1.3;color:var(--fg-2);">Making the understandable achievable.</p>
-          <span style="margin-top:6px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding-bottom:2px;border-bottom:1px solid var(--fg-accent);font-size:15px;letter-spacing:var(--tracking-button);color:var(--fg-accent);">Read their story <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="pain" data-screen-label="3 Pain points" style="--from:var(--bg-page);animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%;scroll-margin-top:76px;background:var(--trm-aubergine);color:var(--fg-on-inverse);padding:var(--section-y) var(--gutter);">
-  <div style="max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px clamp(40px,6vw,96px);align-items:start;">
+<section id="pain" data-screen-label="2 Pain points" style="scroll-margin-top:0;position:relative;z-index:5;margin-top:clamp(-72px,-6vw,-40px);border-radius:clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0;box-shadow:0 -18px 40px rgba(6,48,63,.18);min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;align-items:center;background:color-mix(in oklch, var(--trm-champagne) 20%, var(--trm-ivory));color:var(--fg-1);padding:var(--section-y) var(--gutter);">
+  <div style="width:100%;max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px clamp(40px,6vw,96px);align-items:start;">
     <div style="display:flex;flex-direction:column;gap:18px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
-      <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">Sound familiar?</p>
-      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Signals you’ve <em style="font-style:italic;color:var(--trm-champagne);">learned to live with.</em></h2>
-      <p style="margin:0;max-width:40ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);text-wrap:pretty;">With or without a PMOS diagnosis, these patterns are common. They are also worth understanding.</p>
-      <div aria-live="polite" style="margin-top:18px;padding:24px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-2);display:flex;flex-direction:column;gap:16px;">
+      <p style="margin:0;font-size:var(--type-eyebrow);color:var(--trm-aubergine);">Sound familiar?</p>
+      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Signals you’ve <span style="font-style:normal;color:var(--trm-aubergine);">learned to live with</span></h2>
+      <p style="margin:0;max-width:40ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-2);text-wrap:pretty;">With or without a PMOS diagnosis, these patterns are common. They are also worth understanding.</p>
+      <div aria-live="polite" style="margin-top:18px;padding:24px;border:1px solid var(--border-strong);border-radius:var(--radius-2);display:flex;flex-direction:column;gap:16px;">
         <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;">
           <sc-for list="{{ painBars }}" as="b" hint-placeholder-count="6"><span style="display:block;height:4px;border-radius:var(--radius-pill);background:{{ b.bg }};transition:background-color .25s ease;"></span></sc-for>
         </div>
-        <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);font-variant-numeric:tabular-nums;">{{ painCount }}</p>
+        <p style="margin:0;font-size:14px;color:var(--trm-aubergine);font-variant-numeric:tabular-nums;">{{ painCount }}</p>
         <p style="margin:0;font-family:var(--font-serif);font-size:clamp(21px,2vw,25px);line-height:1.3;text-wrap:pretty;">{{ painMsg }}</p>
         <sc-if value="{{ painAny }}" hint-placeholder-val="{{ false }}">
-          <a href="#value" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;background:var(--trm-ivory);color:var(--trm-aubergine);text-decoration:none;font-size:14px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);animation:wPop .3s cubic-bezier(.23,1,.32,1) both;transition:transform .16s ease-out, background-color .2s ease;" style-hover="background:var(--trm-champagne);color:var(--trm-aubergine)" style-active="transform:scale(.97)">See what changes in 70 minutes <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="#value" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;background:var(--trm-aubergine);color:var(--trm-ivory);text-decoration:none;font-size:14px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);animation:wPop .3s cubic-bezier(.23,1,.32,1) both;transition:transform .16s ease-out, background-color .2s ease;" style-hover="background:var(--trm-champagne);color:var(--trm-aubergine)" style-active="transform:scale(.97)">See what changes in 70 minutes <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </sc-if>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:20px;">
       <sc-if value="{{ painAsking }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
-          <p id="pain-q" style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:clamp(22px,2vw,26px);line-height:1.2;color:var(--trm-champagne);">{{ painPrompt }}</p>
-          <span style="font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);font-variant-numeric:tabular-nums;white-space:nowrap;">{{ painStep }}</span>
+          <p id="pain-q" style="margin:0;font-family:var(--font-serif);font-size:clamp(22px,2vw,26px);line-height:1.2;color:var(--trm-aubergine);">{{ painPrompt }}</p>
+          <span style="font-size:14px;color:var(--fg-2);font-variant-numeric:tabular-nums;white-space:nowrap;">{{ painStep }}</span>
         </div>
         <div style="position:relative;padding-bottom:16px;">
-          <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;bottom:0;border-radius:var(--radius-2);border:1px solid var(--border-on-inverse);transform:translateY(16px) scale(.92);transform-origin:bottom center;"></div>
-          <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;bottom:8px;border-radius:var(--radius-2);background:color-mix(in oklch, var(--trm-ivory) 22%, transparent);transform:translateY(8px) scale(.96);transform-origin:bottom center;"></div>
-          <div aria-live="polite" aria-labelledby="pain-q" style="position:relative;min-height:clamp(220px,22vw,280px);padding:clamp(26px,3vw,36px);border-radius:var(--radius-2);background:var(--trm-ivory);color:var(--trm-aubergine);box-shadow:var(--shadow-product);display:flex;flex-direction:column;justify-content:space-between;gap:24px;opacity:{{ pOp }};transform:{{ pT }};transition:{{ pTr }};">
-            <span style="font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;">{{ painCur.tag }}</span>
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;bottom:0;border-radius:var(--radius-2);border:1px solid var(--border-strong);transform:translateY(16px) scale(.92);transform-origin:bottom center;"></div>
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;bottom:8px;border-radius:var(--radius-2);background:color-mix(in oklch, var(--trm-aubergine) 10%, transparent);transform:translateY(8px) scale(.96);transform-origin:bottom center;"></div>
+          <div aria-live="polite" aria-labelledby="pain-q" style="position:relative;min-height:clamp(220px,22vw,280px);padding:clamp(26px,3vw,36px);border-radius:var(--radius-2);background:var(--trm-aubergine);color:var(--trm-ivory);box-shadow:var(--shadow-product);display:flex;flex-direction:column;justify-content:space-between;gap:24px;opacity:{{ pOp }};transform:{{ pT }};transition:{{ pTr }};">
+            <span style="font-size:14px;">{{ painCur.tag }}</span>
             <p style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.15;text-wrap:balance;">“{{ painCur.quote }}”</p>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
           <button type="button" onClick="{{ painYes }}" style="min-height:56px;padding:0 20px;border:0;border-radius:var(--radius-1);background:var(--trm-champagne);color:var(--trm-aubergine);font-family:var(--font-sans);font-size:16px;letter-spacing:var(--tracking-button);cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1), background-color 200ms ease;" style-hover="background:var(--trm-ivory)" style-active="transform:scale(.97)">Yes, that's me</button>
-          <button type="button" onClick="{{ painNo }}" style="min-height:56px;padding:0 20px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-1);background:transparent;color:var(--fg-on-inverse);font-family:var(--font-sans);font-size:16px;letter-spacing:var(--tracking-button);cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1), border-color 200ms ease;" style-hover="border-color:var(--fg-on-inverse)" style-active="transform:scale(.97)">Not really</button>
+          <button type="button" onClick="{{ painNo }}" style="min-height:56px;padding:0 20px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:transparent;color:var(--fg-1);font-family:var(--font-sans);font-size:16px;letter-spacing:var(--tracking-button);cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1), border-color 200ms ease;" style-hover="border-color:var(--fg-1)" style-active="transform:scale(.97)">Not really</button>
         </div>
         <sc-if value="{{ painCanBack }}" hint-placeholder-val="{{ false }}">
-          <button type="button" onClick="{{ painBack }}" style="align-self:flex-start;min-height:44px;padding:0;border:0;background:none;font-family:var(--font-sans);font-size:14px;color:var(--fg-on-inverse-2);cursor:pointer;border-bottom:1px solid var(--border-on-inverse);">← Previous</button>
+          <button type="button" onClick="{{ painBack }}" style="align-self:flex-start;min-height:44px;padding:0;border:0;background:none;font-family:var(--font-sans);font-size:14px;color:var(--fg-2);cursor:pointer;border-bottom:1px solid var(--border-strong);">← Previous</button>
         </sc-if>
       </sc-if>
       <sc-if value="{{ painDone }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:16px;animation:trmUp .5s cubic-bezier(.23,1,.32,1) both;">
-          <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:clamp(22px,2vw,26px);line-height:1.2;color:var(--trm-champagne);">{{ painDoneTitle }}</p>
+          <p style="margin:0;font-family:var(--font-serif);font-size:clamp(22px,2vw,26px);line-height:1.2;color:var(--trm-aubergine);">{{ painDoneTitle }}</p>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <sc-for list="{{ painPicked }}" as="pk" hint-placeholder-count="2">
-              <div style="display:flex;align-items:flex-start;gap:12px;padding:16px 18px;border-radius:var(--radius-2);background:var(--trm-ivory);color:var(--trm-aubergine);">
+              <div style="display:flex;align-items:flex-start;gap:12px;padding:16px 18px;border-radius:var(--radius-2);background:var(--trm-aubergine);color:var(--trm-ivory);">
                 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
                 <span style="font-family:var(--font-serif);font-size:19px;line-height:1.3;">“{{ pk.quote }}”</span>
               </div>
             </sc-for>
           </div>
-          <button type="button" onClick="{{ painRestart }}" style="align-self:flex-start;min-height:44px;padding:0;border:0;background:none;font-family:var(--font-sans);font-size:14px;color:var(--fg-on-inverse-2);cursor:pointer;border-bottom:1px solid var(--border-on-inverse);">Start over</button>
+          <button type="button" onClick="{{ painRestart }}" style="align-self:flex-start;min-height:44px;padding:0;border:0;background:none;font-family:var(--font-sans);font-size:14px;color:var(--fg-2);cursor:pointer;border-bottom:1px solid var(--border-strong);">Start over</button>
         </div>
       </sc-if>
     </div>
   </div>
 </section>
 
-<section id="value" ref="{{ valueRef }}" data-screen-label="4 Value proposition" style="scroll-margin-top:76px;position:relative;overflow:hidden;background:color-mix(in oklch, var(--trm-champagne) 18%, var(--trm-ivory));--from:var(--trm-aubergine);animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%;color:var(--fg-1);padding:var(--section-y) var(--gutter);">
+<section id="value" ref="{{ valueRef }}" data-screen-label="3 Value proposition" style="scroll-margin-top:76px;position:relative;overflow:hidden;background:var(--trm-ivory);--from:color-mix(in oklch, var(--trm-champagne) 20%, var(--trm-ivory));animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%;color:var(--fg-1);padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,5vw,72px);timeline-scope:--trmRows;">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:24px clamp(32px,5vw,80px);align-items:end;">
       <div style="display:flex;align-items:flex-end;gap:clamp(12px,2vw,24px);">
-        <span aria-hidden="true" style="font-family:var(--font-serif);font-weight:500;font-size:clamp(150px,22vw,320px);line-height:.78;letter-spacing:-.04em;color:var(--trm-ocean-teal);animation:trmStair .6s cubic-bezier(.23,1,.32,1) 0ms both;animation-play-state:{{ valuePlay }};">70</span>
-        <span style="padding-bottom:.6em;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;line-height:1.6;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 110ms both;animation-play-state:{{ valuePlay }};">Minutes<br>that change<br>what you know</span>
+        <span aria-hidden="true" style="font-family:var(--font-serif);font-weight:500;font-size:clamp(150px,22vw,320px);line-height:.78;color:var(--trm-ocean-teal);animation:trmStair .6s cubic-bezier(.23,1,.32,1) 0ms both;animation-play-state:{{ valuePlay }};">70</span>
+        <span style="padding-bottom:.6em;font-size:var(--type-eyebrow);line-height:1.6;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 110ms both;animation-play-state:{{ valuePlay }};">Minutes<br>that change<br>what you know</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:18px;">
-        <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-ocean-teal);animation:trmStair .6s cubic-bezier(.23,1,.32,1) 220ms both;animation-play-state:{{ valuePlay }};">What changes in 70 minutes</p>
-        <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);letter-spacing:-.015em;text-wrap:balance;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 330ms both;animation-play-state:{{ valuePlay }};">Science meets <em style="font-style:italic;color:var(--trm-ocean-teal);">everyday life.</em></h2>
+        <p style="margin:0;font-size:var(--type-eyebrow);color:var(--trm-ocean-teal);animation:trmStair .6s cubic-bezier(.23,1,.32,1) 220ms both;animation-play-state:{{ valuePlay }};">What changes in 70 minutes</p>
+        <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-xl);line-height:var(--leading-tight);text-wrap:balance;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 330ms both;animation-play-state:{{ valuePlay }};">Science meets <span style="font-style:normal;color:var(--trm-ocean-teal);">everyday life</span></h2>
         <p style="margin:0;max-width:44ch;font-size:var(--type-body-l);line-height:var(--leading-body);text-wrap:pretty;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 440ms both;animation-play-state:{{ valuePlay }};">Spend 70 minutes making sense of your hormonal health and discovering practical habits that fit your everyday life.</p>
       </div>
     </div>
 <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:calc(-1 * clamp(20px,2.5vw,40px));">
       <div role="img" aria-label="70-minute timeline: Understand 10 min, Connect 30 min, Act 30 min" style="position:relative;height:6px;border-radius:var(--radius-pill);background:color-mix(in oklch, var(--fg-1) 12%, transparent);">
-        <span style="position:absolute;inset:0;border-radius:var(--radius-pill);background:var(--trm-ocean-teal);transform-origin:left center;animation:trmBar linear both;animation-timeline:--trmRows;animation-range:entry 70% exit 45%;"></span>
-        <span aria-hidden="true" style="position:absolute;top:-4px;bottom:-4px;left:14.29%;width:2px;background:var(--fg-1);"></span>
-        <span aria-hidden="true" style="position:absolute;top:-4px;bottom:-4px;left:57.14%;width:2px;background:var(--fg-1);"></span>
+        <span style="position:absolute;top:0;bottom:0;left:0;width:calc((100% - 64px) * .2 + 8px);border-radius:var(--radius-pill);background:var(--trm-ocean-teal);transform-origin:left center;animation:trmBar linear both;animation-timeline:--trmRows;animation-range:entry 70% exit 45%;"></span>
+        <span aria-hidden="true" style="position:absolute;top:-4px;bottom:-4px;left:calc((100% - 64px) * .2 + 8px);width:2px;background:var(--fg-1);"></span>
+        <span aria-hidden="true" style="position:absolute;top:-4px;bottom:-4px;left:calc((100% - 64px) * .6 + 40px);width:2px;background:var(--fg-1);"></span>
       </div>
-      <div aria-hidden="true" style="position:relative;height:16px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;font-variant-numeric:tabular-nums;color:var(--fg-2);"><span style="position:absolute;left:0%;transform:translateX(0);white-space:nowrap;">0</span><span style="position:absolute;left:14.29%;transform:translateX(-50%);white-space:nowrap;">10 min</span><span style="position:absolute;left:57.14%;transform:translateX(-50%);white-space:nowrap;">40 min</span><span style="position:absolute;left:100%;transform:translateX(-100%);white-space:nowrap;">70 min</span></div>
+      <div aria-hidden="true" style="position:relative;height:16px;font-size:14px;font-variant-numeric:tabular-nums;color:var(--fg-2);"><span style="position:absolute;left:0%;transform:translateX(0);white-space:nowrap;">0</span><span style="position:absolute;left:calc((100% - 64px) * .2 + 8px);transform:translateX(-50%);white-space:nowrap;">10 min</span><span style="position:absolute;left:calc((100% - 64px) * .6 + 40px);transform:translateX(-50%);white-space:nowrap;">40 min</span><span style="position:absolute;left:100%;transform:translateX(-100%);white-space:nowrap;">70 min</span></div>
     </div>
-    <ol style="list-style:none;margin:0;padding:0;border-top:2px solid var(--fg-1);view-timeline-name:--trmRows;">
-      <li style="display:grid;grid-template-columns:{{ valueCols }};gap:12px clamp(24px,4vw,56px);align-items:center;padding:clamp(24px,3vw,36px) 0;border-bottom:1px solid var(--fg-1);">
-        <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;font-variant-numeric:tabular-nums;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 550ms both;animation-play-state:{{ valuePlay }};">
-          <span style="color:var(--trm-ocean-teal);">01 · 10 min</span><span>With Aaron</span>
-        </div>
-        <p style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(56px,9vw,132px);line-height:.95;letter-spacing:-.03em;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 660ms both;animation-play-state:{{ valuePlay }};">Understand<span style="color:var(--trm-ocean-teal);">.</span></p>
-        <div style="display:flex;flex-direction:column;gap:8px;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 770ms both;animation-play-state:{{ valuePlay }};">
-          <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:17px;line-height:1.4;"><span style="text-decoration:line-through;text-decoration-thickness:1px;">“Is this normal?”</span></p>
-          <p style="margin:0;font-size:clamp(19px,1.6vw,22px);font-weight:500;line-height:1.35;text-wrap:pretty;">Know what’s typical for your menstrual cycle.</p>
-        </div>
-      </li>
-      <li style="display:grid;grid-template-columns:{{ valueCols }};gap:12px clamp(24px,4vw,56px);align-items:center;padding:clamp(24px,3vw,36px) 0;border-bottom:1px solid var(--fg-1);">
-        <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;font-variant-numeric:tabular-nums;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 880ms both;animation-play-state:{{ valuePlay }};">
-          <span style="color:var(--trm-ocean-teal);">02 · 30 min</span><span>With David</span>
-        </div>
-        <p style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(56px,9vw,132px);line-height:.95;letter-spacing:-.03em;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 990ms both;animation-play-state:{{ valuePlay }};">Connect<span style="color:var(--trm-ocean-teal);">.</span></p>
-        <div style="display:flex;flex-direction:column;gap:8px;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 1100ms both;animation-play-state:{{ valuePlay }};">
-          <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:17px;line-height:1.4;"><span style="text-decoration:line-through;text-decoration-thickness:1px;">“Every source says something different.”</span></p>
-          <p style="margin:0;font-size:clamp(19px,1.6vw,22px);font-weight:500;line-height:1.35;text-wrap:pretty;">Understand how hormones, food and lifestyle interact.</p>
-        </div>
-      </li>
-      <li style="display:grid;grid-template-columns:{{ valueCols }};gap:12px clamp(24px,4vw,56px);align-items:center;padding:clamp(24px,3vw,36px) 0;border-bottom:1px solid var(--fg-1);">
-        <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;font-variant-numeric:tabular-nums;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 1210ms both;animation-play-state:{{ valuePlay }};">
-          <span style="color:var(--trm-ocean-teal);">03 · 30 min</span><span>With Aaron & David</span>
-        </div>
-        <p style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(56px,9vw,132px);line-height:.95;letter-spacing:-.03em;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 1320ms both;animation-play-state:{{ valuePlay }};">Act<span style="color:var(--trm-ocean-teal);">.</span></p>
-        <div style="display:flex;flex-direction:column;gap:8px;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 1430ms both;animation-play-state:{{ valuePlay }};">
-          <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:17px;line-height:1.4;"><span style="text-decoration:line-through;text-decoration-thickness:1px;">“Where do I even start?”</span></p>
-          <p style="margin:0;font-size:clamp(19px,1.6vw,22px);font-weight:500;line-height:1.35;text-wrap:pretty;">Discover 10 small habits you can start practising.</p>
-        </div>
-      </li>
-    </ol>
-    <a href="#founding" style="align-self:center;display:inline-flex;align-items:center;gap:14px;min-height:52px;padding:0 24px;background:var(--fg-1);color:var(--trm-champagne);text-decoration:none;border-radius:var(--radius-1);transition:transform 160ms cubic-bezier(.23,1,.32,1), background-color 200ms ease;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 1540ms both;animation-play-state:{{ valuePlay }};" style-hover="background:var(--trm-ocean-teal);color:var(--trm-ivory)" style-active="transform:scale(.97)">
-      <span style="font-size:15px;letter-spacing:var(--tracking-button);">Reserve my seat · From ₹138</span>
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-    </a>
-  </div>
-</section>
-
-<section id="kit" data-screen-label="5 Your take-home experience" style="--from:color-mix(in oklch, var(--trm-champagne) 18%, var(--trm-ivory));animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%;scroll-margin-top:76px;background:var(--bg-sunken);padding:var(--section-y) var(--gutter);">
-  <div style="max-width:var(--container);margin:0 auto;display:flex;flex-direction:column;gap:clamp(48px,6vw,80px);">
-    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
-      <p style="margin:0;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">InnerAtlas · Your take-home experience</p>
-      <h2 style="margin:0;max-width:20ch;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Understand the why, <em style="font-style:italic;color:var(--fg-accent);">leave with the how</em></h2>
-      <p style="margin:0;max-width:52ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-2);text-wrap:pretty;">70 minutes in three movements: understand your biology, rethink your habits, then turn it into a plan for your own week.</p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:{{ progCols }};gap:16px;align-items:stretch;">
+    <div id="kit" aria-hidden="true" style="scroll-margin-top:96px;height:0;margin-bottom:calc(-1 * clamp(40px,5vw,72px));"></div>
+    <div style="display:grid;grid-template-columns:{{ progCols }};gap:16px;align-items:stretch;view-timeline-name:--trmRows;">
       <sc-for list="{{ phases }}" as="p" hint-placeholder-count="3">
         <div style="grid-column:{{ p.col }};grid-row:{{ p.row }};order:{{ p.order }};display:flex;flex-direction:column;gap:12px;padding-top:{{ p.padT }};animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
-            <span style="font-family:var(--font-serif);font-size:26px;line-height:1;">{{ p.name }}</span>
-            <span style="font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-3);white-space:nowrap;">{{ p.mins }}</span>
-          </div>
-          <span style="display:block;height:3px;border-radius:var(--radius-pill);background:{{ p.bar }};transform-origin:left center;transition:background .2s ease;animation:trmBar linear both;animation-timeline:view();animation-range:entry 20% cover 40%;"></span>
+          <span style="font-family:var(--font-serif);font-weight:500;font-size:clamp(26px,2.4vw,34px);line-height:1;">{{ p.name }}</span>
         </div>
       </sc-for>
       <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
         <article onMouseEnter="{{ t.enter }}" onMouseLeave="{{ t.leave }}" style="grid-row:{{ t.row }};order:{{ t.order }};display:flex;flex-direction:column;gap:14px;padding:24px 22px 22px;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);box-shadow:{{ t.shadow }};transform:{{ t.cardT }};transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:{{ t.range }};">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;">
             <span style="color:var(--fg-accent);font-variant-numeric:tabular-nums;">{{ t.start }}</span>
             <span style="color:var(--fg-3);">{{ t.time }}</span>
           </div>
@@ -291,23 +205,63 @@ details[open] .faq-plus{transform:rotate(45deg)}
         </article>
       </sc-for>
     </div>
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
+      <h2 style="margin:0;max-width:none;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Understand the why, <span style="font-style:normal;color:var(--fg-accent);">leave with the how</span></h2>
+      <p style="margin:0;max-width:52ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-2);text-wrap:pretty;">70 minutes in three movements: understand your biology, rethink your habits, then turn it into a plan for your own week.</p>
+    </div>
+    <a href="#founding" style="align-self:center;display:inline-flex;align-items:center;gap:14px;min-height:52px;padding:0 24px;background:var(--fg-1);color:var(--trm-champagne);text-decoration:none;border-radius:var(--radius-1);transition:transform 160ms cubic-bezier(.23,1,.32,1), background-color 200ms ease;animation:trmStair .6s cubic-bezier(.23,1,.32,1) 1540ms both;animation-play-state:{{ valuePlay }};" style-hover="background:var(--trm-ocean-teal);color:var(--trm-ivory)" style-active="transform:scale(.97)">
+      <span style="font-size:15px;letter-spacing:var(--tracking-button);">Reserve my seat · From ₹138</span>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+</section>
 
+
+<section id="speakers" data-screen-label="5 Your facilitators" style="scroll-margin-top:76px;position:relative;background:var(--bg-page);padding:var(--section-y) var(--gutter);">
+  <div style="max-width:var(--container);margin:0 auto;display:flex;flex-wrap:wrap;gap:32px clamp(40px,6vw,96px);align-items:center;">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:16px;flex:1 1 300px;max-width:30rem;animation:trmUp linear both;animation-timeline:view();animation-range:entry 0% cover 30%;">
+      <p style="margin:0;font-size:var(--type-eyebrow);color:var(--fg-accent);">Your facilitators</p>
+      <h2 style="margin:0;max-width:22ch;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">A molecular biologist × <span style="font-style:normal;color:var(--fg-accent);">a lifestyle coach</span></h2>
+    </div>
+    <div style="flex:2 1 520px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;">
+      <div role="button" tabIndex="0" aria-haspopup="dialog" aria-label="Read about Aaron Thomas" onClick="{{ openLeft }}" onKeyDown="{{ keyLeft }}" style="cursor:pointer;display:flex;flex-direction:column;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);overflow:hidden;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:entry 8% cover 32%;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)">
+        <div style="position:relative;aspect-ratio:1/1;background:transparent;border-bottom:1px solid var(--border-hairline);padding-top:16px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
+          <img src="assets/aaron-portrait.png" alt="Aaron Thomas" style="position:relative;display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:clamp(18px,2vw,24px);">
+          <p style="margin:0;font-size:14px;color:var(--fg-accent);">Molecular Biologist · Founder, TRM</p>
+          <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(26px,2.2vw,32px);line-height:1.1;">Aaron Thomas</h3>
+          <p style="margin:0;font-family:var(--font-serif);font-size:18px;line-height:1.3;color:var(--fg-2);">Making the invisible understandable.</p>
+          <span style="margin-top:6px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding-bottom:2px;border-bottom:1px solid var(--fg-accent);font-size:15px;letter-spacing:var(--tracking-button);color:var(--fg-accent);">Read their story <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </div>
+      </div>
+      <div role="button" tabIndex="0" aria-haspopup="dialog" aria-label="Read about David" onClick="{{ openRight }}" onKeyDown="{{ keyRight }}" style="cursor:pointer;display:flex;flex-direction:column;background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:var(--radius-2);overflow:hidden;transition:transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease;animation:trmCard linear both;animation-timeline:view();animation-range:entry 14% cover 32%;" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-product)">
+        <div style="position:relative;aspect-ratio:1/1;background:transparent;border-bottom:1px solid var(--border-hairline);padding-top:16px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;">
+          <img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;width:100%;height:100%;object-fit:contain;object-position:bottom center;">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:clamp(18px,2vw,24px);">
+          <p style="margin:0;font-size:14px;color:var(--fg-accent);">Lifestyle Coach · Plyolife</p>
+          <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:clamp(26px,2.2vw,32px);line-height:1.1;">David</h3>
+          <p style="margin:0;font-family:var(--font-serif);font-size:18px;line-height:1.3;color:var(--fg-2);">Making the understandable achievable.</p>
+          <span style="margin-top:6px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding-bottom:2px;border-bottom:1px solid var(--fg-accent);font-size:15px;letter-spacing:var(--tracking-button);color:var(--fg-accent);">Read their story <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="founding" data-screen-label="6 Payment" style="scroll-margin-top:76px;background:var(--gradient-sachet-diag);color:var(--fg-on-inverse);padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:48px clamp(40px,7vw,112px);align-items:start;">
     <div>
-      <p style="margin:0 0 16px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--trm-champagne);">Founding edition</p>
-      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Founding edition, ₹138</h2>
-      <p style="margin:20px 0 0;max-width:44ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);">Join the live workshop. Registration closes when the workshop begins.</p>
+      <h2 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);text-wrap:balance;">Founding edition, from ₹138</h2>
+      <p style="margin:20px 0 0;max-width:44ch;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-on-inverse-2);">Join the live workshop on its own, or add the Hormone &amp; Habit Kit with seven days of WhatsApp reminders. Registration closes when the workshop begins.</p>
       <div style="margin-top:36px;display:flex;flex-direction:column;gap:12px;">
-        <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">Workshop starts in</p>
+        <p style="margin:0;font-size:14px;color:var(--fg-on-inverse-2);">Workshop starts in</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;">
           <sc-for list="{{ countdown }}" as="c" hint-placeholder-count="4">
             <div style="min-width:76px;padding:14px 12px;border:1px solid var(--border-on-inverse);border-radius:var(--radius-1);display:flex;flex-direction:column;align-items:center;gap:4px;">
               <span style="font-family:var(--font-serif);font-size:34px;line-height:1;font-variant-numeric:tabular-nums;">{{ c.n }}</span>
-              <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-on-inverse-2);">{{ c.label }}</span>
+              <span style="font-size:14px;color:var(--fg-on-inverse-2);">{{ c.label }}</span>
             </div>
           </sc-for>
         </div>
@@ -323,13 +277,13 @@ details[open] .faq-plus{transform:rotate(45deg)}
             <p style="margin:0;font-family:var(--font-serif);font-size:24px;font-variant-numeric:tabular-nums;">{{ passPrice }}</p>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <p id="pass-label" style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);">Choose your pass</p>
+            <p id="pass-label" style="margin:0;font-size:14px;color:var(--fg-2);">Choose your pass</p>
             <div role="radiogroup" aria-labelledby="pass-label" style="display:flex;flex-direction:column;gap:10px;">
               <sc-for list="{{ passes }}" as="ps" hint-placeholder-count="2">
                 <button type="button" role="radio" aria-checked="{{ ps.on }}" onClick="{{ ps.select }}" style="display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:12px;align-items:start;padding:{{ ps.pad }};text-align:left;border:{{ ps.bw }} solid {{ ps.border }};background:{{ ps.bg }};border-radius:var(--radius-1);font-family:var(--font-sans);color:var(--fg-1);cursor:pointer;transition:border-color .16s ease, background-color .16s ease, transform .14s ease-out;animation:trmSlideIn linear both;animation-timeline:view();animation-range:{{ ps.range }};" style-active="transform:scale(.99)">
                   <span aria-hidden="true" style="width:18px;height:18px;margin-top:2px;border-radius:50%;border:1.5px solid {{ ps.border }};display:flex;align-items:center;justify-content:center;"><span style="width:8px;height:8px;border-radius:50%;background:var(--action-primary);opacity:{{ ps.dot }};transition:opacity .16s ease;"></span></span>
                   <span style="display:flex;flex-direction:column;gap:3px;">
-                    <sc-if value="{{ ps.isKit }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;margin-bottom:4px;padding:3px 10px;border-radius:var(--radius-pill);background:var(--trm-champagne);color:var(--trm-ocean-teal);font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;animation:trmGlow linear both;animation-timeline:view();animation-range:entry 70% cover 55%;">Recommended · Best value</span></sc-if>
+                    <sc-if value="{{ ps.isKit }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;margin-bottom:4px;padding:3px 10px;border-radius:var(--radius-pill);background:var(--trm-champagne);color:var(--trm-ocean-teal);font-size:14px;animation:trmGlow linear both;animation-timeline:view();animation-range:entry 70% cover 55%;">Recommended · Best value</span></sc-if>
                     <span style="font-size:15px;">{{ ps.name }}</span><span style="font-size:13px;color:var(--fg-2);line-height:1.45;">{{ ps.sub }}</span>
                     <sc-if value="{{ ps.isKit }}" hint-placeholder-val="{{ false }}"><span style="margin-top:6px;display:flex;flex-direction:column;gap:5px;">
                       <sc-for list="{{ ps.includes }}" as="inc" hint-placeholder-count="5"><span style="display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4;"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>{{ inc }}</span></span></sc-for>
@@ -340,16 +294,16 @@ details[open] .faq-plus{transform:rotate(45deg)}
               </sc-for>
             </div>
           </div>
-          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);"><span>Name<span aria-hidden="true" style="color:var(--status-error);"> *</span></span>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--fg-2);"><span>Name<span aria-hidden="true" style="color:var(--status-error);"> *</span></span>
             <input required="" name="name" autocomplete="name" autoCapitalize="words" enterKeyHint="next" aria-invalid="{{ nameErr }}" aria-describedby="err-name" onBlur="{{ blurName }}" onInput="{{ fixName }}" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
             <sc-if value="{{ nameErr }}" hint-placeholder-val="{{ false }}"><span id="err-name" role="alert" style="font-size:13px;letter-spacing:0;text-transform:none;color:var(--status-error);">{{ nameMsg }}</span></sc-if>
           </label>
-          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);"><span>Email, for your joining link<span aria-hidden="true" style="color:var(--status-error);"> *</span></span>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--fg-2);"><span>Email, for your joining link<span aria-hidden="true" style="color:var(--status-error);"> *</span></span>
             <input required="" type="email" name="email" autocomplete="email" inputMode="email" autoCapitalize="none" spellCheck="false" enterKeyHint="done" aria-invalid="{{ emailErr }}" aria-describedby="err-email" onBlur="{{ blurEmail }}" onInput="{{ fixEmail }}" style="min-height:48px;padding:0 14px;border:1px solid var(--border-strong);border-radius:var(--radius-1);background:var(--trm-white);font-family:var(--font-sans);font-size:16px;color:var(--fg-1);text-transform:none;letter-spacing:0;">
             <sc-if value="{{ emailErr }}" hint-placeholder-val="{{ false }}"><span id="err-email" role="alert" style="font-size:13px;letter-spacing:0;text-transform:none;color:var(--status-error);">{{ emailMsg }}</span></sc-if>
           </label>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-2);" id="pay-with">Pay with</p>
+            <p style="margin:0;font-size:14px;color:var(--fg-2);" id="pay-with">Pay with</p>
             <div role="radiogroup" aria-labelledby="pay-with" style="display:flex;flex-wrap:wrap;gap:10px;">
               <sc-for list="{{ methods }}" as="m" hint-placeholder-count="3">
                 <button type="button" role="radio" aria-checked="{{ m.on }}" onClick="{{ m.select }}" style="min-height:44px;padding:0 20px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};border-radius:var(--radius-pill);font-family:var(--font-sans);font-size:14px;cursor:pointer;transition:transform 140ms ease-out, background-color 160ms ease, color 160ms ease, border-color 160ms ease;" style-active="transform:scale(.97)">{{ m.label }}</button>
@@ -364,7 +318,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
       <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
         <div role="status" aria-live="polite" style="display:flex;flex-direction:column;gap:16px;padding:20px 0;">
           <span aria-hidden="true" style="width:48px;height:48px;border-radius:50%;background:color-mix(in oklch, var(--status-success) 14%, transparent);display:flex;align-items:center;justify-content:center;animation:wPop 360ms cubic-bezier(.23,1,.32,1) both;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" style="stroke-dasharray:24;stroke-dashoffset:24;animation:wCheck 420ms cubic-bezier(.23,1,.32,1) 160ms forwards;"></path></svg></span>
-          <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--status-success);">Payment successful · Seat reserved</p>
+          <p style="margin:0;font-size:14px;color:var(--status-success);">Payment successful · Seat reserved</p>
           <p style="margin:0;font-family:var(--font-serif);font-size:30px;line-height:1.2;">See you on Sunday, 29 November.</p>
           <p style="margin:0;font-size:15px;font-weight:300;line-height:var(--leading-body);color:var(--fg-2);">Your receipt and joining link{{ kitNote }} are on their way to {{ email }}.</p>
           <p style="margin:8px 0 0;font-size:14px;color:var(--fg-2);">{{ redirectLabel }}</p>
@@ -379,7 +333,7 @@ details[open] .faq-plus{transform:rotate(45deg)}
 <section id="faq" data-screen-label="7 FAQ" style="background-color:var(--bg-page);--from:var(--trm-petrol);animation:trmBgIn linear both;animation-timeline:view();animation-range:entry 0% entry 35%;scroll-margin-top:76px;padding:var(--section-y) var(--gutter);">
   <div style="max-width:var(--container);margin:0 auto;">
     <div style="max-width:880px;">
-      <p style="margin:0 0 8px;font-size:var(--type-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">Questions</p>
+      <p style="margin:0 0 8px;font-size:var(--type-eyebrow);color:var(--fg-accent);">Questions</p>
       <div style="border-top:1px solid var(--border-strong);">
         <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
           <details style="border-bottom:1px solid var(--border-strong);animation:trmRow linear both;animation-timeline:view();animation-range:entry 10% entry 100%;">
@@ -404,9 +358,9 @@ details[open] .faq-plus{transform:rotate(45deg)}
       <sc-if value="{{ isRightSp }}" hint-placeholder-val="{{ false }}"><img src="assets/speaker-right.png" alt="David" style="position:relative;display:block;width:100%;height:100%;max-height:560px;object-fit:contain;object-position:bottom center;"></sc-if>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;padding:clamp(28px,4vw,48px);">
-      <p style="margin:0;font-size:12px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--fg-accent);">{{ sp.role }}</p>
+      <p style="margin:0;font-size:14px;color:var(--fg-accent);">{{ sp.role }}</p>
       <h2 id="sp-title" style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:var(--type-display-l);line-height:var(--leading-tight);">{{ sp.name }}</h2>
-      <p style="margin:0;font-family:var(--font-serif);font-style:italic;font-size:clamp(20px,2vw,24px);line-height:1.3;color:var(--fg-2);">{{ sp.tagline }}</p>
+      <p style="margin:0;font-family:var(--font-serif);font-size:clamp(20px,2vw,24px);line-height:1.3;color:var(--fg-2);">{{ sp.tagline }}</p>
       <p style="margin:6px 0 0;font-size:var(--type-body-l);font-weight:300;line-height:var(--leading-body);color:var(--fg-2);text-wrap:pretty;">{{ sp.bio }}</p>
       <p style="margin:6px 0 0;padding-top:14px;border-top:1px solid var(--border-hairline);font-size:14px;color:var(--fg-2);">Speaking on: {{ sp.sessions }}</p>
       <a href="#founding" onClick="{{ reserveFromSp }}" style="margin-top:10px;align-self:flex-start;display:inline-flex;align-items:center;min-height:52px;padding:0 28px;background:var(--action-primary);color:var(--action-on-primary);text-decoration:none;font-size:15px;letter-spacing:var(--tracking-button);border-radius:var(--radius-1);white-space:nowrap;transition:transform .16s ease-out;" style-hover="background:var(--action-primary-hover);color:var(--action-on-primary)" style-active="transform:scale(.97)">Reserve my seat — From ₹138</a>
@@ -423,9 +377,10 @@ details[open] .faq-plus{transform:rotate(45deg)}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { step: "form", email: "", method: "UPI", processing: false, secs: 5, now: Date.now(), pass: "workshop" };
+  state = { step: "form", email: "", method: "UPI", processing: false, secs: 5, now: Date.now(), pass: "kit" };
   PASSES = [
-    { id: "workshop", name: "Live workshop only", sub: "70 minutes live, with Q&A.", price: 138, isKit: false, extra: "", includes: [] }
+    { id: "workshop", name: "Live workshop only", sub: "70 minutes live, with Q&A.", price: 138, isKit: false, extra: "", includes: [] },
+    { id: "kit", name: "Workshop + Hormone & Habit Kit", sub: "The live workshop, plus everything below.", price: 188, isKit: true, extra: "+₹50 for the kit", includes: ["Know Your Cycle · illustrated menstrual health guide", "Know Your Patterns · personal lifestyle reflection map", "Small Things Matter · ten practical habit cards", "My Next Seven Days · personal habit tracker", "Seven days of WhatsApp reminders"] }
   ];
   kit = [
     { title: "Know Your Cycle", sub: "Illustrated menstrual health guide", bg: "var(--trm-ocean-teal)" },
@@ -458,7 +413,7 @@ class Component extends DCLogic {
     { min: 10, time: "10 min", session: "Evidence-informed micro-habits", outcome: "Small changes to test in your own week.", speaker: "David" },
     { min: 20, time: "20 min", session: "Interactive discussion and Q&A", outcome: "Bring your questions for both speakers.", speaker: "Aaron & David" }
   ];
-  phases = [{ name: "Understand", from: 0, to: 0 }, { name: "Rethink", from: 1, to: 2 }, { name: "Apply", from: 3, to: 4 }];
+  phases = [{ name: "Understand", from: 0, to: 0 }, { name: "Connect", from: 1, to: 2 }, { name: "Act", from: 3, to: 4 }];
   takeaways = ["Visual educational guide", "Personal lifestyle reflection map", "Ten practical, evidence-informed habits", "Seven-day behavioural experiment worksheet"].map((label, i) => ({ n: "0" + (i + 1), label, range: "entry " + (10 + i * 8) + "% cover " + (30 + i * 6) + "%" }));
   faqs = [
     { q: "What is the cancellation and refund policy?", a: "[Cancellation and refund policy to be confirmed.]" },
@@ -483,7 +438,7 @@ class Component extends DCLogic {
     this._onKitHash = () => { const want = location.hash === "#habit-kit"; if (want && !this.state.kitOpen) this.openKit(); else if (!want && this.state.kitOpen) { document.body.style.overflow = ""; this.setState({ kitOpen: false }); } };
     window.addEventListener("hashchange", this._onKitHash); window.addEventListener("popstate", this._onKitHash);
     if (location.hash === "#habit-kit") setTimeout(this._onKitHash, 300);
-    this.NAV_IDS = ["speakers", "pain", "value", "kit", "faq"];
+    this.NAV_IDS = ["pain", "value", "speakers", "faq"];
     this._onNavScroll = () => { const y = window.scrollY, vh = window.innerHeight; const hero = document.getElementById("top"); const show = !!hero && y > hero.offsetTop + hero.offsetHeight * 0.6; let act = null; for (const id of this.NAV_IDS) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= vh * 0.35) act = id; } const pay = document.getElementById("founding"); if (pay) { const r = pay.getBoundingClientRect(); if (r.top <= vh * 0.35 && r.bottom > vh * 0.35) act = "founding"; } if (show !== this.state.navShow || act !== this.state.navAct) this.setState({ navShow: show, navAct: act }); };
     window.addEventListener("scroll", this._onNavScroll, { passive: true }); this._onNavScroll();
     if (location.hash === "#aaron" || location.hash === "#david") setTimeout(this._onSpPop, 300);
@@ -534,7 +489,7 @@ class Component extends DCLogic {
         painRestart: () => this.setState({ pIdx: 0, pains: {}, pPhase: "idle" }),
         painPicked: this.PAINS.filter((_, i) => sel[i]),
         painDoneTitle: n === 0 ? "None of these? That's great to hear. The workshop still helps you know what's typical." : "You said yes to " + n + " of " + total + ".",
-        painBars: this.PAINS.map((_, i) => ({ bg: i < n ? "var(--trm-champagne)" : "var(--border-on-inverse)" })),
+        painBars: this.PAINS.map((_, i) => ({ bg: i < n ? "var(--trm-aubergine)" : "var(--border-strong)" })),
         painAny: n > 0, painCount: n + " of " + total + " sound like me",
         painMsg: n === 0 ? "Most women carry at least one of these without ever getting a clear answer." : n === 1 ? "That's one signal worth understanding, not just living with." : n <= 3 ? n + " signals. Each one is your body telling you something, and you can learn to read it." : "You're not imagining it, and you're far from alone. This is exactly what we'll unpack together on Sunday."
       }; })(),
@@ -591,7 +546,7 @@ class Component extends DCLogic {
       },
       storyUrl: this.HOME + "#/story",
       navY: this.state.navShow ? "0" : "-140%", navOp: this.state.navShow ? 1 : 0, navPe: this.state.navShow ? "auto" : "none",
-      navLinks: [["speakers", "Facilitators"], ["pain", "Sound familiar?"], ["value", "70 minutes"], ["kit", "Programme"], ["faq", "FAQ"]].map(([id, label]) => { const on = this.state.navAct === id; return { href: "#" + id, label, cur: on ? "true" : "false", fg: on ? "var(--fg-1)" : "var(--fg-2)", bg: on ? "var(--bg-sunken)" : "transparent" }; }),
+      navLinks: [["pain", "Sound familiar?"], ["value", "Programme"], ["speakers", "Facilitators"], ["faq", "FAQ"]].map(([id, label]) => { const on = this.state.navAct === id; return { href: "#" + id, label, cur: on ? "true" : "false", fg: on ? "var(--fg-1)" : "var(--fg-2)", bg: on ? "var(--bg-sunken)" : "transparent" }; }),
       homeUrl: this.HOME, redirectLabel: "Taking you to The Right Molecule in " + secs + "s…"
     };
   }

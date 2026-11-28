@@ -1,3 +1,5 @@
+function PlainEyebrow({ children, inverse, style }) { return <div style={{ fontSize: 14, lineHeight: 1.4, color: inverse ? 'var(--fg-on-inverse-2)' : 'var(--fg-2)', marginBottom: 12, ...style }}>{children}</div>; }
+function PlainStack({ lines = [], inverse, style }) { return <div style={{ display: 'flex', flexDirection: 'column', gap: 2, fontSize: 14, lineHeight: 1.4, color: inverse ? 'var(--fg-on-inverse)' : 'var(--fg-1)', ...style }}>{lines.map((l, i) => <span key={i}>{l}</span>)}</div>; }
 // shared.jsx
 const DS = window.TheRightMoleculeDesignSystem_d2cf6c;
 window.ASSET = 'assets/';
@@ -61,7 +63,7 @@ const ingredientButton = { display: 'block', width: '100%', padding: 0, margin: 
 // Home.jsx
 const BALANCE_GROUPS = [['01', 'Metabolic signalling', 'Myo-inositol · D-chiro-inositol · Chromium', 'Supporting insulin function.'], ['02', 'Cellular energy', 'L-carnitine · Magnesium', 'Supporting energy production.'], ['03', 'Antioxidant defence', 'NAC · Vitamin C · Selenium', 'Supporting cellular protection.'], ['04', 'Calm & relaxation', 'L-theanine · Magnesium · Vitamin B6', 'Supporting relaxation and nervous system function.']];
 function Hero({ onShop, onTest }) {
-  const { Eyebrow, Heading, Button, TextLink, StackedCaps } = DS;
+  const { Heading, Button, TextLink } = DS; const Eyebrow = PlainEyebrow; const StackedCaps = PlainStack;
   return (
     <section data-section="hero" style={{ position: 'relative', background: 'var(--bg-page)', overflow: 'hidden' }}>
       <img data-float="" data-parallax-y="-140" data-parallax-from="20" data-parallax-rot="-8" src={`${ASSET}brand/lineart-drop-petrol.png`} alt="" aria-hidden="true" style={{ position: 'absolute', left: '47%', bottom: 150, width: 30, opacity: 0.8, zIndex: 1, pointerEvents: 'none' }} />
@@ -78,14 +80,14 @@ function Hero({ onShop, onTest }) {
         </Reveal>
       </div>
         <div style={{ gridColumn: 1, gridRow: 1, maxWidth: 620 }}>
-          <Reveal delay={120}><Heading as="h1" level="xl" style={{ margin: '0 0 28px', fontSize: 'clamp(40px,4.8vw,72px)', lineHeight: 1.02, letterSpacing: '-.01em' }}><Line>Designed around</Line><Line>the science of <em style={{ fontWeight: 400 }}>PMOS.</em></Line></Heading></Reveal>
+          <Reveal delay={120}><Heading as="h1" level="xl" style={{ margin: '0 0 28px', fontSize: 'clamp(40px,4.8vw,72px)', lineHeight: 1.02, }}><Line>Designed around</Line><Line>the science of <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>PMOS</span></Line></Heading></Reveal>
           <Reveal delay={240}><p style={{ margin: 0, fontSize: 'var(--type-body-l)', fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', maxWidth: 440, textWrap: 'pretty' }}>A simple daily ritual with you in mind, made to complete the care you already have.</p></Reveal>
           <Reveal delay={360} style={{ display: 'flex', alignItems: 'center', gap: 32, marginTop: 36 }}>
             <Button onClick={onTest || onShop}>Discover your Biology</Button>
             <TextLink href="Our Science.dc.html" onClick={(e) => { e.preventDefault(); const M = window.TRMMotion; M && M.navigateTo ? M.navigateTo('Our Science.dc.html') : (window.location.href = 'Our Science.dc.html'); }}>Explore The Science</TextLink>
           </Reveal>
           </div>
-        <div style={{ gridColumn: 3, gridRow: 1 }}><Reveal delay={480}><StackedCaps size={12} rule lines={['Balance', 'begins at', 'the cellular', 'level.']} /></Reveal></div>
+        <div style={{ gridColumn: 3, gridRow: 1 }}><Reveal delay={480}><StackedCaps size={12} rule lines={['Balance', 'begins at', 'the cellular', 'level']} /></Reveal></div>
       </div>
       <svg data-wave="" viewBox="0 0 1440 140" preserveAspectRatio="none" style={{ position: 'absolute', left: 0, right: 0, bottom: -1, width: '100%', height: 140, display: 'block' }}><path d="M0 60 C 320 150, 760 150, 1060 90 S 1380 20, 1440 30 L1440 140 L0 140 Z" fill="#0B4458"></path></svg>
     </section>
@@ -103,18 +105,18 @@ function TrustBand() {
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, margin: '40px auto 22px', maxWidth: 520, color: 'var(--fg-on-inverse-2)' }}>
         <span data-rule="" style={{ flex: 1, height: 1, background: 'var(--border-on-inverse)' }}></span><span data-anim="sparkle" data-delay="700" style={{ display: 'inline-flex' }}><Icon name="moon-star" size={18} stroke={1} /></span><span data-rule="" data-rule-delay="0.5" style={{ flex: 1, height: 1, background: 'var(--border-on-inverse)' }}></span>
       </div>
-      <p style={{ margin: 0, textAlign: 'center', fontSize: 12, letterSpacing: '.42em', textTransform: 'uppercase', color: 'var(--fg-on-inverse)' }}>Nutrition. Rooted in science.</p>
+      <p style={{ margin: 0, textAlign: 'center', fontSize: 14, color: 'var(--fg-on-inverse)' }}>Nutrition. Rooted in science.</p>
     </section>
   );
 }
 
 function BalanceSection({ onShop, onIngredient }) {
-  const { Eyebrow, Heading, Button, IngredientItem } = DS;
+  const { Heading, Button, IngredientItem } = DS; const Eyebrow = PlainEyebrow;
   return (
     <div data-pin="balance">
     <section data-pin-section="" data-crossfade="from-dark" style={{ position: 'relative', background: 'var(--bg-page)', padding: '168px var(--gutter) 56px', minHeight: '100vh', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr)', gap: 48, alignItems: 'center', overflow: 'hidden' }}>
       <Reveal>
-        <Heading level="l" style={{ margin: '0 0 22px' }}><Line>Built around</Line><Line>how PMOS</Line><Line><em style={{ fontWeight: 400 }}>actually works.</em></Line></Heading>
+        <Heading level="l" style={{ margin: '0 0 22px' }}><Line>Built around</Line><Line>how PMOS</Line><Line><span style={{ fontStyle: 'normal',  fontWeight: 400 }}>actually works</span></Line></Heading>
         <p style={{ margin: '0 0 32px', fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', maxWidth: 380, textWrap: 'pretty' }}>PMOS isn’t one thing. It’s how your ovaries, insulin and stress signals talk to each other. Harmony is designed with that conversation in mind, in one simple daily ritual.</p>
         <Button onClick={onShop}>Be Part of Our Beginning</Button>
       </Reveal>
@@ -142,14 +144,14 @@ function BalanceSection({ onShop, onIngredient }) {
       </Reveal>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
         {BALANCE_GROUPS.map(([no, t, ing, d]) => <div key={no} data-pin-item="" style={{ display: 'flex', gap: 18, alignItems: 'baseline' }}>
-          <span style={{ flex: 'none', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 20, color: 'var(--fg-accent)', fontVariantNumeric: 'tabular-nums' }}>{no}</span>
+          <span style={{ flex: 'none', fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 20, color: 'var(--fg-accent)', fontVariantNumeric: 'tabular-nums' }}>{no}</span>
           <div style={{ fontFamily: 'var(--font-sans)', fontSize: 13, lineHeight: 1.5 }}>
-            <div style={{ fontSize: 11, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--fg-1)' }}>{t}</div>
+            <div style={{ fontSize: 14, color: 'var(--fg-1)' }}>{t}</div>
             <div style={{ marginTop: 4, color: 'var(--fg-1)' }}>{ing}</div>
             <div style={{ color: 'var(--fg-2)', fontWeight: 300 }}>{d}</div>
           </div>
         </div>)}
-        <Reveal delay={450}><div data-rule="" style={{ width: 120, height: 1, background: 'var(--border-strong)', margin: '6px 0 18px' }}></div><p style={{ margin: 0, fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'var(--type-quote)', lineHeight: 1.3 }}>Built with you in mind,<br />from the first molecule.</p></Reveal>
+        <Reveal delay={450}><div data-rule="" style={{ width: 120, height: 1, background: 'var(--border-strong)', margin: '6px 0 18px' }}></div><p style={{ margin: 0, fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 'var(--type-quote)', lineHeight: 1.3 }}>Built with you in mind,<br />from the first molecule.</p></Reveal>
       </div>
     </section>
     </div>
@@ -157,7 +159,7 @@ function BalanceSection({ onShop, onIngredient }) {
 }
 
 function PhilosophySplit() {
-  const { Eyebrow, Heading, TextLink } = DS;
+  const { Heading, TextLink } = DS; const Eyebrow = PlainEyebrow;
   return (
     <section id="science" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', background: 'var(--bg-page)' }}>
       <img data-float="" data-parallax-y="-90" data-parallax-from="60" data-parallax-rot="5" src={`${ASSET}brand/lineart-frond-petrol.png`} alt="" aria-hidden="true" style={{ position: 'absolute', right: 'calc(var(--gutter) * .6)', top: -150, width: 70, opacity: 0.7, zIndex: 2, pointerEvents: 'none' }} />
@@ -172,7 +174,7 @@ function PhilosophySplit() {
         </div>
       </div>
       <Reveal style={{ padding: 'var(--section-y) var(--gutter)', alignSelf: 'center' }}>
-        <Heading level="m" style={{ margin: '0 0 24px' }}><Line>Nutrition</Line><Line><em style={{ fontWeight: 400 }}>with intention.</em></Line></Heading>
+        <Heading level="m" style={{ margin: '0 0 24px' }}><Line>Nutrition</Line><Line><span style={{ fontStyle: 'normal',  fontWeight: 400 }}>with intention</span></Line></Heading>
         <p style={{ margin: '0 0 28px', fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', maxWidth: 400 }}>We bring scientific thinking and purposeful formulation together to rethink nutritional solutions. PMOS Harmony is where our story begins.</p>
         <TextLink arrow href="Our Science.dc.html" onClick={(e) => { e.preventDefault(); const M = window.TRMMotion; M && M.navigateTo ? M.navigateTo('Our Science.dc.html') : (window.location.href = 'Our Science.dc.html'); }}>Our Science</TextLink>
       </Reveal>
@@ -181,7 +183,7 @@ function PhilosophySplit() {
 }
 
 function WomensHealthBanner({ onShop }) {
-  const { Eyebrow, Button } = DS;
+  const { Button } = DS; const Eyebrow = PlainEyebrow;
   return (
     <section data-crossfade="to-dark" style={{ position: 'relative', background: 'var(--gradient-sachet-diag)', overflow: 'hidden' }}>
       <div data-parallax-y="36" data-parallax-from="-36" style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '32%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -194,7 +196,7 @@ function WomensHealthBanner({ onShop }) {
       <div data-veil="" aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'var(--bg-page)', opacity: 0, pointerEvents: 'none' }}></div>
       <div style={{ position: 'relative', padding: '88px var(--gutter)', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,.8fr) minmax(0,.55fr)', gap: 48, alignItems: 'center' }}>
         <Reveal>
-          <h2 style={{ margin: 0, fontFamily: 'var(--font-serif)', fontWeight: 500, fontSize: 'var(--type-display-m)', lineHeight: 1.12, color: 'var(--fg-on-inverse)' }}><Line>More than a</Line><Line>supplement. A more</Line><Line>balanced you.</Line></h2>
+          <h2 style={{ margin: 0, fontFamily: 'var(--font-serif)', fontWeight: 500, fontSize: 'var(--type-display-m)', lineHeight: 1.12, color: 'var(--fg-on-inverse)' }}><Line>More than a</Line><Line>supplement. A more</Line><Line>balanced you</Line></h2>
         </Reveal>
         <Reveal delay={150} style={{ justifySelf: 'start', maxWidth: 340 }}>
           <p style={{ margin: '0 0 26px', fontSize: 14, fontWeight: 300, lineHeight: 1.65, color: 'var(--fg-on-inverse)' }}>At The Right Molecule, we believe in science that supports the real you — through every phase, every cycle, every goal.</p>
@@ -206,7 +208,7 @@ function WomensHealthBanner({ onShop }) {
 }
 
 function Stories() {
-  const { Eyebrow, Heading, TestimonialSlider } = DS;
+  const { Heading, TestimonialSlider } = DS; const Eyebrow = PlainEyebrow;
   const items = [
     { quote: 'I feel more in control of my cycle and have more energy throughout the day. Finally, something that understands what women need.', author: 'A, 28' },
     { quote: 'It fits into my morning without thinking about it. Three months in, my cycle feels more predictable.', author: 'M, 31' },
@@ -226,12 +228,12 @@ function Stories() {
 }
 
 function Newsletter() {
-  const { Eyebrow, Heading, EmailSignup } = DS;
+  const { Heading, EmailSignup } = DS; const Eyebrow = PlainEyebrow;
   return (
     <section style={{ position: 'relative', background: 'var(--bg-page)', padding: '72px var(--gutter)', overflow: 'hidden' }}>
       
       <Reveal style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <Heading level="s" align="center" style={{ margin: '0 0 12px' }}><Line>Wellness Insights. Straight to You.</Line></Heading>
+        <Heading level="s" align="center" style={{ margin: '0 0 12px' }}><Line>Wellness Insights. Straight to You</Line></Heading>
         <p style={{ margin: '0 0 28px', fontSize: 14, fontWeight: 300, color: 'var(--fg-2)' }}>Be the first to know about new products, expert advice and exclusive offers.</p>
         <EmailSignup />
       </Reveal>
@@ -240,7 +242,7 @@ function Newsletter() {
 }
 
 function AboutScreen() {
-  const { Eyebrow, Heading } = DS;
+  const { Heading } = DS; const Eyebrow = PlainEyebrow;
   const P = { margin: 0, fontSize: 17, fontWeight: 300, lineHeight: 1.7, color: 'var(--fg-2)', textWrap: 'pretty' };
   return (
     <main style={{ background: 'var(--bg-page)' }}>
@@ -252,7 +254,7 @@ function AboutScreen() {
         </Reveal>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22, maxWidth: 600 }}>
           <Reveal><Eyebrow>About</Eyebrow></Reveal>
-          <Reveal delay={80}><Heading as="h1" level="xl" style={{ margin: '0 0 14px' }}><Line>Aaron</Line><Line><em style={{ fontWeight: 400 }}>Thomas.</em></Line></Heading></Reveal>
+          <Reveal delay={80}><Heading as="h1" level="xl" style={{ margin: '0 0 14px' }}><Line>Aaron</Line><Line><span style={{ fontStyle: 'normal',  fontWeight: 400 }}>Thomas</span></Line></Heading></Reveal>
           <Reveal delay={140}><p style={{ ...P, fontFamily: 'var(--font-serif)', fontSize: 'clamp(22px, 2.4vw, 28px)', lineHeight: 1.4, color: 'var(--fg-1)' }}>Aaron’s background is in molecular biology, with experience spanning scientific research, entrepreneurship, international clients, and European institutions. His work has largely focused on the point where an idea has to become something real understood by the right people, positioned clearly, and turned into something commercially viable.</p></Reveal>
           <Reveal delay={200}><div style={{ width: 120, height: 1, background: 'var(--border-strong)', margin: '10px 0' }}></div></Reveal>
           <Reveal delay={220}><p style={P}>He has built and explored ventures in Europe, worked with international clients, and pitched to European institutions. These experiences have given him a practical understanding of how ideas move from technical or scientific value to something customers can understand, trust, and ultimately pay for.</p></Reveal>
@@ -305,21 +307,21 @@ function WorkshopBanner() {
   );
 }
 function InnerAtlasSection() {
-  const { Eyebrow, Heading, Button } = DS;
+  const { Heading, Button } = DS; const Eyebrow = PlainEyebrow;
   const meta = [['Date', 'Sunday, 29 November · 6:00 PM IST'], ['Duration', '70 minutes, live online'], ['In collaboration with', 'Plyolife'], ['Ticket', 'From ₹138']];
-  const lbl = { fontSize: 11, letterSpacing: 'var(--tracking-eyebrow)', textTransform: 'uppercase', color: 'var(--fg-3)' };
+  const lbl = { fontSize: 14, color: 'var(--fg-3)' };
   return (
     <section id="inneratlas" style={{ background: 'var(--bg-sunken)', padding: 'var(--section-y) var(--gutter)' }}>
       <div style={{ maxWidth: 'var(--container)', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))', gap: 'clamp(40px, 6vw, 96px)', alignItems: 'center' }}>
         <Reveal>
           <Eyebrow>InnerAtlas</Eyebrow>
-          <Heading level="m" style={{ margin: '16px 0 20px' }}><Line>Learning, from</Line><Line><em style={{ fontWeight: 400 }}>the biology up.</em></Line></Heading>
+          <Heading level="m" style={{ margin: '16px 0 20px' }}><Line>Learning, from</Line><Line><span style={{ fontStyle: 'normal',  fontWeight: 400 }}>the biology up</span></Line></Heading>
           <p style={{ margin: 0, maxWidth: 420, fontSize: 'var(--type-body)', fontWeight: 300, lineHeight: 'var(--leading-body)', color: 'var(--fg-2)', textWrap: 'pretty' }}>InnerAtlas is the educational initiative of The Right Molecule: live sessions that explain the science behind your health and how to put it into practice.</p>
         </Reveal>
         <Reveal delay={150}>
           <a href={WORKSHOP_URL} style={{ display: 'flex', flexDirection: 'column', gap: 22, padding: 'clamp(24px, 3vw, 36px)', background: 'var(--bg-page-raised)', border: '1px solid var(--border-hairline)', borderRadius: 'var(--radius-2)', color: 'var(--fg-1)', textDecoration: 'none', boxShadow: 'var(--shadow-product)' }}>
             <span style={{ ...lbl, color: 'var(--fg-accent)' }}>Live workshop · Founding edition</span>
-            <span style={{ fontFamily: 'var(--font-serif)', fontWeight: 500, fontSize: 'clamp(24px, 2.4vw, 30px)', lineHeight: 1.15, textWrap: 'balance' }}>You know what to do. <em style={{ fontWeight: 400 }}>This is why it's hard to do it.</em></span>
+            <span style={{ fontFamily: 'var(--font-serif)', fontWeight: 500, fontSize: 'clamp(24px, 2.4vw, 30px)', lineHeight: 1.15, textWrap: 'balance' }}>You know what to do. <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>This is why it's hard to do it.</span></span>
             <span style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>Learn how your biology connects nutrition, sleep, movement and stress, and leave with a plan you can test in your own week.</span>
             <dl style={{ margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '14px 24px', paddingTop: 18, borderTop: '1px solid var(--border-hairline)' }}>
               {meta.map(([k, v]) => <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}><dt style={lbl}>{k}</dt><dd style={{ margin: 0, fontSize: 15 }}>{v}</dd></div>)}
@@ -354,7 +356,7 @@ function useCountUp(value, ms = 520) {
 }
 
 function ProductScreen({ onJoin, onNavigate, onIngredient }) {
-  const { Eyebrow, Heading, Button, QuantityStepper, IngredientItem, Icon, StackedCaps } = DS;
+  const { Heading, Button, QuantityStepper, IngredientItem, Icon } = DS; const Eyebrow = PlainEyebrow; const StackedCaps = PlainStack;
   const shots = [['sachets-pair.png', 'contain'], ['sachet-front.png', 'contain'], ['sachet-back.png', 'contain'], ['detail-label.jpg', 'cover'], ['detail-art.jpg', 'cover'], ['detail-ingredients.jpg', 'cover']];
   const [shot, setShot] = React.useState(0);
   const [dir, setDir] = React.useState(1);
@@ -410,15 +412,15 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
           </div>
         </div>
         <Reveal style={{ paddingTop: 12, maxWidth: 440 }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 14, fontSize: 11, letterSpacing: '.18em', whiteSpace: 'nowrap', maxWidth: '100%', textTransform: 'uppercase', color: 'var(--fg-1)' }}>The Right Molecule</span>
-          <Heading as="h1" level="l" style={{ margin: '0 0 14px' }}><Line>PMOS <em style={{ fontWeight: 400 }}>Harmony</em></Line></Heading>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 14, fontSize: 14, whiteSpace: 'nowrap', maxWidth: '100%', color: 'var(--fg-1)' }}>The Right Molecule</span>
+          <Heading as="h1" level="l" style={{ margin: '0 0 14px' }}><Line>PMOS <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>Harmony</span></Line></Heading>
           <p style={{ margin: 0, fontSize: 15, fontWeight: 300, lineHeight: 1.65, color: 'var(--fg-2)' }}>A daily nutritional formula designed around the biology of PMOS.</p>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, margin: '26px 0' }}>
             <span style={{ fontFamily: 'var(--font-serif)', fontSize: 30, fontWeight: 500 }}>{inr(PRODUCT.price)}</span>
             <span style={{ ...small, fontSize: 14 }}>31-day supply</span>
           </div>
           <p style={{ ...small, fontSize: 13, margin: '-14px 0 26px' }}>Just ₹{(PRODUCT.price / 31).toFixed(2)} per day · One sachet a day</p>
-          <div style={{ fontSize: 11, letterSpacing: 'var(--tracking-eyebrow)', textTransform: 'uppercase', color: 'var(--fg-2)', marginBottom: 12 }}>Flavour</div>
+          <div style={{ fontSize: 14, color: 'var(--fg-2)', marginBottom: 12 }}>Flavour</div>
           <div ref={flavourRow} role="radiogroup" aria-label="Flavour" style={{ position: 'relative', display: 'flex', gap: 10, marginBottom: 28 }}>
             {pill && pill.width > 0 && <span aria-hidden="true" style={{ position: 'absolute', top: 0, bottom: 0, left: pill.left, width: pill.width, background: 'var(--fg-1)', borderRadius: 'var(--radius-1)', transition: 'left 460ms var(--ease-out), width 460ms var(--ease-out)' }}></span>}
             {PRODUCT.flavours.map((f, k) => <button key={f} ref={(el) => { flavourRefs.current[k] = el; }} role="radio" aria-checked={f === flavour} onClick={() => setFlavour(f)} style={{ position: 'relative', flex: 'none', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)', fontSize: 13, padding: '10px 16px', borderRadius: 'var(--radius-1)', cursor: 'pointer', background: (!pill || !pill.width) && f === flavour ? 'var(--fg-1)' : 'transparent', color: f === flavour ? 'var(--trm-ivory-50)' : 'var(--fg-1)', border: '1px solid var(--border-strong)', transition: 'color 300ms ease 80ms' }}>{f}</button>)}
@@ -441,14 +443,14 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
       </section>
       <section style={{ padding: '0 var(--gutter) var(--section-y)', background: 'var(--bg-page)' }}>
         <Reveal style={{ marginBottom: 48 }}>
-          <Heading level="s" style={{ margin: 0 }}><Line>Simple by design.</Line><Line><em style={{ fontWeight: 400 }}>One daily ritual.</em></Line></Heading>
+          <Heading level="s" style={{ margin: 0 }}><Line>Simple by design.</Line><Line><span style={{ fontStyle: 'normal',  fontWeight: 400 }}>One daily ritual</span></Line></Heading>
         </Reveal>
         <div style={{ position: 'relative' }}>
           <div data-rule="" style={{ position: 'absolute', left: 0, right: 0, top: 22, height: 1, background: 'var(--border-strong)' }}></div>
           <Reveal anim="stagger" style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 32 }}>
             {[['01', 'Mix one sachet', 'Mix with water or your favourite beverage.'], ['02', 'Make it daily', 'Take once daily, as directed on the label.'], ['03', 'Store with care', 'Keep in a cool, dry place.']].map(([n, t, b]) => (
               <div key={n}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-page)', border: '1px solid var(--border-strong)', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 18, color: 'var(--fg-1)' }}>{n}</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-page)', border: '1px solid var(--border-strong)', fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 18, color: 'var(--fg-1)' }}>{n}</span>
                 <div style={{ marginTop: 20, fontSize: 15, color: 'var(--fg-1)' }}>{t}</div>
                 <p style={{ margin: '6px 0 0', fontSize: 14, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', maxWidth: 280 }}>{b}</p>
               </div>
@@ -458,17 +460,17 @@ function ProductScreen({ onJoin, onNavigate, onIngredient }) {
       </section>
       <section style={{ background: 'var(--gradient-sachet-diag)', padding: 'var(--section-y) var(--gutter)', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.4fr)', gap: 64, alignItems: 'center' }}>
         <Reveal>
-          <Heading level="m" inverse style={{ margin: '0 0 28px' }}><Line>Four pillars.</Line><Line><em style={{ fontWeight: 400 }}>One daily ritual.</em></Line></Heading>
+          <Heading level="m" inverse style={{ margin: '0 0 28px' }}><Line>Four pillars.</Line><Line><span style={{ fontStyle: 'normal',  fontWeight: 400 }}>One daily ritual</span></Line></Heading>
           <StackedCaps inverse size={12} lines={['Science', 'Nature', 'Balance']} rule />
         </Reveal>
         <Reveal anim="stagger" draw style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0,1fr))', gap: 0, borderTop: '1px solid var(--border-on-inverse)', borderBottom: '1px solid var(--border-on-inverse)' }}>
-          {BALANCE_GROUPS.map(([no, t, ing], k) => <div key={no} style={{ position: 'relative', padding: '30px 28px 32px', borderLeft: k % 2 ? '1px solid var(--border-on-inverse)' : 0, borderTop: k > 1 ? '1px solid var(--border-on-inverse)' : 0, display: 'flex', flexDirection: 'column', gap: 16 }}><div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16 }}><div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(22px,2vw,26px)', fontWeight: 500, lineHeight: 1.15, color: 'var(--fg-on-inverse)' }}>{t}</div><span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 15, color: 'var(--fg-line-art)', fontVariantNumeric: 'tabular-nums' }}>{no}</span></div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>{ing.split(' · ').map((x) => <span key={x} style={{ padding: '6px 12px', border: '1px solid var(--border-on-inverse)', borderRadius: 999, fontSize: 12, letterSpacing: '.04em', color: 'var(--fg-on-inverse)', whiteSpace: 'nowrap' }}>{x}</span>)}</div></div>)}
+          {BALANCE_GROUPS.map(([no, t, ing], k) => <div key={no} style={{ position: 'relative', padding: '30px 28px 32px', borderLeft: k % 2 ? '1px solid var(--border-on-inverse)' : 0, borderTop: k > 1 ? '1px solid var(--border-on-inverse)' : 0, display: 'flex', flexDirection: 'column', gap: 16 }}><div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16 }}><div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(22px,2vw,26px)', fontWeight: 500, lineHeight: 1.15, color: 'var(--fg-on-inverse)' }}>{t}</div><span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 15, color: 'var(--fg-line-art)', fontVariantNumeric: 'tabular-nums' }}>{no}</span></div><div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>{ing.split(' · ').map((x) => <span key={x} style={{ padding: '6px 12px', border: '1px solid var(--border-on-inverse)', borderRadius: 999, fontSize: 12, letterSpacing: '.04em', color: 'var(--fg-on-inverse)', whiteSpace: 'nowrap' }}>{x}</span>)}</div></div>)}
         </Reveal>
       </section>
       <div aria-hidden={!barOn} style={{ position: 'fixed', left: '50%', bottom: 20, zIndex: 30, width: 'min(640px, calc(100% - 140px))', transform: `translate(-50%, ${barOn ? '0' : '140%'})`, visibility: barOn ? 'visible' : 'hidden', transition: barOn ? 'transform 520ms var(--ease-out), visibility 0s' : 'transform 420ms var(--ease-soft), visibility 0s linear 420ms', display: 'flex', alignItems: 'center', gap: 14, padding: '8px 8px 8px 12px', background: 'rgba(250,247,241,.9)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid var(--border-hairline)', borderRadius: 'var(--radius-2)', boxShadow: 'var(--shadow-float)' }}>
         <img src={`${ASSET}product/sachet-front.png`} alt="" style={{ height: 48, width: 'auto' }} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontFamily: 'var(--font-serif)', fontSize: 19, fontWeight: 500, lineHeight: 1.1 }}>PMOS <em style={{ fontWeight: 400 }}>Harmony</em></div>
+          <div style={{ fontFamily: 'var(--font-serif)', fontSize: 19, fontWeight: 500, lineHeight: 1.1 }}>PMOS <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>Harmony</span></div>
           <div style={{ fontSize: 12, color: 'var(--fg-2)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{flavour} · 31 sachets · launching soon</div>
         </div>
         <span style={{ fontSize: 15, fontVariantNumeric: 'tabular-nums' }}>{inr(PRODUCT.price)}</span>
@@ -498,12 +500,12 @@ function BagDrawer({ open, items, onClose, onQty, onRemove }) {
           <button onClick={onClose} aria-label="Close" style={{ background: 'none', border: 0, cursor: 'pointer', color: 'var(--fg-1)' }}><Icon name="x" size={20} /></button>
         </div>
         <div ref={list} style={{ flex: 1, overflow: 'auto', padding: '8px 28px' }}>
-          {items.length === 0 && <p style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 20, color: 'var(--fg-2)', marginTop: 32 }}>Your bag is empty.</p>}
+          {items.length === 0 && <p style={{ fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 20, color: 'var(--fg-2)', marginTop: 32 }}>Your bag is empty.</p>}
           {items.map((it, k) => (
             <div key={k} style={{ display: 'grid', gridTemplateColumns: '72px 1fr auto', gap: 16, padding: '20px 0', borderBottom: '1px solid var(--border-hairline)' }}>
               <div style={{ aspectRatio: '4/5', overflow: 'hidden', background: 'var(--bg-sunken)', padding: 6 }}><img src={`${ASSET}product/sachet-front.png`} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} /></div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20, fontWeight: 500 }}>PMOS <em style={{ fontWeight: 400 }}>Harmony</em></span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20, fontWeight: 500 }}>PMOS <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>Harmony</span></span>
                 <span style={{ fontSize: 12, color: 'var(--fg-2)' }}>{it.flavour} · 31 sachets</span>
                 <div style={{ marginTop: 6 }}><QuantityStepper size="sm" value={it.qty} onChange={(v) => onQty(k, v)} /></div>
               </div>
@@ -527,7 +529,7 @@ function BagDrawer({ open, items, onClose, onQty, onRemove }) {
 
 // IngredientModal.jsx
 function IngredientModal({ item, onClose }) {
-  const { IconBadge, Eyebrow, Icon } = DS;
+  const { IconBadge, Icon } = DS; const Eyebrow = PlainEyebrow;
   const root = React.useRef(null);
   const backdrop = React.useRef(null);
   const card = React.useRef(null);
@@ -550,7 +552,7 @@ function IngredientModal({ item, onClose }) {
         <div>
           <Eyebrow>Ingredient {String(index).padStart(2, '0')} / {String(PRODUCT.ingredients.length).padStart(2, '0')}</Eyebrow>
           <h2 id="ingredient-title" style={{ margin: '14px 0 6px', fontFamily: 'var(--font-serif)', fontWeight: 500, fontSize: 34, lineHeight: 1.08, color: 'var(--fg-1)' }}>{item.name}</h2>
-          <p style={{ margin: 0, fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 19, color: 'var(--fg-2)' }}>{item.benefit}</p>
+          <p style={{ margin: 0, fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 19, color: 'var(--fg-2)' }}>{item.benefit}</p>
           <div data-rule="" style={{ width: 40, height: 1, background: 'var(--border-strong)', margin: '22px 0' }}></div>
           <p style={{ margin: 0, fontSize: 14, fontWeight: 300, lineHeight: 1.7, color: 'var(--fg-1)' }}>{item.blurb}</p>
           <p style={{ margin: '18px 0 0', fontSize: 12, color: 'var(--fg-3)' }}>Consult your healthcare professional before starting any supplement.</p>
@@ -586,7 +588,7 @@ function PrebookField({ id, label, type, value, onChange, onBlur, error, placeho
   const line = error ? 'var(--fg-line-art)' : focus ? 'var(--action-primary)' : 'var(--border-strong)';
   return (
     <div data-pb-in="" style={{ display: 'flex', flexDirection: 'column', gap: 8, animationDelay: delay + 'ms' }}>
-      <label htmlFor={id} style={{ fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--fg-2)' }}>{label}</label>
+      <label htmlFor={id} style={{ fontSize: 14, color: 'var(--fg-2)' }}>{label}</label>
       <div style={{ position: 'relative' }}>
         <input ref={inputRef} id={id} type={type} value={value} placeholder={placeholder} autoComplete={autoComplete} inputMode={type === 'email' ? 'email' : undefined}
           aria-invalid={!!error} aria-describedby={error ? id + '-err' : undefined}
@@ -595,7 +597,7 @@ function PrebookField({ id, label, type, value, onChange, onBlur, error, placeho
         <span aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 1, background: error ? 'var(--fg-line-art)' : 'var(--action-primary)', transform: focus || error ? 'scaleX(1)' : 'scaleX(0)', transformOrigin: 'left', transition: 'transform 420ms cubic-bezier(.23,1,.32,1)' }}></span>
       </div>
       <div style={{ minHeight: 18 }}>
-        {error && <p id={id + '-err'} role="alert" style={{ margin: 0, fontSize: 12, fontStyle: 'italic', color: 'var(--fg-2)', animation: 'pbErr 260ms var(--ease-out)' }}>{error}</p>}
+        {error && <p id={id + '-err'} role="alert" style={{ margin: 0, fontSize: 12, fontStyle: 'normal', color: 'var(--fg-2)', animation: 'pbErr 260ms var(--ease-out)' }}>{error}</p>}
       </div>
     </div>
   );
@@ -634,7 +636,7 @@ function WaitlistForm({ source, answers, onDone, onSubmit = submitWaitlist, focu
   };
   return (
     <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column' }}>
-      <h2 id={titleId} style={{ ...tH, margin: '0 0 12px', fontSize: big ? 'clamp(36px,5.6vw,64px)' : 'clamp(32px,4.4vw,42px)' }}>Reserve your <em style={{ fontWeight: 400 }}>invitation.</em></h2>
+      <h2 id={titleId} style={{ ...tH, margin: '0 0 12px', fontSize: big ? 'clamp(36px,5.6vw,64px)' : 'clamp(32px,4.4vw,42px)' }}>Reserve your <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>invitation</span></h2>
       <p style={{ margin: '0 0 24px', fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>Leave your name and email and we'll let you know the moment PMOS Harmony is ready to order.</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <PrebookField id={titleId + '-name'} label="Your name" type="text" autoComplete="name" placeholder="First and last name" value={name} onChange={setName} onBlur={() => setTouched((t) => ({ ...t, name: !!name || t.name }))} error={touched.name && errs.name} inputRef={nameRef} delay={0} />
@@ -656,8 +658,8 @@ function FoundingCard({ number, headingRef, titleId = 'wl-title', showSachet = f
     <div style={{ border: '1px solid var(--border-hairline)', background: 'var(--trm-ivory-50)', padding: 'clamp(22px,3vw,30px)', display: 'flex', alignItems: 'center', gap: 24 }}>
       {showSachet && <img src={ASSET + 'product/sachet-front.png'} alt="" style={{ height: 150, width: 'auto', flex: 'none' }} />}
       <div style={{ minWidth: 0 }}>
-        <p style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--fg-accent)' }}><Icon name="moon-star" size={14} stroke={1.2} />Founding Member No. <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtMember(number || 128)}</span></p>
-        <h2 ref={headingRef} tabIndex={-1} id={titleId} style={{ ...tH, outline: 'none', margin: '14px 0 10px', fontSize: big ? 'clamp(36px,5.6vw,60px)' : 'clamp(30px,4vw,40px)' }}>You’re on the <em style={{ fontWeight: 400 }}>list.</em></h2>
+        <p style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: 'var(--fg-accent)' }}><Icon name="moon-star" size={14} stroke={1.2} />Founding Member No. <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtMember(number || 128)}</span></p>
+        <h2 ref={headingRef} tabIndex={-1} id={titleId} style={{ ...tH, outline: 'none', margin: '14px 0 10px', fontSize: big ? 'clamp(36px,5.6vw,60px)' : 'clamp(30px,4vw,40px)' }}>You’re on the <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>list</span></h2>
         <p style={{ margin: '0 0 14px', fontSize: 15, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty' }}>We'll write to you the moment PMOS Harmony is ready.</p>
         <button data-pb-link="" type="button" onClick={share} aria-live="polite" style={{ minHeight: 44, padding: 0, background: 'none', border: 0, fontFamily: 'var(--font-sans)', fontSize: 13, color: 'var(--fg-accent)', textDecoration: 'underline', textUnderlineOffset: 4, cursor: 'pointer' }}>{copied ? 'Link copied' : 'Share with a friend'}</button>
       </div>
@@ -742,7 +744,7 @@ function WaitlistModal({ origin, onClose, onSubmit = submitWaitlist }) {
                   <div key={g.name} style={{ position: 'absolute', left: 0, top: 0, '--oy': (-SH * 0.44) + 'px', '--x': MX[i] + 'px', '--y': MY[i] + 'px', animation: 'wlRise 900ms ' + ease + ' ' + ms(T.emerge + i * 90) + ' both' }}>
                     <div style={{ position: 'absolute', left: 0, top: 0, animation: 'wlBob ' + (3200 + i * 380) + 'ms ease-in-out ' + ms(T.emerge + 900 + i * 90) + ' infinite' }}>
                       <div style={{ position: 'absolute', left: -17, top: -17, width: 34, height: 34, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--trm-petrol)', background: 'radial-gradient(circle at 35% 30%, #FFFDF8 0%, var(--trm-ivory-100) 55%, rgba(201,182,143,.55) 100%)', border: '1px solid var(--fg-line-art)', boxShadow: '0 0 18px 2px rgba(201,182,143,.45)' }}><Icon name={g.icon} size={15} stroke={1.3} /></div>
-                      <span style={{ position: 'absolute', top: 22, left: 0, transform: 'translateX(-50%)', whiteSpace: 'nowrap', fontSize: 8.5, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--fg-1)', animation: 'wlFade 420ms ease-out ' + ms(T.emerge + 520 + i * 90) + ' both', opacity: done ? 0 : 1, transition: 'opacity 300ms' }}>{g.name}</span>
+                      <span style={{ position: 'absolute', top: 22, left: 0, transform: 'translateX(-50%)', whiteSpace: 'nowrap', fontSize: 8.5, color: 'var(--fg-1)', animation: 'wlFade 420ms ease-out ' + ms(T.emerge + 520 + i * 90) + ' both', opacity: done ? 0 : 1, transition: 'opacity 300ms' }}>{g.name}</span>
                     </div>
                   </div>
                 ))}
@@ -767,8 +769,8 @@ const TEST_Q = [
   { tag: 'Your journey', q: 'What is the hardest part of your journey?', multi: true, opts: ['I don\u2019t know what actually works for me', 'I start, but can\u2019t stay consistent', 'I\u2019ve tried things but haven\u2019t seen results', 'It\u2019s difficult to find something I actually trust', 'It\u2019s too expensive', 'I don\u2019t have enough guidance', 'Honestly, I\u2019m just tired of trying things', 'Nothing in particular'] },
   { tag: 'Founding member', perks: [['4-year founder pricing protection', 'Your membership price won\u2019t increase for 4 years, even if our standard pricing does.'], ['4 years of access to the Right Molecule tracking platform', 'Track your cycle, symptoms, habits and progress as the platform develops.'], ['Direct founder feedback channel', 'Tell us what is working, what isn\u2019t, and what we should build next.']], q: 'Would you like us to reserve your Founding Member invitation?', opts: ['YES \u2014 Reserve my invitation', 'Tell me more first', 'Not for me'] },
 ];
-const tChip = { display: 'inline-flex', alignItems: 'center', gap: 10, padding: '7px 12px', border: '1px solid var(--fg-1)', fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--fg-1)', lineHeight: 1.2 };
-const tH = { margin: 0, fontFamily: 'var(--font-serif)', fontWeight: 500, color: 'var(--fg-1)', lineHeight: 1.02, letterSpacing: '-.01em', textWrap: 'balance' };
+const tChip = { display: 'inline-flex', alignItems: 'center', gap: 10, padding: '7px 12px', border: '1px solid var(--fg-1)', fontSize: 14, color: 'var(--fg-1)', lineHeight: 1.2 };
+const tH = { margin: 0, fontFamily: 'var(--font-serif)', fontWeight: 500, color: 'var(--fg-1)', lineHeight: 1.02, textWrap: 'balance' };
 const tBtn = { width: '100%', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, border: 0, borderRadius: 0, background: 'var(--action-primary)', color: 'var(--action-on-primary)', fontFamily: 'var(--font-sans)', fontSize: 15, fontWeight: 500, letterSpacing: '.04em', cursor: 'pointer', transition: 'background-color 200ms, transform 160ms var(--ease-out), opacity 200ms' };
 function PrebookModal({ onClose }) {
   const { Icon } = DS;
@@ -825,18 +827,18 @@ function PrebookModal({ onClose }) {
       <div style={{ position: 'sticky', top: 0, zIndex: 2, background: 'linear-gradient(var(--bg-page) 75%, rgba(243,238,228,0))', padding: 'clamp(16px,3vw,28px) clamp(16px,5vw,60px) 28px', display: 'flex', alignItems: 'center', gap: 'clamp(14px,2.4vw,24px)' }}>
         <button data-tq-ghost="" type="button" onClick={() => goStep(step - 1)} aria-label="Previous question" disabled={step < 0 || !!wlDone} style={{ width: 44, height: 44, flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: '1px solid var(--border-strong)', borderRadius: 0, color: 'var(--fg-1)', cursor: 'pointer', visibility: step < 0 || !!wlDone ? 'hidden' : 'visible', transition: 'background-color 200ms' }}><span aria-hidden="true" style={{ fontSize: 18, lineHeight: 1 }}>←</span></button>
         <div aria-hidden="true" style={{ flex: 1, height: 2, background: 'var(--border-hairline)', position: 'relative', overflow: 'hidden' }}><div style={{ position: 'absolute', inset: 0, background: 'var(--action-primary)', transformOrigin: 'left', transform: 'scaleX(' + pct / 100 + ')', transition: 'transform 600ms cubic-bezier(.23,1,.32,1)' }}></div></div>
-        <span aria-live="polite" style={{ flex: 'none', minWidth: 78, textAlign: 'right', fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--fg-2)', fontVariantNumeric: 'tabular-nums' }}>{pct}% done</span>
+        <span aria-live="polite" style={{ flex: 'none', minWidth: 78, textAlign: 'right', fontSize: 14, color: 'var(--fg-2)', fontVariantNumeric: 'tabular-nums' }}>{pct}% done</span>
         <button data-pb-x="" type="button" onClick={() => close(!wlDone)} aria-label="Close" style={{ width: 44, height: 44, flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 0, borderRadius: '50%', color: 'var(--fg-1)', cursor: 'pointer', transition: 'background-color 200ms' }}><Icon name="x" size={20} /></button>
       </div>
       <div key={!!wlDone ? 'done' : step} data-tq-step="" style={{ width: 'min(760px, 100%)', margin: '0 auto', padding: 'clamp(8px,3vw,32px) clamp(20px,5vw,40px) 80px', animation: enter + ' 520ms cubic-bezier(.23,1,.32,1)' }}>
         {step < 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingTop: 'clamp(0px,3vh,32px)' }}>
-            <span data-pb-in="" style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 12, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--fg-accent)', animationDelay: '120ms' }}><span aria-hidden="true" style={{ width: 40, height: 1, background: 'currentColor' }}></span>2-minute test<span aria-hidden="true" style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 18, letterSpacing: 0, textTransform: 'none' }}>&amp;</span>{N} questions<span aria-hidden="true" style={{ width: 40, height: 1, background: 'currentColor' }}></span></span>
-            <h2 id="prebook-title" data-pb-in="" style={{ ...tH, margin: '28px 0 32px', fontSize: 'clamp(46px,8vw,96px)', animationDelay: '200ms' }}>Your body is unique. This <em style={{ fontWeight: 400 }}>test</em> listens.</h2>
+            <span data-pb-in="" style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 14, color: 'var(--fg-accent)', animationDelay: '120ms' }}><span aria-hidden="true" style={{ width: 40, height: 1, background: 'currentColor' }}></span>2-minute test<span aria-hidden="true" style={{ fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 18, letterSpacing: 0, textTransform: 'none' }}>&amp;</span>{N} questions<span aria-hidden="true" style={{ width: 40, height: 1, background: 'currentColor' }}></span></span>
+            <h2 id="prebook-title" data-pb-in="" style={{ ...tH, margin: '28px 0 32px', fontSize: 'clamp(46px,8vw,96px)', animationDelay: '200ms' }}>Your body is unique. This <span style={{ fontStyle: 'normal',  fontWeight: 400 }}>test</span> listens</h2>
             <div data-pb-in="" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, maxWidth: 620, animationDelay: '300ms' }}>
               {['One sachet a day', 'Passion Fruit', '31 sachets · \u20b91,580', 'Founding member pre-order'].map((c) => <span key={c} style={{ ...tChip, padding: '11px 16px', fontSize: 12 }}>{c}</span>)}
             </div>
-            <p data-pb-in="" style={{ margin: '40px 0 22px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'clamp(24px,3vw,30px)', color: 'var(--fg-1)', animationDelay: '380ms' }}>Ready when you are.</p>
+            <p data-pb-in="" style={{ margin: '40px 0 22px', fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 'clamp(24px,3vw,30px)', color: 'var(--fg-1)', animationDelay: '380ms' }}>Ready when you are.</p>
             <div data-pb-in="" style={{ width: 'min(440px,100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, animationDelay: '440ms' }}>
               <button data-pb-btn="" type="button" onClick={() => goStep(0)} style={tBtn}>Take the test <span aria-hidden="true">→</span></button>
               <button data-pb-link="" type="button" onClick={() => close(true)} style={{ minHeight: 44, padding: 0, background: 'none', border: 0, fontFamily: 'var(--font-sans)', fontSize: 13, color: 'var(--fg-2)', textDecoration: 'underline', textUnderlineOffset: 4, cursor: 'pointer', transition: 'color 200ms' }}>Maybe later</button>
@@ -845,11 +847,11 @@ function PrebookModal({ onClose }) {
         ) : Q ? (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span data-pb-in="" style={{ ...tChip, alignSelf: 'flex-start', animationDelay: '60ms' }}>{Q.tag}</span>
-            {Q.eyebrow && <p data-pb-in="" style={{ margin: '22px 0 0', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 'clamp(22px,2.6vw,28px)', color: 'var(--fg-accent)', animationDelay: '100ms' }}>{Q.eyebrow}</p>}
+            {Q.eyebrow && <p data-pb-in="" style={{ margin: '22px 0 0', fontFamily: 'var(--font-serif)', fontStyle: 'normal', fontSize: 'clamp(22px,2.6vw,28px)', color: 'var(--fg-accent)', animationDelay: '100ms' }}>{Q.eyebrow}</p>}
             {Q.lead && <p data-pb-in="" style={{ margin: '10px 0 0', maxWidth: 600, fontSize: 16, fontWeight: 300, lineHeight: 1.6, color: 'var(--fg-2)', textWrap: 'pretty', animationDelay: '130ms' }}>{Q.lead}</p>}
-            {Q.perks && <div data-pb-in="" style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 18, animationDelay: '100ms' }}>{Q.perks.map(([t, d]) => <div key={t} style={{ borderLeft: '1px solid var(--fg-1)', paddingLeft: 18 }}><p style={{ margin: 0, fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--fg-1)' }}>{t}</p><p style={{ margin: '6px 0 0', fontSize: 15, fontWeight: 300, lineHeight: 1.55, color: 'var(--fg-2)', maxWidth: 520 }}>{d}</p></div>)}</div>}
+            {Q.perks && <div data-pb-in="" style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 18, animationDelay: '100ms' }}>{Q.perks.map(([t, d]) => <div key={t} style={{ borderLeft: '1px solid var(--fg-1)', paddingLeft: 18 }}><p style={{ margin: 0, fontSize: 14, color: 'var(--fg-1)' }}>{t}</p><p style={{ margin: '6px 0 0', fontSize: 15, fontWeight: 300, lineHeight: 1.55, color: 'var(--fg-2)', maxWidth: 520 }}>{d}</p></div>)}</div>}
             <h2 id="prebook-title" data-pb-in="" style={{ ...tH, margin: '24px 0 10px', fontSize: Q.q.length > 70 ? 'clamp(32px,4.6vw,52px)' : 'clamp(36px,5.6vw,64px)', animationDelay: '160ms' }}>{Q.q}</h2>
-            <p data-pb-in="" style={{ margin: '0 0 28px', fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--fg-2)', animationDelay: '200ms' }}>{Q.multi ? 'Select all that apply' : 'Choose one'}</p>
+            <p data-pb-in="" style={{ margin: '0 0 28px', fontSize: 14, color: 'var(--fg-2)', animationDelay: '200ms' }}>{Q.multi ? 'Select all that apply' : 'Choose one'}</p>
             <div role="group" aria-labelledby="prebook-title" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(300px,100%), 1fr))', gap: 12 }}>
               {Q.opts.map((o, i) => { const on = sel.includes(o); return (
                 <button key={o} data-tq-opt="" data-pb-in="" type="button" aria-pressed={on} onClick={() => pick(o)} style={{ minHeight: 64, padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, textAlign: 'left', border: '1px solid ' + (on ? 'var(--action-primary)' : 'var(--border-strong)'), borderRadius: 0, background: on ? 'var(--action-primary)' : 'transparent', color: on ? 'var(--action-on-primary)' : 'var(--fg-1)', fontFamily: 'var(--font-sans)', fontSize: 16, fontWeight: on ? 500 : 400, lineHeight: 1.35, cursor: 'pointer', transition: 'background-color 200ms, border-color 200ms, color 200ms, transform 160ms var(--ease-out)', animationDelay: 230 + i * 35 + 'ms' }}>
@@ -878,7 +880,7 @@ function BlogScreen({ onJoin }) {
   const { Heading, Button } = DS;
   const fmt = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   const posts = [...BLOG_POSTS].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-  const meta = { fontSize: 11, letterSpacing: 'var(--tracking-eyebrow)', textTransform: 'uppercase', color: 'var(--fg-2)' };
+  const meta = { fontSize: 14, color: 'var(--fg-2)' };
   return (
     <section data-screen-label="Blog" style={{ background: 'var(--bg-page)', padding: 'clamp(64px,9vw,120px) var(--gutter) var(--section-y)', minHeight: '70vh' }}>
       <Reveal style={{ maxWidth: 640, marginBottom: 'clamp(48px,6vw,80px)' }}>

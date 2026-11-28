@@ -48,10 +48,10 @@
 <section data-screen-label="Science Hero" style="position:relative;overflow:hidden;padding:clamp(80px,12vw,168px) var(--gutter) clamp(48px,7vw,88px);display:flex;flex-direction:column;align-items:center;text-align:center;">
   <img data-anim="float" data-delay="500" src="assets/brand/lineart-fan-petrol.png" alt="" aria-hidden="true" style="position:absolute;right:calc(var(--gutter) * .6);top:18%;width:clamp(56px,7vw,104px);opacity:.5;">
   <img data-anim="float" data-delay="750" src="assets/brand/lineart-drop-petrol.png" alt="" aria-hidden="true" style="position:absolute;left:calc(var(--gutter) * .8);bottom:22%;width:clamp(16px,1.6vw,24px);opacity:.55;">
-  <h1 data-anim="mask" data-delay="80" style="margin:0 0 26px;max-width:15ch;font-family:var(--font-serif);font-weight:500;font-size:clamp(44px,7vw,100px);line-height:1.02;letter-spacing:-.01em;color:var(--fg-1);text-wrap:balance;">The science, <em style="font-weight:400;">explained honestly.</em></h1>
+  <h1 data-anim="mask" data-delay="80" style="margin:0 0 26px;max-width:15ch;font-family:var(--font-serif);font-weight:500;font-size:clamp(44px,7vw,100px);line-height:1.02;color:var(--fg-1);text-wrap:balance;">The science, <span style="font-style:normal;font-weight:400;">explained honestly</span></h1>
   <p data-anim="rise" data-delay="320" style="margin:0;max-width:34em;font-size:clamp(16px,1.4vw,19px);font-weight:300;line-height:1.65;color:var(--fg-2);text-wrap:pretty;">PMOS is complex. Our formula is built around the biology, not around promises.</p>
   <button data-anim="fade" data-delay="700" type="button" onClick="{{ toJourney }}" style="margin-top:clamp(48px,7vw,88px);display:flex;flex-direction:column;align-items:center;gap:14px;background:none;border:0;cursor:pointer;color:var(--fg-2);min-height:44px;">
-    <span style="font-size:11px;letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;">Scroll to dive in</span>
+    <span style="font-size:14px;">Scroll to dive in</span>
     <span style="position:relative;display:block;width:1px;height:56px;background:var(--border-hairline);overflow:hidden;">
       <span style="position:absolute;left:0;top:0;width:1px;height:18px;background:var(--fg-1);animation:{{ cueAnim }};"></span>
     </span>
@@ -66,7 +66,7 @@
           <sc-for list="{{ rail }}" as="r" hint-placeholder-count="5">
             <button type="button" onClick="{{ r.go }}" aria-current="{{ r.current }}" style="display:flex;align-items:center;gap:12px;min-height:44px;padding:0;background:none;border:0;cursor:pointer;color:#F3EEE4;opacity:{{ r.op }};transition:opacity 300ms ease;">
               <span style="display:block;width:{{ r.w }};height:1px;background:#F3EEE4;transition:width 400ms cubic-bezier(.23,1,.32,1);"></span>
-              <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;">{{ r.n }} {{ r.label }}</span>
+              <span style="font-size:14px;white-space:nowrap;">{{ r.n }} {{ r.label }}</span>
             </button>
           </sc-for>
         </nav>
@@ -77,11 +77,11 @@
       <div style="display:grid;max-width:440px;">
         <sc-for list="{{ f.caps }}" as="c" hint-placeholder-count="1">
           <div aria-hidden="{{ c.hidden }}" style="grid-area:1 / 1;align-self:center;opacity:{{ c.op }};transform:translateY({{ c.y }}px);pointer-events:{{ c.pe }};">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#CDB894;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;font-size:14px;color:#CDB894;">
               <span>{{ c.n }}</span><span style="width:24px;height:1px;background:#CDB894;opacity:.6;"></span><span>{{ c.label }}</span>
             </div>
             <sc-if value="{{ c.closing }}" hint-placeholder-val="{{ false }}">
-              <p style="margin:0;font-family:var(--font-serif);font-weight:400;font-style:italic;font-size:clamp(30px,3.4vw,46px);line-height:1.12;color:#F3EEE4;text-wrap:balance;">{{ c.text }}</p>
+              <p style="margin:0;font-family:var(--font-serif);font-weight:400;font-style:normal;font-size:clamp(30px,3.4vw,46px);line-height:1.12;color:#F3EEE4;text-wrap:balance;">{{ c.text }}</p>
             </sc-if>
             <sc-if value="{{ c.body }}" hint-placeholder-val="{{ true }}">
               <p style="margin:0;font-size:clamp(16px,1.35vw,19px);font-weight:300;line-height:1.7;color:#F3EEE4;text-wrap:pretty;">{{ c.text }}</p>
@@ -101,7 +101,7 @@
 
 <section ref="{{ pillarsRef }}" data-screen-label="Four Pillars" style="padding:clamp(72px,9vw,128px) var(--gutter);">
   <div data-anim="mask" data-stagger="140" style="max-width:720px;margin-bottom:clamp(32px,4vw,48px);">
-    <h2 style="margin:0 0 16px;font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;color:var(--fg-1);">Four pillars. <em style="font-weight:400;">One daily formula.</em></h2>
+    <h2 style="margin:0 0 16px;font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;color:var(--fg-1);">Four pillars. <span style="font-style:normal;font-weight:400;">One daily formula</span></h2>
     <p style="margin:0;font-size:16px;font-weight:300;line-height:1.65;color:var(--fg-2);text-wrap:pretty;">Every ingredient has a role. Tap any molecule to see what it is, why it's included and how much we really know.</p>
   </div>
   <div data-anim="rise" data-stagger="60" data-delay="120" role="radiogroup" aria-label="Filter by pillar" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(28px,3.5vw,44px);">
@@ -125,7 +125,7 @@
       <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
         <div>
           <div style="display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--border-strong);">
-            <span style="font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--fg-2);">{{ p.n }}</span>
+            <span style="font-family:var(--font-serif);font-style:normal;font-size:20px;color:var(--fg-2);">{{ p.n }}</span>
             <h3 style="margin:0;flex:1;font-family:var(--font-serif);font-weight:500;font-size:clamp(26px,2.4vw,32px);line-height:1.1;color:var(--fg-1);">{{ p.title }}</h3>
             <span style="width:10px;height:10px;border-radius:50%;background:{{ p.color }};box-shadow:inset 0 0 0 1px rgba(27,42,45,.25);"></span>
           </div>
@@ -189,14 +189,14 @@
 </section>
 
 <section data-screen-label="Evidence Meter" style="background:var(--bg-sunken);padding:clamp(72px,9vw,128px) var(--gutter);">
-  <h2 data-anim="mask" style="margin:0 0 clamp(40px,5vw,64px);max-width:720px;font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;color:var(--fg-1);">How much do we <em style="font-weight:400;">really know?</em></h2>
+  <h2 data-anim="mask" style="margin:0 0 clamp(40px,5vw,64px);max-width:720px;font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;color:var(--fg-1);">How much do we <span style="font-style:normal;font-weight:400;">really know?</span></h2>
   <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:36px 0;">
     <li style="display:flex;flex-direction:column;gap:18px;padding-right:clamp(16px,2.5vw,36px);">
       <div style="position:relative;height:24px;display:flex;align-items:center;">
         <span data-anim="drawX" data-delay="100" style="position:absolute;left:0;right:0;height:2px;background:var(--trm-petrol);transform-origin:left center;"></span>
         <span data-anim="pop" data-delay="200" style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--trm-petrol);"></span>
       </div>
-      <span data-anim="rise" data-delay="250" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);">Step 1</span>
+      <span data-anim="rise" data-delay="250" style="font-size:14px;color:var(--fg-2);">Step 1</span>
       <h3 data-anim="rise" data-delay="320" style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.12;color:var(--fg-1);">Established biological role</h3>
       <p data-anim="rise" data-delay="400" style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">We know what an ingredient normally does in the body.</p>
     </li>
@@ -207,7 +207,7 @@
         <span data-anim="pop" data-delay="680" style="position:relative;width:24px;height:24px;border-radius:50%;background:var(--trm-petrol);box-shadow:0 0 0 6px rgba(11,68,88,.14);"></span>
         <span data-anim="drop" data-delay="900" style="position:relative;margin-left:16px;padding:5px 12px;border-radius:999px;background:var(--trm-petrol);color:var(--trm-ivory-50);font-size:12px;white-space:nowrap;">We are here</span>
       </div>
-      <span data-anim="rise" data-delay="700" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);">Step 2</span>
+      <span data-anim="rise" data-delay="700" style="font-size:14px;color:var(--fg-2);">Step 2</span>
       <h3 data-anim="rise" data-delay="780" style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.12;color:var(--fg-1);">Studied for PMOS</h3>
       <p data-anim="rise" data-delay="860" style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">Clinical trials have investigated it, but benefits may be inconsistent or uncertain.</p>
     </li>
@@ -216,34 +216,34 @@
         <span data-anim="drawX" data-delay="1200" style="position:absolute;left:0;right:0;height:0;border-top:2px dashed var(--border-strong);transform-origin:left center;"></span>
         <span data-anim="pop" data-delay="1450" style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--bg-sunken);border:2px solid var(--border-strong);"></span>
       </div>
-      <span data-anim="rise" data-delay="1250" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);">Where we're working towards</span>
+      <span data-anim="rise" data-delay="1250" style="font-size:14px;color:var(--fg-2);">Where we're working towards</span>
       <h3 data-anim="rise" data-delay="1320" style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:26px;line-height:1.12;color:var(--fg-1);">Proven benefit from our finished product</h3>
       <p data-anim="rise" data-delay="1400" style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">Requires evidence for our specific formulation, doses, quality and intended outcomes.</p>
     </li>
   </ol>
-  <p data-anim="rise" data-delay="150" style="margin:clamp(48px,6vw,72px) 0 0;padding-top:28px;border-top:1px solid var(--border-strong);max-width:820px;font-family:var(--font-serif);font-size:clamp(21px,2vw,26px);line-height:1.45;color:var(--fg-1);text-wrap:pretty;">A collection of individually plausible ingredients isn't automatically a clinically validated product. The 2023 International Evidence-based Guideline for PMOS notes that inositol may be considered according to individual preference, while emphasising limited evidence for specific forms, doses and combinations. <em>We think you deserve to know that.</em></p>
+  <p data-anim="rise" data-delay="150" style="margin:clamp(48px,6vw,72px) 0 0;padding-top:28px;border-top:1px solid var(--border-strong);max-width:820px;font-family:var(--font-serif);font-size:clamp(21px,2vw,26px);line-height:1.45;color:var(--fg-1);text-wrap:pretty;">A collection of individually plausible ingredients isn't automatically a clinically validated product. The 2023 International Evidence-based Guideline for PMOS notes that inositol may be considered according to individual preference, while emphasising limited evidence for specific forms, doses and combinations. <span style="font-style:normal;">We think you deserve to know that.</span></p>
 </section>
 
 <section data-screen-label="What We Believe" style="padding:clamp(72px,9vw,128px) var(--gutter);">
-  <h2 data-anim="mask" style="margin:0 0 clamp(32px,4vw,52px);font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;color:var(--fg-1);">What we <em style="font-weight:400;">believe</em></h2>
+  <h2 data-anim="mask" style="margin:0 0 clamp(32px,4vw,52px);font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;color:var(--fg-1);">What we <span style="font-style:normal;font-weight:400;">believe</span></h2>
   <div data-anim="tilt" data-stagger="130" data-delay="100" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px;perspective:1200px;">
     <article style="display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,32px);background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:4px;">
-      <span style="font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--fg-2);">01</span>
-      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">PMOS is not simply a hormonal imbalance.</h3>
+      <span style="font-family:var(--font-serif);font-style:normal;font-size:20px;color:var(--fg-2);">01</span>
+      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">PMOS is not simply a hormonal imbalance</h3>
       <p style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">It's a complex reproductive, endocrine and metabolic condition.</p>
     </article>
     <article style="display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,32px);background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:4px;">
-      <span style="font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--fg-2);">02</span>
-      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">Insulin resistance is important but not universal.</h3>
+      <span style="font-family:var(--font-serif);font-style:normal;font-size:20px;color:var(--fg-2);">02</span>
+      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">Insulin resistance is important but not universal</h3>
     </article>
     <article style="display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,32px);background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:4px;">
-      <span style="font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--fg-2);">03</span>
-      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">A mechanism is not an outcome.</h3>
+      <span style="font-family:var(--font-serif);font-style:normal;font-size:20px;color:var(--fg-2);">03</span>
+      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">A mechanism is not an outcome</h3>
       <p style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">An effect in a lab doesn't prove a result in your body.</p>
     </article>
     <article style="display:flex;flex-direction:column;gap:14px;padding:clamp(24px,2.4vw,32px);background:var(--bg-page-raised);border:1px solid var(--border-hairline);border-radius:4px;">
-      <span style="font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--fg-2);">04</span>
-      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">Supplements are not a substitute for medical care.</h3>
+      <span style="font-family:var(--font-serif);font-style:normal;font-size:20px;color:var(--fg-2);">04</span>
+      <h3 style="margin:0;font-family:var(--font-serif);font-weight:500;font-size:25px;line-height:1.15;color:var(--fg-1);">Supplements are not a substitute for medical care</h3>
       <p style="margin:0;font-size:15px;font-weight:300;line-height:1.6;color:var(--fg-2);">PMOS may need individualised treatment for irregular periods, metabolic health, acne or fertility.</p>
     </article>
   </div>
@@ -252,7 +252,7 @@
 <section data-anim="sweep" data-screen-label="Our Commitment" style="position:relative;overflow:hidden;background:var(--gradient-sachet-diag);background-size:140% 140%;color:#F3EEE4;padding:clamp(72px,9vw,128px) var(--gutter);">
   <img data-anim="float" data-delay="500" src="assets/brand/lineart-drop2-silver.png" alt="" aria-hidden="true" style="position:absolute;right:calc(var(--gutter) * .7);bottom:18%;width:clamp(20px,2vw,30px);opacity:.6;">
   <div data-anim="mask" data-stagger="160" style="max-width:760px;">
-    <h2 style="margin:0 0 24px;font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;">Our <em style="font-weight:400;">commitment</em></h2>
+    <h2 style="margin:0 0 24px;font-family:var(--font-serif);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.04;">Our <span style="font-style:normal;font-weight:400;">commitment</span></h2>
     <p style="margin:0 0 36px;font-size:clamp(16px,1.4vw,19px);font-weight:300;line-height:1.7;color:#F3EEE4;text-wrap:pretty;">The Right Molecule is building a science-led approach to women's hormonal health, starting with PMOS. We're developing a thoughtful, evidence-informed product, not a quick fix. We're working to establish quality, safety, appropriate use and evidence-based positioning before making specific health claims.</p>
     <button type="button" onClick="{{ goProduct }}" style="height:52px;padding:0 26px;display:inline-flex;align-items:center;gap:12px;background:var(--trm-ivory-50);color:var(--trm-petrol);border:0;border-radius:3px;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform 140ms ease-out;" style-active="transform:scale(.97)">
       <span>Meet PMOS Harmony</span>
@@ -304,7 +304,7 @@
   <aside role="dialog" aria-modal="true" aria-label="{{ pName }}" style="position:absolute;top:{{ pTop }};right:0;bottom:0;left:{{ pLeft }};width:{{ pWidth }};max-height:{{ pMaxH }};overflow-y:auto;background:var(--bg-page-raised);border-radius:{{ pRadius }};box-shadow:-20px 0 60px rgba(6,48,63,.18);transform:{{ pTransform }};transition:transform 520ms cubic-bezier(.32,.72,0,1);padding:{{ pPad }};">
     <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><div style="display:flex;justify-content:center;padding:0 0 4px;"><span style="width:36px;height:4px;border-radius:2px;background:var(--border-strong);"></span></div></sc-if>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;">
-      <span style="display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);"><span style="width:9px;height:9px;border-radius:50%;background:{{ pColor }};box-shadow:inset 0 0 0 1px rgba(27,42,45,.3);"></span>{{ pGroup }}</span>
+      <span style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--fg-2);"><span style="width:9px;height:9px;border-radius:50%;background:{{ pColor }};box-shadow:inset 0 0 0 1px rgba(27,42,45,.3);"></span>{{ pGroup }}</span>
       <button type="button" onClick="{{ closePanel }}" aria-label="Close" style="width:44px;height:44px;margin-right:-12px;display:flex;align-items:center;justify-content:center;background:none;border:0;color:var(--fg-1);cursor:pointer;">
         <x-import component-from-global-scope="TheRightMoleculeDesignSystem_d2cf6c.Icon" name="x" size="{{ 20 }}" stroke="{{ 1.1 }}" hint-size="20px,20px"></x-import>
       </button>
@@ -326,18 +326,18 @@
     <div style="height:1px;background:var(--border-hairline);margin:26px 0;"></div>
     <div style="display:flex;flex-direction:column;gap:24px;">
       <div>
-        <h3 style="margin:0 0 8px;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);">What it is</h3>
+        <h3 style="margin:0 0 8px;font-size:14px;font-weight:400;color:var(--fg-2);">What it is</h3>
         <p style="margin:0;font-size:16px;font-weight:300;line-height:1.65;color:var(--fg-1);">{{ pWhat }}</p>
       </div>
       <div>
-        <h3 style="margin:0 0 8px;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);">Why it's in the formula</h3>
+        <h3 style="margin:0 0 8px;font-size:14px;font-weight:400;color:var(--fg-2);">Why it's in the formula</h3>
         <p style="margin:0;font-size:16px;font-weight:300;line-height:1.65;color:var(--fg-1);">{{ pWhy }}</p>
         <sc-if value="{{ pHasNote }}" hint-placeholder-val="{{ false }}">
           <p style="margin:14px 0 0;padding:12px 14px;background:var(--bg-sunken);border-radius:3px;font-size:14px;line-height:1.55;color:var(--fg-1);">{{ pNote }}</p>
         </sc-if>
       </div>
       <div>
-        <h3 style="margin:0 0 10px;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);">Evidence</h3>
+        <h3 style="margin:0 0 10px;font-size:14px;font-weight:400;color:var(--fg-2);">Evidence</h3>
         <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 10px;border-radius:999px;background:{{ pEvBg }};color:{{ pEvInk }};font-size:13px;line-height:1.2;">
           <span style="display:flex;gap:3px;">
             <sc-for list="{{ pDots }}" as="d" hint-placeholder-count="3"><span style="width:6px;height:6px;border-radius:50%;background:{{ d.c }};border:1px solid {{ pEvInk }};"></span></sc-for>
@@ -347,10 +347,10 @@
         <p style="margin:10px 0 0;font-size:13px;line-height:1.55;color:var(--fg-2);">{{ pEvExplain }}</p>
       </div>
       <div>
-        <h3 style="margin:0 0 10px;font-size:11px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);">Works with</h3>
+        <h3 style="margin:0 0 10px;font-size:14px;font-weight:400;color:var(--fg-2);">Works with</h3>
         <sc-if value="{{ pRatio }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;padding:12px 14px;border:1px solid var(--border-hairline);border-radius:3px;">
-            <span style="font-family:var(--font-serif);font-style:italic;font-size:26px;line-height:1;color:var(--fg-1);">40 : 1</span>
+            <span style="font-family:var(--font-serif);font-style:normal;font-size:26px;line-height:1;color:var(--fg-1);">40 : 1</span>
             <span style="font-size:13px;line-height:1.45;color:var(--fg-2);">Myo-inositol to D-chiro-inositol, by mass</span>
           </div>
         </sc-if>
